@@ -1,14 +1,12 @@
 package game;
 
-import javax.swing.JPanel;
+import javax.swing.JFrame;
 
-public class Dungeon extends JPanel {
+public class Dungeon extends JFrame {
 	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {	
 		feld1();
 	}
-	
 	
 	public static void feld1() {
 		int [][] feld1 = {{ 1,1,1,1,1,1},{1,0,0,0,0,1},{1,2,0,0,0,1},{1,0,0,0,0,3},{1,0,0,0,0,1},{ 1,1,1,1,1,1}} ;
@@ -20,6 +18,9 @@ public class Dungeon extends JPanel {
 		System.out.println("");
 		}
 	}
+	
+	
+	
 
 
 }

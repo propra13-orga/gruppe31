@@ -37,18 +37,9 @@ public class frame extends JFrame implements ActionListener {
 		
 		JLabel label = new JLabel ("Made by Pinky and the Gang");
 		label.setBounds(200,340,150,20);
-		add(label);
-		
+		add(label);	
 	}
 	
-	public static void fenster() {
-		JFrame fenster = new JFrame();
-		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenster.setSize(400,400);
-		fenster.setVisible(true);
-	}
-
-
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()== schliessen) {
 			fenster();
@@ -58,5 +49,18 @@ public class frame extends JFrame implements ActionListener {
 		}
 		
 	}
-
+	
+	public static void fenster() {
+		JLabel label = new JLabel ( "Hallo Welt" , JLabel.CENTER);
+		label.setAlignmentX(0);
+		label.setAlignmentY(0);
+		
+		JFrame fenster = new JFrame("Spiel");
+		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fenster.setSize(400,400);
+		fenster.setVisible(true);
+		fenster.add(label);
+		
+		
+	}
 }
