@@ -2,7 +2,7 @@ package game;
 
 import javax.swing.JFrame;
 
-public class Dungeon extends JFrame {
+public class spielfelder extends JFrame {
 	
 	public static void main(String[] args) {	
 		feld1();

@@ -36,7 +36,7 @@ public class frame extends JFrame implements ActionListener {
 		add(ende);
 		
 		JLabel label = new JLabel ("Made by Pinky and the Gang");
-		label.setBounds(200,340,150,20);
+		label.setBounds(200,340,180,20);
 		add(label);	
 	}
 	
