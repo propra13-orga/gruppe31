@@ -2,65 +2,81 @@ package game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-public class frame extends JFrame implements ActionListener {
-	private JButton schliessen;
-	private JButton ende;
-
-	public static void main(String[] args) {
-		frame frame = new frame ("Menu");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(400,400);
+/**
+ * erstellt externes Fenster
+ * @author Denise
+ *
+ */
+public class frame extends JFrame {
+	
+	public static void main(String[] args) { 
+		frame();
 		
-		frame.setLayout(null);
-		frame.setVisible(true);
 	}
 	
-	public frame (String title) {
+	
+	/*
+	 * soll neues externes Fenster mit 2 Buttons und einem Label erstellen
+	 */
+	public static void frame() {
+		JFrame F = new JFrame ("Menu");		
+		try{
+			F.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Startscreen.jpg")))));
+		}
+		catch(IOException a) {
+			System.out.println("das Bild kann nicht gefunden werden");
+		}
 		
-		super(title);
+		F.setResizable(false);
+		F.setSize(800,600);
+		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		F.setLocationRelativeTo(null);
 		
-		schliessen = new JButton("Spiel starten");
-		schliessen.setBounds(120,120,160,40);
-		schliessen.addActionListener(this);
-		add(schliessen);
-		
-		ende = new JButton("Beenden");
-		ende.setBounds(120,200,160,40);
-		ende.addActionListener(this);
-		add(ende);
 		
 		JLabel label = new JLabel ("Made by Pinky and the Gang");
-		label.setBounds(200,340,180,20);
-		add(label);	
-	}
-	
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource()== schliessen) {
-			fenster();
-		}
-		if (e.getSource()== ende) {
-			System.exit(0);
-		}
+		label.setBounds(500,550,200,40);
+		F.add(label);
 		
-	}
+		JButton start = new JButton("Spiel starten");
+		start.setBounds(400,350,200,40);
+		F.add(start);
+		
+		JButton ende = new JButton("Beenden");
+		ende.setBounds(400,400,200,40);
+		F.add(ende);
+		
+		 ActionListener alstart = new ActionListener() {
+		      public void actionPerformed( ActionEvent e ) {
+		        fenster();
+		      }
+		    };
+		
+		 ActionListener alende = new ActionListener() {
+		      public void actionPerformed( ActionEvent e ) {
+		    	  System.exit(0);
+		      }
+		    };
+		    start.addActionListener(alstart);
+		    ende.addActionListener(alende);
+		    F.pack();
+		    F.setVisible(true);
+		  }
 	
+	/**
+	 * öffnet neues Fenster wenn "Spiel starten" geklickt
+	 * 
+	 */
 	public static void fenster() {
-		JLabel label = new JLabel ( "Hallo Welt" , JLabel.CENTER);
-		label.setAlignmentX(0);
-		label.setAlignmentY(0);
 		
 		JFrame fenster = new JFrame("Spiel");
 		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenster.setSize(400,400);
-		fenster.setVisible(true);
-		fenster.add(label);
-		
-		
+		fenster.setSize(800,600);
+		fenster.setVisible(true);	
 	}
 }
