@@ -39,7 +39,7 @@ public class frame extends JFrame {
 		
 		F.setResizable(false);
 		F.setSize(800,600);
-		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//Eigenschaften des Menufensters
+		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//Eigenschaften des Menufensters (Größe, Schließbar, Mittig setzen)
 		F.setLocationRelativeTo(null);
 		
 		
