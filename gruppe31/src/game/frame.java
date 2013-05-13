@@ -11,13 +11,15 @@ import javax.swing.*;
 /**
  * erstellt externes Fenster
  * @author Denise
- *
  */
 public class frame extends JFrame {
 	
 	public static JFrame F;
-	public static JFrame fenster;
+	public static JFrame spielfenster;
 	
+	/**
+	 * ruft das Menufenster auf
+	 */
 	public static void main(String[] args) { 
 		Menufenster();
 	}
@@ -29,7 +31,7 @@ public class frame extends JFrame {
 	public static void Menufenster() {
 		F = new JFrame ("Menu");		
 		try{
-			F.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Startscreen.jpg")))));
+			F.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Startscreen.jpg")))));		// setzt das Hintergrundbild
 		}
 		catch(IOException a) {
 			System.out.println("das Bild kann nicht gefunden werden");
@@ -37,12 +39,12 @@ public class frame extends JFrame {
 		
 		F.setResizable(false);
 		F.setSize(800,600);
-		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//Eigenschaften des Menufensters
 		F.setLocationRelativeTo(null);
 		
 		
 		JLabel label = new JLabel ("Made by Pinky and the Gang");
-		label.setBounds(500,550,200,40);
+		label.setBounds(500,550,200,40);			//erstellt Label mit Text, setzt Position fest und fügt zu Menufenster hinzu
 		F.add(label);
 		
 		JButton start = new JButton("Spiel starten");
@@ -54,8 +56,7 @@ public class frame extends JFrame {
 		F.add(ende);
 		
 		 ActionListener alstart = new ActionListener() {
-		      public void actionPerformed( ActionEvent e ) {
-		    	  
+		      public void actionPerformed( ActionEvent e ) {		//registriert Mausklick auf Button start
 		    	  Spielfenster();
 		      }
 		    };
@@ -72,14 +73,16 @@ public class frame extends JFrame {
 		  }
 	
 	/**
-	 * öffnet neues Fenster wenn "Spiel starten" geklickt
+	 * öffnet neues Fenster wenn "Spiel starten" geklickt wird und fügt ihm das erste Level hinzu
 	 * 
 	 */
 	public static void Spielfenster() {
 		
-		fenster = new JFrame("Spiel");
-		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenster.setSize(800,600);
-		fenster.setVisible(true);
+		spielfenster = new JFrame("Spiel");
+		spielfenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		spielfenster.setSize(800,600);
+		spielfenster.setVisible(true);
+		
+		Spielfeld.level1();
 	}
 }
