@@ -15,17 +15,19 @@ import javax.swing.*;
  */
 public class frame extends JFrame {
 	
+	public static JFrame F;
+	public static JFrame fenster;
+	
 	public static void main(String[] args) { 
-		frame();
-		
+		Menufenster();
 	}
 	
 	
 	/*
 	 * soll neues externes Fenster mit 2 Buttons und einem Label erstellen
 	 */
-	public static void frame() {
-		JFrame F = new JFrame ("Menu");		
+	public static void Menufenster() {
+		F = new JFrame ("Menu");		
 		try{
 			F.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Startscreen.jpg")))));
 		}
@@ -53,7 +55,8 @@ public class frame extends JFrame {
 		
 		 ActionListener alstart = new ActionListener() {
 		      public void actionPerformed( ActionEvent e ) {
-		        fenster();
+		    	  
+		    	  Spielfenster();
 		      }
 		    };
 		
@@ -72,11 +75,11 @@ public class frame extends JFrame {
 	 * öffnet neues Fenster wenn "Spiel starten" geklickt
 	 * 
 	 */
-	public static void fenster() {
+	public static void Spielfenster() {
 		
-		JFrame fenster = new JFrame("Spiel");
+		fenster = new JFrame("Spiel");
 		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fenster.setSize(800,600);
-		fenster.setVisible(true);	
+		fenster.setVisible(true);
 	}
 }
