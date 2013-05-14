@@ -8,30 +8,27 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-/**
- * erstellt externes Fenster
+/** erstellt externes Fenster
  * @author Denise
  */
+ 
 public class frame extends JFrame {
 	
-	public static JFrame F;
-	public static JFrame level1;
-	public static JFrame level2;
-	public static JFrame level3;
+	public static JButton start;
+	public static JButton ende;
 	
-	/**
-	 * ruft das Menufenster auf
-	 */
+	public static Spielfeld mySpielfeld;
+	
+	/* ruft das Menufenster mit Hintergrund auf */
 	public static void main(String[] args) { 
 		Menufenster();
 	}
 	
 	
-	/*
-	 * soll neues externes Fenster mit 2 Buttons und einem Label erstellen
-	 */
+	/*soll neues externes Fenster mit 2 Buttons und einem Label erstellen*/
+	 
 	public static void Menufenster() {
-		F = new JFrame ("Menu");		
+		frame F = new frame();		
 		try{
 			F.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Images/Startscreen.jpg")))));		// setzt das Hintergrundbild
 		}
@@ -39,27 +36,35 @@ public class frame extends JFrame {
 			System.out.println("das Bild kann nicht gefunden werden");
 		}
 		
+		/*Eigenschaften des Menufensters (Größe, Schließbar, Mittig setzen)*/
 		F.setResizable(false);
 		F.setSize(800,600);
-		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//Eigenschaften des Menufensters (Größe, Schließbar, Mittig setzen)
+		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		F.setLocationRelativeTo(null);
+		F.setVisible(true);
+		F.setLayout(null);
 		
-		
+		/*erstellt Label mit Text, setzt Position fest und fügt es zu Menufenster hinzu*/
 		JLabel label = new JLabel ("Made by Pinky and the Gang");
-		label.setBounds(500,550,200,40);			//erstellt Label mit Text, setzt Position fest und fügt zu Menufenster hinzu
+		label.setBounds(500,550,200,40);
 		F.add(label);
 		
-		JButton start = new JButton("Spiel starten");
+		start = new JButton("Spiel starten");
 		start.setBounds(400,350,200,40);
 		F.add(start);
 		
-		JButton ende = new JButton("Beenden");
+		ende = new JButton("Beenden");
 		ende.setBounds(400,400,200,40);
 		F.add(ende);
 		
+		mySpielfeld = new Spielfeld();
+		
+		/*registriert Mausklick auf Button start*/
 		 ActionListener alstart = new ActionListener() {
-		      public void actionPerformed( ActionEvent e ) {		//registriert Mausklick auf Button start
-		    	  FeldLevel1();
+		      public void actionPerformed( ActionEvent e ) {		
+		    		mySpielfeld.levelsErstellen(); 						
+		    		StdDraw.setCanvasSize(880,660);					
+		    		mySpielfeld.levelDarstellen(); 						
 		      }
 		    };
 		
@@ -71,20 +76,5 @@ public class frame extends JFrame {
 		    start.addActionListener(alstart);
 		    ende.addActionListener(alende);
 		    F.pack();
-		    F.setVisible(true);
 		  }
-	
-	/**
-	 * öffnet neues Fenster wenn "Spiel starten" geklickt wird und fügt ihm das erste Level hinzu
-	 * 
-	 */
-	public static void FeldLevel1() {
-		
-		level1 = new JFrame("Level 1");
-		level1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		level1.setSize(800,600);
-		level1.setVisible(true);
-		
-		Spielfeld.level1();
-	}
-}
+} 
