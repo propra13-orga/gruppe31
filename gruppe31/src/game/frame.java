@@ -17,7 +17,9 @@ public class frame extends JFrame {
 	public static JButton start;
 	public static JButton ende;
 	
-	public static Spielfeld mySpielfeld;
+	public static frame f = new frame();
+	public static frame F = new frame();
+	
 	
 	/* ruft das Menufenster mit Hintergrund auf */
 	public static void main(String[] args) { 
@@ -27,8 +29,7 @@ public class frame extends JFrame {
 	
 	/*soll neues externes Fenster mit 2 Buttons und einem Label erstellen*/
 	 
-	public static void Menufenster() {
-		frame F = new frame();		
+	public static void Menufenster() {	
 		try{
 			F.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Images/Startscreen.jpg")))));		// setzt das Hintergrundbild
 		}
@@ -38,6 +39,7 @@ public class frame extends JFrame {
 		
 		/*Eigenschaften des Menufensters (Größe, Schließbar, Mittig setzen)*/
 		F.setResizable(false);
+		F.setTitle("Menu");
 		F.setSize(800,600);
 		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		F.setLocationRelativeTo(null);
@@ -57,14 +59,10 @@ public class frame extends JFrame {
 		ende.setBounds(400,400,200,40);
 		F.add(ende);
 		
-		mySpielfeld = new Spielfeld();
-		
 		/*registriert Mausklick auf Button start*/
 		 ActionListener alstart = new ActionListener() {
 		      public void actionPerformed( ActionEvent e ) {		
-		    		mySpielfeld.levelsErstellen(); 						
-		    		StdDraw.setCanvasSize(880,660);					
-		    		mySpielfeld.levelDarstellen(); 						
+		    	  Spielfenster();
 		      }
 		    };
 		
@@ -77,4 +75,17 @@ public class frame extends JFrame {
 		    ende.addActionListener(alende);
 		    F.pack();
 		  }
+	
+	public static void Spielfenster() {	
+		f.setResizable(false);
+		f.setTitle("Erna's Adventure");
+		f.setSize(800,600);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		f.setLocationRelativeTo(null);
+		f.setVisible(true);
+		f.setLayout(null);
+		
+		Spielfeld.level1();
+	}
+	
 } 
