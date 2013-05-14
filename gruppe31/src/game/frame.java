@@ -15,7 +15,9 @@ import javax.swing.*;
 public class frame extends JFrame {
 	
 	public static JFrame F;
-	public static JFrame spielfenster;
+	public static JFrame level1;
+	public static JFrame level2;
+	public static JFrame level3;
 	
 	/**
 	 * ruft das Menufenster auf
@@ -31,7 +33,7 @@ public class frame extends JFrame {
 	public static void Menufenster() {
 		F = new JFrame ("Menu");		
 		try{
-			F.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Startscreen.jpg")))));		// setzt das Hintergrundbild
+			F.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Images/Startscreen.jpg")))));		// setzt das Hintergrundbild
 		}
 		catch(IOException a) {
 			System.out.println("das Bild kann nicht gefunden werden");
@@ -57,7 +59,7 @@ public class frame extends JFrame {
 		
 		 ActionListener alstart = new ActionListener() {
 		      public void actionPerformed( ActionEvent e ) {		//registriert Mausklick auf Button start
-		    	  Spielfenster();
+		    	  FeldLevel1();
 		      }
 		    };
 		
@@ -76,12 +78,12 @@ public class frame extends JFrame {
 	 * öffnet neues Fenster wenn "Spiel starten" geklickt wird und fügt ihm das erste Level hinzu
 	 * 
 	 */
-	public static void Spielfenster() {
+	public static void FeldLevel1() {
 		
-		spielfenster = new JFrame("Spiel");
-		spielfenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		spielfenster.setSize(800,600);
-		spielfenster.setVisible(true);
+		level1 = new JFrame("Level 1");
+		level1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		level1.setSize(800,600);
+		level1.setVisible(true);
 		
 		Spielfeld.level1();
 	}
