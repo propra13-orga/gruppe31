@@ -76,6 +76,7 @@ public class frame extends JFrame {
 		    F.pack();
 		  }
 	
+	/* Eigenschaften des Spielfeldes*/
 	public static void Spielfenster() {	
 		f.setResizable(false);
 		f.setTitle("Erna's Adventure");
@@ -83,7 +84,6 @@ public class frame extends JFrame {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
-		f.setLayout(null);
 		
 		Spielfeld.level1();
 	}
