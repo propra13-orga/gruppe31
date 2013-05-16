@@ -37,7 +37,7 @@ public class frame extends JFrame {
 			System.out.println("das Bild kann nicht gefunden werden");
 		}
 		
-		/*Eigenschaften des Menufensters (Größe, Schließbar, Mittig setzen)*/
+		/*Eigenschaften des Menufensters (Groeße, Schliessbar, Mittig setzen)*/
 		F.setResizable(false);
 		F.setTitle("Menu");
 		F.setSize(800,600);
@@ -46,7 +46,7 @@ public class frame extends JFrame {
 		F.setVisible(true);
 		F.setLayout(null);
 		
-		/*erstellt Label mit Text, setzt Position fest und fügt es zu Menufenster hinzu*/
+		/*erstellt Label mit Text, setzt Position fest und fuegt es zu Menufenster hinzu*/
 		JLabel label = new JLabel ("Made by Pinky and the Gang");
 		label.setBounds(500,550,200,40);
 		F.add(label);
