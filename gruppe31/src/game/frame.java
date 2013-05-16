@@ -12,13 +12,13 @@ import javax.swing.*;
  * @author Denise
  */
  
-public class frame extends JFrame {
+public class Frame extends JFrame {
 	
 	public static JButton start;
 	public static JButton ende;
 	
-	public static frame f = new frame();
-	public static frame F = new frame();
+	public static Frame f = new Frame();
+	public static Frame F = new Frame();
 	
 	
 	/* ruft das Menufenster mit Hintergrund auf */
@@ -79,7 +79,7 @@ public class frame extends JFrame {
 	/* Eigenschaften des Spielfeldes*/
 	public static void Spielfenster() {
 		
-		f.setResizable(false);
+		f.setResizable(true);
 		f.setTitle("Erna's Adventure");
 		f.setSize(800,600);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	

@@ -1,4 +1,4 @@
-/*package game;
+package game;
  
 
 import java.applet.Applet;
@@ -102,4 +102,4 @@ public class Listener extends Applet implements Runnable, KeyListener {
 		      break;
 		   }
 	}
-}*/
+}
