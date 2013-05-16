@@ -30,8 +30,11 @@ public class Frame extends JFrame {
 	/*soll neues externes Fenster mit 2 Buttons und einem Label erstellen*/
 	 
 	public static void Menufenster() {	
+		
+		String direction = System.getProperty("user.dir");
+		
 		try{
-			F.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("src/Game/Images/Startscreen.jpg")))));		// setzt das Hintergrundbild
+			F.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(direction+"/src/game/Images/Startscreen.jpg")))));		// setzt das Hintergrundbild
 		}
 		catch(IOException a) {
 			System.out.println("das Bild kann nicht gefunden werden");
@@ -79,16 +82,15 @@ public class Frame extends JFrame {
 	/* Eigenschaften des Spielfeldes*/
 	public static void Spielfenster() {
 		
-		f.setResizable(true);
+		f.setResizable(false);
 		f.setTitle("Erna's Adventure");
-		f.setSize(800,600);
+		f.setSize(900,700);
+		f.setLayout(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
 		
 		Spielfeld.level1();
-		
-		f.pack();
 	}
 	
 } 
