@@ -51,24 +51,86 @@ import javax.swing.*;
 								   {1,1,1,1,1,1,1,1}};
 	
 	static final int [][] feld3 = {{1,1,1,1,1,1,1,1},
-									{1,0,3,0,0,0,0,1},
-									{1,0,0,0,1,0,0,5},
-									{1,1,1,0,1,0,0,1},
-									{2,0,0,0,1,0,3,1},
-									{1,1,1,1,1,1,1,1}};
-	
+								   {1,0,3,0,0,0,0,1},
+								   {1,0,0,0,1,0,0,5},
+								   {1,1,1,0,1,0,0,1},
+								   {2,0,0,0,1,0,3,1},
+								   {1,1,1,1,1,1,1,1}};
+
+	    	
 	public void processKeyEvent(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) { 
 			System.out.println("es wurde links gedrückt");
+			if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 3) {
+				Verloren();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 4) {
+				Levelaufruf(feld2);
+			}
+			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 5) {
+				Gewonnen();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 0) {
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+				Spielfigurx--;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+				Levelaufruf(aktuellesSpielfeld);
+			}
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			System.out.println("es wurde rechts gedrückt");
+			if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 3) {
+				Verloren();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 4) {
+				Levelaufruf(feld2);
+			}
+			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 5) {
+				Gewonnen();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 0) {
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+				Spielfigurx++;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+				Levelaufruf(aktuellesSpielfeld);
+			}
+
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			System.out.println("es wurde hoch gedrückt");
+			if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 3) {
+				Verloren();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 4) {
+				Levelaufruf(feld2);
+			}
+			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 5) {
+				Gewonnen();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 0) {
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+				Spielfigury--;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+				Levelaufruf(aktuellesSpielfeld);
+			}
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			System.out.println("es wurde runter gedrückt");
+			if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 3) {
+				Verloren();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 4) {
+				Levelaufruf(feld2);
+			}
+			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 5) {
+				Gewonnen();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 0) {
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+				Spielfigury++;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+				Levelaufruf(aktuellesSpielfeld);
+			}
 		}
 	}
 	
@@ -176,8 +238,22 @@ import javax.swing.*;
 								labels[i].setBounds(j*100,i*100,100,100);
 								panel.add(labels[i]);
 							}
+					    	else if (feld[i][j]==3){
+					    		Spielfigurx=i;
+					    		Spielfigury=j;
+								labels[i]=new JLabel(iconGegner);
+								labels[i].setBounds(j*100,i*100,100,100);
+								panel.add(labels[i]);
+							}
 					    	else if (feld[i][j]==4){
 								labels[i]=new JLabel(iconRasen);
+								labels[i].setBounds(j*100,i*100,100,100);
+								panel.add(labels[i]);
+							}
+					    	else if (feld[i][j]==5){
+					    		Spielfigurx=i;
+					    		Spielfigury=j;
+								labels[i]=new JLabel(iconZiel);
 								labels[i].setBounds(j*100,i*100,100,100);
 								panel.add(labels[i]);
 							}
@@ -189,26 +265,26 @@ import javax.swing.*;
 	public static void Gewonnen() {
 		
 		try{
-			F.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(direction+"/src/game/Images/Gewonnen.jpg")))));
+			f.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(direction+"/src/game/Images/Gewonnen.jpg")))));
 		}
 		catch(IOException a) {
 			System.out.println("das Bild kann nicht gefunden werden");
 		}
 		
-		F.setResizable(false);
-		F.setSize(800,600);
-		F.setLayout(null);
-		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-		F.setLocationRelativeTo(null);
-		F.setVisible(true);	
+		f.setResizable(false);
+		f.setSize(800,600);
+		f.setLayout(null);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		f.setLocationRelativeTo(null);
+		f.setVisible(true);	
 		
 		schliessen = new JButton("Dieses Fenster schließen");
 		schliessen.setBounds(550,450,200,40);
-		F.add(schliessen);
+		f.add(schliessen);
 		
 		ActionListener alschliessen = new ActionListener() {
 			public void actionPerformed( ActionEvent e ) {		
-				F.setVisible(false);
+				f.setVisible(false);
 		    }
 		};
 		
@@ -218,22 +294,22 @@ import javax.swing.*;
 	public static void Verloren() {
 		
 		try{
-			F.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(direction+"/src/game/Images/GameOver.jpg")))));
+			f.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(direction+"/src/game/Images/GameOver.jpg")))));
 		}
 		catch(IOException a) {
 			System.out.println("das Bild kann nicht gefunden werden");
 		}
 		
-		F.setResizable(false);
-		F.setSize(800,600);
-		F.setLayout(null);
-		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-		F.setLocationRelativeTo(null);
-		F.setVisible(true);	
-		
+		f.setResizable(false);
+		f.setSize(800,600);
+		f.setLayout(null);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		f.setLocationRelativeTo(null);
+		f.setVisible(true);	
+	
 		schliessen = new JButton("Dieses Fenster schließen");
 		schliessen.setBounds(300,450,200,40);
-		F.add(schliessen);
+		f.add(schliessen);
 		
 		ActionListener alschliessen = new ActionListener() {
 			public void actionPerformed( ActionEvent e ) {		
