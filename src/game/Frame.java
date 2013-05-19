@@ -12,7 +12,7 @@ import javax.swing.*;
 /** diese Klasse erzeugt sowohl das Menüfenster,
  * als auch das Spielfenster. Die Buttons im Menüfenster
  * sind anklickbar und bewirken das Schließen des Fensters,
- * oder das Öffnen des Spielfensters.
+ * oder das Öffnen des Spielfensters. 
  */
 	public class Frame extends JFrame {
 		
@@ -56,84 +56,8 @@ import javax.swing.*;
 								   {1,1,1,0,1,0,0,1},
 								   {2,0,0,0,1,0,3,1},
 								   {1,1,1,1,1,1,1,1}};
-
-	    	
-	public void processKeyEvent(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) { 
-			System.out.println("es wurde links gedrückt");
-			if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 3) {
-				Verloren();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 4) {
-				Levelaufruf(feld2);
-			}
-			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 5) {
-				Gewonnen();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 0) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
-				Spielfigurx--;
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
-				Levelaufruf(aktuellesSpielfeld);
-			}
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			System.out.println("es wurde rechts gedrückt");
-			if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 3) {
-				Verloren();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 4) {
-				Levelaufruf(feld2);
-			}
-			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 5) {
-				Gewonnen();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 0) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
-				Spielfigurx++;
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
-				Levelaufruf(aktuellesSpielfeld);
-			}
-
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			System.out.println("es wurde hoch gedrückt");
-			if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 3) {
-				Verloren();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 4) {
-				Levelaufruf(feld2);
-			}
-			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 5) {
-				Gewonnen();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 0) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
-				Spielfigury--;
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
-				Levelaufruf(aktuellesSpielfeld);
-			}
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			System.out.println("es wurde runter gedrückt");
-			if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 3) {
-				Verloren();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 4) {
-				Levelaufruf(feld2);
-			}
-			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 5) {
-				Gewonnen();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 0) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
-				Spielfigury++;
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
-				Levelaufruf(aktuellesSpielfeld);
-			}
-		}
-	}
 	
+	/* beim Start des Programms ist das aktuelleSpielfeld=das erste Level
 	public Frame() {
 		aktuellesSpielfeld=feld1;
 	}
@@ -143,7 +67,7 @@ import javax.swing.*;
 		Menufenster();
 	}
 	
-	/*erzeugt das Menüfenster mit zwei Buttons und einem Label*/
+	/*erzeugt das Menüfenster mit zwei Buttons,einem Label und Hintergrundbild*/
 	public static void Menufenster() {	
 		
 		/*setzt das Hintergrundbild. Wenn es nicht gefunden wird erscheint ein Text*/
@@ -184,6 +108,7 @@ import javax.swing.*;
 		    }
 		};
 		
+		/*beendet das Programm, wenn auf Button ende geklickt wird*/
 		ActionListener alende = new ActionListener() {
 			public void actionPerformed( ActionEvent e ) {
 				System.exit(0);
@@ -195,6 +120,7 @@ import javax.swing.*;
 		ende.addActionListener(alende);
 	}
 	
+	/*erzeugt das Spielfenster, setzt diverse Einstellungen und erzeugt darauf das aktuelle Spielfeld*/
 	public static void Spielfenster() {
 		f.setResizable(false);
 		f.setTitle("Erna's Adventure");
@@ -209,14 +135,16 @@ import javax.swing.*;
 		Levelaufruf(aktuellesSpielfeld);
 	}
 	
-	/* Eigenschaften des Spielfeldes, führt Methode level1 aus der Klasse Spielfeld aus*/
+	/* allgemeine Methode zum Erzeugen der Level*/
 	public static void Levelaufruf(int [][] feld) {
+		/*erzeugt Panel um darauf arbeiten zu können*/
 		JPanel panel = new JPanel();
 		panel.setLayout(null);		
 		
 		/*erstellt so viele Labels, wie für Array benötigt*/
 		JLabel[] labels=new JLabel[48];
-		
+				
+				/*geht das gesamte Array durch*/
 				for (int i = 0; i < feld.length; i++) {	
 					    for (int j = 0; j < feld[i].length; j++) {	
 					    	
@@ -232,15 +160,14 @@ import javax.swing.*;
 								panel.add(labels[i]);  
 							}
 					    	else if (feld[i][j]==2){
-					    		Spielfigurx=i;
-					    		Spielfigury=j;
+					    		/*hält die Position der Spielfigur fest*/
+					    		Spielfigurx=j;
+					    		Spielfigury=i;
 								labels[i]=new JLabel(iconPudel);
 								labels[i].setBounds(j*100,i*100,100,100);
 								panel.add(labels[i]);
 							}
 					    	else if (feld[i][j]==3){
-					    		Spielfigurx=i;
-					    		Spielfigury=j;
 								labels[i]=new JLabel(iconGegner);
 								labels[i].setBounds(j*100,i*100,100,100);
 								panel.add(labels[i]);
@@ -251,17 +178,105 @@ import javax.swing.*;
 								panel.add(labels[i]);
 							}
 					    	else if (feld[i][j]==5){
-					    		Spielfigurx=i;
-					    		Spielfigury=j;
 								labels[i]=new JLabel(iconZiel);
 								labels[i].setBounds(j*100,i*100,100,100);
 								panel.add(labels[i]);
 							}
-						Frame.f.setContentPane(panel);
+						f.setContentPane(panel);
 					   }
 				}	
  	}
 	
+	/*fragt die KeyEvents ab und führt das Programm entsprechend weiter*/
+	public void processKeyEvent(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) { 
+			System.out.println("es wurde links gedrückt");
+			/*wenn der Wert des abgefragten Feldes 3 ist, erscheint das Verlorenfenster*/
+			if (aktuellesSpielfeld[Spielfigurx][Spielfigury-1] == 3) {
+				Verloren();
+			}
+			/*wenn der Wert des abgefragten Feldes 4 ist, erscheint das nächste Level*/
+			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury-1] == 4) {
+				Levelaufruf(feld2);
+			}
+			/*wenn der Wert des abgefragten Feldes 5 ist, erscheint das Gewonnenfenster*/
+			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury-1] == 5) {
+				Gewonnen();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury-1] == 0) {
+				/*wenn der Wert des abgefragten Feldes 0 ist, 
+				 * wird das aktuelle Feld der Spielfigur auf 0 gesetzt*/
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+				/* die x-Position zählt einen runter*/
+				Spielfigury--;
+				/* die neue Position der Spielfigur erhält den Wert 2*/
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+				/* und das Leve wird erneut aufgerufen*/
+				Levelaufruf(aktuellesSpielfeld);
+				LevelAktualisieren();
+			}
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			System.out.println("es wurde rechts gedrückt");
+			if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 3) {
+				Verloren();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 4) {
+				Levelaufruf(feld2);
+			}
+			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 5) {
+				Gewonnen();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 0) {
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+				Spielfigury++;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+				Levelaufruf(aktuellesSpielfeld);
+				LevelAktualisieren();
+			}
+
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_UP) {
+			System.out.println("es wurde hoch gedrückt");
+			if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 3) {
+				Verloren();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 4) {
+				Levelaufruf(feld2);
+			}
+			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 5) {
+				Gewonnen();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 0) {
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+				Spielfigurx--;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+				Levelaufruf(aktuellesSpielfeld);
+				LevelAktualisieren();
+			}
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			System.out.println("es wurde runter gedrückt");
+			if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 3) {
+				Verloren();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 4) {
+				Levelaufruf(feld2);
+			}
+			else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 5) {
+				Gewonnen();
+			}
+			else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 0) {
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+				Spielfigurx++;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+				Levelaufruf(aktuellesSpielfeld);
+				LevelAktualisieren();
+			}
+		}
+	}
+	
+	/*das Gewonnenfenster wird erzeugt*/
 	public static void Gewonnen() {
 		
 		try{
@@ -278,6 +293,7 @@ import javax.swing.*;
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);	
 		
+		/* der Button schliessen bewirkt ein Verschwinden des Fensters, sodass das Menufenster zu sehen ist*/
 		schliessen = new JButton("Dieses Fenster schließen");
 		schliessen.setBounds(550,450,200,40);
 		f.add(schliessen);
@@ -318,4 +334,8 @@ import javax.swing.*;
 		};	
 		schliessen.addActionListener(alschliessen);
 	}
+	
+	protected void LevelAktualisieren() {
+	       repaint();
+	    }
 } 
