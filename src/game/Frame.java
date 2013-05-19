@@ -60,10 +60,11 @@ import javax.swing.*;
 	/* beim Start des Programms ist das aktuelleSpielfeld=das erste Level
 	public Frame() {
 		aktuellesSpielfeld=feld1;
-	}
+	}*/
 		
 	/* ruft das Menüfenster auf*/
-	public static void main(String[] args) { 		
+	public static void main(String[] args) { 
+		aktuellesSpielfeld=feld1;
 		Menufenster();
 	}
 	
@@ -129,8 +130,6 @@ import javax.swing.*;
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
 		f.setLayout(null);
-		
-		aktuellesSpielfeld=feld1;
 		
 		Levelaufruf(aktuellesSpielfeld);
 	}
@@ -322,20 +321,22 @@ import javax.swing.*;
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);	
-	
+		
+		/* der Button schliessen bewirkt ein Verschwinden des Fensters, sodass das Menufenster zu sehen ist*/
 		schliessen = new JButton("Dieses Fenster schließen");
-		schliessen.setBounds(300,450,200,40);
+		schliessen.setBounds(550,450,200,40);
 		f.add(schliessen);
 		
 		ActionListener alschliessen = new ActionListener() {
 			public void actionPerformed( ActionEvent e ) {		
-				F.setVisible(false);
+				f.setVisible(false);
 		    }
-		};	
+		};
 		schliessen.addActionListener(alschliessen);
 	}
 	
 	protected void LevelAktualisieren() {
-	       repaint();
-	    }
+		validate(); 
+	    repaint();
+	}
 } 
