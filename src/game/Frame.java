@@ -3,6 +3,7 @@ package game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -14,7 +15,7 @@ import javax.swing.*;
  * sind anklickbar und bewirken das Schließen des Fensters,
  * oder das Öffnen des Spielfensters. 
  */
-	public class Frame extends JFrame {
+	public class Frame extends JFrame implements KeyListener {
 		
 	static String direction = System.getProperty("user.dir");
 	
@@ -116,7 +117,7 @@ import javax.swing.*;
 		    }
 		};
 		    
-		/*setzt die beiden Buttons auf das Menüfenster*/
+		/*weist den Buttons den entsprechenden ActionListener zu */
 		start.addActionListener(alstart);
 		ende.addActionListener(alende);
 	}
@@ -125,7 +126,7 @@ import javax.swing.*;
 	public static void Spielfenster() {
 		f.setResizable(false);
 		f.setTitle("Erna's Adventure");
-		f.setSize(800,600);
+		f.setSize(800,630);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
@@ -138,7 +139,8 @@ import javax.swing.*;
 	public static void Levelaufruf(int [][] feld) {
 		/*erzeugt Panel um darauf arbeiten zu können*/
 		JPanel panel = new JPanel();
-		panel.setLayout(null);		
+		panel.setLayout(null);	
+		panel.setFocusable(true);
 		
 		/*erstellt so viele Labels, wie für Array benötigt*/
 		JLabel[] labels=new JLabel[48];
@@ -186,95 +188,6 @@ import javax.swing.*;
 				}	
  	}
 	
-	/*fragt die KeyEvents ab und führt das Programm entsprechend weiter*/
-	public void processKeyEvent(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) { 
-			System.out.println("es wurde links gedrückt");
-			/*wenn der Wert des abgefragten Feldes 3 ist, erscheint das Verlorenfenster*/
-			if (aktuellesSpielfeld[Spielfigurx][Spielfigury-1] == 3) {
-				Verloren();
-			}
-			/*wenn der Wert des abgefragten Feldes 4 ist, erscheint das nächste Level*/
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury-1] == 4) {
-				Levelaufruf(feld2);
-			}
-			/*wenn der Wert des abgefragten Feldes 5 ist, erscheint das Gewonnenfenster*/
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury-1] == 5) {
-				Gewonnen();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury-1] == 0) {
-				/*wenn der Wert des abgefragten Feldes 0 ist, 
-				 * wird das aktuelle Feld der Spielfigur auf 0 gesetzt*/
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
-				/* die x-Position zählt einen runter*/
-				Spielfigury--;
-				/* die neue Position der Spielfigur erhält den Wert 2*/
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
-				/* und das Leve wird erneut aufgerufen*/
-				Levelaufruf(aktuellesSpielfeld);
-				LevelAktualisieren();
-			}
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			System.out.println("es wurde rechts gedrückt");
-			if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 3) {
-				Verloren();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 4) {
-				Levelaufruf(feld2);
-			}
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 5) {
-				Gewonnen();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 0) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
-				Spielfigury++;
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
-				Levelaufruf(aktuellesSpielfeld);
-				LevelAktualisieren();
-			}
-
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			System.out.println("es wurde hoch gedrückt");
-			if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 3) {
-				Verloren();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 4) {
-				Levelaufruf(feld2);
-			}
-			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 5) {
-				Gewonnen();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 0) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
-				Spielfigurx--;
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
-				Levelaufruf(aktuellesSpielfeld);
-				LevelAktualisieren();
-			}
-		}
-		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			System.out.println("es wurde runter gedrückt");
-			if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 3) {
-				Verloren();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 4) {
-				Levelaufruf(feld2);
-			}
-			else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 5) {
-				Gewonnen();
-			}
-			else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 0) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
-				Spielfigurx++;
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
-				Levelaufruf(aktuellesSpielfeld);
-				LevelAktualisieren();
-			}
-		}
-	}
-	
 	/*das Gewonnenfenster wird erzeugt*/
 	public static void Gewonnen() {
 		
@@ -302,7 +215,6 @@ import javax.swing.*;
 				f.setVisible(false);
 		    }
 		};
-		
 		schliessen.addActionListener(alschliessen);
 	}
 	
@@ -338,5 +250,108 @@ import javax.swing.*;
 	protected void LevelAktualisieren() {
 		validate(); 
 	    repaint();
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// nothing to do here
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		//nothing to do here
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		/*fragt die KeyEvents ab und führt das Programm entsprechend weiter*/
+			if (e.getKeyCode() == KeyEvent.VK_LEFT) { 
+				System.out.println("es wurde links gedrückt");
+				/*wenn der Wert des abgefragten Feldes 3 ist, erscheint das Verlorenfenster*/
+				if (aktuellesSpielfeld[Spielfigurx][Spielfigury-1] == 3) {
+					Verloren();
+				}
+				/*wenn der Wert des abgefragten Feldes 4 ist, erscheint das nächste Level*/
+				else if (aktuellesSpielfeld[Spielfigurx][Spielfigury-1] == 4) {
+					Levelaufruf(feld2);
+				}
+				/*wenn der Wert des abgefragten Feldes 5 ist, erscheint das Gewonnenfenster*/
+				else if (aktuellesSpielfeld[Spielfigurx][Spielfigury-1] == 5) {
+					Gewonnen();
+				}
+				else if (aktuellesSpielfeld[Spielfigurx][Spielfigury-1] == 0) {
+					/*wenn der Wert des abgefragten Feldes 0 ist, 
+					 * wird das aktuelle Feld der Spielfigur auf 0 gesetzt*/
+					aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+					/* die x-Position zählt einen runter*/
+					Spielfigury--;
+					/* die neue Position der Spielfigur erhält den Wert 2*/
+					aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+					/* und das Leve wird erneut aufgerufen*/
+					Levelaufruf(aktuellesSpielfeld);
+					LevelAktualisieren();
+				}
+			}
+			
+			else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+				System.out.println("es wurde rechts gedrückt");
+				if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 3) {
+					Verloren();
+				}
+				else if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 4) {
+					Levelaufruf(feld2);
+				}
+				else if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 5) {
+					Gewonnen();
+				}
+				else if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 0) {
+					aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+					Spielfigury++;
+					aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+					Levelaufruf(aktuellesSpielfeld);
+					LevelAktualisieren();
+				}
+			}
+			
+			else if (e.getKeyCode() == KeyEvent.VK_UP) {
+				System.out.println("es wurde hoch gedrückt");
+				if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 3) {
+					Verloren();
+				}
+				else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 4) {
+					Levelaufruf(feld2);
+				}
+				else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 5) {
+					Gewonnen();
+				}
+				else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 0) {
+					aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+					Spielfigurx--;
+					aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+					Levelaufruf(aktuellesSpielfeld);
+					LevelAktualisieren();
+				}
+			}
+			
+			else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				System.out.println("es wurde runter gedrückt");
+				if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 3) {
+					Verloren();
+				}
+				else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 4) {
+					Levelaufruf(feld2);
+				}
+				else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 5) {
+					Gewonnen();
+				}
+				else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 0) {
+					aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+					Spielfigurx++;
+					aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+					Levelaufruf(aktuellesSpielfeld);
+					LevelAktualisieren();
+				}
+			}
+		
 	}
 } 
