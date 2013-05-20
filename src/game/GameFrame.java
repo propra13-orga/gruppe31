@@ -15,7 +15,7 @@ import javax.swing.*;
  * sind anklickbar und bewirken das Schließen des Fensters,
  * oder das Öffnen des Spielfensters. 
  */
-	public class Frame extends JFrame implements KeyListener {
+	public class GameFrame extends JFrame implements KeyListener{
 		
 	static String direction = System.getProperty("user.dir");
 	
@@ -25,122 +25,56 @@ import javax.swing.*;
 	static Icon iconGegner = new ImageIcon(direction+"/src/game/Images/Gegner.jpg");
 	static Icon iconZiel = new ImageIcon(direction+"/src/game/Images/Ziel.jpg");
 	
-	public static JButton start;
-	public static JButton ende;
-	public static JButton schliessen;
+	public JButton schliessen;
 	
-	public static JFrame F = new Frame();
-	public static JFrame f = new Frame();
+	int Spielfigurx;
+	int Spielfigury;
 	
-	static int Spielfigurx;
-	static int Spielfigury;
+	int[][] aktuellesSpielfeld;
+	int level;
 	
-	static int[][] aktuellesSpielfeld;
+	static final int [][][] levels = { 
+		{{1,1,1,1,1,1,1,1},
+		{1,2,0,1,0,0,0,1},
+		{1,0,0,1,0,0,0,4},
+		{1,0,0,0,0,0,0,1},
+		{1,0,0,1,0,0,0,1},
+		{1,1,1,1,1,1,1,1}},
+			
+	   {{1,1,1,1,1,1,1,1},
+		{1,0,0,0,0,0,0,1},
+		{2,0,1,0,1,1,1,1},
+		{1,1,1,0,0,0,0,1},
+		{1,0,0,0,1,0,0,4},
+		{1,1,1,1,1,1,1,1}},
+		
+		{{1,1,1,1,1,1,1,1},
+		{1,0,3,0,0,0,0,1},
+		{1,0,0,0,1,0,0,5},
+		{1,1,1,0,1,0,0,1},
+		{2,0,0,0,1,0,3,1},
+		{1,1,1,1,1,1,1,1}}
+	};
 	
-	static final int[][] feld1 = {{1,1,1,1,1,1,1,1},
-								  {1,2,0,1,0,0,0,1},
-								  {1,0,0,1,0,0,0,4},
-								  {1,0,0,0,0,0,0,1},
-								  {1,0,0,1,0,0,0,1},
-								  {1,1,1,1,1,1,1,1}};
-	
-	static final int [][] feld2 = {{1,1,1,1,1,1,1,1},
-								   {1,0,0,0,0,0,0,1},
-								   {2,0,1,0,1,1,1,1},
-								   {1,1,1,0,0,0,0,1},
-								   {1,0,0,0,1,0,0,4},
-								   {1,1,1,1,1,1,1,1}};
-	
-	static final int [][] feld3 = {{1,1,1,1,1,1,1,1},
-								   {1,0,3,0,0,0,0,1},
-								   {1,0,0,0,1,0,0,5},
-								   {1,1,1,0,1,0,0,1},
-								   {2,0,0,0,1,0,3,1},
-								   {1,1,1,1,1,1,1,1}};
-	
-	/* beim Start des Programms ist das aktuelleSpielfeld=das erste Level
-	public Frame() {
-		aktuellesSpielfeld=feld1;
-	}*/
+	public GameFrame() {
+		addKeyListener(this);
+		this.setResizable(false);
+		this.setTitle("Erna's Adventure");
+		this.setSize(800,630);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+		this.setLayout(null);
 		
-	/* ruft das Menüfenster auf*/
-	public static void main(String[] args) { 
-		aktuellesSpielfeld=feld1;
-		Menufenster();
-	}
-	
-	/*erzeugt das Menüfenster mit zwei Buttons,einem Label und Hintergrundbild*/
-	public static void Menufenster() {	
-		
-		/*setzt das Hintergrundbild. Wenn es nicht gefunden wird erscheint ein Text*/
-		try{
-			F.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(direction+"/src/game/Images/Startscreen.jpg")))));
-		}
-		catch(IOException a) {
-			System.out.println("das Bild kann nicht gefunden werden");
-		}
-		
-		/*Eigenschaften des Menüfensters (Größe, Schließbar, mittig setzen,..)*/
-		F.setResizable(false);
-		F.setTitle("Menu");
-		F.setSize(800,600);
-		F.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-		F.setLocationRelativeTo(null);
-		F.setVisible(true);
-		F.setLayout(null);
-		
-		/*erstellt Label mit Text, setzt seine Position fest und setzt es auf das Menüfenster*/
-		JLabel label = new JLabel ("Made by Pinky and the Gang");
-		label.setBounds(600,450,200,40);
-		F.add(label);
-		
-		start = new JButton("Spiel starten");
-		start.setBounds(400,350,200,40);
-		F.add(start);
-		
-		ende = new JButton("Beenden");
-		ende.setBounds(400,400,200,40);
-		F.add(ende);
-		
-		
-		/*registriert Mausklick auf Button start und öffnet das Spielfenster*/
-		ActionListener alstart = new ActionListener() {
-			public void actionPerformed( ActionEvent e ) {		
-				Spielfenster();
-		    }
-		};
-		
-		/*beendet das Programm, wenn auf Button ende geklickt wird*/
-		ActionListener alende = new ActionListener() {
-			public void actionPerformed( ActionEvent e ) {
-				System.exit(0);
-		    }
-		};
-		    
-		/*weist den Buttons den entsprechenden ActionListener zu */
-		start.addActionListener(alstart);
-		ende.addActionListener(alende);
-	}
-	
-	/*erzeugt das Spielfenster, setzt diverse Einstellungen und erzeugt darauf das aktuelle Spielfeld*/
-	public static void Spielfenster() {
-		f.setResizable(false);
-		f.setTitle("Erna's Adventure");
-		f.setSize(800,630);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-		f.setLocationRelativeTo(null);
-		f.setVisible(true);
-		f.setLayout(null);
-		
-		Levelaufruf(aktuellesSpielfeld);
+		level=-1;
+		NextLevel();
 	}
 	
 	/* allgemeine Methode zum Erzeugen der Level*/
-	public static void Levelaufruf(int [][] feld) {
+	public void Levelaufruf(int [][] feld) {
 		/*erzeugt Panel um darauf arbeiten zu können*/
 		JPanel panel = new JPanel();
-		panel.setLayout(null);	
-		panel.setFocusable(true);
+		panel.setLayout(null);
 		
 		/*erstellt so viele Labels, wie für Array benötigt*/
 		JLabel[] labels=new JLabel[48];
@@ -162,8 +96,8 @@ import javax.swing.*;
 							}
 					    	else if (feld[i][j]==2){
 					    		/*hält die Position der Spielfigur fest*/
-					    		Spielfigurx=j;
-					    		Spielfigury=i;
+					    		Spielfigurx=i;
+					    		Spielfigury=j;
 								labels[i]=new JLabel(iconPudel);
 								labels[i].setBounds(j*100,i*100,100,100);
 								panel.add(labels[i]);
@@ -183,65 +117,65 @@ import javax.swing.*;
 								labels[i].setBounds(j*100,i*100,100,100);
 								panel.add(labels[i]);
 							}
-						f.setContentPane(panel);
+						this.setContentPane(panel);
 					   }
 				}	
  	}
 	
 	/*das Gewonnenfenster wird erzeugt*/
-	public static void Gewonnen() {
+	public void Gewonnen() {
 		
 		try{
-			f.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(direction+"/src/game/Images/Gewonnen.jpg")))));
+			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(direction+"/src/game/Images/Gewonnen.jpg")))));
 		}
 		catch(IOException a) {
 			System.out.println("das Bild kann nicht gefunden werden");
 		}
 		
-		f.setResizable(false);
-		f.setSize(800,600);
-		f.setLayout(null);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-		f.setLocationRelativeTo(null);
-		f.setVisible(true);	
+		this.setResizable(false);
+		this.setSize(800,600);
+		this.setLayout(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);	
 		
 		/* der Button schliessen bewirkt ein Verschwinden des Fensters, sodass das Menufenster zu sehen ist*/
 		schliessen = new JButton("Dieses Fenster schließen");
 		schliessen.setBounds(550,450,200,40);
-		f.add(schliessen);
+		this.add(schliessen);
 		
 		ActionListener alschliessen = new ActionListener() {
 			public void actionPerformed( ActionEvent e ) {		
-				f.setVisible(false);
+				dispose();
 		    }
 		};
 		schliessen.addActionListener(alschliessen);
 	}
 	
-	public static void Verloren() {
+	public void Verloren() {
 		
 		try{
-			f.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(direction+"/src/game/Images/GameOver.jpg")))));
+			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(direction+"/src/game/Images/GameOver.jpg")))));
 		}
 		catch(IOException a) {
 			System.out.println("das Bild kann nicht gefunden werden");
 		}
 		
-		f.setResizable(false);
-		f.setSize(800,600);
-		f.setLayout(null);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-		f.setLocationRelativeTo(null);
-		f.setVisible(true);	
+		this.setResizable(false);
+		this.setSize(800,600);
+		this.setLayout(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);	
 		
 		/* der Button schliessen bewirkt ein Verschwinden des Fensters, sodass das Menufenster zu sehen ist*/
 		schliessen = new JButton("Dieses Fenster schließen");
 		schliessen.setBounds(550,450,200,40);
-		f.add(schliessen);
+		this.add(schliessen);
 		
 		ActionListener alschliessen = new ActionListener() {
 			public void actionPerformed( ActionEvent e ) {		
-				f.setVisible(false);
+				dispose();
 		    }
 		};
 		schliessen.addActionListener(alschliessen);
@@ -251,19 +185,21 @@ import javax.swing.*;
 		validate(); 
 	    repaint();
 	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// nothing to do here
+	
+	protected void NextLevel() {
+		level++;
+		int[][] reference = levels[level];
+		aktuellesSpielfeld= new int [reference.length][reference[0].length];
+		for (int x=0; x<reference.length; x++) {
+			for (int y =0; y<reference[0].length; y++) {
+				aktuellesSpielfeld[x][y] = reference[x][y];
+			}
+		}
+		Levelaufruf(aktuellesSpielfeld);
+		LevelAktualisieren();
 	}
 
-	@Override
 	public void keyReleased(KeyEvent e) {
-		//nothing to do here
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
 		/*fragt die KeyEvents ab und führt das Programm entsprechend weiter*/
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) { 
 				System.out.println("es wurde links gedrückt");
@@ -273,7 +209,7 @@ import javax.swing.*;
 				}
 				/*wenn der Wert des abgefragten Feldes 4 ist, erscheint das nächste Level*/
 				else if (aktuellesSpielfeld[Spielfigurx][Spielfigury-1] == 4) {
-					Levelaufruf(feld2);
+					NextLevel();
 				}
 				/*wenn der Wert des abgefragten Feldes 5 ist, erscheint das Gewonnenfenster*/
 				else if (aktuellesSpielfeld[Spielfigurx][Spielfigury-1] == 5) {
@@ -295,11 +231,11 @@ import javax.swing.*;
 			
 			else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 				System.out.println("es wurde rechts gedrückt");
-				if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 3) {
+				if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury+1] == 3) {
 					Verloren();
 				}
 				else if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 4) {
-					Levelaufruf(feld2);
+					NextLevel();
 				}
 				else if (aktuellesSpielfeld[Spielfigurx][Spielfigury+1] == 5) {
 					Gewonnen();
@@ -319,7 +255,7 @@ import javax.swing.*;
 					Verloren();
 				}
 				else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 4) {
-					Levelaufruf(feld2);
+					NextLevel();
 				}
 				else if (aktuellesSpielfeld[Spielfigurx-1][Spielfigury] == 5) {
 					Gewonnen();
@@ -339,7 +275,7 @@ import javax.swing.*;
 					Verloren();
 				}
 				else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 4) {
-					Levelaufruf(feld2);
+					NextLevel();
 				}
 				else if (aktuellesSpielfeld[Spielfigurx+1][Spielfigury] == 5) {
 					Gewonnen();
@@ -352,6 +288,18 @@ import javax.swing.*;
 					LevelAktualisieren();
 				}
 			}
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
 		
 	}
 } 

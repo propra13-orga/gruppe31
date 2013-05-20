@@ -1,0 +1,84 @@
+package game;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+/** diese Klasse erzeugt sowohl das Menüfenster,
+ * als auch das Spielfenster. Die Buttons im Menüfenster
+ * sind anklickbar und bewirken das Schließen des Fensters,
+ * oder das Öffnen des Spielfensters. 
+ */
+	public class MenuFrame extends JFrame {
+		
+	static String direction = System.getProperty("user.dir");
+		
+	public JButton start;
+	public JButton ende;
+	
+	GameFrame gameframe;
+	
+	public MenuFrame() {
+		
+		/*setzt das Hintergrundbild. Wenn es nicht gefunden wird erscheint ein Text*/
+		try{
+			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(direction+"/src/game/Images/Startscreen.jpg")))));
+		}
+		catch(IOException a) {
+			System.out.println("das Bild kann nicht gefunden werden");
+		}
+		
+		/*Eigenschaften des Menüfensters (Größe, Schließbar, mittig setzen,..)*/
+		this.setResizable(false);
+		this.setTitle("Menu");
+		this.setSize(800,600);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+		this.setLayout(null);
+		
+		/*erstellt Label mit Text, setzt seine Position fest und setzt es auf das Menüfenster*/
+		JLabel label = new JLabel ("Made by Pinky and the Gang");
+		label.setBounds(600,450,200,40);
+		this.add(label);
+		
+		start = new JButton("Spiel starten");
+		start.setBounds(400,350,200,40);
+		this.add(start);
+		
+		ende = new JButton("Beenden");
+		ende.setBounds(400,400,200,40);
+		this.add(ende);
+		
+		
+		/*registriert Mausklick auf Button start und öffnet das Spielfenster*/
+		ActionListener alstart = new ActionListener() {
+			public void actionPerformed( ActionEvent e ) {	
+				
+				gameframe = new GameFrame();
+		    }
+		};
+		
+		/*beendet das Programm, wenn auf Button ende geklickt wird*/
+		ActionListener alende = new ActionListener() {
+			public void actionPerformed( ActionEvent e ) {
+				System.exit(0);
+		    }
+		};
+		    
+		/*weist den Buttons den entsprechenden ActionListener zu */
+		start.addActionListener(alstart);
+		ende.addActionListener(alende);
+	}
+	
+	/* ruft das Menüfenster auf*/
+	public static void main(String[] args) { 
+		MenuFrame Frame = new MenuFrame();
+	}
+} 
