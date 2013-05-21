@@ -69,7 +69,8 @@ public class GameFrame extends JFrame implements KeyListener {
 					{ 6, 2, 0, 0, 1, 0, 3, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1 } } };
 
 	/**
-	 * Konstruktor, der die Eigenschaften des Spielfensters aufruft
+	 * Konstruktor, der die Eigenschaften des Spielfensters aufruft und den
+	 * KeyListener darauf setzt
 	 */
 	public GameFrame() {
 		addKeyListener(this);
@@ -257,10 +258,9 @@ public class GameFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * der KeyListener, der erst reagiert, nachdem eine Taste losgelassen wurde
-	 * (hier so gewollt, um nicht versehentlich in einen Gegner zu rennen
+	 * der KeyListener, der regiert, während die Taste gedrückt wird
 	 */
-	public void keyReleased(KeyEvent e) {
+	public void keyPressed(KeyEvent e) {
 		/* fragt die KeyEvents ab und führt das Programm entsprechend weiter */
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			/*
@@ -305,9 +305,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				Levelaufruf(aktuellesSpielfeld);
 				LevelAktualisieren();
 			}
-		}
-
-		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury + 1] == 3) {
 				Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == 4) {
@@ -321,9 +319,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				Levelaufruf(aktuellesSpielfeld);
 				LevelAktualisieren();
 			}
-		}
-
-		else if (e.getKeyCode() == KeyEvent.VK_UP) {
+		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == 3) {
 				Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == 4) {
@@ -337,9 +333,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				Levelaufruf(aktuellesSpielfeld);
 				LevelAktualisieren();
 			}
-		}
-
-		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == 3) {
 				Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == 4) {
@@ -356,13 +350,11 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 	}
 
-	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-
+	public void keyReleased(KeyEvent e) {
+		// nothing to do here
 	}
 
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-
+	public void keyTyped(KeyEvent e) {
+		// nothing to do here
 	}
 }
