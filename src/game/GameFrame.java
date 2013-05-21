@@ -17,7 +17,6 @@ import javax.swing.*;
  */
 public class GameFrame extends JFrame implements KeyListener {
 
-	/* setzt den Anfang der Pfadangabe auf die Arbeitsumgebung */
 	static String direction = System.getProperty("user.dir");
 
 	/* erstellt Icons und weist ihnen Bilder zu */
@@ -38,7 +37,9 @@ public class GameFrame extends JFrame implements KeyListener {
 	int Spielfigurx;
 	int Spielfigury;
 
+	/* deklariert das aktuelle Spielfeld */
 	int[][] aktuellesSpielfeld;
+	/* deklariert eine Variabel für das aktuelle Level */
 	int level;
 
 	/* ein Array von Levels */
@@ -66,6 +67,10 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setVisible(true);
 		this.setLayout(null);
 
+		/*
+		 * setzt den Anfangswert der Level auf -1, um im Levelarray bei 0
+		 * starten zu können
+		 */
 		level = -1;
 		NextLevel();
 	}
@@ -112,6 +117,7 @@ public class GameFrame extends JFrame implements KeyListener {
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
 					panel.add(labels[i]);
 				}
+				/* setzt das Panel mit Bildern auf das Spielfenster */
 				this.setContentPane(panel);
 			}
 		}
@@ -195,7 +201,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				aktuellesSpielfeld[x][y] = reference[x][y];
 			}
 		}
-		/* das neue aktuelle Level wird aufgerufen */
+		/* das neue aktuelle Level wird aufgerufen und erzeugt */
 		Levelaufruf(aktuellesSpielfeld);
 		LevelAktualisieren();
 	}

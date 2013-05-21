@@ -17,11 +17,14 @@ import javax.swing.*;
  */
 public class MenuFrame extends JFrame {
 
+	/* setzt den Anfang der Pfadangabe auf die Arbeitsumgebung */
 	static String direction = System.getProperty("user.dir");
 
+	/* deklariert zwei Buttons */
 	public JButton start;
 	public JButton ende;
 
+	/* deklariert ein GameFrame gameframe */
 	GameFrame gameframe;
 
 	/* Konstruktor, der alle Einstellungen des Menüfensters aufruft */
