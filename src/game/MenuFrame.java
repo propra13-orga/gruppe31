@@ -27,7 +27,9 @@ public class MenuFrame extends JFrame {
 	/* deklariert ein GameFrame gameframe */
 	GameFrame gameframe;
 
-	/* Konstruktor, der alle Einstellungen des Menüfensters aufruft */
+	/**
+	 * Konstruktor, der alle Einstellungen des Menüfensters aufruft
+	 */
 	public MenuFrame() {
 
 		/*
@@ -85,7 +87,11 @@ public class MenuFrame extends JFrame {
 		ende.addActionListener(alende);
 	}
 
-	/* ruft das Menüfenster auf */
+	/**
+	 * erzeugt ein neues Menüfenster aus dem Konstruktor
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		MenuFrame Frame = new MenuFrame();
 	}
