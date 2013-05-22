@@ -56,17 +56,17 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/* ein Array von Levels */
 	private static final int[][][] LEVELS = {
-			{ { 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 2, 0, 1, 0, 0, 0, 1 },
-					{ 1, 0, 0, 1, 0, 0, 0, 4 }, { 1, 0, 0, 0, 0, 0, 0, 1 },
-					{ 1, 0, 0, 1, 0, 0, 0, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1 } },
+			{ { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE }, { GRENZE, PUDEL, RASEN, GRENZE, RASEN, RASEN, RASEN, GRENZE},
+					{ GRENZE, RASEN, RASEN, GRENZE, RASEN, RASEN, RASEN, WEITER }, { GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, GRENZE },
+					{ GRENZE, RASEN, RASEN, GRENZE, RASEN, RASEN, RASEN, GRENZE }, { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE } },
 
-			{ { 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 0, 0, 0, 0, 0, 0, 1 },
-					{ 6, 2, 1, 0, 1, 1, 1, 1 }, { 1, 1, 1, 0, 0, 0, 0, 1 },
-					{ 1, 0, 0, 0, 1, 0, 0, 4 }, { 1, 1, 1, 1, 1, 1, 1, 1 } },
+			{ { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE }, { GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, GRENZE },
+					{ ZURUECK, PUDEL, GRENZE, RASEN, GRENZE, GRENZE, GRENZE, GRENZE }, { GRENZE, GRENZE, GRENZE, RASEN, RASEN, RASEN, RASEN, GRENZE },
+					{ GRENZE, RASEN, RASEN, RASEN, GRENZE, RASEN, RASEN, WEITER }, { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE } },
 
-			{ { 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 0, 3, 0, 0, 0, 0, 1 },
-					{ 1, 0, 0, 0, 1, 0, 0, 5 }, { 1, 1, 1, 0, 1, 0, 0, 1 },
-					{ 6, 2, 0, 0, 1, 0, 3, 1 }, { 1, 1, 1, 1, 1, 1, 1, 1 } } };
+			{ { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE }, { GRENZE, RASEN, GEGNER, RASEN, RASEN, RASEN, RASEN, GRENZE },
+					{ GRENZE, RASEN, RASEN, RASEN, GRENZE, RASEN, RASEN, ZIEL }, { GRENZE, GRENZE, GRENZE,RASEN, GRENZE, RASEN, RASEN, GRENZE },
+					{ ZURUECK, PUDEL, RASEN, RASEN, GRENZE, RASEN, GEGNER, GRENZE }, { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE } } };
 
 	/**
 	 * Konstruktor, der die Eigenschaften des Spielfensters aufruft und den
@@ -267,83 +267,89 @@ public class GameFrame extends JFrame implements KeyListener {
 			 * wenn der Wert des abgefragten Feldes 3 ist, erscheint das
 			 * Verlorenfenster
 			 */
-			if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == 3) {
+			if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == GEGNER) {
 				Verloren();
 			}
 			/*
 			 * wenn der Wert des abgefragten Feldes 4 ist, erscheint das nächste
 			 * Level
 			 */
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == 4) {
+			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == WEITER) {
 				NextLevel();
 			}
 			/*
 			 * wenn der Wert des abgefragten Feldes 5 ist, erscheint das
 			 * Gewonnenfenster
 			 */
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == 5) {
+			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == ZIEL) {
 				Gewonnen();
 			}
 			/*
 			 * wenn der Wert des abgefragten Feldes 4 ist, erscheint das nächste
 			 * Level
 			 */
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == 6) {
+			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == ZURUECK) {
 				LastLevel();
 			}
 			/*
 			 * wenn der Wert des abgefragten Feldes 0 ist, wird das aktuelle
 			 * Feld der Spielfigur auf 0 gesetzt
 			 */
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == 0) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == RASEN) {
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;
 				/* die x-Position zählt einen runter */
 				Spielfigury--;
 				/* die neue Position der Spielfigur erhält den Wert 2 */
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
 				/* und das Leve wird erneut aufgerufen */
 				Levelaufruf(aktuellesSpielfeld);
 				LevelAktualisieren();
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury + 1] == 3) {
+			if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == GEGNER) {
 				Verloren();
-			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == 4) {
+			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == WEITER) {
 				NextLevel();
-			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == 5) {
+			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == ZIEL) {
 				Gewonnen();
-			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == 0) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == ZURUECK) {
+				LastLevel();
+			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == RASEN) {
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;
 				Spielfigury++;
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
 				Levelaufruf(aktuellesSpielfeld);
 				LevelAktualisieren();
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == 3) {
+			if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == GEGNER) {
 				Verloren();
-			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == 4) {
+			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == WEITER) {
 				NextLevel();
-			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == 5) {
+			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == ZIEL) {
 				Gewonnen();
-			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == 0) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == ZURUECK) {
+				LastLevel();
+			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == RASEN) {
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;
 				Spielfigurx--;
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
 				Levelaufruf(aktuellesSpielfeld);
 				LevelAktualisieren();
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == 3) {
+			if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == GEGNER) {
 				Verloren();
-			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == 4) {
+			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == WEITER) {
 				NextLevel();
-			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == 5) {
+			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == ZIEL) {
 				Gewonnen();
-			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == 0) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 0;
+			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == ZURUECK) {
+				LastLevel();
+			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == RASEN) {
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;
 				Spielfigurx++;
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = 2;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
 				Levelaufruf(aktuellesSpielfeld);
 				LevelAktualisieren();
 			}
