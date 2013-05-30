@@ -17,31 +17,32 @@ import javax.swing.*;
  */
 public class GameFrame extends JFrame implements KeyListener {
 
-	static String direction = System.getProperty("user.dir");
+	private static final String direction = System.getProperty("user.dir");
 
-	private static int RASEN = 0;
-	private static int GRENZE = 1;
-	private static int PUDEL = 2;
-	private static int GEGNER = 3;
-	private static int WEITER = 4;
-	private static int ZIEL = 5;
-	private static int ZURUECK = 6;
+	private static final int RASEN = 0;
+	private static final int GRENZE = 1;
+	private static final int PUDEL = 2;
+	private static final int GEGNER = 3;
+	private static final int WEITER = 4;
+	private static final int BOSS = 5;
+	private static final int ZURUECK = 6;
 
 	/* erstellt Icons und weist ihnen Bilder zu */
-	static Icon iconRasen = new ImageIcon(direction
-			+ "/src/game/Images/Rasen.jpg");
-	static Icon iconGrenze = new ImageIcon(direction
-			+ "/src/game/Images/Grenze.jpg");
-	static Icon iconPudel = new ImageIcon(direction
-			+ "/src/game/Images/Pudel.jpg");
-	static Icon iconGegner = new ImageIcon(direction
-			+ "/src/game/Images/Gegner.jpg");
-	static Icon iconWeiter = new ImageIcon(direction
-			+ "/src/game/Images/Weiter.jpg");
-	static Icon iconZiel = new ImageIcon(direction
-			+ "/src/game/Images/Ziel.jpg");
-	static Icon iconZurueck = new ImageIcon(direction
-			+ "/src/game/Images/Zurueck.jpg");
+	private static final Icon iconRasen = new ImageIcon(direction
+			+ "/src/game/Images/Rasen1.jpg");
+	private static final Icon iconBaum = new ImageIcon(direction
+			+ "/src/game/Images/Baum1.jpg");
+	private static final Icon iconPudel = new ImageIcon(direction
+			+ "/src/game/Images/Pudel1.jpg");
+	private static final Icon iconGegner = new ImageIcon(direction
+			+ "/src/game/Images/Gegner1.png");
+	private static final Icon iconWeiter = new ImageIcon(direction
+			+ "/src/game/Images/Weiter1.jpg");
+	private static final Icon iconBoss = new ImageIcon(direction
+			+ "/src/game/Images/Boss1.png");
+	private static final Icon iconZurueck = new ImageIcon(direction
+			+ "/src/game/Images/Zurueck1.jpg");
+
 
 	public JButton schliessen;
 
@@ -65,9 +66,10 @@ public class GameFrame extends JFrame implements KeyListener {
 					{ GRENZE, RASEN, RASEN, RASEN, GRENZE, RASEN, RASEN, WEITER }, { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE } },
 
 			{ { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE }, { GRENZE, RASEN, GEGNER, RASEN, RASEN, RASEN, RASEN, GRENZE },
-					{ GRENZE, RASEN, RASEN, RASEN, GRENZE, RASEN, RASEN, ZIEL }, { GRENZE, GRENZE, GRENZE,RASEN, GRENZE, RASEN, RASEN, GRENZE },
+					{ GRENZE, RASEN, RASEN, RASEN, GRENZE, RASEN, RASEN, BOSS }, { GRENZE, GRENZE, GRENZE,RASEN, GRENZE, RASEN, RASEN, GRENZE },
 					{ ZURUECK, PUDEL, RASEN, RASEN, GRENZE, RASEN, GEGNER, GRENZE }, { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE } } };
 
+	
 	/**
 	 * Konstruktor, der die Eigenschaften des Spielfensters aufruft und den
 	 * KeyListener darauf setzt
@@ -113,7 +115,7 @@ public class GameFrame extends JFrame implements KeyListener {
 					panel.add(labels[i]);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
 				} else if (feld[i][j] == GRENZE) {
-					labels[i] = new JLabel(iconGrenze);
+					labels[i] = new JLabel(iconBaum);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
 					panel.add(labels[i]);
 				} else if (feld[i][j] == PUDEL) {
@@ -131,8 +133,8 @@ public class GameFrame extends JFrame implements KeyListener {
 					labels[i] = new JLabel(iconWeiter);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
 					panel.add(labels[i]);
-				} else if (feld[i][j] == ZIEL) {
-					labels[i] = new JLabel(iconZiel);
+				} else if (feld[i][j] == BOSS) {
+					labels[i] = new JLabel(iconBoss);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
 					panel.add(labels[i]);
 				} else if (feld[i][j] == ZURUECK) {
@@ -281,8 +283,8 @@ public class GameFrame extends JFrame implements KeyListener {
 			 * wenn der Wert des abgefragten Feldes 5 ist, erscheint das
 			 * Gewonnenfenster
 			 */
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == ZIEL) {
-				Gewonnen();
+			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == BOSS) {
+				Verloren();
 			}
 			/*
 			 * wenn der Wert des abgefragten Feldes 4 ist, erscheint das nächste
@@ -310,8 +312,8 @@ public class GameFrame extends JFrame implements KeyListener {
 				Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == WEITER) {
 				NextLevel();
-			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == ZIEL) {
-				Gewonnen();
+			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == BOSS) {
+				Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == ZURUECK) {
 				LastLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == RASEN) {
@@ -326,8 +328,8 @@ public class GameFrame extends JFrame implements KeyListener {
 				Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == WEITER) {
 				NextLevel();
-			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == ZIEL) {
-				Gewonnen();
+			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == BOSS) {
+				Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == ZURUECK) {
 				LastLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == RASEN) {
@@ -342,8 +344,8 @@ public class GameFrame extends JFrame implements KeyListener {
 				Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == WEITER) {
 				NextLevel();
-			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == ZIEL) {
-				Gewonnen();
+			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == BOSS) {
+				Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == ZURUECK) {
 				LastLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == RASEN) {

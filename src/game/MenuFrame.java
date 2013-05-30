@@ -2,9 +2,8 @@ package game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -18,13 +17,16 @@ import javax.swing.*;
 public class MenuFrame extends JFrame {
 
 	/* setzt den Anfang der Pfadangabe auf die Arbeitsumgebung */
-	static String direction = System.getProperty("user.dir");
+	private static final String direction = System.getProperty("user.dir");
 
-	/* deklariert zwei Buttons */
-	public JButton start;
-	public JButton ende;
+	/*
+	 * deklariert zwei Buttons, die nur von dieser Klasse aus angesprochen
+	 * werden können
+	 */
+	private JButton start;
+	private JButton ende;
 
-	/* deklariert ein GameFrame gameframe */
+	/* deklariert ein GameFrame gameframe aus dem Package */
 	GameFrame gameframe;
 
 	/**
@@ -71,7 +73,7 @@ public class MenuFrame extends JFrame {
 		/* registriert Mausklick auf Button start und öffnet ein neues GameFrame */
 		ActionListener alstart = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gameframe = new GameFrame();
+					gameframe = new GameFrame();
 			}
 		};
 
