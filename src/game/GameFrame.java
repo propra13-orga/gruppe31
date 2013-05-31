@@ -1,5 +1,9 @@
 package game;
 
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -43,8 +47,15 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon iconZurueck = new ImageIcon(direction
 			+ "/src/game/Images/Zurueck1.jpg");
 
+	/* Platzhalter Icons*/
+	private static final Icon iconCarlos1 = new ImageIcon(direction
+			+ "/src/game/Images/Carlos1.png");
+	private static final Icon iconAnzeige = new ImageIcon(direction
+			+ "/src/game/Images/Anzeige.jpg");
+	private static final Icon iconWald = new ImageIcon(direction
+			+ "/src/game/Images/Wald.jpg");
 
-	public JButton schliessen;
+	private JButton schliessen;
 
 	/* Variabeln für die Position der Spielfigur */
 	int Spielfigurx;
@@ -57,19 +68,57 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/* ein Array von Levels */
 	private static final int[][][] LEVELS = {
-			{ { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE }, { GRENZE, PUDEL, RASEN, GRENZE, RASEN, RASEN, RASEN, GRENZE},
-					{ GRENZE, RASEN, RASEN, GRENZE, RASEN, RASEN, RASEN, WEITER }, { GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, GRENZE },
-					{ GRENZE, RASEN, RASEN, GRENZE, RASEN, RASEN, RASEN, GRENZE }, { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE } },
+			{
+					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
+							GRENZE },
+					{ GRENZE, PUDEL, RASEN, GRENZE, RASEN, RASEN, RASEN, GRENZE },
+					{ GRENZE, RASEN, RASEN, GRENZE, RASEN, RASEN, RASEN, WEITER },
+					{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, GRENZE },
+					{ GRENZE, RASEN, RASEN, GRENZE, RASEN, RASEN, RASEN, GRENZE },
+					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
+							GRENZE } },
 
-			{ { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE }, { GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, GRENZE },
-					{ ZURUECK, PUDEL, GRENZE, RASEN, GRENZE, GRENZE, GRENZE, GRENZE }, { GRENZE, GRENZE, GRENZE, RASEN, RASEN, RASEN, RASEN, GRENZE },
-					{ GRENZE, RASEN, RASEN, RASEN, GRENZE, RASEN, RASEN, WEITER }, { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE } },
+			{
+					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
+							GRENZE },
+					{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, GRENZE },
+					{ ZURUECK, PUDEL, GRENZE, RASEN, GRENZE, GRENZE, GRENZE,
+							GRENZE },
+					{ GRENZE, GRENZE, GRENZE, RASEN, RASEN, RASEN, RASEN,
+							GRENZE },
+					{ GRENZE, RASEN, RASEN, RASEN, GRENZE, RASEN, RASEN, WEITER },
+					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
+							GRENZE } },
 
-			{ { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE }, { GRENZE, RASEN, GEGNER, RASEN, RASEN, RASEN, RASEN, GRENZE },
-					{ GRENZE, RASEN, RASEN, RASEN, GRENZE, RASEN, RASEN, BOSS }, { GRENZE, GRENZE, GRENZE,RASEN, GRENZE, RASEN, RASEN, GRENZE },
-					{ ZURUECK, PUDEL, RASEN, RASEN, GRENZE, RASEN, GEGNER, GRENZE }, { GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE } } };
+			{
+					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
+							GRENZE },
+					{ GRENZE, RASEN, GEGNER, RASEN, RASEN, RASEN, RASEN, GRENZE },
+					{ GRENZE, RASEN, RASEN, RASEN, GRENZE, RASEN, RASEN, BOSS },
+					{ GRENZE, GRENZE, GRENZE, RASEN, GRENZE, RASEN, RASEN,
+							GRENZE },
+					{ ZURUECK, PUDEL, RASEN, RASEN, GRENZE, RASEN, GEGNER,
+							GRENZE },
+					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
+							GRENZE } } };
 
+	private GridBagConstraints gridBagConstraints;
+
+	/*PLatzhalter Labels */
+	private JLabel Carlos1 = new JLabel(iconCarlos1);
+	private JLabel Anzeige = new JLabel(iconAnzeige);
+	private JLabel Wald = new JLabel(iconWald);
+
+	private JButton Weiter = new JButton("Weiter");
+	private JButton Skip = new JButton("Überspringen");
+
+	private Panel mainPanel = new Panel();
+	private Panel Spielfeld = new Panel();
+	private Panel Leiste = new Panel();
+	private Panel NPC = new Panel();
+	private Panel Buttons = new Panel();
 	
+
 	/**
 	 * Konstruktor, der die Eigenschaften des Spielfensters aufruft und den
 	 * KeyListener darauf setzt
@@ -82,14 +131,75 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		this.setLayout(null);
 
 		/*
 		 * setzt den Anfangswert der Level auf -1, um im Levelarray bei 0
 		 * starten zu können und ruft das nächste (hier: erste) Level auf
 		 */
 		level = -1;
-		NextLevel();
+		// NextLevel();
+
+		mainPanel.setLayout(new GridBagLayout());
+
+		setzeWald();
+		setzeNPC();
+		setzeAnzeige();
+		setzeButtons();
+
+		getContentPane().add(mainPanel, BorderLayout.CENTER);
+	}
+
+	public void setzeWald() {
+		Spielfeld.add(Wald);
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 0;
+		gridBagConstraints.gridwidth = 6;
+		gridBagConstraints.gridheight = 4;
+		gridBagConstraints.fill = GridBagConstraints.BOTH;
+		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.weighty = 0.0;
+		mainPanel.add(Spielfeld, gridBagConstraints);
+	}
+
+	public void setzeNPC() {
+		NPC.add(Carlos1);
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.gridx = 6;
+		gridBagConstraints.gridy = 0;
+		gridBagConstraints.gridwidth = 2;
+		gridBagConstraints.gridheight = 4;
+		gridBagConstraints.fill = GridBagConstraints.BOTH;
+		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.weighty = 0.0;
+		mainPanel.add(NPC, gridBagConstraints);
+	}
+
+	public void setzeAnzeige() {
+		Leiste.add(Anzeige);
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 5;
+		gridBagConstraints.gridwidth = 6;
+		gridBagConstraints.gridheight = 1;
+		gridBagConstraints.fill = GridBagConstraints.BOTH;
+		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.weighty = 1.0;
+		mainPanel.add(Leiste, gridBagConstraints);
+	}
+
+	public void setzeButtons() {
+		Buttons.add(Weiter, BorderLayout.NORTH);
+		Buttons.add(Skip, BorderLayout.SOUTH);
+		gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.gridx = 6;
+		gridBagConstraints.gridy = 5;
+		gridBagConstraints.gridwidth = 2;
+		gridBagConstraints.gridheight = 1;
+		gridBagConstraints.fill = GridBagConstraints.BOTH;
+		gridBagConstraints.weightx = 1.0;
+		gridBagConstraints.weighty = 1.0;
+		mainPanel.add(Buttons, gridBagConstraints);
 	}
 
 	/**
@@ -98,9 +208,9 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * @param feld
 	 */
 	public void Levelaufruf(int[][] feld) {
-		/* erzeugt Panel um darauf arbeiten zu können */
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
+		
+		Panel panel = new Panel();
+		panel.setLayout(null);	
 
 		/* erstellt so viele Labels, wie für Array benötigt */
 		JLabel[] labels = new JLabel[48];
