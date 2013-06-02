@@ -51,6 +51,23 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon iconCarlos = new ImageIcon(direction
 			+ "/src/game/Images/Carlos.png");
 
+	private static final Icon iconCarlos1 = new ImageIcon(direction
+			+ "/src/game/Images/Carlos1.png");
+	private static final Icon iconCarlos2 = new ImageIcon(direction
+			+ "/src/game/Images/Carlos2.png");
+	private static final Icon iconCarlos3 = new ImageIcon(direction
+			+ "/src/game/Images/Carlos3.png");
+	private static final Icon iconCarlos4 = new ImageIcon(direction
+			+ "/src/game/Images/Carlos4.png");
+	private static final Icon iconCarlos5 = new ImageIcon(direction
+			+ "/src/game/Images/Carlos5.png");
+
+	private static final JLabel NPC1 = new JLabel(iconCarlos1);
+	private static final JLabel NPC2 = new JLabel(iconCarlos2);
+	private static final JLabel NPC3 = new JLabel(iconCarlos3);
+	private static final JLabel NPC4 = new JLabel(iconCarlos4);
+	private static final JLabel NPC5 = new JLabel(iconCarlos5);
+
 	/* Platzhalter Icon für Marcel */
 	private static final Icon iconAnzeige = new ImageIcon(direction
 			+ "/src/game/Images/Anzeige.jpg");
@@ -150,6 +167,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		Wald.setLayout(null);
 		Wald.setFocusable(true);
 		Wald.addKeyListener(this);
+		Wald.requestFocus();
 
 		/* erstellt so viele Labels, wie für Array benötigt */
 		JLabel[] labels = new JLabel[48];
@@ -197,37 +215,66 @@ public class GameFrame extends JFrame implements KeyListener {
 				}
 				/* setzt das Panel mit Bildern auf das Spielfenster */
 				getContentPane().add(Wald, BorderLayout.CENTER);
+
 			}
 		}
 	}
 
 	public void Carlos() {
-		try {
-			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
-					direction + "/src/game/Images/Carlos1.jpg")))));
-		} catch (IOException a) {
-			System.out.println("das Bild kann nicht gefunden werden");
-		}
+
+		NPC1.setBounds(0, -50, 200, 600);
+		NPC1.setVisible(true);
+		this.add(NPC1);
+
+		NPC2.setBounds(0, -50, 200, 600);
+		NPC2.setVisible(false);
+		this.add(NPC2);
+
+		NPC3.setBounds(0, -50, 200, 600);
+		NPC3.setVisible(false);
+		this.add(NPC3);
+		
+		NPC4.setBounds(0, -50, 200, 600);
+		NPC4.setVisible(false);
+		this.add(NPC4);
+		
+		NPC5.setBounds(0, -50, 200, 600);
+		NPC5.setVisible(false);
+		this.add(NPC5);
 
 		this.setResizable(false);
-		this.setSize(800, 600);
+		this.setSize(200, 585);
 		this.setLayout(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 
 		Weiter = new JButton("Weiter");
-		Weiter.setBounds(550, 450, 200, 40);
+		Weiter.setBounds(0, 500, 200, 35);
 		this.add(Weiter);
 
 		Skip = new JButton("Überspringen");
-		Skip.setBounds(450, 350, 200, 40);
+		Skip.setBounds(0, 535, 200, 25);
 		this.add(Skip);
 
 		/* der Button schliessen schließt das aktuelle Fenster */
 		ActionListener alweiter = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// die weiteren Bilder aufrufen
+				if (NPC1.isVisible()) {
+					NPC1.setVisible(false);
+					NPC2.setVisible(true);
+				} else if (NPC2.isVisible()) {
+					NPC2.setVisible(false);
+					NPC3.setVisible(true);
+				} else if (NPC3.isVisible()) {
+					NPC3.setVisible(false);
+					NPC4.setVisible(true);
+				} else if (NPC4.isVisible()) {
+					NPC4.setVisible(false);
+					NPC5.setVisible(true);
+				} else if (NPC5.isVisible()) {
+					dispose();
+				}
 			}
 		};
 
@@ -471,4 +518,5 @@ public class GameFrame extends JFrame implements KeyListener {
 	public void keyTyped(KeyEvent e) {
 		// nothing to do here
 	}
+
 }
