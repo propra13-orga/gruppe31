@@ -3,7 +3,6 @@ package game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -34,10 +33,6 @@ public class MenuFrame extends JFrame {
 	 */
 	public MenuFrame() {
 
-		/*
-		 * setzt das Hintergrundbild. Wenn es nicht gefunden wird erscheint ein
-		 * Text
-		 */
 		try {
 			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
 					direction + "/src/game/Images/Startscreen.jpg")))));

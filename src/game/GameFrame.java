@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Panel;
@@ -30,6 +31,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final int WEITER = 4;
 	private static final int BOSS = 5;
 	private static final int ZURUECK = 6;
+	private static final int CARLOS = 7;
 
 	/* erstellt Icons und weist ihnen Bilder zu */
 	private static final Icon iconRasen = new ImageIcon(direction
@@ -46,16 +48,22 @@ public class GameFrame extends JFrame implements KeyListener {
 			+ "/src/game/Images/Boss1.png");
 	private static final Icon iconZurueck = new ImageIcon(direction
 			+ "/src/game/Images/Zurueck1.jpg");
+	private static final Icon iconCarlos = new ImageIcon(direction
+			+ "/src/game/Images/Carlos.png");
 
-	/* Platzhalter Icons*/
-	private static final Icon iconCarlos1 = new ImageIcon(direction
-			+ "/src/game/Images/Carlos1.png");
+	/* Platzhalter Icon für Marcel */
 	private static final Icon iconAnzeige = new ImageIcon(direction
 			+ "/src/game/Images/Anzeige.jpg");
-	private static final Icon iconWald = new ImageIcon(direction
-			+ "/src/game/Images/Wald.jpg");
 
 	private JButton schliessen;
+
+	private JButton Weiter;
+	private JButton Skip;
+
+	private JLabel Anzeige = new JLabel(iconAnzeige);
+
+	private Panel Wald = new Panel();
+	private Panel Leiste = new Panel();
 
 	/* Variabeln für die Position der Spielfigur */
 	int Spielfigurx;
@@ -74,7 +82,8 @@ public class GameFrame extends JFrame implements KeyListener {
 					{ GRENZE, PUDEL, RASEN, GRENZE, RASEN, RASEN, RASEN, GRENZE },
 					{ GRENZE, RASEN, RASEN, GRENZE, RASEN, RASEN, RASEN, WEITER },
 					{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, GRENZE },
-					{ GRENZE, RASEN, RASEN, GRENZE, RASEN, RASEN, RASEN, GRENZE },
+					{ GRENZE, RASEN, RASEN, GRENZE, RASEN, RASEN, CARLOS,
+							GRENZE },
 					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
 							GRENZE } },
 
@@ -102,32 +111,14 @@ public class GameFrame extends JFrame implements KeyListener {
 					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
 							GRENZE } } };
 
-	private GridBagConstraints gridBagConstraints;
-
-	/*PLatzhalter Labels */
-	private JLabel Carlos1 = new JLabel(iconCarlos1);
-	private JLabel Anzeige = new JLabel(iconAnzeige);
-	private JLabel Wald = new JLabel(iconWald);
-
-	private JButton Weiter = new JButton("Weiter");
-	private JButton Skip = new JButton("Überspringen");
-
-	private Panel mainPanel = new Panel();
-	private Panel Spielfeld = new Panel();
-	private Panel Leiste = new Panel();
-	private Panel NPC = new Panel();
-	private Panel Buttons = new Panel();
-	
-
 	/**
 	 * Konstruktor, der die Eigenschaften des Spielfensters aufruft und den
 	 * KeyListener darauf setzt
 	 */
 	public GameFrame() {
-		addKeyListener(this);
 		this.setResizable(false);
 		this.setTitle("Erna's Adventure");
-		this.setSize(800, 630);
+		this.setSize(800, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
@@ -137,69 +128,15 @@ public class GameFrame extends JFrame implements KeyListener {
 		 * starten zu können und ruft das nächste (hier: erste) Level auf
 		 */
 		level = -1;
-		// NextLevel();
+		NextLevel();
 
-		mainPanel.setLayout(new GridBagLayout());
-
-		setzeWald();
-		setzeNPC();
 		setzeAnzeige();
-		setzeButtons();
 
-		getContentPane().add(mainPanel, BorderLayout.CENTER);
-	}
-
-	public void setzeWald() {
-		Spielfeld.add(Wald);
-		gridBagConstraints = new GridBagConstraints();
-		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 0;
-		gridBagConstraints.gridwidth = 6;
-		gridBagConstraints.gridheight = 4;
-		gridBagConstraints.fill = GridBagConstraints.BOTH;
-		gridBagConstraints.weightx = 1.0;
-		gridBagConstraints.weighty = 0.0;
-		mainPanel.add(Spielfeld, gridBagConstraints);
-	}
-
-	public void setzeNPC() {
-		NPC.add(Carlos1);
-		gridBagConstraints = new GridBagConstraints();
-		gridBagConstraints.gridx = 6;
-		gridBagConstraints.gridy = 0;
-		gridBagConstraints.gridwidth = 2;
-		gridBagConstraints.gridheight = 4;
-		gridBagConstraints.fill = GridBagConstraints.BOTH;
-		gridBagConstraints.weightx = 1.0;
-		gridBagConstraints.weighty = 0.0;
-		mainPanel.add(NPC, gridBagConstraints);
+		getContentPane().add(Leiste, BorderLayout.SOUTH);
 	}
 
 	public void setzeAnzeige() {
 		Leiste.add(Anzeige);
-		gridBagConstraints = new GridBagConstraints();
-		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 5;
-		gridBagConstraints.gridwidth = 6;
-		gridBagConstraints.gridheight = 1;
-		gridBagConstraints.fill = GridBagConstraints.BOTH;
-		gridBagConstraints.weightx = 1.0;
-		gridBagConstraints.weighty = 1.0;
-		mainPanel.add(Leiste, gridBagConstraints);
-	}
-
-	public void setzeButtons() {
-		Buttons.add(Weiter, BorderLayout.NORTH);
-		Buttons.add(Skip, BorderLayout.SOUTH);
-		gridBagConstraints = new GridBagConstraints();
-		gridBagConstraints.gridx = 6;
-		gridBagConstraints.gridy = 5;
-		gridBagConstraints.gridwidth = 2;
-		gridBagConstraints.gridheight = 1;
-		gridBagConstraints.fill = GridBagConstraints.BOTH;
-		gridBagConstraints.weightx = 1.0;
-		gridBagConstraints.weighty = 1.0;
-		mainPanel.add(Buttons, gridBagConstraints);
 	}
 
 	/**
@@ -208,9 +145,11 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * @param feld
 	 */
 	public void Levelaufruf(int[][] feld) {
-		
-		Panel panel = new Panel();
-		panel.setLayout(null);	
+
+		Wald = new Panel();
+		Wald.setLayout(null);
+		Wald.setFocusable(true);
+		Wald.addKeyListener(this);
 
 		/* erstellt so viele Labels, wie für Array benötigt */
 		JLabel[] labels = new JLabel[48];
@@ -222,40 +161,85 @@ public class GameFrame extends JFrame implements KeyListener {
 				/* fügt dem jeweiligen Wert das passende Icon (=Bild) hinzu */
 				if (feld[i][j] == RASEN) {
 					labels[i] = new JLabel(iconRasen);
-					panel.add(labels[i]);
+					Wald.add(labels[i]);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
 				} else if (feld[i][j] == GRENZE) {
 					labels[i] = new JLabel(iconBaum);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
-					panel.add(labels[i]);
+					Wald.add(labels[i]);
 				} else if (feld[i][j] == PUDEL) {
 					/* hält die Position der Spielfigur fest */
 					Spielfigurx = i;
 					Spielfigury = j;
 					labels[i] = new JLabel(iconPudel);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
-					panel.add(labels[i]);
+					Wald.add(labels[i]);
 				} else if (feld[i][j] == GEGNER) {
 					labels[i] = new JLabel(iconGegner);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
-					panel.add(labels[i]);
+					Wald.add(labels[i]);
 				} else if (feld[i][j] == WEITER) {
 					labels[i] = new JLabel(iconWeiter);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
-					panel.add(labels[i]);
+					Wald.add(labels[i]);
 				} else if (feld[i][j] == BOSS) {
 					labels[i] = new JLabel(iconBoss);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
-					panel.add(labels[i]);
+					Wald.add(labels[i]);
 				} else if (feld[i][j] == ZURUECK) {
 					labels[i] = new JLabel(iconZurueck);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
-					panel.add(labels[i]);
+					Wald.add(labels[i]);
+				} else if (feld[i][j] == CARLOS) {
+					labels[i] = new JLabel(iconCarlos);
+					labels[i].setBounds(j * 100, i * 100, 100, 100);
+					Wald.add(labels[i]);
 				}
 				/* setzt das Panel mit Bildern auf das Spielfenster */
-				this.setContentPane(panel);
+				getContentPane().add(Wald, BorderLayout.CENTER);
 			}
 		}
+	}
+
+	public void Carlos() {
+		try {
+			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
+					direction + "/src/game/Images/Carlos1.jpg")))));
+		} catch (IOException a) {
+			System.out.println("das Bild kann nicht gefunden werden");
+		}
+
+		this.setResizable(false);
+		this.setSize(800, 600);
+		this.setLayout(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+
+		Weiter = new JButton("Weiter");
+		Weiter.setBounds(550, 450, 200, 40);
+		this.add(Weiter);
+
+		Skip = new JButton("Überspringen");
+		Skip.setBounds(450, 350, 200, 40);
+		this.add(Skip);
+
+		/* der Button schliessen schließt das aktuelle Fenster */
+		ActionListener alweiter = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// die weiteren Bilder aufrufen
+			}
+		};
+
+		/* der Button schliessen schließt das aktuelle Fenster */
+		ActionListener alskip = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		};
+
+		Weiter.addActionListener(alweiter);
+		Skip.addActionListener(alskip);
 	}
 
 	/**
@@ -376,35 +360,41 @@ public class GameFrame extends JFrame implements KeyListener {
 		/* fragt die KeyEvents ab und führt das Programm entsprechend weiter */
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			/*
-			 * wenn der Wert des abgefragten Feldes 3 ist, erscheint das
+			 * wenn der Wert des abgefragten Feldes GEGNER ist, erscheint das
 			 * Verlorenfenster
 			 */
 			if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == GEGNER) {
 				Verloren();
 			}
 			/*
-			 * wenn der Wert des abgefragten Feldes 4 ist, erscheint das nächste
-			 * Level
+			 * wenn der Wert des abgefragten Feldes WEITER ist, erscheint das
+			 * nächste Level
 			 */
 			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == WEITER) {
 				NextLevel();
 			}
 			/*
-			 * wenn der Wert des abgefragten Feldes 5 ist, erscheint das
+			 * wenn der Wert des abgefragten Feldes BOSS ist, erscheint das
 			 * Gewonnenfenster
 			 */
 			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == BOSS) {
 				Verloren();
 			}
 			/*
-			 * wenn der Wert des abgefragten Feldes 4 ist, erscheint das nächste
-			 * Level
+			 * wenn der Wert des abgefragten Feldes ZURUECK ist, erscheint das
+			 * nächste Level
 			 */
 			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == ZURUECK) {
 				LastLevel();
+				/*
+				 * wenn der Wert des abgefragten Feldes CARLOS entspricht, wird
+				 * die Methode Carlos aufgerufen
+				 */
+			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == CARLOS) {
+				Carlos();
 			}
 			/*
-			 * wenn der Wert des abgefragten Feldes 0 ist, wird das aktuelle
+			 * wenn der Wert des abgefragten Feldes RASEN ist, wird das aktuelle
 			 * Feld der Spielfigur auf 0 gesetzt
 			 */
 			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == RASEN) {
@@ -424,6 +414,8 @@ public class GameFrame extends JFrame implements KeyListener {
 				NextLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == BOSS) {
 				Verloren();
+			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == CARLOS) {
+				Carlos();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == ZURUECK) {
 				LastLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == RASEN) {
@@ -442,6 +434,8 @@ public class GameFrame extends JFrame implements KeyListener {
 				Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == ZURUECK) {
 				LastLevel();
+			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == CARLOS) {
+				Carlos();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == RASEN) {
 				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;
 				Spielfigurx--;
@@ -458,6 +452,8 @@ public class GameFrame extends JFrame implements KeyListener {
 				Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == ZURUECK) {
 				LastLevel();
+			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == CARLOS) {
+				Carlos();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == RASEN) {
 				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;
 				Spielfigurx++;
