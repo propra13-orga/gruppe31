@@ -17,6 +17,8 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final String direction = System.getProperty("user.dir");
 
 	Carlos carlos;
+	Gewonnen gewonnen;
+	Verloren verloren;
 
 	private static final int RASEN = 0;
 	private static final int GRENZE = 1;
@@ -26,6 +28,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final int BOSS = 5;
 	private static final int ZURUECK = 6;
 	private static final int CARLOS = 7;
+	private static final int WAFFE = 8;
 
 	/* erstellt Bildericons für das Spielfeld */
 	private static final Icon iconRasen = new ImageIcon(direction
@@ -44,14 +47,17 @@ public class GameFrame extends JFrame implements KeyListener {
 			+ "/src/game/Images/Zurueck1.jpg");
 	private static final Icon iconCarlos = new ImageIcon(direction
 			+ "/src/game/Images/Carlos.png");
+	private static final Icon iconWaffe = new ImageIcon(direction
+			+ "/src/game/Images/Waffe1.png");
 
 	/* Platzhalter für Marcel */
 	private static final Icon iconAnzeige = new ImageIcon(direction
 			+ "/src/game/Images/Anzeige.jpg");
 	private JLabel Anzeige = new JLabel(iconAnzeige);
 
-	private JButton schliessen;
+	private JButton GVschliessen;
 
+	/* erstellt zwei Panels für die Bereiche des Spielfensters */
 	private Panel Wald = new Panel();
 	private Panel Leiste = new Panel();
 
@@ -85,7 +91,7 @@ public class GameFrame extends JFrame implements KeyListener {
 							GRENZE },
 					{ GRENZE, GRENZE, GRENZE, RASEN, RASEN, RASEN, RASEN,
 							GRENZE },
-					{ GRENZE, RASEN, RASEN, RASEN, GRENZE, RASEN, RASEN, WEITER },
+					{ GRENZE, WAFFE, RASEN, RASEN, GRENZE, RASEN, RASEN, WEITER },
 					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
 							GRENZE } },
 
@@ -102,8 +108,8 @@ public class GameFrame extends JFrame implements KeyListener {
 							GRENZE } } };
 
 	/**
-	 * Konstruktor, der die Eigenschaften des Spielfensters aufruft und den
-	 * KeyListener darauf setzt
+	 * Konstruktor, der die Eigenschaften des Spielfensters festsetzt und die
+	 * beiden Bereiche des Fensters setzt
 	 */
 	public GameFrame() {
 		this.setResizable(false);
@@ -131,7 +137,8 @@ public class GameFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * allgemeine Methode zum Erzeugen der Level mit Zurodnung der Bilder
+	 * allgemeine Methode zum Erzeugen der Level mit Zurodnung der Bilder,
+	 * KeyListener wird auf das richtige Panel gesetzt
 	 * 
 	 * @param feld
 	 */
@@ -185,83 +192,20 @@ public class GameFrame extends JFrame implements KeyListener {
 					labels[i] = new JLabel(iconCarlos);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
 					Wald.add(labels[i]);
+				} else if (feld[i][j] == WAFFE) {
+					labels[i] = new JLabel(iconWaffe);
+					labels[i].setBounds(j * 100, i * 100, 100, 100);
+					Wald.add(labels[i]);
 				}
 				getContentPane().removeAll();
-				/* setzt das Panel mit Bildern auf das Spielfenster */
+				/* setzt die beiden Panel wieder auf das Fenster*/
 				getContentPane().add(Wald, BorderLayout.CENTER);
 				getContentPane().add(Leiste, BorderLayout.SOUTH);
 
+				/* Fokus wird wieder auf das Panel Wald gesetzt */
 				Wald.requestFocus();
-
 			}
 		}
-	}
-
-	/**
-	 * das Gewonnenfenster wird erzeugt
-	 */
-	public void Gewonnen() {
-
-		try {
-			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
-					direction + "/src/game/Images/Gewonnen.jpg")))));
-		} catch (IOException a) {
-			System.out.println("das Bild kann nicht gefunden werden");
-		}
-
-		this.setResizable(false);
-		this.setSize(800, 600);
-		this.setLayout(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-
-		schliessen = new JButton("Dieses Fenster schließen");
-		schliessen.setBounds(550, 450, 200, 40);
-		this.add(schliessen);
-
-		/* der Button schliessen schließt das aktuelle Fenster */
-		ActionListener alschliessen = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		};
-		schliessen.addActionListener(alschliessen);
-	}
-
-	/**
-	 * das Verlorenfenster wird erzeugt
-	 */
-	public void Verloren() {
-
-		try {
-			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
-					direction + "/src/game/Images/GameOver.jpg")))));
-		} catch (IOException a) {
-			System.out.println("das Bild kann nicht gefunden werden");
-		}
-
-		this.setResizable(false);
-		this.setSize(800, 600);
-		this.setLayout(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-
-		/*
-		 * der Button schliessen bewirkt ein Verschwinden des Fensters, sodass
-		 * das Menufenster zu sehen ist
-		 */
-		schliessen = new JButton("Dieses Fenster schließen");
-		schliessen.setBounds(550, 450, 200, 40);
-		this.add(schliessen);
-
-		ActionListener alschliessen = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		};
-		schliessen.addActionListener(alschliessen);
 	}
 
 	/**
@@ -319,7 +263,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			 * Verlorenfenster
 			 */
 			if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == GEGNER) {
-				Verloren();
+				verloren = new Verloren();
 			}
 			/*
 			 * wenn der Wert des abgefragten Feldes WEITER ist, erscheint das
@@ -333,7 +277,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			 * Gewonnenfenster
 			 */
 			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == BOSS) {
-				Verloren();
+				verloren = new Verloren();
 			}
 			/*
 			 * wenn der Wert des abgefragten Feldes ZURUECK ist, erscheint das
@@ -364,11 +308,11 @@ public class GameFrame extends JFrame implements KeyListener {
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == GEGNER) {
-				Verloren();
+				verloren = new Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == WEITER) {
 				NextLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == BOSS) {
-				Verloren();
+				verloren = new Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == ZURUECK) {
 				LastLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == CARLOS) {
@@ -382,11 +326,11 @@ public class GameFrame extends JFrame implements KeyListener {
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == GEGNER) {
-				Verloren();
+				verloren = new Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == WEITER) {
 				NextLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == BOSS) {
-				Verloren();
+				verloren = new Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == ZURUECK) {
 				LastLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == CARLOS) {
@@ -400,11 +344,11 @@ public class GameFrame extends JFrame implements KeyListener {
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == GEGNER) {
-				Verloren();
+				verloren = new Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == WEITER) {
 				NextLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == BOSS) {
-				Verloren();
+				verloren = new Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == ZURUECK) {
 				LastLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == CARLOS) {

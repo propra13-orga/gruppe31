@@ -1,10 +1,10 @@
 package game;
 
+import java.awt.Color;
 import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
 import javax.imageio.ImageIO;
-
 
 /**
  * MenuFrame erzeugt das Menufenster. Ein Hintergrundbild wird gesetzt, es
@@ -17,7 +17,9 @@ public class MenuFrame extends JFrame {
 
 	/* deklariert zwei Buttons */
 	private JButton start;
+	private JButton steuerung;
 	private JButton ende;
+	private JButton Sschliessen;
 
 	/* deklariert ein GameFrame gameframe aus dem Package */
 	GameFrame gameframe;
@@ -52,8 +54,12 @@ public class MenuFrame extends JFrame {
 		this.add(label);
 
 		start = new JButton("Spiel starten");
-		start.setBounds(400, 350, 200, 40);
+		start.setBounds(400, 300, 200, 40);
 		this.add(start);
+
+		steuerung = new JButton("Steuerung");
+		steuerung.setBounds(400, 350, 200, 40);
+		this.add(steuerung);
 
 		ende = new JButton("Beenden");
 		ende.setBounds(400, 400, 200, 40);
@@ -66,6 +72,33 @@ public class MenuFrame extends JFrame {
 			}
 		};
 
+		ActionListener alsteuerung = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				final JFrame fst = new JFrame();
+
+				fst.setTitle("So steuerst du Erna");
+				fst.setBackground(Color.green);
+				fst.setResizable(true);
+				fst.setSize(300, 200);
+				fst.setLayout(null);
+				fst.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				fst.setLocationRelativeTo(null);
+				fst.setVisible(true);
+
+				Sschliessen = new JButton("Dieses Fenster schlieﬂen");
+				Sschliessen.setBounds(0, 140, 300, 25);
+				fst.add(Sschliessen);
+
+				/* der Button schliessen schlieﬂt das aktuelle Fenster */
+				ActionListener alschliessen = new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						fst.dispose();
+					}
+				};
+				Sschliessen.addActionListener(alschliessen);
+			}
+		};
+
 		/* beendet das Programm, wenn auf Button ende geklickt wird */
 		ActionListener alende = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -75,6 +108,7 @@ public class MenuFrame extends JFrame {
 
 		/* weist den Buttons den entsprechenden ActionListener zu */
 		start.addActionListener(alstart);
+		steuerung.addActionListener(alsteuerung);
 		ende.addActionListener(alende);
 	}
 

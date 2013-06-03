@@ -29,42 +29,42 @@ public class Carlos {
 	
 	public Carlos() {
 		
-		final JFrame frame = new JFrame();
+		final JFrame NPC = new JFrame();
 		
-		frame.setResizable(false);
-		frame.setSize(205, 590);
-		frame.setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
+		NPC.setResizable(false);
+		NPC.setSize(205, 590);
+		NPC.setLayout(null);
+		NPC.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		NPC.setLocationRelativeTo(null);
+		NPC.setVisible(true);
 		
 		NPC1.setBounds(0, -50, 200, 600);
 		NPC1.setVisible(true);
-		frame.add(NPC1);
+		NPC.add(NPC1);
 
 		NPC2.setBounds(0, -50, 200, 600);
 		NPC2.setVisible(false);
-		frame.add(NPC2);
+		NPC.add(NPC2);
 
 		NPC3.setBounds(0, -50, 200, 600);
 		NPC3.setVisible(false);
-		frame.add(NPC3);
+		NPC.add(NPC3);
 
 		NPC4.setBounds(0, -50, 200, 600);
 		NPC4.setVisible(false);
-		frame.add(NPC4);
+		NPC.add(NPC4);
 
 		NPC5.setBounds(0, -50, 200, 600);
 		NPC5.setVisible(false);
-		frame.add(NPC5);
+		NPC.add(NPC5);
 
 		Weiter = new JButton("Weiter");
 		Weiter.setBounds(0, 500, 200, 30);
-		frame.add(Weiter);
+		NPC.add(Weiter);
 
 		Skip = new JButton("Überspringen");
 		Skip.setBounds(0, 532, 200, 30);
-		frame.add(Skip);
+		NPC.add(Skip);
 
 		ActionListener alweiter = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -81,14 +81,14 @@ public class Carlos {
 					NPC4.setVisible(false);
 					NPC5.setVisible(true);
 				} else if (NPC5.isVisible()) {
-					frame.dispose();
+					NPC.dispose();
 				}
 			}
 		};
 
 		ActionListener alskip = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				NPC.dispose();
 			}
 		};
 		Weiter.addActionListener(alweiter);
