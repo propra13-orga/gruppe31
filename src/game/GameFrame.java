@@ -1,14 +1,8 @@
 package game;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.Panel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -16,13 +10,15 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
- * diese Klasse erzeugt das Spielfenster. Den Werten im Array werden die
+ * GameFrame erzeugt das Menufenster. Den Werten im Array werden die
  * entsprechenden Bilder zugeordnet. Der KeyListener fragt die Werte der
  * umliegenden Felder ab und führt das Programm entsprechend weiter.
  */
 public class GameFrame extends JFrame implements KeyListener {
 
 	private static final String direction = System.getProperty("user.dir");
+
+	Carlos carlos;
 
 	private static final int RASEN = 0;
 	private static final int GRENZE = 1;
@@ -51,31 +47,11 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon iconCarlos = new ImageIcon(direction
 			+ "/src/game/Images/Carlos.png");
 
-	private static final Icon iconCarlos1 = new ImageIcon(direction
-			+ "/src/game/Images/Carlos1.png");
-	private static final Icon iconCarlos2 = new ImageIcon(direction
-			+ "/src/game/Images/Carlos2.png");
-	private static final Icon iconCarlos3 = new ImageIcon(direction
-			+ "/src/game/Images/Carlos3.png");
-	private static final Icon iconCarlos4 = new ImageIcon(direction
-			+ "/src/game/Images/Carlos4.png");
-	private static final Icon iconCarlos5 = new ImageIcon(direction
-			+ "/src/game/Images/Carlos5.png");
-
-	private static final JLabel NPC1 = new JLabel(iconCarlos1);
-	private static final JLabel NPC2 = new JLabel(iconCarlos2);
-	private static final JLabel NPC3 = new JLabel(iconCarlos3);
-	private static final JLabel NPC4 = new JLabel(iconCarlos4);
-	private static final JLabel NPC5 = new JLabel(iconCarlos5);
-
 	/* Platzhalter Icon für Marcel */
 	private static final Icon iconAnzeige = new ImageIcon(direction
 			+ "/src/game/Images/Anzeige.jpg");
 
 	private JButton schliessen;
-
-	private JButton Weiter;
-	private JButton Skip;
 
 	private JLabel Anzeige = new JLabel(iconAnzeige);
 
@@ -152,6 +128,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		getContentPane().add(Leiste, BorderLayout.SOUTH);
 	}
 
+	/* hier arbeitet Marcel */
 	public void setzeAnzeige() {
 		Leiste.add(Anzeige);
 	}
@@ -215,78 +192,8 @@ public class GameFrame extends JFrame implements KeyListener {
 				}
 				/* setzt das Panel mit Bildern auf das Spielfenster */
 				getContentPane().add(Wald, BorderLayout.CENTER);
-
 			}
 		}
-	}
-
-	public void Carlos() {
-
-		NPC1.setBounds(0, -50, 200, 600);
-		NPC1.setVisible(true);
-		this.add(NPC1);
-
-		NPC2.setBounds(0, -50, 200, 600);
-		NPC2.setVisible(false);
-		this.add(NPC2);
-
-		NPC3.setBounds(0, -50, 200, 600);
-		NPC3.setVisible(false);
-		this.add(NPC3);
-		
-		NPC4.setBounds(0, -50, 200, 600);
-		NPC4.setVisible(false);
-		this.add(NPC4);
-		
-		NPC5.setBounds(0, -50, 200, 600);
-		NPC5.setVisible(false);
-		this.add(NPC5);
-
-		this.setResizable(false);
-		this.setSize(200, 585);
-		this.setLayout(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-
-		Weiter = new JButton("Weiter");
-		Weiter.setBounds(0, 500, 200, 35);
-		this.add(Weiter);
-
-		Skip = new JButton("Überspringen");
-		Skip.setBounds(0, 535, 200, 25);
-		this.add(Skip);
-
-		/* der Button schliessen schließt das aktuelle Fenster */
-		ActionListener alweiter = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (NPC1.isVisible()) {
-					NPC1.setVisible(false);
-					NPC2.setVisible(true);
-				} else if (NPC2.isVisible()) {
-					NPC2.setVisible(false);
-					NPC3.setVisible(true);
-				} else if (NPC3.isVisible()) {
-					NPC3.setVisible(false);
-					NPC4.setVisible(true);
-				} else if (NPC4.isVisible()) {
-					NPC4.setVisible(false);
-					NPC5.setVisible(true);
-				} else if (NPC5.isVisible()) {
-					dispose();
-				}
-			}
-		};
-
-		/* der Button schliessen schließt das aktuelle Fenster */
-		ActionListener alskip = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		};
-
-		Weiter.addActionListener(alweiter);
-		Skip.addActionListener(alskip);
 	}
 
 	/**
@@ -438,7 +345,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				 * die Methode Carlos aufgerufen
 				 */
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == CARLOS) {
-				Carlos();
+				carlos = new Carlos();
 			}
 			/*
 			 * wenn der Wert des abgefragten Feldes RASEN ist, wird das aktuelle
@@ -461,10 +368,10 @@ public class GameFrame extends JFrame implements KeyListener {
 				NextLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == BOSS) {
 				Verloren();
-			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == CARLOS) {
-				Carlos();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == ZURUECK) {
 				LastLevel();
+			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == CARLOS) {
+				carlos = new Carlos();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == RASEN) {
 				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;
 				Spielfigury++;
@@ -482,7 +389,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == ZURUECK) {
 				LastLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == CARLOS) {
-				Carlos();
+				carlos = new Carlos();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == RASEN) {
 				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;
 				Spielfigurx--;
@@ -500,7 +407,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == ZURUECK) {
 				LastLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == CARLOS) {
-				Carlos();
+				carlos = new Carlos();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == RASEN) {
 				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;
 				Spielfigurx++;

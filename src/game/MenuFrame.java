@@ -9,19 +9,15 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
- * diese Klasse erzeugt das Menüfenster. Die Buttons im Menüfenster sind
- * anklickbar und bewirken das Schließen des Fensters, oder das Öffnen des
- * Spielfensters.
+ * MenuFrame erzeugt das Menufenster. Ein Hintergrundbild wird gesetzt, es
+ * werden 2 Buttons und ein Label auf das Fenster gesetzt
  */
 public class MenuFrame extends JFrame {
 
 	/* setzt den Anfang der Pfadangabe auf die Arbeitsumgebung */
 	private static final String direction = System.getProperty("user.dir");
 
-	/*
-	 * deklariert zwei Buttons, die nur von dieser Klasse aus angesprochen
-	 * werden können
-	 */
+	/* deklariert zwei Buttons */
 	private JButton start;
 	private JButton ende;
 
@@ -68,7 +64,7 @@ public class MenuFrame extends JFrame {
 		/* registriert Mausklick auf Button start und öffnet ein neues GameFrame */
 		ActionListener alstart = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					gameframe = new GameFrame();
+				gameframe = new GameFrame();
 			}
 		};
 
@@ -85,7 +81,7 @@ public class MenuFrame extends JFrame {
 	}
 
 	/**
-	 * erzeugt ein neues Menüfenster aus dem Konstruktor
+	 * erzeugt ein neues Menufenster aus dem Konstruktor
 	 * 
 	 * @param args
 	 */
