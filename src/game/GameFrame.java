@@ -1,11 +1,14 @@
+/*
+ * Double-Buffering einbauen
+ * http://www.rpg-studio.de/scientia/Java/Tutorials/Double_Buffering
+ * 
+ * oder Panels nur verschieben, anstatt Werte zu ändern und neu zu erstellen
+ */
 package game;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-import java.io.*;
-import javax.imageio.*;
 
 /**
  * GameFrame erzeugt das Menufenster. Den Werten im Array werden die
@@ -54,8 +57,6 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon iconAnzeige = new ImageIcon(direction
 			+ "/src/game/Images/Anzeige.jpg");
 	private JLabel Anzeige = new JLabel(iconAnzeige);
-
-	private JButton GVschliessen;
 
 	/* erstellt zwei Panels für die Bereiche des Spielfensters */
 	private Panel Wald = new Panel();
@@ -198,7 +199,7 @@ public class GameFrame extends JFrame implements KeyListener {
 					Wald.add(labels[i]);
 				}
 				getContentPane().removeAll();
-				/* setzt die beiden Panel wieder auf das Fenster*/
+				/* setzt die beiden Panel wieder auf das Fenster */
 				getContentPane().add(Wald, BorderLayout.CENTER);
 				getContentPane().add(Leiste, BorderLayout.SOUTH);
 
@@ -253,7 +254,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * der KeyListener, der regiert, während die Taste gedrückt wird
+	 * der KeyListener reagiert, während die Taste gedrückt wird
 	 */
 	public void keyPressed(KeyEvent e) {
 		/* fragt die KeyEvents ab und führt das Programm entsprechend weiter */
@@ -263,6 +264,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			 * Verlorenfenster
 			 */
 			if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == GEGNER) {
+				getContentPane().removeAll();
 				verloren = new Verloren();
 			}
 			/*
@@ -277,6 +279,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			 * Gewonnenfenster
 			 */
 			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == BOSS) {
+				getContentPane().removeAll();
 				verloren = new Verloren();
 			}
 			/*
@@ -308,11 +311,13 @@ public class GameFrame extends JFrame implements KeyListener {
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == GEGNER) {
-				verloren = new Verloren();
+				getContentPane().removeAll();
+				getContentPane().add(Leiste, BorderLayout.SOUTH);
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == WEITER) {
 				NextLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == BOSS) {
-				verloren = new Verloren();
+				getContentPane().removeAll();
+				getContentPane().add(Leiste, BorderLayout.SOUTH);
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == ZURUECK) {
 				LastLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == CARLOS) {
@@ -326,10 +331,12 @@ public class GameFrame extends JFrame implements KeyListener {
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == GEGNER) {
+				getContentPane().removeAll();
 				verloren = new Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == WEITER) {
 				NextLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == BOSS) {
+				getContentPane().removeAll();
 				verloren = new Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == ZURUECK) {
 				LastLevel();
@@ -344,10 +351,12 @@ public class GameFrame extends JFrame implements KeyListener {
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == GEGNER) {
+				getContentPane().removeAll();
 				verloren = new Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == WEITER) {
 				NextLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == BOSS) {
+				getContentPane().removeAll();
 				verloren = new Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == ZURUECK) {
 				LastLevel();
