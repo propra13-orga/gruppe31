@@ -1,13 +1,11 @@
 package game;
 
-import java.awt.BorderLayout;
-import java.awt.Panel;
+import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import java.io.*;
+import javax.imageio.*;
 
 /**
  * GameFrame erzeugt das Menufenster. Den Werten im Array werden die
@@ -29,7 +27,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final int ZURUECK = 6;
 	private static final int CARLOS = 7;
 
-	/* erstellt Icons und weist ihnen Bilder zu */
+	/* erstellt Bildericons für das Spielfeld */
 	private static final Icon iconRasen = new ImageIcon(direction
 			+ "/src/game/Images/Rasen1.jpg");
 	private static final Icon iconBaum = new ImageIcon(direction
@@ -47,13 +45,12 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon iconCarlos = new ImageIcon(direction
 			+ "/src/game/Images/Carlos.png");
 
-	/* Platzhalter Icon für Marcel */
+	/* Platzhalter für Marcel */
 	private static final Icon iconAnzeige = new ImageIcon(direction
 			+ "/src/game/Images/Anzeige.jpg");
+	private JLabel Anzeige = new JLabel(iconAnzeige);
 
 	private JButton schliessen;
-
-	private JLabel Anzeige = new JLabel(iconAnzeige);
 
 	private Panel Wald = new Panel();
 	private Panel Leiste = new Panel();
@@ -144,7 +141,6 @@ public class GameFrame extends JFrame implements KeyListener {
 		Wald.setLayout(null);
 		Wald.setFocusable(true);
 		Wald.addKeyListener(this);
-		Wald.requestFocus();
 
 		/* erstellt so viele Labels, wie für Array benötigt */
 		JLabel[] labels = new JLabel[48];
@@ -190,8 +186,13 @@ public class GameFrame extends JFrame implements KeyListener {
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
 					Wald.add(labels[i]);
 				}
+				getContentPane().removeAll();
 				/* setzt das Panel mit Bildern auf das Spielfenster */
 				getContentPane().add(Wald, BorderLayout.CENTER);
+				getContentPane().add(Leiste, BorderLayout.SOUTH);
+
+				Wald.requestFocus();
+
 			}
 		}
 	}
@@ -344,7 +345,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				 * wenn der Wert des abgefragten Feldes CARLOS entspricht, wird
 				 * die Methode Carlos aufgerufen
 				 */
-			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == CARLOS) {
+			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == CARLOS) {
 				carlos = new Carlos();
 			}
 			/*
@@ -370,7 +371,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == ZURUECK) {
 				LastLevel();
-			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == CARLOS) {
+			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == CARLOS) {
 				carlos = new Carlos();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == RASEN) {
 				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;
@@ -388,7 +389,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == ZURUECK) {
 				LastLevel();
-			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == CARLOS) {
+			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == CARLOS) {
 				carlos = new Carlos();
 			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == RASEN) {
 				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;

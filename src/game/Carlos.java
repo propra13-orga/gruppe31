@@ -32,7 +32,7 @@ public class Carlos {
 		final JFrame frame = new JFrame();
 		
 		frame.setResizable(false);
-		frame.setSize(200, 590);
+		frame.setSize(205, 590);
 		frame.setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
@@ -91,7 +91,6 @@ public class Carlos {
 				frame.dispose();
 			}
 		};
-
 		Weiter.addActionListener(alweiter);
 		Skip.addActionListener(alskip);
 	}

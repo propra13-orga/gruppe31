@@ -1,12 +1,10 @@
 package game;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
+import java.awt.event.*;
+import java.io.*;
 import javax.swing.*;
+import javax.imageio.ImageIO;
+
 
 /**
  * MenuFrame erzeugt das Menufenster. Ein Hintergrundbild wird gesetzt, es
