@@ -15,6 +15,11 @@ public class MenuFrame extends JFrame {
 	/* setzt den Anfang der Pfadangabe auf die Arbeitsumgebung */
 	private static final String direction = System.getProperty("user.dir");
 
+	private static final Icon iconSteuerung = new ImageIcon(direction
+			+ "/src/game/Images/Steuerung.png");
+
+	private static final JLabel STEUERUNG = new JLabel(iconSteuerung);
+
 	/* deklariert zwei Buttons */
 	private JButton start;
 	private JButton steuerung;
@@ -60,7 +65,7 @@ public class MenuFrame extends JFrame {
 		ende = new JButton("Beenden");
 		ende.setBounds(350, 400, 200, 40);
 		this.add(ende);
-		
+
 		JLabel label = new JLabel("Made by Pinky and the Gang");
 		label.setBounds(600, 450, 200, 40);
 		this.add(label);
@@ -76,17 +81,20 @@ public class MenuFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				final JFrame fst = new JFrame();
 
-				fst.setTitle("So steuerst du Erna");
 				fst.setBackground(Color.green);
 				fst.setResizable(true);
-				fst.setSize(300, 200);
+				fst.setSize(400, 400);
 				fst.setLayout(null);
 				fst.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				fst.setLocationRelativeTo(null);
 				fst.setVisible(true);
 
+				STEUERUNG.setBounds(0, 0, 400, 310);
+				STEUERUNG.setVisible(true);
+				fst.add(STEUERUNG);
+
 				Sschliessen = new JButton("Dieses Fenster schlieﬂen");
-				Sschliessen.setBounds(0, 140, 300, 25);
+				Sschliessen.setBounds(0, 310, 400, 50);
 				fst.add(Sschliessen);
 
 				/* der Button schliessen schlieﬂt das aktuelle Fenster */
