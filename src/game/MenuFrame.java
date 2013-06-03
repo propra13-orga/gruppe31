@@ -49,21 +49,21 @@ public class MenuFrame extends JFrame {
 		 * erstellt Label mit Text, setzt seine Position fest und setzt es auf
 		 * das Menüfenster
 		 */
-		JLabel label = new JLabel("Made by Pinky and the Gang");
-		label.setBounds(600, 450, 200, 40);
-		this.add(label);
-
 		start = new JButton("Spiel starten");
-		start.setBounds(400, 300, 200, 40);
+		start.setBounds(350, 300, 200, 40);
 		this.add(start);
 
 		steuerung = new JButton("Steuerung");
-		steuerung.setBounds(400, 350, 200, 40);
+		steuerung.setBounds(350, 350, 200, 40);
 		this.add(steuerung);
 
 		ende = new JButton("Beenden");
-		ende.setBounds(400, 400, 200, 40);
+		ende.setBounds(350, 400, 200, 40);
 		this.add(ende);
+		
+		JLabel label = new JLabel("Made by Pinky and the Gang");
+		label.setBounds(600, 450, 200, 40);
+		this.add(label);
 
 		/* registriert Mausklick auf Button start und öffnet ein neues GameFrame */
 		ActionListener alstart = new ActionListener() {

@@ -74,20 +74,22 @@ public class GameFrame extends JFrame implements KeyListener {
 	/* ein Array von Levels */
 	private static final int[][][] LEVELS = {
 			{
-					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
-							GRENZE },
-					{ GRENZE, PUDEL, RASEN, GRENZE, RASEN, RASEN, RASEN, GRENZE },
-					{ GRENZE, RASEN, RASEN, GRENZE, RASEN, RASEN, RASEN, WEITER },
-					{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, GRENZE },
-					{ GRENZE, RASEN, RASEN, GRENZE, RASEN, RASEN, CARLOS,
-							GRENZE },
-					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
-							GRENZE } },
+				{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
+					GRENZE },
+			{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, GRENZE },
+			{ GRENZE, PUDEL, RASEN, RASEN, RASEN, RASEN, RASEN,
+					GRENZE },
+			{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN,
+					GRENZE },
+			{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, WEITER },
+			{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
+					GRENZE } 
+			},
 
 			{
 					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
 							GRENZE },
-					{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, GRENZE },
+					{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, GEGNER, GRENZE },
 					{ ZURUECK, PUDEL, GRENZE, RASEN, GRENZE, GRENZE, GRENZE,
 							GRENZE },
 					{ GRENZE, GRENZE, GRENZE, RASEN, RASEN, RASEN, RASEN,
@@ -312,12 +314,12 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == GEGNER) {
 				getContentPane().removeAll();
-				getContentPane().add(Leiste, BorderLayout.SOUTH);
+				verloren = new Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == WEITER) {
 				NextLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == BOSS) {
 				getContentPane().removeAll();
-				getContentPane().add(Leiste, BorderLayout.SOUTH);
+				verloren = new Verloren();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == ZURUECK) {
 				LastLevel();
 			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == CARLOS) {
