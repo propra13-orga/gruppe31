@@ -3,10 +3,11 @@ package game;
 import java.awt.event.*;
 import javax.swing.*;
 
+/** löst aus, wenn der KeyListener CARLOS registriert */
 public class Carlos {
-	
+
 	private static final String direction = System.getProperty("user.dir");
-	
+
 	private static final Icon iconCarlos1 = new ImageIcon(direction
 			+ "/src/game/Images/Carlos1.png");
 	private static final Icon iconCarlos2 = new ImageIcon(direction
@@ -23,21 +24,25 @@ public class Carlos {
 	private static final JLabel NPC3 = new JLabel(iconCarlos3);
 	private static final JLabel NPC4 = new JLabel(iconCarlos4);
 	private static final JLabel NPC5 = new JLabel(iconCarlos5);
-	
+
 	private JButton Weiter;
 	private JButton Skip;
-	
+
+	/**
+	 * Konstruktor erstellt ein neues Fenster und zeigt bei jedem Klick auf
+	 * Button weiter ein neues Label an
+	 */
 	public Carlos() {
-		
+
 		final JFrame frame = new JFrame();
-		
+
 		frame.setResizable(false);
 		frame.setSize(205, 590);
 		frame.setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-		
+
 		NPC1.setBounds(0, -50, 200, 600);
 		NPC1.setVisible(true);
 		frame.add(NPC1);

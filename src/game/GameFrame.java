@@ -33,7 +33,6 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final int CARLOS = 7;
 	private static final int WAFFE = 8;
 
-	/* erstellt Bildericons für das Spielfeld */
 	private static final Icon iconRasen = new ImageIcon(direction
 			+ "/src/game/Images/Rasen1.jpg");
 	private static final Icon iconBaum = new ImageIcon(direction
@@ -65,20 +64,19 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final JLabel Gewonnen = new JLabel(iconGewonnen);
 	private static final JLabel Verloren = new JLabel(iconVerloren);
 
-	/* erstellt zwei Panels für die Bereiche des Spielfensters */
 	private Panel Wald = new Panel();
 	private Panel Leiste = new Panel();
 	private Panel Ausgang = new Panel();
 
 	private JButton GVschliessen;
 
-	/* Variabeln für die Position der Spielfigur */
+	/* Variabeln für die neue und alte Position der Spielfigur */
 	private int Spielfigurx;
+	private int altx;
 	private int Spielfigury;
+	private int alty;
 
-	/* deklariert das aktuelle Spielfeld */
 	private int[][] aktuellesSpielfeld;
-	/* deklariert eine Variabel für das aktuelle Level */
 	private int level;
 
 	/* ein Array von Levels */
@@ -162,11 +160,9 @@ public class GameFrame extends JFrame implements KeyListener {
 		/* erstellt so viele Labels, wie für Array benötigt */
 		JLabel[] labels = new JLabel[48];
 
-		/* geht das gesamte Array durch */
 		for (int i = 0; i < feld.length; i++) {
 			for (int j = 0; j < feld[i].length; j++) {
 
-				/* fügt dem jeweiligen Wert das passende Icon (=Bild) hinzu */
 				if (feld[i][j] == RASEN) {
 					labels[i] = new JLabel(iconRasen);
 					Wald.add(labels[i]);
@@ -177,8 +173,10 @@ public class GameFrame extends JFrame implements KeyListener {
 					Wald.add(labels[i]);
 				} else if (feld[i][j] == PUDEL) {
 					/* hält die Position der Spielfigur fest */
-					Spielfigurx = i;
-					Spielfigury = j;
+					altx = i;
+					Spielfigury = i;
+					alty = j;
+					Spielfigurx = j;
 					labels[i] = new JLabel(iconPudel);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
 					Wald.add(labels[i]);
@@ -208,7 +206,6 @@ public class GameFrame extends JFrame implements KeyListener {
 					Wald.add(labels[i]);
 				}
 				getContentPane().removeAll();
-				/* setzt die beiden Panel wieder auf das Fenster */
 				getContentPane().add(Wald, BorderLayout.CENTER);
 				getContentPane().add(Leiste, BorderLayout.SOUTH);
 
@@ -229,7 +226,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	/**
 	 * die Variabel level zählt hoch, um in das nächste Level zugelangen das
 	 * Spielfeld wird erneut durchlaufen und setzt das aktuelle Spielfeld = dem
-	 * geänderten, Argumentübergabe (true/false?)
+	 * geänderten Argumentübergabe (true/false?)
 	 */
 	protected void NextLevel() {
 		level++;
@@ -240,7 +237,6 @@ public class GameFrame extends JFrame implements KeyListener {
 				aktuellesSpielfeld[x][y] = reference[x][y];
 			}
 		}
-		/* das neue aktuelle Level wird aufgerufen und erzeugt */
 		Levelaufruf(aktuellesSpielfeld);
 		LevelAktualisieren();
 	}
@@ -257,7 +253,6 @@ public class GameFrame extends JFrame implements KeyListener {
 				aktuellesSpielfeld[x][y] = reference[x][y];
 			}
 		}
-		/* das neue aktuelle Level wird aufgerufen und erzeugt */
 		Levelaufruf(aktuellesSpielfeld);
 		LevelAktualisieren();
 	}
@@ -280,10 +275,6 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 
-		/*
-		 * der Button schliessen bewirkt ein Verschwinden des Fensters, sodass
-		 * das Menufenster zu sehen ist
-		 */
 		GVschliessen = new JButton("Dieses Fenster schließen");
 		GVschliessen.setBounds(550, 450, 200, 40);
 		this.add(GVschliessen);
@@ -297,121 +288,37 @@ public class GameFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * der KeyListener reagiert, während die Taste gedrückt wird verkürzen !
+	 * der KeyListener reagiert, während die Taste gedrückt wird und führt das
+	 * Programm entsprechend weiter
 	 */
 	public void keyPressed(KeyEvent e) {
-		/* fragt die KeyEvents ab und führt das Programm entsprechend weiter */
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			/*
-			 * wenn der Wert des abgefragten Feldes GEGNER ist, erscheint das
-			 * Verlorenfenster
-			 */
-			if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == GEGNER) {
-				getContentPane().removeAll();
-				Spielausgang();
-			}
-			/*
-			 * wenn der Wert des abgefragten Feldes WEITER ist, erscheint das
-			 * nächste Level
-			 */
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == WEITER) {
-				NextLevel();
-			}
-			/*
-			 * wenn der Wert des abgefragten Feldes BOSS ist, erscheint das
-			 * Gewonnenfenster
-			 */
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == BOSS) {
-				getContentPane().removeAll();
-				Spielausgang();
-			}
-			/*
-			 * wenn der Wert des abgefragten Feldes ZURUECK ist, erscheint das
-			 * nächste Level
-			 */
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == ZURUECK) {
-				LastLevel();
-				/*
-				 * wenn der Wert des abgefragten Feldes CARLOS entspricht, wird
-				 * die Methode Carlos aufgerufen
-				 */
-			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == CARLOS) {
-				carlos = new Carlos();
-			}
-			/*
-			 * wenn der Wert des abgefragten Feldes RASEN ist, wird das aktuelle
-			 * Feld der Spielfigur auf 0 gesetzt
-			 */
-			else if (aktuellesSpielfeld[Spielfigurx][Spielfigury - 1] == RASEN) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;
-				/* die x-Position zählt einen runter */
-				Spielfigury--;
-				/* die neue Position der Spielfigur erhält den Wert 2 */
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
-				/* und das Leve wird erneut aufgerufen */
-				Levelaufruf(aktuellesSpielfeld);
-				LevelAktualisieren();
-			}
+			Spielfigurx = Spielfigurx - 1;
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == GEGNER) {
-				getContentPane().removeAll();
-				Spielausgang();
-			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == WEITER) {
-				NextLevel();
-			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == BOSS) {
-				getContentPane().removeAll();
-				Spielausgang();
-			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == ZURUECK) {
-				LastLevel();
-			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == CARLOS) {
-				carlos = new Carlos();
-			} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury + 1] == RASEN) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;
-				Spielfigury++;
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
-				Levelaufruf(aktuellesSpielfeld);
-				LevelAktualisieren();
-			}
+			Spielfigurx = Spielfigurx + 1;
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == GEGNER) {
-				getContentPane().removeAll();
-				Spielausgang();
-			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == WEITER) {
-				NextLevel();
-			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == BOSS) {
-				getContentPane().removeAll();
-				Spielausgang();
-			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == ZURUECK) {
-				LastLevel();
-			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == CARLOS) {
-				carlos = new Carlos();
-			} else if (aktuellesSpielfeld[Spielfigurx - 1][Spielfigury] == RASEN) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;
-				Spielfigurx--;
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
-				Levelaufruf(aktuellesSpielfeld);
-				LevelAktualisieren();
-			}
+			Spielfigury = Spielfigury - 1;
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == GEGNER) {
-				getContentPane().removeAll();
-				Spielausgang();
-			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == WEITER) {
-				NextLevel();
-			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == BOSS) {
-				getContentPane().removeAll();
-				Spielausgang();
-			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == ZURUECK) {
-				LastLevel();
-			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == CARLOS) {
-				carlos = new Carlos();
-			} else if (aktuellesSpielfeld[Spielfigurx + 1][Spielfigury] == RASEN) {
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = RASEN;
-				Spielfigurx++;
-				aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
-				Levelaufruf(aktuellesSpielfeld);
-				LevelAktualisieren();
-			}
+			Spielfigury = Spielfigury + 1;
+		}
+
+		if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == GEGNER) {
+			getContentPane().removeAll();
+			Spielausgang();
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == WEITER) {
+			NextLevel();
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == BOSS) {
+			getContentPane().removeAll();
+			Spielausgang();
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == ZURUECK) {
+			LastLevel();
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == CARLOS) {
+			carlos = new Carlos();
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == RASEN) {
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
+			aktuellesSpielfeld[altx][alty] = RASEN;
+			Levelaufruf(aktuellesSpielfeld);
+			LevelAktualisieren();
 		}
 	}
 

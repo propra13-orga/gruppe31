@@ -20,13 +20,11 @@ public class MenuFrame extends JFrame {
 
 	private static final JLabel STEUERUNG = new JLabel(iconSteuerung);
 
-	/* deklariert zwei Buttons */
 	private JButton start;
 	private JButton steuerung;
 	private JButton ende;
 	private JButton Sschliessen;
 
-	/* deklariert ein GameFrame gameframe aus dem Package */
 	GameFrame gameframe;
 
 	/**
@@ -41,7 +39,6 @@ public class MenuFrame extends JFrame {
 			System.out.println("das Bild kann nicht gefunden werden");
 		}
 
-		/* Eigenschaften des Menüfensters (Größe, Schließbar, mittig setzen,..) */
 		this.setResizable(false);
 		this.setTitle("Menu");
 		this.setSize(800, 600);
@@ -50,10 +47,6 @@ public class MenuFrame extends JFrame {
 		this.setVisible(true);
 		this.setLayout(null);
 
-		/*
-		 * erstellt Label mit Text, setzt seine Position fest und setzt es auf
-		 * das Menüfenster
-		 */
 		start = new JButton("Spiel starten");
 		start.setBounds(350, 300, 200, 40);
 		this.add(start);
@@ -70,7 +63,6 @@ public class MenuFrame extends JFrame {
 		label.setBounds(600, 450, 200, 40);
 		this.add(label);
 
-		/* registriert Mausklick auf Button start und öffnet ein neues GameFrame */
 		ActionListener alstart = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gameframe = new GameFrame();
@@ -97,7 +89,6 @@ public class MenuFrame extends JFrame {
 				Sschliessen.setBounds(0, 310, 400, 50);
 				fst.add(Sschliessen);
 
-				/* der Button schliessen schließt das aktuelle Fenster */
 				ActionListener alschliessen = new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						fst.dispose();
@@ -107,14 +98,12 @@ public class MenuFrame extends JFrame {
 			}
 		};
 
-		/* beendet das Programm, wenn auf Button ende geklickt wird */
 		ActionListener alende = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		};
 
-		/* weist den Buttons den entsprechenden ActionListener zu */
 		start.addActionListener(alstart);
 		steuerung.addActionListener(alsteuerung);
 		ende.addActionListener(alende);
