@@ -1,7 +1,3 @@
-/*
- * oder Panels nur verschieben, anstatt Werte zu ändern und neu zu erstellen
- * die betroffenen Felder herausfinden und diese beiden dann vertauschen(=Methode)
- */
 package game;
 
 import java.awt.*;
@@ -32,10 +28,18 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final int ZURUECK = 6;
 	private static final int CARLOS = 7;
 	private static final int WAFFE = 8;
-	private static final int AGGROERNA = 9;
+	private static final int GOLD = 9;
+	private static final int MANA = 10;
+	private static final int HEALTH = 11;
+	private static final int RUESTUNG = 12;
 	
 	public int bewaffnet = 0;
-
+	public int gold = 0;
+	public int health = 100;
+	public int ruestung = 0;
+	public int mana = 0;
+	
+	
 	private static final Icon iconRasen = new ImageIcon(direction
 			+ "/src/game/Images/Rasen1.jpg");
 	private static final Icon iconBaum = new ImageIcon(direction
@@ -60,12 +64,24 @@ public class GameFrame extends JFrame implements KeyListener {
 			+ "/src/game/Images/Verloren.jpg");
 	private static final Icon iconAggroErna = new ImageIcon(direction
 			+ "/src/game/Images/PudelWaffe1.png");
+	private static final Icon iconGold = new ImageIcon(direction
+			+ "/src/game/Images/Gold1.png");
+	private static final Icon iconMana = new ImageIcon(direction
+			+ "/src/game/Images/Mana1.png");
+	private static final Icon iconHealth = new ImageIcon(direction
+			+ "/src/game/Images/Heiltrank1.png");
+	private static final Icon iconRuestung = new ImageIcon(direction
+			+ "/src/game/Images/Ruestung1.png");
+	
+	
 
 	/* Platzhalter für Marcel */
-	private static final Icon iconAnzeige = new ImageIcon(direction
-			+ "/src/game/Images/Anzeige.jpg");
+	
+	private static final Icon iconAnzeige =	new ImageIcon(direction	+ "/src/game/Images/Anzeige.jpg");
+
 	private JLabel Anzeige = new JLabel(iconAnzeige);
 
+	
 	private static final JLabel Gewonnen = new JLabel(iconGewonnen);
 	private static final JLabel Verloren = new JLabel(iconVerloren);
 
@@ -90,9 +106,9 @@ public class GameFrame extends JFrame implements KeyListener {
 					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
 							GRENZE },
 					{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, CARLOS, GRENZE },
-					{ GRENZE, PUDEL, RASEN, WAFFE, RASEN, RASEN, RASEN, GRENZE },
-					{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, GRENZE },
-					{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, WEITER },
+					{ GRENZE, PUDEL, RASEN, WAFFE,RASEN, RASEN, RASEN, GRENZE },
+					{ GRENZE, RASEN, RASEN, RASEN, RASEN, MANA, RASEN, GRENZE },
+					{ GRENZE, RASEN, HEALTH, RASEN, RASEN, RASEN, RASEN, WEITER },
 					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
 							GRENZE } },
 
@@ -216,6 +232,22 @@ public class GameFrame extends JFrame implements KeyListener {
 					labels[i] = new JLabel(iconWaffe);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
 					Wald.add(labels[i]);
+				} else if (feld[i][j] == GOLD) {
+					labels[i] = new JLabel(iconGold);
+					labels[i].setBounds(j * 100, i * 100, 100, 100);
+					Wald.add(labels[i]);
+				} else if (feld[i][j] == MANA) {
+					labels[i] = new JLabel(iconMana);
+					labels[i].setBounds(j * 100, i * 100, 100, 100);
+					Wald.add(labels[i]);
+				} else if (feld[i][j] == RUESTUNG) {
+					labels[i] = new JLabel(iconRuestung);
+					labels[i].setBounds(j * 100, i * 100, 100, 100);
+					Wald.add(labels[i]);
+				} else if (feld[i][j] == HEALTH) {
+					labels[i] = new JLabel(iconHealth);
+					labels[i].setBounds(j * 100, i * 100, 100, 100);
+					Wald.add(labels[i]);
 				}
 				getContentPane().removeAll();
 				getContentPane().add(Wald, BorderLayout.CENTER);
@@ -326,6 +358,22 @@ public class GameFrame extends JFrame implements KeyListener {
 			LastLevel();
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == CARLOS) {
 			carlos = new Carlos();
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == GOLD) {
+			gold = gold + 100;
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
+			aktuellesSpielfeld[altx][alty] = RASEN;
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == MANA) {
+			mana = mana + 10;
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
+			aktuellesSpielfeld[altx][alty] = RASEN;
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == RUESTUNG) {
+			ruestung = ruestung + 50;
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
+			aktuellesSpielfeld[altx][alty] = RASEN;
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == HEALTH) {
+			health = 100;
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
+			aktuellesSpielfeld[altx][alty] = RASEN;
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == RASEN) {
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
 			aktuellesSpielfeld[altx][alty] = RASEN;
