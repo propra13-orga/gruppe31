@@ -2,9 +2,7 @@ package game;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
-
+import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -32,14 +30,13 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final int MANA = 10;
 	private static final int HEALTH = 11;
 	private static final int RUESTUNG = 12;
-	
+
 	public int bewaffnet = 0;
 	public int gold = 0;
 	public int health = 100;
 	public int ruestung = 0;
 	public int mana = 0;
-	
-	
+
 	private static final Icon iconRasen = new ImageIcon(direction
 			+ "/src/game/Images/Rasen1.jpg");
 	private static final Icon iconBaum = new ImageIcon(direction
@@ -58,10 +55,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			+ "/src/game/Images/Carlos.png");
 	private static final Icon iconWaffe = new ImageIcon(direction
 			+ "/src/game/Images/Waffe1.png");
-	private static final Icon iconGewonnen = new ImageIcon(direction
-			+ "/src/game/Images/Gewonnen.jpg");
-	private static final Icon iconVerloren = new ImageIcon(direction
-			+ "/src/game/Images/Verloren.jpg");
 	private static final Icon iconAggroErna = new ImageIcon(direction
 			+ "/src/game/Images/PudelWaffe1.png");
 	private static final Icon iconGold = new ImageIcon(direction
@@ -72,22 +65,16 @@ public class GameFrame extends JFrame implements KeyListener {
 			+ "/src/game/Images/Heiltrank1.png");
 	private static final Icon iconRuestung = new ImageIcon(direction
 			+ "/src/game/Images/Ruestung1.png");
-	
-	
 
 	/* Platzhalter für Marcel */
-	
-	private static final Icon iconAnzeige =	new ImageIcon(direction	+ "/src/game/Images/Anzeige.jpg");
+
+	private static final Icon iconAnzeige = new ImageIcon(direction
+			+ "/src/game/Images/Anzeige.jpg");
 
 	private JLabel Anzeige = new JLabel(iconAnzeige);
 
-	
-	private static final JLabel Gewonnen = new JLabel(iconGewonnen);
-	private static final JLabel Verloren = new JLabel(iconVerloren);
-
 	private Panel Wald = new Panel();
 	private Panel Leiste = new Panel();
-	private Panel Ausgang = new Panel();
 
 	private JButton GVschliessen;
 
@@ -97,7 +84,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private int Spielfigury;
 	private int alty;
 
-	private int[][] aktuellesSpielfeld;
+	private int aktuellesSpielfeld[][] = new int[16][12];
 	private int level;
 
 	/* ein Array von Levels */
@@ -106,7 +93,7 @@ public class GameFrame extends JFrame implements KeyListener {
 					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
 							GRENZE },
 					{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, CARLOS, GRENZE },
-					{ GRENZE, PUDEL, RASEN, WAFFE,RASEN, RASEN, RASEN, GRENZE },
+					{ GRENZE, PUDEL, RASEN, WAFFE, RASEN, RASEN, RASEN, GRENZE },
 					{ GRENZE, RASEN, RASEN, RASEN, RASEN, MANA, RASEN, GRENZE },
 					{ GRENZE, RASEN, HEALTH, RASEN, RASEN, RASEN, RASEN, WEITER },
 					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
@@ -194,16 +181,15 @@ public class GameFrame extends JFrame implements KeyListener {
 					Wald.add(labels[i]);
 				} else if (feld[i][j] == PUDEL) {
 					/* hält die Position der Spielfigur fest */
-					altx = i;
 					Spielfigury = i;
-					alty = j;
+					altx = i;
 					Spielfigurx = j;
+					alty = j;
 					if (bewaffnet == 1) {
 						labels[i] = new JLabel(iconAggroErna);
 						labels[i].setBounds(j * 100, i * 100, 100, 100);
 						Wald.add(labels[i]);
-					}
-					else if (bewaffnet == 0) {
+					} else if (bewaffnet == 0) {
 						labels[i] = new JLabel(iconPudel);
 						labels[i].setBounds(j * 100, i * 100, 100, 100);
 						Wald.add(labels[i]);
@@ -260,7 +246,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * hier wird die Grafik des Spielfensters erneut gezeichnet
+	 * hier wird die Grafik des Spielfensters erneut aufgerufen
 	 */
 	protected void LevelAktualisieren() {
 		validate();
@@ -270,7 +256,9 @@ public class GameFrame extends JFrame implements KeyListener {
 	/**
 	 * die Variabel level zählt hoch, um in das nächste Level zugelangen das
 	 * Spielfeld wird erneut durchlaufen und setzt das aktuelle Spielfeld = dem
-	 * geänderten Argumentübergabe (true/false?)
+	 * geänderten
+	 * 
+	 * Argumentübergabe (true/false?)
 	 */
 	protected void NextLevel() {
 		level++;
@@ -301,6 +289,12 @@ public class GameFrame extends JFrame implements KeyListener {
 		LevelAktualisieren();
 	}
 
+	/**
+	 * hier wird das Spielfenster verändert und ein einziges Bild daraufgesetzt,
+	 * welches den Spielausgang anzeigt
+	 * 
+	 * Argumentübergabe fehlt noch
+	 */
 	public void Spielausgang() {
 
 		getContentPane().removeAll();
@@ -337,13 +331,13 @@ public class GameFrame extends JFrame implements KeyListener {
 	 */
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			Spielfigurx = Spielfigurx - 1;
+			Spielfigurx--;
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			Spielfigurx = Spielfigurx + 1;
+			Spielfigurx++;
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			Spielfigury = Spielfigury - 1;
+			Spielfigury--;
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			Spielfigury = Spielfigury + 1;
+			Spielfigury++;
 		}
 
 		if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == GEGNER) {
@@ -374,13 +368,13 @@ public class GameFrame extends JFrame implements KeyListener {
 			health = 100;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
 			aktuellesSpielfeld[altx][alty] = RASEN;
-		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == RASEN) {
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == WAFFE) {
+			bewaffnet = 1;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
 			aktuellesSpielfeld[altx][alty] = RASEN;
 			Levelaufruf(aktuellesSpielfeld);
 			LevelAktualisieren();
-		}  else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == WAFFE) {
-			bewaffnet = 1;
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == RASEN) {
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
 			aktuellesSpielfeld[altx][alty] = RASEN;
 			Levelaufruf(aktuellesSpielfeld);
