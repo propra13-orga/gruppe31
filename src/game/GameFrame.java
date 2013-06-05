@@ -32,6 +32,9 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final int ZURUECK = 6;
 	private static final int CARLOS = 7;
 	private static final int WAFFE = 8;
+	private static final int AGGROERNA = 9;
+	
+	public int bewaffnet = 0;
 
 	private static final Icon iconRasen = new ImageIcon(direction
 			+ "/src/game/Images/Rasen1.jpg");
@@ -55,6 +58,8 @@ public class GameFrame extends JFrame implements KeyListener {
 			+ "/src/game/Images/Gewonnen.jpg");
 	private static final Icon iconVerloren = new ImageIcon(direction
 			+ "/src/game/Images/Verloren.jpg");
+	private static final Icon iconAggroErna = new ImageIcon(direction
+			+ "/src/game/Images/PudelWaffe1.png");
 
 	/* Platzhalter für Marcel */
 	private static final Icon iconAnzeige = new ImageIcon(direction
@@ -85,7 +90,7 @@ public class GameFrame extends JFrame implements KeyListener {
 					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
 							GRENZE },
 					{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, CARLOS, GRENZE },
-					{ GRENZE, PUDEL, RASEN, RASEN, RASEN, RASEN, RASEN, GRENZE },
+					{ GRENZE, PUDEL, RASEN, WAFFE, RASEN, RASEN, RASEN, GRENZE },
 					{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, GRENZE },
 					{ GRENZE, RASEN, RASEN, RASEN, RASEN, RASEN, RASEN, WEITER },
 					{ GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE, GRENZE,
@@ -177,9 +182,16 @@ public class GameFrame extends JFrame implements KeyListener {
 					Spielfigury = i;
 					alty = j;
 					Spielfigurx = j;
-					labels[i] = new JLabel(iconPudel);
-					labels[i].setBounds(j * 100, i * 100, 100, 100);
-					Wald.add(labels[i]);
+					if (bewaffnet == 1) {
+						labels[i] = new JLabel(iconAggroErna);
+						labels[i].setBounds(j * 100, i * 100, 100, 100);
+						Wald.add(labels[i]);
+					}
+					else if (bewaffnet == 0) {
+						labels[i] = new JLabel(iconPudel);
+						labels[i].setBounds(j * 100, i * 100, 100, 100);
+						Wald.add(labels[i]);
+					}
 				} else if (feld[i][j] == GEGNER) {
 					labels[i] = new JLabel(iconGegner);
 					labels[i].setBounds(j * 100, i * 100, 100, 100);
@@ -315,6 +327,12 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == CARLOS) {
 			carlos = new Carlos();
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == RASEN) {
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
+			aktuellesSpielfeld[altx][alty] = RASEN;
+			Levelaufruf(aktuellesSpielfeld);
+			LevelAktualisieren();
+		}  else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == WAFFE) {
+			bewaffnet = 1;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = PUDEL;
 			aktuellesSpielfeld[altx][alty] = RASEN;
 			Levelaufruf(aktuellesSpielfeld);
