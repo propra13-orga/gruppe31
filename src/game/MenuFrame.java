@@ -66,7 +66,12 @@ public class MenuFrame extends JFrame {
 
 		ActionListener alstart = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gameframe = new GameFrame();
+				try {
+					gameframe = new GameFrame();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		};
 
