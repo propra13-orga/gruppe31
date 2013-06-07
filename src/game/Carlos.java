@@ -6,17 +6,15 @@ import javax.swing.*;
 /** löst aus, wenn der KeyListener CARLOS registriert */
 public class Carlos {
 
-	private static final String direction = System.getProperty("user.dir");
-
-	private static final Icon iconCarlos1 = new ImageIcon(direction
+	private static final Icon iconCarlos1 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Carlos1.png");
-	private static final Icon iconCarlos2 = new ImageIcon(direction
+	private static final Icon iconCarlos2 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Carlos2.png");
-	private static final Icon iconCarlos3 = new ImageIcon(direction
+	private static final Icon iconCarlos3 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Carlos3.png");
-	private static final Icon iconCarlos4 = new ImageIcon(direction
+	private static final Icon iconCarlos4 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Carlos4.png");
-	private static final Icon iconCarlos5 = new ImageIcon(direction
+	private static final Icon iconCarlos5 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Carlos5.png");
 
 	private static final JLabel NPC1 = new JLabel(iconCarlos1);

@@ -9,12 +9,10 @@ import java.util.ArrayList;
  */
 public class LevelManager {
 
-	private static final String direction = System.getProperty("user.dir");
-
 	private int level = 0;
 
 	/* Liste von Spielfeldern */
-	private ArrayList<Integer[][]> levels = new ArrayList<Integer[][]>();
+	private ArrayList<Level> levels = new ArrayList<Level>();
 
 	/**
 	 * die Methode liest die einzelnen Räume ein und schreibt sie in die
@@ -26,24 +24,31 @@ public class LevelManager {
 	 */
 	public void init() throws Exception {
 		/* öffnet FileReader mit Textdatei */
-		FileReader fr = new FileReader(direction + "/src/game/Raum/LEVEL1.txt");
+		FileReader fr = new FileReader(Konstanten.direction + "/src/game/Raum/LEVEL1.txt");
 		/* öffnet BufferedReader und liest .txt hinein */
 		BufferedReader br = new BufferedReader(fr);
 
 		String line = br.readLine();
 		do {
 			Integer[][] array = new Integer[16][12];
+			int startx = -1, starty = -1;
 			for (int j = 0; j < 16; j++, line = br.readLine()) {
 				if (line.length() != 12) {
 					throw new Exception(
 							"Falsche Anzahl an Zeichen in dieser Zeile!");
 				} else {
-					for (int i = 0; i < 12; i++)
-						array[j][i] = Integer
-								.parseInt(line.substring(i, i + 1));
+					int pruefe;
+					for (int i = 0; i < 12; i++) {
+						pruefe = array[j][i] = Integer.parseInt(line.substring(
+								i, i + 1));
+						if (pruefe == 2) {
+							startx = j;
+							starty = i;
+						}
+					}
 				}
 			}
-			levels.add(array);
+			levels.add(new Level(array, startx, starty));
 			do
 				line = br.readLine();
 			while (line == "");
@@ -80,9 +85,16 @@ public class LevelManager {
 	public void kopiereAktuellesLevel(Integer[][] array) {
 		for (int x = 0; x < 16; x++) {
 			for (int y = 0; y < 12; y++) {
-				array[x][y] = levels.get(level)[x][y];
+				array[x][y] = levels.get(level).feld[x][y];
 			}
 		}
 	}
-
+	
+	public int getStartx() {
+		return levels.get(level).startx;
+	}
+	
+	public int getStarty() {
+		return levels.get(level).starty;
+	}
 }

@@ -13,10 +13,7 @@ import javax.imageio.ImageIO;
  */
 public class MenuFrame extends JFrame {
 
-	/* setzt den Anfang der Pfadangabe auf die Arbeitsumgebung */
-	private static final String direction = System.getProperty("user.dir");
-
-	private static final Icon iconSteuerung = new ImageIcon(direction
+	private static final Icon iconSteuerung = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Steuerung.png");
 
 	private static final JLabel STEUERUNG = new JLabel(iconSteuerung);
@@ -35,7 +32,7 @@ public class MenuFrame extends JFrame {
 
 		try {
 			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
-					direction + "/src/game/Images/Startscreen.jpg")))));
+					Konstanten.direction + "/src/game/Images/Startscreen.jpg")))));
 		} catch (IOException a) {
 			System.out.println("das Bild kann nicht gefunden werden");
 		}
@@ -68,6 +65,7 @@ public class MenuFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					gameframe = new GameFrame();
+					gameframe.requestFocus();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

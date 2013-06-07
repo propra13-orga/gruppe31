@@ -1,10 +1,10 @@
 package game;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 /**
  * diese Klasse ist für alles zuständig, was auf dem GameFrame Fenster für das
@@ -12,56 +12,34 @@ import javax.swing.JLabel;
  */
 public class Zeichner extends Canvas {
 
-	private static final String direction = System.getProperty("user.dir");
-
-	private static final Icon iconRasen = new ImageIcon(direction
+	private static final Icon iconRasen = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Rasen1.jpg");
-	private static final Icon iconBaum = new ImageIcon(direction
+	private static final Icon iconBaum = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Baum1.jpg");
-	private static final Icon iconPudel = new ImageIcon(direction
+	private static final Icon iconPudel = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Pudel1.jpg");
-	private static final Icon iconGegner = new ImageIcon(direction
+	private static final Icon iconGegner = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Gegner1.png");
-	private static final Icon iconWeiter = new ImageIcon(direction
+	private static final Icon iconWeiter = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Weiter1.jpg");
-	private static final Icon iconBoss = new ImageIcon(direction
+	private static final Icon iconBoss = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Boss1.png");
-	private static final Icon iconZurueck = new ImageIcon(direction
+	private static final Icon iconZurueck = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Zurueck1.jpg");
-	private static final Icon iconCarlos = new ImageIcon(direction
+	private static final Icon iconCarlos = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Carlos.png");
-	private static final Icon iconWaffe = new ImageIcon(direction
+	private static final Icon iconWaffe = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Waffe1.png");
-	private static final Icon iconAggroErna = new ImageIcon(direction
+	private static final Icon iconAggroErna = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/PudelWaffe1.png");
-	private static final Icon iconGold = new ImageIcon(direction
+	private static final Icon iconGold = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Gold1.png");
-	private static final Icon iconMana = new ImageIcon(direction
+	private static final Icon iconMana = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Mana1.png");
-	private static final Icon iconHealth = new ImageIcon(direction
+	private static final Icon iconHealth = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Heiltrank1.png");
-	private static final Icon iconRuestung = new ImageIcon(direction
+	private static final Icon iconRuestung = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Ruestung1.png");
-
-	private static final int RASEN = 0;
-	private static final int GRENZE = 1;
-	private static final int PUDEL = 2;
-	private static final int GEGNER = 3;
-	private static final int WEITER = 4;
-	private static final int BOSS = 5;
-	private static final int ZURUECK = 6;
-	private static final int CARLOS = 7;
-	private static final int WAFFE = 8;
-	private static final int GOLD = 9;
-	private static final int MANA = 10;
-	private static final int HEALTH = 11;
-	private static final int RUESTUNG = 12;
-
-	public int bewaffnet = 0;
-	public int gold = 0;
-	public int health = 100;
-	public int ruestung = 0;
-	public int mana = 0;
 
 	Integer[][] Spielfeld;
 
@@ -77,63 +55,56 @@ public class Zeichner extends Canvas {
 				Icon icon;
 
 				switch (Spielfeld[i][j]) {
-				case RASEN:
+				case Konstanten.RASEN:
 					icon = iconRasen;
 					break;
-				case GRENZE:
+				case Konstanten.GRENZE:
 					icon = iconBaum;
 					break;
-				case GEGNER:
+				case Konstanten.GEGNER:
 					icon = iconGegner;
 					break;
-				case WEITER:
+				case Konstanten.WEITER:
 					icon = iconWeiter;
 					break;
-				case BOSS:
+				case Konstanten.BOSS:
 					icon = iconBoss;
 					break;
-				case ZURUECK:
+				case Konstanten.ZURUECK:
 					icon = iconZurueck;
 					break;
-				case CARLOS:
+				case Konstanten.CARLOS:
 					icon = iconCarlos;
 					break;
-				case WAFFE:
+				case Konstanten.WAFFE:
 					icon = iconWaffe;
 					break;
-				case GOLD:
+				case Konstanten.GOLD:
 					icon = iconGold;
 					break;
-				case MANA:
+				case Konstanten.MANA:
 					icon = iconMana;
 					break;
-				case RUESTUNG:
+				case Konstanten.RUESTUNG:
 					icon = iconRuestung;
 					break;
-				case HEALTH:
+				case Konstanten.HEALTH:
 					icon = iconHealth;
 					break;
-				case PUDEL:
+				case Konstanten.PUDEL:
 					icon = iconPudel;
 					break;
 				default:
 					icon = iconPudel;
 					break;
-
 				}
 				icon.paintIcon(this, g, i * size, j * size);
-
-				/*
-				 * getContentPane().removeAll(); getContentPane().add(Wald,
-				 * BorderLayout.CENTER); getContentPane().add(Leiste,
-				 * BorderLayout.SOUTH);
-				 */
 			}
 		}
 	}
 
 	/** zeichnet das Spielfeld erneut */
-	public void setzeSpielfeld(Integer[][] feld) {
+	public void zeichneSpielfeld(Integer[][] feld) {
 		Spielfeld = feld;
 		repaint();
 	}
