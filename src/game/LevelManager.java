@@ -32,6 +32,7 @@ public class LevelManager {
 		do {
 			Integer[][] array = new Integer[16][12];
 			int startx = -1, starty = -1;
+			
 			for (int j = 0; j < 16; j++, line = br.readLine()) {
 				if (line.length() != 12) {
 					throw new Exception(
@@ -41,6 +42,7 @@ public class LevelManager {
 					for (int i = 0; i < 12; i++) {
 						pruefe = array[j][i] = Integer.parseInt(line.substring(
 								i, i + 1));
+						/* wenn das gelesene Zeichen eine 2 ist wird die Startposition festgehalten */
 						if (pruefe == 2) {
 							startx = j;
 							starty = i;

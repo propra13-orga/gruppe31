@@ -42,6 +42,8 @@ public class Zeichner extends Canvas {
 			+ "/src/game/Images/Ruestung1.png");
 
 	Integer[][] Spielfeld;
+	
+	private GameFrame gameFrame;
 
 	/**
 	 * für jedes Feld im Array Spielfeld kann ein Icon gesetzt werden, welches

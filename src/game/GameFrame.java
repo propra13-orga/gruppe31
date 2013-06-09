@@ -54,6 +54,8 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setSize(810, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
+		this.setFocusable(true);
+		this.addKeyListener(this);
 
 		zeichner = new Zeichner();
 		this.add(zeichner);
@@ -70,6 +72,8 @@ public class GameFrame extends JFrame implements KeyListener {
 		setzeAnzeige();
 
 		getContentPane().add(Leiste, BorderLayout.SOUTH);
+		
+		this.requestFocus();
 	}
 
 	/* hier arbeitet Marcel */
@@ -169,19 +173,19 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 		
 		if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNER) {
-			gameFrame.Verloren();
+			Verloren();
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.WEITER) {
 			levelManager.LevelWeiter();
 			getLevel();
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS) {
-			gameFrame.Verloren();
-			getLevel();
+			Verloren();
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.ZURUECK) {
 			levelManager.LevelZurueck();
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.CARLOS) {
 			carlos = new Carlos();
+			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GOLD) {
 			gold = gold + 100;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
