@@ -185,6 +185,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			levelManager.LevelZurueck();
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.CARLOS) {
 			carlos = new Carlos();
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.RASEN;
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GOLD) {
 			gold = gold + 100;
