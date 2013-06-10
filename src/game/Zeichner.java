@@ -28,10 +28,12 @@ public class Zeichner extends Canvas {
 			+ "/src/game/Images/Zurueck1.jpg");
 	private static final Icon iconCarlos = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Carlos.png");
+	private static final Icon iconCupcake = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Cupcake.jpg");
 	private static final Icon iconWaffe = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Waffe1.png");
-	private static final Icon iconAggroErna = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/PudelWaffe1.png");
+	private static final Icon iconAggroErna = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/PudelWaffe1.png");
 	private static final Icon iconGold = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Gold1.png");
 	private static final Icon iconMana = new ImageIcon(Konstanten.direction
@@ -42,8 +44,11 @@ public class Zeichner extends Canvas {
 			+ "/src/game/Images/Ruestung1.png");
 
 	Integer[][] Spielfeld;
-	
+
 	private GameFrame gameFrame;
+	
+	//private LevelManager levelManager;
+	//int aktlevel = -1;
 
 	/**
 	 * für jedes Feld im Array Spielfeld kann ein Icon gesetzt werden, welches
@@ -56,51 +61,103 @@ public class Zeichner extends Canvas {
 
 				Icon icon;
 
-				switch (Spielfeld[i][j]) {
-				case Konstanten.RASEN:
-					icon = iconRasen;
-					break;
-				case Konstanten.GRENZE:
-					icon = iconBaum;
-					break;
-				case Konstanten.GEGNER:
-					icon = iconGegner;
-					break;
-				case Konstanten.WEITER:
-					icon = iconWeiter;
-					break;
-				case Konstanten.BOSS:
-					icon = iconBoss;
-					break;
-				case Konstanten.ZURUECK:
-					icon = iconZurueck;
-					break;
-				case Konstanten.CARLOS:
-					icon = iconCarlos;
-					break;
-				case Konstanten.WAFFE:
-					icon = iconWaffe;
-					break;
-				case Konstanten.GOLD:
-					icon = iconGold;
-					break;
-				case Konstanten.MANA:
-					icon = iconMana;
-					break;
-				case Konstanten.RUESTUNG:
-					icon = iconRuestung;
-					break;
-				case Konstanten.HEALTH:
-					icon = iconHealth;
-					break;
-				case Konstanten.PUDEL:
-					icon = iconPudel;
-					break;
-				default:
-					icon = iconPudel;
-					break;
-				}
-				icon.paintIcon(this, g, i * size, j * size);
+				/*aktlevel = levelManager.getAktLevel();
+
+				if (aktlevel < 2) {
+					switch (Spielfeld[i][j]) {
+					case Konstanten.RASEN:
+						icon = iconRasen;
+						break;
+					case Konstanten.GRENZE:
+						icon = iconBaum;
+						break;
+					case Konstanten.GEGNER:
+						icon = iconGegner;
+						break;
+					case Konstanten.WEITER:
+						icon = iconWeiter;
+						break;
+					case Konstanten.BOSS:
+						icon = iconBoss;
+						break;
+					case Konstanten.ZURUECK:
+						icon = iconZurueck;
+						break;
+					case Konstanten.CARLOS:
+						icon = iconCarlos;
+						break;
+					case Konstanten.WAFFE:
+						icon = iconWaffe;
+						break;
+					case Konstanten.GOLD:
+						icon = iconGold;
+						break;
+					case Konstanten.MANA:
+						icon = iconMana;
+						break;
+					case Konstanten.RUESTUNG:
+						icon = iconRuestung;
+						break;
+					case Konstanten.HEALTH:
+						icon = iconHealth;
+						break;
+					case Konstanten.PUDEL:
+						icon = iconPudel;
+						break;
+					default:
+						icon = iconPudel;
+						break;
+					}
+					icon.paintIcon(this, g, i * size, j * size); 
+				}*/
+			switch (Spielfeld[i][j]) {
+			case Konstanten.RASEN:
+				icon = iconRasen;
+				break;
+			case Konstanten.GRENZE:
+				icon = iconBaum;
+				break;
+			case Konstanten.GEGNER:
+				icon = iconGegner;
+				break;
+			case Konstanten.WEITER:
+				icon = iconWeiter;
+				break;
+			case Konstanten.BOSS:
+				icon = iconBoss;
+				break;
+			case Konstanten.ZURUECK:
+				icon = iconZurueck;
+				break;
+			case Konstanten.CARLOS:
+				icon = iconCarlos;
+				break;
+			case Konstanten.CUPCAKE:
+				icon = iconCupcake;
+				break;
+			case Konstanten.WAFFE:
+				icon = iconWaffe;
+				break;
+			case Konstanten.GOLD:
+				icon = iconGold;
+				break;
+			case Konstanten.MANA:
+				icon = iconMana;
+				break;
+			case Konstanten.RUESTUNG:
+				icon = iconRuestung;
+				break;
+			case Konstanten.HEALTH:
+				icon = iconHealth;
+				break;
+			case Konstanten.PUDEL:
+				icon = iconPudel;
+				break;
+			default:
+				icon = iconPudel;
+				break;
+			}
+			icon.paintIcon(this, g, i * size, j * size);
 			}
 		}
 	}

@@ -12,7 +12,7 @@ public class LevelManager {
 	private int level = 0;
 
 	/* Liste von Spielfeldern */
-	private ArrayList<Level> levels = new ArrayList<Level>();
+	private ArrayList<InfoLevel> levels = new ArrayList<InfoLevel>();
 
 	/**
 	 * die Methode liest die einzelnen Räume ein und schreibt sie in die
@@ -25,7 +25,7 @@ public class LevelManager {
 	public void init() throws Exception {
 		/* öffnet FileReader mit Textdatei */
 		FileReader fr = new FileReader(Konstanten.direction
-				+ "/src/game/Raum/LEVEL1.txt");
+				+ "/src/game/Raum/Raum.txt");
 		/* öffnet BufferedReader und liest .txt hinein */
 		BufferedReader br = new BufferedReader(fr);
 
@@ -67,7 +67,7 @@ public class LevelManager {
 			 * in die ArrayList wird ein neues Level gespeichert (sowohl das
 			 * Spielfeldarray, als auch die Position der Spielfigur
 			 */
-			levels.add(new Level(array, startx, starty));
+			levels.add(new InfoLevel(array, startx, starty));
 			do
 				line = br.readLine();
 			/*
@@ -117,6 +117,11 @@ public class LevelManager {
 		}
 	}
 
+/*	gibt das aktuelle Level wieder
+	public int getAktLevel() {
+		return level;
+	}*/
+	
 	/** gibt die X-Koordinate der Spielfigur aus dem jeweiligen Level der ArrayList wieder */
 	public int getStartx() {
 		return levels.get(level).startx;
