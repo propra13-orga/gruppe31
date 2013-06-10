@@ -41,6 +41,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	public int health = 100;
 	public int ruestung = 0;
 	public int mana = 0;
+	
 
 	/**
 	 * Konstruktor, der die Eigenschaften des Spielfensters festsetzt und die
@@ -80,7 +81,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	public void setzeAnzeige() {
 		Leiste.add(Anzeige);
 	}
-
+	
 	public void getLevel() {
 		levelManager.kopiereAktuellesLevel(aktuellesSpielfeld);
 		Spielfigurx = levelManager.getStartx();
@@ -186,6 +187,14 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.CARLOS) {
 			carlos = new Carlos();
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.CARLOS;
+			Spielfigurx = altx;
+			Spielfigury = alty;					
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GRENZE) {
+			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.GRENZE;
+			Spielfigurx = altx;
+			Spielfigury = alty;					
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GOLD) {
 			gold = gold + 100;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
