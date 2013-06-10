@@ -2,11 +2,11 @@ gruppe31
 ========
 
 Denise:
-Aufteilung in 3 Level á 3 Räume
 
 erledigt:
 xterne Textdateien
 Carlos erklärt die Welt (NPC) 
+Aufteilung in 3 Level á 3 Räume
 
 Valentin:
 bewegliche Gegner
