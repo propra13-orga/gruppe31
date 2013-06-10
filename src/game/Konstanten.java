@@ -1,9 +1,10 @@
 package game;
 
+/** eigene Klasse für Konstanten, die hier nur einmal deklariert werden müssen */
 public final class Konstanten {
-	
+
 	public static final String direction = System.getProperty("user.dir");
-	
+
 	public static final int RASEN = 0;
 	public static final int GRENZE = 1;
 	public static final int PUDEL = 2;

@@ -3,14 +3,12 @@ package game;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
- * GameFrame erzeugt das Menufenster. Den Werten im Array werden die
- * entsprechenden Bilder zugeordnet. Der KeyListener fragt die Werte der
+ * GameFrame erzeugt das Spielfenster. Der KeyListener fragt die Werte der
  * umliegenden Felder ab und führt das Programm entsprechend weiter.
  */
 public class GameFrame extends JFrame implements KeyListener {
@@ -41,11 +39,12 @@ public class GameFrame extends JFrame implements KeyListener {
 	public int health = 100;
 	public int ruestung = 0;
 	public int mana = 0;
-	
 
 	/**
-	 * Konstruktor, der die Eigenschaften des Spielfensters festsetzt und die
-	 * beiden Bereiche des Fensters setzt
+	 * Konstruktor, der die Eigenschaften des Spielfensters festsetzt. der
+	 * Zeichner wird auf das Spielfenster gesetzt und der LevelManager wird
+	 * aufgerufen. Das nächste (hier: erste) Level wird aufgerufen und der
+	 * Zeichner zeichnet das entsprechende Spielfeld
 	 * 
 	 * @throws Exception
 	 */
@@ -73,7 +72,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		setzeAnzeige();
 
 		getContentPane().add(Leiste, BorderLayout.SOUTH);
-		
+
 		this.requestFocus();
 	}
 
@@ -81,7 +80,13 @@ public class GameFrame extends JFrame implements KeyListener {
 	public void setzeAnzeige() {
 		Leiste.add(Anzeige);
 	}
-	
+
+	/**
+	 * das aktuelle Spielfeld wird kopiert und die Position der Spielfigur wird
+	 * festgehalten
+	 * 
+	 * Möglichkeit für Valentin: Checkpoints
+	 */
 	public void getLevel() {
 		levelManager.kopiereAktuellesLevel(aktuellesSpielfeld);
 		Spielfigurx = levelManager.getStartx();
@@ -159,10 +164,10 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * Programm entsprechend weiter
 	 */
 	public void keyPressed(KeyEvent e) {
-		
+
 		int altx = Spielfigurx;
 		int alty = Spielfigury;
-		
+
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			Spielfigurx--;
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -172,7 +177,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			Spielfigury++;
 		}
-		
+
 		if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNER) {
 			Verloren();
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.WEITER) {
@@ -190,12 +195,12 @@ public class GameFrame extends JFrame implements KeyListener {
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.CARLOS;
 			Spielfigurx = altx;
-			Spielfigury = alty;					
+			Spielfigury = alty;
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GRENZE) {
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.GRENZE;
 			Spielfigurx = altx;
-			Spielfigury = alty;					
+			Spielfigury = alty;
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GOLD) {
 			gold = gold + 100;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;

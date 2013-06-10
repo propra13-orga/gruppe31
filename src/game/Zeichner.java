@@ -105,7 +105,7 @@ public class Zeichner extends Canvas {
 		}
 	}
 
-	/** zeichnet das Spielfeld erneut */
+	/** zeichnet das Spielfeld (erneut) */
 	public void zeichneSpielfeld(Integer[][] feld) {
 		Spielfeld = feld;
 		repaint();
