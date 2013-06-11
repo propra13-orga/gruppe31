@@ -51,18 +51,18 @@ public class LevelManager {
 					 * geparst
 					 */
 					for (int i = 0; i < 12; i++) {
-						pruefe = array[j][i] = Integer.parseInt(line.substring(
-								i, i + 1));
+						pruefe = array[j][i] = (int) line.charAt(i);
+
 						/*
 						 * wenn das gelesene Zeichen eine 2 ist wird die
 						 * Startposition der Spielfigur festgehalten
 						 */
-						if (pruefe == 2) {
+						if (pruefe == Konstanten.PUDEL) {
 							startx = j;
 							starty = i;
 						}
 
-						if (pruefe == 3) {
+						if (pruefe == Konstanten.GEGNER) {
 							gegnerx = j;
 							gegnery = i;
 						}
