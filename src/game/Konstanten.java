@@ -19,5 +19,4 @@ public final class Konstanten {
 	public static final int MANA = 11;
 	public static final int HEALTH = 12;
 	public static final int RUESTUNG = 13;
-
 }

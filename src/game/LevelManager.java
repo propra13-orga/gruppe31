@@ -36,6 +36,7 @@ public class LevelManager {
 			Integer[][] array = new Integer[16][12];
 			/* Startpositionen der Spielfigur werden auf -1 gesetzt */
 			int startx = -1, starty = -1;
+			int gegnerx = 0, gegnery = 0;
 
 			/* die Zeilen werden gelesen, bis man bei der 16. angekommen ist */
 			for (int j = 0; j < 16; j++, line = br.readLine()) {
@@ -60,6 +61,11 @@ public class LevelManager {
 							startx = j;
 							starty = i;
 						}
+
+						if (pruefe == 3) {
+							gegnerx = j;
+							gegnery = i;
+						}
 					}
 				}
 			}
@@ -67,7 +73,7 @@ public class LevelManager {
 			 * in die ArrayList wird ein neues Level gespeichert (sowohl das
 			 * Spielfeldarray, als auch die Position der Spielfigur
 			 */
-			levels.add(new InfoLevel(array, startx, starty));
+			levels.add(new InfoLevel(array, startx, starty, gegnerx, gegnery));
 			do
 				line = br.readLine();
 			/*
@@ -117,18 +123,31 @@ public class LevelManager {
 		}
 	}
 
-/*	gibt das aktuelle Level wieder
-	public int getAktLevel() {
-		return level;
-	}*/
-	
-	/** gibt die X-Koordinate der Spielfigur aus dem jeweiligen Level der ArrayList wieder */
+	/*
+	 * gibt das aktuelle Level wieder public int getAktLevel() { return level; }
+	 */
+
+	/**
+	 * gibt die X-Koordinate der Spielfigur aus dem jeweiligen Level der
+	 * ArrayList wieder
+	 */
 	public int getStartx() {
 		return levels.get(level).startx;
 	}
 
-	/** gibt die Y-Koordinate der Spielfigur aus dem jeweiligen Level der ArrayList wieder */
+	/**
+	 * gibt die Y-Koordinate der Spielfigur aus dem jeweiligen Level der
+	 * ArrayList wieder
+	 */
 	public int getStarty() {
 		return levels.get(level).starty;
+	}
+
+	public int getStartGegnerx() {
+		return levels.get(level).gegnerx;
+	}
+
+	public int getStartGegnery() {
+		return levels.get(level).gegnery;
 	}
 }

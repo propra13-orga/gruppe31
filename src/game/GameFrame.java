@@ -33,6 +33,8 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	private int Spielfigurx;
 	private int Spielfigury;
+	private int Gegnerx;
+	private int Gegnery;
 
 	public int bewaffnet = 0;
 	public int gold = 0;
@@ -91,6 +93,8 @@ public class GameFrame extends JFrame implements KeyListener {
 		levelManager.kopiereAktuellesLevel(aktuellesSpielfeld);
 		Spielfigurx = levelManager.getStartx();
 		Spielfigury = levelManager.getStarty();
+		Gegnerx = levelManager.getStartGegnerx();
+		Gegnery = levelManager.getStartGegnery();
 	}
 
 	/**
@@ -167,17 +171,35 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		int altx = Spielfigurx;
 		int alty = Spielfigury;
+		int altGegx = Gegnerx;
+		int altGegy = Gegnery;
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			Spielfigurx--;
+			Gegnerx--;
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			Spielfigurx++;
+			Gegnerx++;
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			Spielfigury--;
+			Gegnerx--;
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			Spielfigury++;
+			Gegnerx++;
 		}
-
+		
+		if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.RASEN) {
+			aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GEGNER;
+			aktuellesSpielfeld[altGegx][altGegy] = Konstanten.RASEN;
+			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+		}
+		else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.GRENZE) {
+			aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GRENZE;
+			aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+			Gegnerx = altGegx;
+			Gegnery = altGegy;
+		}
+		
 		if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNER) {
 			Verloren();
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.WEITER) {

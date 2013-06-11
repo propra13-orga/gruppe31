@@ -48,7 +48,7 @@ public class Zeichner extends Canvas {
 	private GameFrame gameFrame;
 	
 	//private LevelManager levelManager;
-	//int aktlevel = -1;
+	//int aktlevel = 0;
 
 	/**
 	 * für jedes Feld im Array Spielfeld kann ein Icon gesetzt werden, welches
