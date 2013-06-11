@@ -176,16 +176,16 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			Spielfigurx--;
-			Gegnerx--;
+			Gegnerx++;
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			Spielfigurx++;
-			Gegnerx++;
+			Gegnerx--;
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			Spielfigury--;
-			Gegnerx--;
+			Gegnery++;
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			Spielfigury++;
-			Gegnerx++;
+			Gegnery--;
 		}
 		
 		if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.RASEN) {
@@ -208,7 +208,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS) {
 			Verloren();
-			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.ZURUECK) {
 			levelManager.LevelZurueck();
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.CARLOS) {
@@ -218,6 +217,8 @@ public class GameFrame extends JFrame implements KeyListener {
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.CARLOS;
 			Spielfigurx = altx;
 			Spielfigury = alty;
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.CUPCAKE) {
+			Gewonnen();
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GRENZE) {
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.GRENZE;

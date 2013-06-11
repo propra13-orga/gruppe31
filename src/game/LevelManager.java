@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class LevelManager {
 
-	private int level = 0;
+	private int level = 8;
 
 	/* Liste von Spielfeldern */
 	private ArrayList<InfoLevel> levels = new ArrayList<InfoLevel>();
