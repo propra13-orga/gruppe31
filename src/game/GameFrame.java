@@ -256,10 +256,12 @@ public class GameFrame extends JFrame implements KeyListener {
 						Spielfigury = alty;
 					}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.ZURUECK) {
-			levelManager.LevelZurueck();
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.ZURUECK;
+			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+			Spielfigurx = altx;
+			Spielfigury = alty;
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.CARLOS) {
 			carlos = new Carlos();
-			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.RASEN;
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.CARLOS;
 			Spielfigurx = altx;
