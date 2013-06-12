@@ -241,6 +241,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.WEITER) {
 			levelManager.LevelWeiter();
 			bosshealth = 300;
+			ko = 0;
 			getLevel();
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS) {
@@ -323,6 +324,15 @@ public class GameFrame extends JFrame implements KeyListener {
 						aktuellesSpielfeld[locx][Spielfigury] = Konstanten.LASER;
 						zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 						locx++;
+						try
+			            {
+							
+			                Thread.sleep( 500 );
+			            }
+			            catch ( InterruptedException hj)
+			            {
+			                hj.printStackTrace();
+			            }
 						}
 					else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.GEGNER) {
 						aktuellesSpielfeld[locx][Spielfigury] = Konstanten.GEGNERTOT;
@@ -353,6 +363,15 @@ public class GameFrame extends JFrame implements KeyListener {
 							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
 							zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 							locx++;
+							try
+				            {
+								
+				                Thread.sleep( 500 );
+				            }
+				            catch ( InterruptedException hj)
+				            {
+				                hj.printStackTrace();
+				            }
 					}
 				}
 	}
