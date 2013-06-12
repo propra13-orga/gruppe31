@@ -216,6 +216,18 @@ public class GameFrame extends JFrame implements KeyListener {
 					Gegnerx = altGegx;
 					Gegnery = altGegy;
 				}
+				else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS2) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS2;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				}
+				else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS3) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS3;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				}
 				else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.CUPCAKE) {
 					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.CUPCAKE;
 					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
@@ -245,16 +257,38 @@ public class GameFrame extends JFrame implements KeyListener {
 			getLevel();
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS1) {
-				health = health - 34;
-					if (health + ruestung <= 0){
-						Verloren();
-					}
-					else if (health + ruestung > 0){
-						aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
-						aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.BOSS1;
-						Spielfigurx = altx;
-						Spielfigury = alty;
-					}
+			health = health - 34;
+				if (health + ruestung <= 0){
+					Verloren();
+				}
+				else if (health + ruestung > 0){
+					aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+					aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.BOSS1;
+					Spielfigurx = altx;
+					Spielfigury = alty;
+				}
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS2) {
+			health = health - 50;
+				if (health + ruestung <= 0){
+					Verloren();
+				}
+				else if (health + ruestung > 0){
+					aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+					aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.BOSS2;
+					Spielfigurx = altx;
+					Spielfigury = alty;
+				}
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS3) {
+			health = health - 100;
+				if (health + ruestung <= 0){
+					Verloren();
+				}
+				else if (health + ruestung > 0){
+					aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+					aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.BOSS3;
+					Spielfigurx = altx;
+					Spielfigury = alty;
+				}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.ZURUECK) {
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.ZURUECK;
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
@@ -342,6 +376,28 @@ public class GameFrame extends JFrame implements KeyListener {
 						break;
 					}
 					else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1){
+						bosshealth = bosshealth - 100;
+							if (bosshealth <= 0){
+								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+								zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+								break;
+							}
+							else if (bosshealth > 0){							}
+							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS2;
+							break;
+							}
+					else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS2){
+						bosshealth = bosshealth - 100;
+							if (bosshealth <= 0){
+								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+								zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+								break;
+							}
+							else if (bosshealth > 0){							}
+							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS3;
+							break;
+							}
+					else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS3){
 						bosshealth = bosshealth - 100;
 							if (bosshealth <= 0){
 								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
