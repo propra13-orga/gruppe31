@@ -340,6 +340,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNERTOT) {;
+			gold = gold + 10;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
@@ -362,7 +363,7 @@ public class GameFrame extends JFrame implements KeyListener {
 						locx++;
 						try
 			            {
-			                Thread.sleep( 500 );
+			                Thread.sleep( 300 );
 			            }
 			            catch ( InterruptedException hj)
 			            {
@@ -383,7 +384,7 @@ public class GameFrame extends JFrame implements KeyListener {
 								break;
 							}
 							else if (bosshealth > 0){							}
-							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS2;
+							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS1;
 							break;
 							}
 					else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS2){
@@ -394,7 +395,7 @@ public class GameFrame extends JFrame implements KeyListener {
 								break;
 							}
 							else if (bosshealth > 0){							}
-							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS3;
+							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS2;
 							break;
 							}
 					else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS3){
@@ -405,7 +406,7 @@ public class GameFrame extends JFrame implements KeyListener {
 								break;
 							}
 							else if (bosshealth > 0){							}
-							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS1;
+							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS3;
 							break;
 							}
 					else 
@@ -423,7 +424,7 @@ public class GameFrame extends JFrame implements KeyListener {
 							try
 				            {
 								
-				                Thread.sleep( 500 );
+				                Thread.sleep( 300 );
 				            }
 				            catch ( InterruptedException hj)
 				            {
