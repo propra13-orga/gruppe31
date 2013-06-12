@@ -90,7 +90,7 @@ public class LevelManager {
 		fr.close();
 	}
 
-	/** durch das Hochzählen von level gelangt man ein Level weiter */
+	/** durch das Hochzählen von level gelangt man einen Raum weiter */
 	public boolean LevelWeiter() {
 		/* wird geprüft, ob man sich bereits im letzten Level befindet */
 		if (level == levels.size() - 1) {
@@ -98,18 +98,6 @@ public class LevelManager {
 			/* wenn nicht, kann man ein Level weiter */
 		} else {
 			level++;
-		}
-		return true;
-	}
-
-	/** durch das Runterzählen von level gelangt man ein Level zurück */
-	public boolean LevelZurueck() {
-		/* wenn man sich im ersten Level befindet kann man nicht zurück gehen */
-		if (level == 0) {
-			return false;
-			/* ansonsten wird runtergezählt */
-		} else {
-			level--;
 		}
 		return true;
 	}
