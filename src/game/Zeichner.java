@@ -14,16 +14,22 @@ public class Zeichner extends Canvas {
 
 	private static final Icon iconRasen = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Rasen1.jpg");
-	private static final Icon iconBaum = new ImageIcon(Konstanten.direction
+	private static final Icon iconBaum1 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Baum1.jpg");
+	private static final Icon iconBaum2 = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Baum2.jpg");
 	private static final Icon iconPudel = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Pudel1.jpg");
 	private static final Icon iconGegner = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Gegner1.png");
 	private static final Icon iconWeiter = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Weiter1.jpg");
-	private static final Icon iconBoss = new ImageIcon(Konstanten.direction
+	private static final Icon iconBoss1 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Boss1.png");
+	private static final Icon iconBoss2 = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Boss2.png");
+	private static final Icon iconBoss3 = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Boss3.png");
 	private static final Icon iconZurueck = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Zurueck1.jpg");
 	private static final Icon iconCarlos = new ImageIcon(Konstanten.direction
@@ -69,7 +75,7 @@ public class Zeichner extends Canvas {
 				icon = iconRasen;
 				break;
 			case Konstanten.GRENZE:
-				icon = iconBaum;
+				icon = iconBaum1;
 				break;
 			case Konstanten.GEGNER:
 				icon = iconGegner;
@@ -77,8 +83,14 @@ public class Zeichner extends Canvas {
 			case Konstanten.WEITER:
 				icon = iconWeiter;
 				break;
-			case Konstanten.BOSS:
-				icon = iconBoss;
+			case Konstanten.BOSS1:
+				icon = iconBoss1;
+				break;
+			case Konstanten.BOSS2:
+				icon = iconBoss2;
+				break;
+			case Konstanten.BOSS3:
+				icon = iconBoss3;
 				break;
 			case Konstanten.ZURUECK:
 				icon = iconZurueck;

@@ -10,7 +10,9 @@ public final class Konstanten {
 	public static final int PUDEL = (int) 'P';
 	public static final int GEGNER = (int) 'G';
 	public static final int WEITER = (int) 'W';
-	public static final int BOSS = (int) 'B';
+	public static final int BOSS1 = (int) 'B';
+	public static final int BOSS2 = (int) 'V';
+	public static final int BOSS3 = (int) 'X';
 	public static final int ZURUECK = (int) 'Z';
 	public static final int CARLOS = (int) 'C';
 	public static final int CUPCAKE = (int) 'F';

@@ -210,8 +210,8 @@ public class GameFrame extends JFrame implements KeyListener {
 					Gegnerx = altGegx;
 					Gegnery = altGegy;
 				}
-				else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS;
+				else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS1) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS1;
 					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
 					Gegnerx = altGegx;
 					Gegnery = altGegy;
@@ -244,14 +244,14 @@ public class GameFrame extends JFrame implements KeyListener {
 			ko = 0;
 			getLevel();
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS) {
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS1) {
 				health = health - 34;
 					if (health + ruestung <= 0){
 						Verloren();
 					}
 					else if (health + ruestung > 0){
 						aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
-						aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.BOSS;
+						aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.BOSS1;
 						Spielfigurx = altx;
 						Spielfigury = alty;
 					}
@@ -326,7 +326,6 @@ public class GameFrame extends JFrame implements KeyListener {
 						locx++;
 						try
 			            {
-							
 			                Thread.sleep( 500 );
 			            }
 			            catch ( InterruptedException hj)
@@ -340,7 +339,7 @@ public class GameFrame extends JFrame implements KeyListener {
 						ko = 1;
 						break;
 					}
-					else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS){
+					else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1){
 						bosshealth = bosshealth - 100;
 							if (bosshealth <= 0){
 								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
@@ -348,7 +347,7 @@ public class GameFrame extends JFrame implements KeyListener {
 								break;
 							}
 							else if (bosshealth > 0){							}
-							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS;
+							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS1;
 							break;
 							}
 					else 
