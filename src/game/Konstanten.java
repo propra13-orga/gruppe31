@@ -19,4 +19,6 @@ public final class Konstanten {
 	public static final int MANA = (int) 'M';
 	public static final int HEALTH = (int) 'H';
 	public static final int RUESTUNG = (int) 'R';
+	public static final int LASER = (int) 'L';
+	public static final int GEGNERTOT = (int) 'T';
 }

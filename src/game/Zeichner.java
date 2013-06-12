@@ -42,6 +42,10 @@ public class Zeichner extends Canvas {
 			+ "/src/game/Images/Heiltrank1.png");
 	private static final Icon iconRuestung = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Ruestung1.png");
+	private static final Icon iconLaser = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Laser1.png");
+	private static final Icon iconGegnertot = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Gegnertot1.png");
 
 	Integer[][] Spielfeld;
 
@@ -149,6 +153,12 @@ public class Zeichner extends Canvas {
 				break;
 			case Konstanten.HEALTH:
 				icon = iconHealth;
+				break;
+			case Konstanten.LASER:
+				icon = iconLaser;
+				break;
+			case Konstanten.GEGNERTOT:
+				icon = iconGegnertot;
 				break;
 			case Konstanten.PUDEL:
 				icon = iconPudel;
