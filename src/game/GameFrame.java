@@ -28,6 +28,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private GameFrame gameFrame;
 	private Carlos carlos;
 	private Zeichner zeichner;
+	private Shop shop;
 
 	private Integer aktuellesSpielfeld[][] = new Integer[16][12];
 
@@ -260,6 +261,13 @@ public class GameFrame extends JFrame implements KeyListener {
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.RASEN;
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.CARLOS;
+			Spielfigurx = altx;
+			Spielfigury = alty;
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.HUETTE) {
+			shop = new Shop();
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.RASEN;
+			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.HUETTE;
 			Spielfigurx = altx;
 			Spielfigury = alty;
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.CUPCAKE) {

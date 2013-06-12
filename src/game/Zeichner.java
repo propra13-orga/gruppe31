@@ -30,6 +30,8 @@ public class Zeichner extends Canvas {
 			+ "/src/game/Images/Carlos.png");
 	private static final Icon iconCupcake = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Cupcake.jpg");
+	private static final Icon iconHuette = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Huette.png");
 	private static final Icon iconWaffe = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Waffe1.png");
 	private static final Icon iconAggroErna = new ImageIcon(
@@ -50,9 +52,6 @@ public class Zeichner extends Canvas {
 	Integer[][] Spielfeld;
 
 	private GameFrame gameFrame;
-	
-	//private LevelManager levelManager;
-	//int aktlevel = 0;
 
 	/**
 	 * für jedes Feld im Array Spielfeld kann ein Icon gesetzt werden, welches
@@ -65,55 +64,6 @@ public class Zeichner extends Canvas {
 
 				Icon icon;
 
-				/*aktlevel = levelManager.getAktLevel();
-
-				if (aktlevel < 2) {
-					switch (Spielfeld[i][j]) {
-					case Konstanten.RASEN:
-						icon = iconRasen;
-						break;
-					case Konstanten.GRENZE:
-						icon = iconBaum;
-						break;
-					case Konstanten.GEGNER:
-						icon = iconGegner;
-						break;
-					case Konstanten.WEITER:
-						icon = iconWeiter;
-						break;
-					case Konstanten.BOSS:
-						icon = iconBoss;
-						break;
-					case Konstanten.ZURUECK:
-						icon = iconZurueck;
-						break;
-					case Konstanten.CARLOS:
-						icon = iconCarlos;
-						break;
-					case Konstanten.WAFFE:
-						icon = iconWaffe;
-						break;
-					case Konstanten.GOLD:
-						icon = iconGold;
-						break;
-					case Konstanten.MANA:
-						icon = iconMana;
-						break;
-					case Konstanten.RUESTUNG:
-						icon = iconRuestung;
-						break;
-					case Konstanten.HEALTH:
-						icon = iconHealth;
-						break;
-					case Konstanten.PUDEL:
-						icon = iconPudel;
-						break;
-					default:
-						icon = iconPudel;
-						break;
-					}
-					icon.paintIcon(this, g, i * size, j * size); 
-				}*/
 			switch (Spielfeld[i][j]) {
 			case Konstanten.RASEN:
 				icon = iconRasen;
@@ -138,6 +88,9 @@ public class Zeichner extends Canvas {
 				break;
 			case Konstanten.CUPCAKE:
 				icon = iconCupcake;
+				break;
+			case Konstanten.HUETTE:
+				icon = iconHuette;
 				break;
 			case Konstanten.WAFFE:
 				icon = iconWaffe;

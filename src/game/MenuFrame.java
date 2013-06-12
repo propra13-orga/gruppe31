@@ -9,21 +9,16 @@ import javax.imageio.ImageIO;
 
 /**
  * MenuFrame erzeugt das Menufenster. Ein Hintergrundbild wird gesetzt, es
- * werden 2 Buttons und ein Label auf das Fenster gesetzt
+ * werden 3 Buttons und ein Label auf das Fenster gesetzt
  */
 public class MenuFrame extends JFrame {
 
-	private static final Icon iconSteuerung = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Steuerung.png");
-
-	private static final JLabel STEUERUNG = new JLabel(iconSteuerung);
-
 	private JButton start;
-	private JButton steuerung;
+	private JButton control;
 	private JButton ende;
-	private JButton Sschliessen;
-
-	GameFrame gameframe;
+	
+	private GameFrame gameframe;
+	private Steuerung steuerung;
 
 	/**
 	 * Konstruktor, der alle Einstellungen des Menüfensters aufruft
@@ -48,10 +43,10 @@ public class MenuFrame extends JFrame {
 		start = new JButton("Spiel starten");
 		start.setBounds(350, 300, 200, 40);
 		this.add(start);
-
-		steuerung = new JButton("Steuerung");
-		steuerung.setBounds(350, 350, 200, 40);
-		this.add(steuerung);
+		
+		control = new JButton("Steuerung");
+		control.setBounds(350, 350, 200, 40);
+		this.add(control);
 
 		ende = new JButton("Beenden");
 		ende.setBounds(350, 400, 200, 40);
@@ -74,30 +69,7 @@ public class MenuFrame extends JFrame {
 
 		ActionListener alsteuerung = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				final JFrame fst = new JFrame();
-
-				fst.setBackground(Color.green);
-				fst.setResizable(true);
-				fst.setSize(400, 400);
-				fst.setLayout(null);
-				fst.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				fst.setLocationRelativeTo(null);
-				fst.setVisible(true);
-
-				STEUERUNG.setBounds(0, 0, 400, 310);
-				STEUERUNG.setVisible(true);
-				fst.add(STEUERUNG);
-
-				Sschliessen = new JButton("Dieses Fenster schließen");
-				Sschliessen.setBounds(0, 310, 400, 50);
-				fst.add(Sschliessen);
-
-				ActionListener alschliessen = new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						fst.dispose();
-					}
-				};
-				Sschliessen.addActionListener(alschliessen);
+				steuerung = new Steuerung();
 			}
 		};
 
@@ -108,12 +80,12 @@ public class MenuFrame extends JFrame {
 		};
 
 		start.addActionListener(alstart);
-		steuerung.addActionListener(alsteuerung);
+		control.addActionListener(alsteuerung);
 		ende.addActionListener(alende);
 	}
 
 	/**
-	 * erzeugt ein neues Menufenster aus dem Konstruktor
+	 * Main-Methode erzeugt ein neues Menufenster aus dem Konstruktor
 	 * 
 	 * @param args
 	 */

@@ -14,6 +14,7 @@ public final class Konstanten {
 	public static final int ZURUECK = (int) 'Z';
 	public static final int CARLOS = (int) 'C';
 	public static final int CUPCAKE = (int) 'F';
+	public static final int HUETTE = (int) 'E';
 	public static final int WAFFE = (int) 'S';
 	public static final int GOLD = (int) 'O';
 	public static final int MANA = (int) 'M';
