@@ -12,16 +12,16 @@ import javax.swing.JLabel;
 /** löst aus, wenn der KeyListener im Gameplay HUETTE registriert */
 public class Shop {
 
-	private static final Icon iconWaffe = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Waffe1.png");
-	private static final Icon iconMana = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Mana1.png");
 	private static final Icon iconShop = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Shop.png");
+			+ "/src/game/Images/Shopfenster.png");
+	private static final Icon iconWaffe = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/BrilleShop.png");
+	private static final Icon iconMana = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/ManaShop.png");
 	private static final Icon iconTrank = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Heiltrank1.png");
+			+ "/src/game/Images/LebenShop.png");
 	private static final Icon iconHalsband = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Halsband.png");
+			+ "/src/game/Images/HalsbandShop.png");
 
 	private static final JLabel SHOP = new JLabel(iconShop);
 
@@ -46,19 +46,19 @@ public class Shop {
 		SHOP.setVisible(true);
 		frame.add(SHOP);
 
-		Waffe.setBounds(75, 120, 50, 50);
+		Waffe.setBounds(75, 120, 75, 75);
 		Waffe.setVisible(true);
 		SHOP.add(Waffe);
 
-		Mana.setBounds(175, 120, 50, 50);
+		Mana.setBounds(175, 120, 75, 75);
 		Mana.setVisible(true);
 		SHOP.add(Mana);
 
-		Trank.setBounds(275, 120, 50, 50);
+		Trank.setBounds(275, 120, 75, 75);
 		Trank.setVisible(true);
 		SHOP.add(Trank);
 
-		Halsband.setBounds(375, 120, 50, 50);
+		Halsband.setBounds(375, 120, 75, 75);
 		Halsband.setVisible(true);
 		SHOP.add(Halsband);
 

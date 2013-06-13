@@ -16,7 +16,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	/* Platzhalter für Marcel */
 
 	private static final Icon iconAnzeige = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Anzeige.jpg");
+			+ "/src/game/Images/Anzeige.png");
 
 	private JLabel Anzeige = new JLabel(iconAnzeige);
 

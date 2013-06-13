@@ -36,8 +36,8 @@ public class Zeichner extends Canvas {
 			+ "/src/game/Images/Carlos.png");
 	private static final Icon iconCupcake = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Cupcake.jpg");
-	private static final Icon iconHuette = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Huette.png");
+	private static final Icon iconShop = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Shop.png");
 	private static final Icon iconWaffe = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Waffe1.png");
 	private static final Icon iconAggroErna = new ImageIcon(
@@ -102,7 +102,7 @@ public class Zeichner extends Canvas {
 				icon = iconCupcake;
 				break;
 			case Konstanten.HUETTE:
-				icon = iconHuette;
+				icon = iconShop;
 				break;
 			case Konstanten.WAFFE:
 				icon = iconWaffe;
