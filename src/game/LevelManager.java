@@ -111,30 +111,22 @@ public class LevelManager {
 		}
 	}
 
-	/*
-	 * gibt das aktuelle Level wieder public int getAktLevel() { return level; }
-	 */
-
-	/**
-	 * gibt die X-Koordinate der Spielfigur aus dem jeweiligen Level der
-	 * ArrayList wieder
-	 */
+	/** gibt die X-Koordinate der Spielfigur wieder */
 	public int getStartx() {
 		return levels.get(level).startx;
 	}
 
-	/**
-	 * gibt die Y-Koordinate der Spielfigur aus dem jeweiligen Level der
-	 * ArrayList wieder
-	 */
+	/** gibt die Y-Koordinate der Spielfigur wieder */
 	public int getStarty() {
 		return levels.get(level).starty;
 	}
 
+	/** gibt die X-Koordinate des Gegners wieder */
 	public int getStartGegnerx() {
 		return levels.get(level).gegnerx;
 	}
 
+	/** gibt die Y-Koordinate des Gegners wieder */
 	public int getStartGegnery() {
 		return levels.get(level).gegnery;
 	}

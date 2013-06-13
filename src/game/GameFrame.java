@@ -19,30 +19,30 @@ public class GameFrame extends JFrame implements KeyListener {
 			+ "/src/game/Images/2.png");
 	private static final Icon iconDrei = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/3.png");
-	
-	private static final Icon iconLebenVoll = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Lebenvoll.png");
-	private static final Icon iconLebenFast = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Lebenfast.png");
-	private static final Icon iconLebenHalb = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Lebenhalb.png");
-	private static final Icon iconLebenWenig = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Lebenwenig.png");
-	
+
+	private static final Icon iconLebenVoll = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/Lebenvoll.png");
+	private static final Icon iconLebenFast = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/Lebenfast.png");
+	private static final Icon iconLebenHalb = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/Lebenhalb.png");
+	private static final Icon iconLebenWenig = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/Lebenwenig.png");
+
 	private static final Icon iconManaVoll = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Manavoll.png");
 	private static final Icon iconManaHalb = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Manahalb.png");
 	private static final Icon iconManaLeer = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Manaleer.png");
-	
-	private static final Icon iconRuestungVoll = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Ruestungvoll.png");
-	private static final Icon iconRuestungHalb = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Ruestunghalb.png");
-	private static final Icon iconRuestungWeg = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Ruestungweg.png");
-	
+
+	private static final Icon iconRuestungVoll = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/Ruestungvoll.png");
+	private static final Icon iconRuestungHalb = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/Ruestunghalb.png");
+	private static final Icon iconRuestungWeg = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/Ruestungweg.png");
+
 	private static final Icon icon0Gold = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Gold0.png");
 	private static final Icon icon50Gold = new ImageIcon(Konstanten.direction
@@ -62,18 +62,18 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	private static final Icon iconKeinEq = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/KeinEq.png");
-	private static final Icon iconSchwert = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/Schwert.png");
-	private static final Icon iconHals = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/Hals.png");
+	private static final Icon iconSchwert = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Schwert.png");
+	private static final Icon iconHals = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Hals.png");
 	private static final Icon iconBrille = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Brille.png");
 	private static final Icon iconBrilleHals = new ImageIcon(
 			Konstanten.direction + "/src/game/Images/BrilleHals.png");
 	private static final Icon iconBrilleSchwert = new ImageIcon(
 			Konstanten.direction + "/src/game/Images/BrilleShwert.png");
-	private static final Icon iconSchwertHals = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/SchwertHals.png");
+	private static final Icon iconSchwertHals = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/SchwertHals.png");
 	private static final Icon iconAllesEq = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/AllesEq.png");
 
@@ -87,20 +87,20 @@ public class GameFrame extends JFrame implements KeyListener {
 	private JLabel Eins = new JLabel(iconEins);
 	private JLabel Zwei = new JLabel(iconZwei);
 	private JLabel Drei = new JLabel(iconDrei);
-	
+
 	private JLabel LebenVoll = new JLabel(iconLebenVoll);
 	private JLabel LebenFast = new JLabel(iconLebenFast);
 	private JLabel LebenHalb = new JLabel(iconLebenHalb);
 	private JLabel LebenWenig = new JLabel(iconLebenWenig);
-	
+
 	private JLabel ManaVoll = new JLabel(iconManaVoll);
 	private JLabel ManaHalb = new JLabel(iconManaHalb);
 	private JLabel ManaLeer = new JLabel(iconManaLeer);
-	
+
 	private JLabel RuestungVoll = new JLabel(iconRuestungVoll);
 	private JLabel RuestungHalb = new JLabel(iconRuestungHalb);
 	private JLabel RuestungWeg = new JLabel(iconRuestungWeg);
-	
+
 	private JLabel Gold0 = new JLabel(icon0Gold);
 	private JLabel Gold50 = new JLabel(icon50Gold);
 	private JLabel Gold100 = new JLabel(icon100Gold);
@@ -162,7 +162,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * @throws Exception
 	 */
 	public GameFrame() throws Exception {
-		this.setResizable(false);
+		this.setResizable(true);
 		this.setTitle("Erna's Adventure");
 		this.setSize(810, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -189,15 +189,53 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.requestFocus();
 	}
 
+	public void Aktualisieren() {
+		validate();
+		repaint();
+	}
+	
 	/* hier arbeitet Marcel */
 	public void setzeAnzeige() {
+		Leiste.removeAll();
+		
 		Leiste.add(Eins);
-		Leiste.add(LebenVoll);
+		
+		if (health == 100){
+			Leiste.add(LebenVoll);
+		} else if (health == 75){
+			Leiste.add(LebenFast);
+		}else if (health == 50){
+			Leiste.add(LebenHalb);
+		} else if (health == 25){
+			Leiste.add(LebenWenig);
+		}
+		
 		Leiste.add(ManaVoll);
 		Leiste.add(RuestungVoll);
-		Leiste.add(Gold0);
+
+		/* wenn gold gesammelt wurde */
+		if (gold == 0) {
+			Leiste.add(Gold0);
+		} else if (gold == 50) {
+			Leiste.add(Gold50);
+		} else if (gold == 100) {
+			Leiste.add(Gold100);
+		} else if (gold == 150) {
+			Leiste.add(Gold150);
+		} else if (gold == 200) {
+			Leiste.add(Gold200);
+		} else if (gold == 250) {
+			Leiste.add(Gold250);
+		} else if (gold == 300) {
+			Leiste.add(Gold300);
+		} else if (gold == 350) {
+			Leiste.add(Gold350);
+		}
+
 		Leiste.add(KeinEq);
 		Leiste.add(Herz1);
+		
+		Aktualisieren();
 	}
 
 	/**
@@ -371,7 +409,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		/* Abfragen für ich laufe auf GEGNER */
 		if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNER) {
 			/* zieht mir health ab */
-			health = health - 20;
+			health = health - 25;
 			/* wenn meine health+rüstung <= 0 rufe Checkpoint auf */
 			if (health + ruestung <= 0) {
 				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
@@ -477,14 +515,14 @@ public class GameFrame extends JFrame implements KeyListener {
 
 			/* ABfrage für ich laufe auf GOLD */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GOLD) {
-			gold = gold + 100;
+			gold = gold + 50;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 
 			/* Abfrage für ich laufe auf MANA */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.MANA) {
-			mana = mana + 10;
+			mana = 50;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
@@ -499,6 +537,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			/* Abfrage für ich laufe auf HEALTH */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.HEALTH) {
 			health = 100;
+			setzeAnzeige();
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
@@ -632,7 +671,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				health = 200;
 			}
 		}
-
+		setzeAnzeige();
 	}
 
 	public void keyReleased(KeyEvent e) {
