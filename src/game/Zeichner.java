@@ -22,14 +22,16 @@ public class Zeichner extends Canvas {
 			+ "/src/game/Images/Pudel1.jpg");
 	private static final Icon iconGegner = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Gegner1.png");
+	private static final Icon iconFalle = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Falle.png");
 	private static final Icon iconWeiter = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Weiter1.jpg");
 	private static final Icon iconBoss1 = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Boss1.png");
+			+ "/src/game/Images/Boss1voll.png");
 	private static final Icon iconBoss2 = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Boss2.png");
+			+ "/src/game/Images/Boss2voll.png");
 	private static final Icon iconBoss3 = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Boss3.png");
+			+ "/src/game/Images/Boss3voll.png");
 	private static final Icon iconZurueck = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Zurueck1.jpg");
 	private static final Icon iconCarlos = new ImageIcon(Konstanten.direction
@@ -81,6 +83,9 @@ public class Zeichner extends Canvas {
 				break;
 			case Konstanten.GEGNER:
 				icon = iconGegner;
+				break;
+			case Konstanten.FALLE:
+				icon = iconFalle;
 				break;
 			case Konstanten.WEITER:
 				icon = iconWeiter;

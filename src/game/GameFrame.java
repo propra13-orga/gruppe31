@@ -142,6 +142,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private int Gegnery;
 	private int checkx;
 	private int checky;
+	private int level;
 
 	public int bewaffnet = 0;
 	public int gold = 0;
@@ -199,8 +200,28 @@ public class GameFrame extends JFrame implements KeyListener {
 	public void setzeAnzeige() {
 		Leiste.removeAll();
 
-		Leiste.add(Eins);
+		/* für die Levelanzeige */
+		if (level == 0) {
+			Leiste.add(Eins);
+		} else if (level == 1) {
+			Leiste.add(Eins);
+		} else if (level == 2) {
+			Leiste.add(Eins);
+		} else if (level == 3) {
+			Leiste.add(Zwei);
+		} else if (level == 4) {
+			Leiste.add(Zwei);
+		} else if (level == 5) {
+			Leiste.add(Zwei);
+		} else if (level == 6) {
+			Leiste.add(Drei);
+		} else if (level == 7) {
+			Leiste.add(Drei);
+		} else if (level == 8) {
+			Leiste.add(Drei);
+		}
 
+		/* für die Healthanzeige */
 		if (health == 100) {
 			Leiste.add(LebenVoll);
 		} else if (health == 75) {
@@ -214,7 +235,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		Leiste.add(ManaVoll);
 		Leiste.add(RuestungVoll);
 
-		/* wenn gold gesammelt wurde */
+		/* für die Goldanzeige */
 		if (gold == 0) {
 			Leiste.add(Gold0);
 		} else if (gold == 50) {
@@ -233,8 +254,21 @@ public class GameFrame extends JFrame implements KeyListener {
 			Leiste.add(Gold350);
 		}
 
-		Leiste.add(KeinEq);
-		Leiste.add(Herz1);
+		if (bewaffnet == 0) {
+			Leiste.add(KeinEq);
+		} else if (bewaffnet == 1) {
+			Leiste.add(Brille);
+		}
+		
+
+		/* für die Lebenanzeige */
+		if (leben == 3) {
+			Leiste.add(Herz3);
+		} else if (leben == 2) {
+			Leiste.add(Herz2);
+		} else if (leben == 1) {
+			Leiste.add(Herz1);
+		}
 
 		Aktualisieren();
 	}
@@ -249,6 +283,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		Spielfigury = levelManager.getStarty();
 		Gegnerx = levelManager.getStartGegnerx();
 		Gegnery = levelManager.getStartGegnery();
+		level = levelManager.getlevel();
 	}
 
 	/**
@@ -291,6 +326,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigurx = checkx;
 				Spielfigury = checky;
 				zeichner.zeichneSpielfeld(CheckSpielfeld);
+				setzeAnzeige();
 			} else if (leben <= 0) {
 				Verloren();
 			}
@@ -401,6 +437,11 @@ public class GameFrame extends JFrame implements KeyListener {
 				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
 				Gegnerx = altGegx;
 				Gegnery = altGegy;
+			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.GOLD) {
+				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GOLD;
+				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+				Gegnerx = altGegx;
+				Gegnery = altGegy;
 			}
 			/* wenn Gegner ko ungleich 0, tue nichts */
 		} else if (ko != 0) {
@@ -425,6 +466,11 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigury = alty;
 
 			}
+		}
+
+		/* Abfrage für ich laufe auf FALLE */
+		else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.FALLE) {
+			Verloren();
 
 			/* Abfrage für ich laufe auf WEITER */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.WEITER) {
@@ -546,13 +592,13 @@ public class GameFrame extends JFrame implements KeyListener {
 			/* Abfrage für ich laufe auf WAFFE */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.WAFFE) {
 			bewaffnet = 1;
+			setzeAnzeige();
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 
 			/* Abfrage für ich laufe auf GEGNERTOT */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNERTOT) {
-			gold = gold + 10;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);

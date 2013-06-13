@@ -110,6 +110,11 @@ public class LevelManager {
 			}
 		}
 	}
+	
+	/** gibt die X-Koordinate der Spielfigur wieder */
+	public int getlevel() {
+		return level;
+	}
 
 	/** gibt die X-Koordinate der Spielfigur wieder */
 	public int getStartx() {
