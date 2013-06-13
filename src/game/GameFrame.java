@@ -12,41 +12,52 @@ import javax.swing.*;
  * umliegenden Felder ab und führt das Programm entsprechend weiter.
  */
 public class GameFrame extends JFrame implements KeyListener {
+
+	private static final Icon iconEins = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/1.png");
+	private static final Icon iconZwei = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/2.png");
+	private static final Icon iconDrei = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/3.png");
 	
+	private static final Icon icon0Gold = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Gold0.png");
 	private static final Icon icon50Gold = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/50Gold.png");
+			+ "/src/game/Images/Gold50.png");
 	private static final Icon icon100Gold = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/100Gold.png");
+			+ "/src/game/Images/Gold100.png");
 	private static final Icon icon150Gold = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/150Gold.png");
+			+ "/src/game/Images/Gold150.png");
 	private static final Icon icon200Gold = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/200Gold.png");
+			+ "/src/game/Images/Gold200.png");
 	private static final Icon icon250Gold = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/250Gold.png");
+			+ "/src/game/Images/Gold250.png");
 	private static final Icon icon300Gold = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/300Gold.png");
+			+ "/src/game/Images/Gold300.png");
 	private static final Icon icon350Gold = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/350Gold.png");
-	
+			+ "/src/game/Images/Gold350.png");
+
 	private static final Icon iconKeinEq = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/KeinEq.png");
-	private static final Icon iconKeineBrille = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/KeineBrille.png");
+	private static final Icon iconKeineBrille = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/KeineBrille.png");
 	private static final Icon iconKeinBand = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/KeinBand.png");
 	private static final Icon iconAllesEq = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/AllesEq.png");
-	
+
 	private static final Icon iconHerz1 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Herz1.png");
 	private static final Icon iconHerz2 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Herz2.png");
 	private static final Icon iconHerz3 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Herz3.png");
-	
-	private static final Icon iconAnzeige = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Anzeige.png");
 
+	private JLabel Eins = new JLabel(iconEins);
+	private JLabel Zwei = new JLabel(iconZwei);
+	private JLabel Drei = new JLabel(iconDrei);
+	
+	private JLabel Gold0 = new JLabel(icon0Gold);
 	private JLabel Gold50 = new JLabel(icon50Gold);
 	private JLabel Gold100 = new JLabel(icon100Gold);
 	private JLabel Gold150 = new JLabel(icon150Gold);
@@ -54,17 +65,15 @@ public class GameFrame extends JFrame implements KeyListener {
 	private JLabel Gold250 = new JLabel(icon250Gold);
 	private JLabel Gold300 = new JLabel(icon300Gold);
 	private JLabel Gold350 = new JLabel(icon350Gold);
-	
+
 	private JLabel KeinEq = new JLabel(iconKeinEq);
 	private JLabel KeineBrille = new JLabel(iconKeineBrille);
 	private JLabel KeinBand = new JLabel(iconKeinBand);
 	private JLabel AllesEq = new JLabel(iconAllesEq);
-	
+
 	private JLabel Herz1 = new JLabel(iconHerz1);
 	private JLabel Herz2 = new JLabel(iconHerz2);
 	private JLabel Herz3 = new JLabel(iconHerz3);
-	
-	private JLabel Anzeige = new JLabel(iconAnzeige);
 
 	private Panel Leiste = new Panel();
 
@@ -78,7 +87,6 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	private Integer aktuellesSpielfeld[][] = new Integer[16][12];
 	public Integer CheckSpielfeld[][] = new Integer[16][12];
-	
 
 	private int Spielfigurx;
 	private int Spielfigury;
@@ -95,7 +103,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	public int ko = 0;
 	public int bosshealth = 300;
 	public int leben = 3;
-	
+	public int save = 0;
 
 	/**
 	 * Konstruktor, der die Eigenschaften des Spielfensters festsetzt. der
@@ -135,14 +143,15 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/* hier arbeitet Marcel */
 	public void setzeAnzeige() {
-		Leiste.add(Anzeige);
+		Leiste.add(Eins);
+		Leiste.add(Gold0);
+		Leiste.add(KeinEq);
+		Leiste.add(Herz1);
 	}
 
 	/**
 	 * das aktuelle Spielfeld wird kopiert und die Position der Spielfigur wird
 	 * festgehalten
-	 * 
-	 * Möglichkeit für Valentin: Checkpoints
 	 */
 	public void getLevel() {
 		levelManager.kopiereAktuellesLevel(aktuellesSpielfeld);
@@ -153,8 +162,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * durch den KeyListener ausgelöst, wird hier ein neues Fenster mit dem
-	 * Spielausgang Gewonnen aufgerufen
+	 * hier wird ein neues Fenster mit dem Spielausgang Gewonnen aufgerufen
 	 */
 	public void Gewonnen() {
 		getContentPane().removeAll();
@@ -185,12 +193,27 @@ public class GameFrame extends JFrame implements KeyListener {
 		GVschliessen.addActionListener(alschliessen);
 	}
 
+	/** hier wird geprüft, ob ein Checkpoint überlaufen wurde */
+	public void Checkpoint() {
+		if (save == 1) {
+			if (leben > 0) {
+				health = 100;
+				Spielfigurx = checkx;
+				Spielfigury = checky;
+				zeichner.zeichneSpielfeld(CheckSpielfeld);
+			} else if (leben <= 0) {
+				Verloren();
+			}
+		} else if (save == 0) {
+			Verloren();
+		}
+	}
+
 	/**
-	 * durch den KeyListener ausgelöst, wird hier ein neues Fenster mit dem
-	 * Spielausgang Verloren aufgerufen
+	 * hier wird ein neues Fenster mit dem Spielausgang Verloren aufgerufen
 	 */
 	public void Verloren() {
-		if (leben <=0){
+
 		getContentPane().removeAll();
 
 		try {
@@ -217,15 +240,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			}
 		};
 		GVschliessen.addActionListener(alschliessen);
-		}
-		else if (leben > 0){
-			health = 100;
-			Spielfigurx = checkx;
-			Spielfigury = checky;
-			
-			zeichner.zeichneSpielfeld(CheckSpielfeld);
-		}
-	} 
+	}
 
 	/**
 	 * der KeyListener reagiert, wenn eine Taste gedrückt wurde und führt das
@@ -239,6 +254,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		int altGegy = Gegnery;
 		int locx = Spielfigurx;
 
+		/* Abfragen für die Pfeiltasten */
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			Spielfigurx--;
 			Gegnerx++;
@@ -252,134 +268,143 @@ public class GameFrame extends JFrame implements KeyListener {
 			Spielfigury++;
 			Gegnery--;
 		}
-			if (ko == 0){
-				if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.RASEN) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GEGNER;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.RASEN;
-					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-				}
-				else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.GRENZE) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GRENZE;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				}	
-				else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.PUDEL) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.PUDEL;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				}
-				else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS1) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS1;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				}
-				else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS2) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS2;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				}
-				else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS3) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS3;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				}
-				else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.CUPCAKE) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.CUPCAKE;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				}
-				else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.ZURUECK) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.ZURUECK;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				}
-				
-				else if (ko != 0) {
-					ko = 0;
-				}
+
+		/* wenn Gegner ko = 0, dann führe die Gegnerbewegung aus */
+		if (ko == 0) {
+
+			if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.RASEN) {
+				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GEGNER;
+				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.RASEN;
+				zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.GRENZE) {
+				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GRENZE;
+				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+				Gegnerx = altGegx;
+				Gegnery = altGegy;
+			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.PUDEL) {
+				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.PUDEL;
+				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+				Gegnerx = altGegx;
+				Gegnery = altGegy;
+			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS1) {
+				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS1;
+				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+				Gegnerx = altGegx;
+				Gegnery = altGegy;
+			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS2) {
+				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS2;
+				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+				Gegnerx = altGegx;
+				Gegnery = altGegy;
+			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS3) {
+				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS3;
+				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+				Gegnerx = altGegx;
+				Gegnery = altGegy;
+			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.CUPCAKE) {
+				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.CUPCAKE;
+				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+				Gegnerx = altGegx;
+				Gegnery = altGegy;
+			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.ZURUECK) {
+				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.ZURUECK;
+				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+				Gegnerx = altGegx;
+				Gegnery = altGegy;
 			}
-		
+			/* wenn Gegner ko ungleich 0, tue nichts */
+		} else if (ko != 0) {
+			// nothing to do here
+		}
+
+		/* Abfragen für ich laufe auf GEGNER */
 		if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNER) {
+			/* zieht mir health ab */
 			health = health - 20;
-			if (health + ruestung <= 0){
+			/* wenn meine health+rüstung <= 0 rufe Checkpoint auf */
+			if (health + ruestung <= 0) {
 				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 				aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
 				leben = leben - 1;
-				Verloren();
-			}
-			else if (health + ruestung > 0){
+				Checkpoint();
+				/* ansonsten bleibt die Spielfigur (verletzt) auf seinem Feld */
+			} else if (health + ruestung > 0) {
 				aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 				aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.GEGNER;
 				Spielfigurx = altx;
 				Spielfigury = alty;
-				
+
 			}
+
+			/* Abfrage für ich laufe auf WEITER */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.WEITER) {
 			levelManager.LevelWeiter();
 			bosshealth = 300;
 			ko = 0;
 			getLevel();
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+
+			/* Abfrage für ich laufe auf BOSS1 */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS1) {
-			health = health - 34;
-				if (health + ruestung <= 0){
-					leben = leben - 1;
-					aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
-					aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
-					Verloren();
-				}
-				else if (health + ruestung > 0){
-					aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
-					aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.BOSS1;
-					Spielfigurx = altx;
-					Spielfigury = alty;
-				}
+			health = health - 25;
+			if (health + ruestung <= 0) {
+				leben = leben - 1;
+				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+				aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
+				Checkpoint();
+			} else if (health + ruestung > 0) {
+				aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.BOSS1;
+				Spielfigurx = altx;
+				Spielfigury = alty;
+			}
+
+			/* Abfrage für ich laufe gegen BOSS2 */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS2) {
 			health = health - 50;
-				if (health + ruestung <= 0){
-					leben = leben - 1;
-					aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
-					aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
-					Verloren();
-				}
-				else if (health + ruestung > 0){
-					aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
-					aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.BOSS2;
-					Spielfigurx = altx;
-					Spielfigury = alty;
-				}
+			if (health + ruestung <= 0) {
+				leben = leben - 1;
+				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+				aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
+				Checkpoint();
+			} else if (health + ruestung > 0) {
+				aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.BOSS2;
+				Spielfigurx = altx;
+				Spielfigury = alty;
+			}
+
+			/* Abfrage für ich laufe gegen BOSS3 */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS3) {
 			health = health - 100;
-				if (health + ruestung <= 0){
-					leben = leben - 1;
-					aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
-					aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
-					Verloren();
-				}
-				else if (health + ruestung > 0){
-					aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
-					aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.BOSS3;
-					Spielfigurx = altx;
-					Spielfigury = alty;
-				}
+			if (health + ruestung <= 0) {
+				leben = leben - 1;
+				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+				aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
+				Checkpoint();
+			} else if (health + ruestung > 0) {
+				aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.BOSS3;
+				Spielfigurx = altx;
+				Spielfigury = alty;
+			}
+
+			/* Abfrage für ich laufe auf ZURUECK */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.ZURUECK) {
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.ZURUECK;
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 			Spielfigurx = altx;
 			Spielfigury = alty;
+
+			/* Abfrage für ich laufe gegen CARLOS */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.CARLOS) {
 			carlos = new Carlos();
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.CARLOS;
 			Spielfigurx = altx;
 			Spielfigury = alty;
+
+			/* Abfrage für ich laufe gegen HUETTE */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.HUETTE) {
 			shop = new Shop();
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.RASEN;
@@ -387,151 +412,177 @@ public class GameFrame extends JFrame implements KeyListener {
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.HUETTE;
 			Spielfigurx = altx;
 			Spielfigury = alty;
+
+			/* Abfrage für ich laufe gegen CUPCAKE */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.CUPCAKE) {
 			Gewonnen();
+
+			/* Abfrage für ich laufe gegen GRENZE */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GRENZE) {
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.GRENZE;
 			Spielfigurx = altx;
 			Spielfigury = alty;
+
+			/* ABfrage für ich laufe auf GOLD */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GOLD) {
 			gold = gold + 100;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+
+			/* Abfrage für ich laufe auf MANA */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.MANA) {
 			mana = mana + 10;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+
+			/* Abfrage für ich laufe auf RUESTUNG */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.RUESTUNG) {
 			ruestung = 50;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+
+			/* Abfrage für ich laufe auf HEALTH */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.HEALTH) {
 			health = 100;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+
+			/* Abfrage für ich laufe auf WAFFE */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.WAFFE) {
 			bewaffnet = 1;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNERTOT) {;
+
+			/* Abfrage für ich laufe auf GEGNERTOT */
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNERTOT) {
 			gold = gold + 10;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+
+			/* Abfrage für ich laufe auf RASEN = normale Bewegung */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.RASEN) {
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+
+			/* Abfrage für ich laufe auf CHECKPOINT */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.CHECKPOINT) {
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			CheckSpielfeld = aktuellesSpielfeld;
 			checkx = Spielfigurx;
 			checky = Spielfigury;
+			save = 1;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 		}
-		
+
+		/* Abfragen für die Leertaste */
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			if (bewaffnet == 0){
+			/* wenn Erna nicht bewaffnet, dann kein Ereignis */
+			if (bewaffnet == 0) {
 				// nothing to do here
-			}
-			else if (bewaffnet == 1){
+
+				/* wenn Erna bewaffnet */
+			} else if (bewaffnet == 1) {
+				/* in Richtung des Schusses einen hochzählen */
 				locx++;
-				while (aktuellesSpielfeld[locx][Spielfigury] != Konstanten.GRENZE){
+				/* solange wie man nicht auf GRENZE trifft */
+				while (aktuellesSpielfeld[locx][Spielfigury] != Konstanten.GRENZE) {
+					/* wenn dort RASEN setze Laserbild und zähle hoch */
 					if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.RASEN) {
 						aktuellesSpielfeld[locx][Spielfigury] = Konstanten.LASER;
 						zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 						locx++;
-						try
-			            {
-			                Thread.sleep( 300 );
-			            }
-			            catch ( InterruptedException hj)
-			            {
-			                hj.printStackTrace();
-			            }
+						/* Verzögerung der Anzeige um 300 Millisekunden */
+						try {
+							Thread.sleep(300);
+						} catch (InterruptedException hj) {
+							hj.printStackTrace();
 						}
-					else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.GEGNER) {
+
+						/* wenn dort GEGNER setze GEGNERTOT und unbeweglich */
+					} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.GEGNER) {
 						aktuellesSpielfeld[locx][Spielfigury] = Konstanten.GEGNERTOT;
 						zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 						ko = 1;
 						break;
-					}
-					else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1){
+
+						/* wenn dort BOSS1 ziehe bosshealth ab */
+					} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1) {
 						bosshealth = bosshealth - 100;
-							if (bosshealth <= 0){
-								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
-								zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-								break;
-							}
-							else if (bosshealth > 0){							}
-							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS1;
-							break;
-							}
-					else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS2){
-						bosshealth = bosshealth - 100;
-							if (bosshealth <= 0){
-								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
-								zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-								break;
-							}
-							else if (bosshealth > 0){							}
-							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS2;
-							break;
-							}
-					else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS3){
-						bosshealth = bosshealth - 100;
-							if (bosshealth <= 0){
-								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
-								zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-								break;
-							}
-							else if (bosshealth > 0){							}
-							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS3;
-							break;
-							}
-					else 
-						break;
-				
-				} 
-				
-				locx = Spielfigurx;
-				locx++;
-				
-				while (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.LASER){
+						/* wenn bosshealth erschöpft, setze dort RASEN */
+						if (bosshealth <= 0) {
 							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
 							zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-							locx++;
-							try
-				            {
-								
-				                Thread.sleep( 300 );
-				            }
-				            catch ( InterruptedException hj)
-				            {
-				                hj.printStackTrace();
-				            }
+							break;
+						} else if (bosshealth > 0) {
+							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS1;
+							break;
+						}
+
+					} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS2) {
+						bosshealth = bosshealth - 100;
+						if (bosshealth <= 0) {
+							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+							zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+							break;
+						} else if (bosshealth > 0) {
+							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS2;
+							break;
+						}
+
+					} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS3) {
+						bosshealth = bosshealth - 100;
+						if (bosshealth <= 0) {
+							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+							zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+							break;
+						} else if (bosshealth > 0) {
+							aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS3;
+							break;
+						}
+
+					} else
+						break;
+				}
+
+				/* anschließend wird die Schussanzeige zurück gesetzt */
+				locx = Spielfigurx;
+				locx++;
+
+				while (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.LASER) {
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+					locx++;
+					try {
+						Thread.sleep(300);
+					} catch (InterruptedException hj) {
+						hj.printStackTrace();
 					}
 				}
-	}
-		if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
-			if (mana == 0){
-				// nothing to do here
 			}
-			else if (mana == 1) {
+		}
+
+		/* Abfragen für die Steuerungstaste */
+		if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+			if (mana == 0) {
+				// nothing to do here
+
+				/* wenn mana = 1, gib Erna ihre RayBan und pflege sie gesund */
+			} else if (mana == 1) {
 				bewaffnet = 1;
 				health = 200;
 			}
 		}
-		
-	}
 
+	}
 
 	public void keyReleased(KeyEvent e) {
 		// nothing to do here
