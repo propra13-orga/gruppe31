@@ -31,11 +31,15 @@ public class GameFrame extends JFrame implements KeyListener {
 	private Shop shop;
 
 	private Integer aktuellesSpielfeld[][] = new Integer[16][12];
+	public Integer CheckSpielfeld[][] = new Integer[16][12];
+	
 
 	private int Spielfigurx;
 	private int Spielfigury;
 	private int Gegnerx;
 	private int Gegnery;
+	private int checkx;
+	private int checky;
 
 	public int bewaffnet = 0;
 	public int gold = 0;
@@ -44,6 +48,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	public int mana = 0;
 	public int ko = 0;
 	public int bosshealth = 300;
+	public int leben = 3;
 	
 
 	/**
@@ -139,6 +144,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * Spielausgang Verloren aufgerufen
 	 */
 	public void Verloren() {
+		if (leben <=0){
 		getContentPane().removeAll();
 
 		try {
@@ -165,7 +171,15 @@ public class GameFrame extends JFrame implements KeyListener {
 			}
 		};
 		GVschliessen.addActionListener(alschliessen);
-	}
+		}
+		else if (leben > 0){
+			health = 100;
+			Spielfigurx = checkx;
+			Spielfigury = checky;
+			
+			zeichner.zeichneSpielfeld(CheckSpielfeld);
+		}
+	} 
 
 	/**
 	 * der KeyListener reagiert, wenn eine Taste gedrückt wurde und führt das
@@ -234,6 +248,13 @@ public class GameFrame extends JFrame implements KeyListener {
 					Gegnerx = altGegx;
 					Gegnery = altGegy;
 				}
+				else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.ZURUECK) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.ZURUECK;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				}
+				
 				else if (ko != 0) {
 					ko = 0;
 				}
@@ -242,6 +263,9 @@ public class GameFrame extends JFrame implements KeyListener {
 		if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNER) {
 			health = health - 20;
 			if (health + ruestung <= 0){
+				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+				aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
+				leben = leben - 1;
 				Verloren();
 			}
 			else if (health + ruestung > 0){
@@ -249,6 +273,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.GEGNER;
 				Spielfigurx = altx;
 				Spielfigury = alty;
+				
 			}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.WEITER) {
 			levelManager.LevelWeiter();
@@ -259,6 +284,9 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS1) {
 			health = health - 34;
 				if (health + ruestung <= 0){
+					leben = leben - 1;
+					aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+					aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
 					Verloren();
 				}
 				else if (health + ruestung > 0){
@@ -270,6 +298,9 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS2) {
 			health = health - 50;
 				if (health + ruestung <= 0){
+					leben = leben - 1;
+					aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+					aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
 					Verloren();
 				}
 				else if (health + ruestung > 0){
@@ -281,6 +312,9 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS3) {
 			health = health - 100;
 				if (health + ruestung <= 0){
+					leben = leben - 1;
+					aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+					aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
 					Verloren();
 				}
 				else if (health + ruestung > 0){
@@ -347,6 +381,13 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.RASEN) {
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.CHECKPOINT) {
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
+			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+			CheckSpielfeld = aktuellesSpielfeld;
+			checkx = Spielfigurx;
+			checky = Spielfigury;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 		}
 		

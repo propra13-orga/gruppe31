@@ -66,8 +66,10 @@ public class Shop {
 		schliessen.setBounds(0, 250, 500, 25);
 		SHOP.add(schliessen);
 
-		ActionListener alWaffe = new ActionListener() {
+		/*ActionListener alWaffe = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gold = gold - 50;
+				bewaffnet = 1;
 				// ziehe Geld ab und füge Waffe hinzu
 				System.out.println("Du hast dir eine Waffe gekauft und musstest mit Münzen bezahlen!");
 			}
@@ -75,6 +77,8 @@ public class Shop {
 
 		ActionListener alMana = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gold = gold - 50;
+				mana = 1;
 				// ziehe Geld ab und addiere Mana
 				System.out.println("Du hast dir Mana gekauft und musstest mit Münzen bezahlen!");
 			}
@@ -82,6 +86,8 @@ public class Shop {
 
 		ActionListener alTrank = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gold = gold - 50;
+				health = 100;
 				// ziehe Geld ab und addiere Trank
 				System.out.println("Du hast dir einen Trank gekauft und musstest mit Münzen bezahlen!");
 			}
@@ -89,6 +95,8 @@ public class Shop {
 
 		ActionListener alHalsband = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gold = gold - 50;
+				ruestung = 50;
 				// ziehe Geld ab und addiere Halsband
 				System.out.println("Du hast dir eine Rüstung gekauft und musstest mit Münzen bezahlen!");
 			}
@@ -105,5 +113,6 @@ public class Shop {
 		Trank.addActionListener(alTrank);
 		Halsband.addActionListener(alHalsband);
 		schliessen.addActionListener(alschliessen);
+		*/
 	}
 }
