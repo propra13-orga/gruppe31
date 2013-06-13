@@ -189,27 +189,28 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.requestFocus();
 	}
 
+	/** aktualisiert die Darstellung */
 	public void Aktualisieren() {
 		validate();
 		repaint();
 	}
-	
-	/* hier arbeitet Marcel */
+
+	/** setzt die Anzeige mit all den Informationen */
 	public void setzeAnzeige() {
 		Leiste.removeAll();
-		
+
 		Leiste.add(Eins);
-		
-		if (health == 100){
+
+		if (health == 100) {
 			Leiste.add(LebenVoll);
-		} else if (health == 75){
+		} else if (health == 75) {
 			Leiste.add(LebenFast);
-		}else if (health == 50){
+		} else if (health == 50) {
 			Leiste.add(LebenHalb);
-		} else if (health == 25){
+		} else if (health == 25) {
 			Leiste.add(LebenWenig);
 		}
-		
+
 		Leiste.add(ManaVoll);
 		Leiste.add(RuestungVoll);
 
@@ -234,7 +235,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		Leiste.add(KeinEq);
 		Leiste.add(Herz1);
-		
+
 		Aktualisieren();
 	}
 
