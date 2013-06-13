@@ -12,12 +12,58 @@ import javax.swing.*;
  * umliegenden Felder ab und führt das Programm entsprechend weiter.
  */
 public class GameFrame extends JFrame implements KeyListener {
-
-	/* Platzhalter für Marcel */
-
+	
+	private static final Icon icon50Gold = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/50Gold.png");
+	private static final Icon icon100Gold = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/100Gold.png");
+	private static final Icon icon150Gold = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/150Gold.png");
+	private static final Icon icon200Gold = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/200Gold.png");
+	private static final Icon icon250Gold = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/250Gold.png");
+	private static final Icon icon300Gold = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/300Gold.png");
+	private static final Icon icon350Gold = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/350Gold.png");
+	
+	private static final Icon iconKeinEq = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/KeinEq.png");
+	private static final Icon iconKeineBrille = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/KeineBrille.png");
+	private static final Icon iconKeinBand = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/KeinBand.png");
+	private static final Icon iconAllesEq = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/AllesEq.png");
+	
+	private static final Icon iconHerz1 = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Herz1.png");
+	private static final Icon iconHerz2 = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Herz2.png");
+	private static final Icon iconHerz3 = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Herz3.png");
+	
 	private static final Icon iconAnzeige = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Anzeige.png");
 
+	private JLabel Gold50 = new JLabel(icon50Gold);
+	private JLabel Gold100 = new JLabel(icon100Gold);
+	private JLabel Gold150 = new JLabel(icon150Gold);
+	private JLabel Gold200 = new JLabel(icon200Gold);
+	private JLabel Gold250 = new JLabel(icon250Gold);
+	private JLabel Gold300 = new JLabel(icon300Gold);
+	private JLabel Gold350 = new JLabel(icon350Gold);
+	
+	private JLabel KeinEq = new JLabel(iconKeinEq);
+	private JLabel KeineBrille = new JLabel(iconKeineBrille);
+	private JLabel KeinBand = new JLabel(iconKeinBand);
+	private JLabel AllesEq = new JLabel(iconAllesEq);
+	
+	private JLabel Herz1 = new JLabel(iconHerz1);
+	private JLabel Herz2 = new JLabel(iconHerz2);
+	private JLabel Herz3 = new JLabel(iconHerz3);
+	
 	private JLabel Anzeige = new JLabel(iconAnzeige);
 
 	private Panel Leiste = new Panel();
@@ -60,7 +106,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * @throws Exception
 	 */
 	public GameFrame() throws Exception {
-		this.setResizable(true);
+		this.setResizable(false);
 		this.setTitle("Erna's Adventure");
 		this.setSize(810, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
