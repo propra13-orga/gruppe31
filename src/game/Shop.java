@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 
 /** löst aus, wenn der KeyListener im Gameplay HUETTE registriert */
 public class Shop {
+	
+	private GameFrame gameFrame;
 
 	private static final Icon iconShop = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Shopfenster.png");
@@ -70,6 +72,7 @@ public class Shop {
 			public void actionPerformed(ActionEvent e) {
 				//gold = gold - 50;
 				//bewaffnet = 1;
+				//gameFrame.setzeAnzeige();
 				System.out.println("Du hast dir eine Waffe gekauft und musstest mit Münzen bezahlen!");
 			}
 		};
@@ -78,6 +81,7 @@ public class Shop {
 			public void actionPerformed(ActionEvent e) {
 				//gold = gold - 50;
 				//mana = 1;
+				//gameFrame.setzeAnzeige();
 				System.out.println("Du hast dir Mana gekauft und musstest mit Münzen bezahlen!");
 			}
 		};
@@ -86,6 +90,7 @@ public class Shop {
 			public void actionPerformed(ActionEvent e) {
 				//gold = gold - 50;
 				//health = 100;
+				//gameFrame.setzeAnzeige();
 				System.out.println("Du hast dir einen Trank gekauft und musstest mit Münzen bezahlen!");
 			}
 		};
@@ -94,6 +99,7 @@ public class Shop {
 			public void actionPerformed(ActionEvent e) {
 				//gold = gold - 50;
 				//ruestung = 50;
+				//gameFrame.setzeAnzeige();
 				System.out.println("Du hast dir eine Rüstung gekauft und musstest mit Münzen bezahlen!");
 			}
 		};
