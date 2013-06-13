@@ -26,8 +26,24 @@ public class Zeichner extends Canvas {
 			+ "/src/game/Images/Falle.png");
 	private static final Icon iconWeiter = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Weiter1.jpg");
-	private static final Icon iconBoss1 = new ImageIcon(Konstanten.direction
+	private static final Icon iconBoss1v = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Boss1voll.png");
+	private static final Icon iconBoss1m = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Boss1mitte.png");
+	private static final Icon iconBoss1w = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Boss1wenig.png");	
+	private static final Icon iconBoss2v = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Boss2voll.png");
+	private static final Icon iconBoss2m = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Boss2mitte.png");
+	private static final Icon iconBoss2w = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Boss2wenig.png");	
+	private static final Icon iconBoss3v = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Boss3voll.png");
+	private static final Icon iconBoss3m = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Boss3mitte.png");
+	private static final Icon iconBoss3w = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Boss3wenig.png");	
 	private static final Icon iconBoss2 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Boss2voll.png");
 	private static final Icon iconBoss3 = new ImageIcon(Konstanten.direction
@@ -90,14 +106,32 @@ public class Zeichner extends Canvas {
 			case Konstanten.WEITER:
 				icon = iconWeiter;
 				break;
-			case Konstanten.BOSS1:
-				icon = iconBoss1;
+			case Konstanten.BOSS1v:
+				icon = iconBoss1v;
 				break;
-			case Konstanten.BOSS2:
-				icon = iconBoss2;
+			case Konstanten.BOSS1m:
+				icon = iconBoss1m;
 				break;
-			case Konstanten.BOSS3:
-				icon = iconBoss3;
+			case Konstanten.BOSS1w:
+				icon = iconBoss1w;
+				break;
+			case Konstanten.BOSS2v:
+				icon = iconBoss2v;
+				break;
+			case Konstanten.BOSS2m:
+				icon = iconBoss2m;
+				break;
+			case Konstanten.BOSS2w:
+				icon = iconBoss2w;
+				break;
+			case Konstanten.BOSS3v:
+				icon = iconBoss3v;
+				break;
+			case Konstanten.BOSS3m:
+				icon = iconBoss3m;
+				break;
+			case Konstanten.BOSS3w:
+				icon = iconBoss3w;
 				break;
 			case Konstanten.ZURUECK:
 				icon = iconZurueck;
