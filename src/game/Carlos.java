@@ -16,12 +16,22 @@ public class Carlos {
 			+ "/src/game/Images/Carlos4.png");
 	private static final Icon iconCarlos5 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Carlos5.png");
+	private static final Icon iconCarlos6 = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Carlos6.png");
+	private static final Icon iconCarlos7 = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Carlos7.png");
+	private static final Icon iconCarlos8 = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Carlos8.png");
+	
 
 	private static final JLabel NPC1 = new JLabel(iconCarlos1);
 	private static final JLabel NPC2 = new JLabel(iconCarlos2);
 	private static final JLabel NPC3 = new JLabel(iconCarlos3);
 	private static final JLabel NPC4 = new JLabel(iconCarlos4);
 	private static final JLabel NPC5 = new JLabel(iconCarlos5);
+	private static final JLabel NPC6 = new JLabel(iconCarlos6);
+	private static final JLabel NPC7 = new JLabel(iconCarlos7);
+	private static final JLabel NPC8 = new JLabel(iconCarlos8);
 
 	private JButton Weiter;
 	private JButton Skip;
@@ -60,6 +70,18 @@ public class Carlos {
 		NPC5.setBounds(0, -50, 200, 600);
 		NPC5.setVisible(false);
 		frame.add(NPC5);
+		
+		NPC6.setBounds(0, -50, 200, 600);
+		NPC6.setVisible(false);
+		frame.add(NPC6);
+		
+		NPC7.setBounds(0, -50, 200, 600);
+		NPC7.setVisible(false);
+		frame.add(NPC7);
+		
+		NPC8.setBounds(0, -50, 200, 600);
+		NPC8.setVisible(false);
+		frame.add(NPC8);
 
 		Weiter = new JButton("Weiter");
 		Weiter.setBounds(0, 500, 200, 30);
@@ -84,6 +106,15 @@ public class Carlos {
 					NPC4.setVisible(false);
 					NPC5.setVisible(true);
 				} else if (NPC5.isVisible()) {
+					NPC5.setVisible(false);
+					NPC6.setVisible(true);
+				} else if (NPC6.isVisible()) {
+					NPC6.setVisible(false);
+					NPC7.setVisible(true);
+				} else if (NPC7.isVisible()) {
+					NPC7.setVisible(false);
+					NPC8.setVisible(true);
+				}else if (NPC8.isVisible()) {
 					frame.dispose();
 				}
 			}
