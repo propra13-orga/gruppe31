@@ -20,6 +20,29 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon iconDrei = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/3.png");
 	
+	private static final Icon iconLebenVoll = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Lebenvoll.png");
+	private static final Icon iconLebenFast = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Lebenfast.png");
+	private static final Icon iconLebenHalb = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Lebenhalb.png");
+	private static final Icon iconLebenWenig = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Lebenwenig.png");
+	
+	private static final Icon iconManaVoll = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Manavoll.png");
+	private static final Icon iconManaHalb = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Manahalb.png");
+	private static final Icon iconManaLeer = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Manaleer.png");
+	
+	private static final Icon iconRuestungVoll = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Ruestungvoll.png");
+	private static final Icon iconRuestungHalb = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Ruestunghalb.png");
+	private static final Icon iconRuestungWeg = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Ruestungweg.png");
+	
 	private static final Icon icon0Gold = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Gold0.png");
 	private static final Icon icon50Gold = new ImageIcon(Konstanten.direction
@@ -39,10 +62,18 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	private static final Icon iconKeinEq = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/KeinEq.png");
-	private static final Icon iconKeineBrille = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/KeineBrille.png");
-	private static final Icon iconKeinBand = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/KeinBand.png");
+	private static final Icon iconSchwert = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/Schwert.png");
+	private static final Icon iconHals = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/Hals.png");
+	private static final Icon iconBrille = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Brille.png");
+	private static final Icon iconBrilleHals = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/BrilleHals.png");
+	private static final Icon iconBrilleSchwert = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/BrilleShwert.png");
+	private static final Icon iconSchwertHals = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/SchwertHals.png");
 	private static final Icon iconAllesEq = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/AllesEq.png");
 
@@ -57,6 +88,19 @@ public class GameFrame extends JFrame implements KeyListener {
 	private JLabel Zwei = new JLabel(iconZwei);
 	private JLabel Drei = new JLabel(iconDrei);
 	
+	private JLabel LebenVoll = new JLabel(iconLebenVoll);
+	private JLabel LebenFast = new JLabel(iconLebenFast);
+	private JLabel LebenHalb = new JLabel(iconLebenHalb);
+	private JLabel LebenWenig = new JLabel(iconLebenWenig);
+	
+	private JLabel ManaVoll = new JLabel(iconManaVoll);
+	private JLabel ManaHalb = new JLabel(iconManaHalb);
+	private JLabel ManaLeer = new JLabel(iconManaLeer);
+	
+	private JLabel RuestungVoll = new JLabel(iconRuestungVoll);
+	private JLabel RuestungHalb = new JLabel(iconRuestungHalb);
+	private JLabel RuestungWeg = new JLabel(iconRuestungWeg);
+	
 	private JLabel Gold0 = new JLabel(icon0Gold);
 	private JLabel Gold50 = new JLabel(icon50Gold);
 	private JLabel Gold100 = new JLabel(icon100Gold);
@@ -67,8 +111,12 @@ public class GameFrame extends JFrame implements KeyListener {
 	private JLabel Gold350 = new JLabel(icon350Gold);
 
 	private JLabel KeinEq = new JLabel(iconKeinEq);
-	private JLabel KeineBrille = new JLabel(iconKeineBrille);
-	private JLabel KeinBand = new JLabel(iconKeinBand);
+	private JLabel Schwert = new JLabel(iconSchwert);
+	private JLabel Brille = new JLabel(iconBrille);
+	private JLabel Hals = new JLabel(iconHals);
+	private JLabel SchwertHals = new JLabel(iconSchwertHals);
+	private JLabel BrilleSchwert = new JLabel(iconBrilleSchwert);
+	private JLabel BrilleHals = new JLabel(iconBrilleHals);
 	private JLabel AllesEq = new JLabel(iconAllesEq);
 
 	private JLabel Herz1 = new JLabel(iconHerz1);
@@ -144,6 +192,9 @@ public class GameFrame extends JFrame implements KeyListener {
 	/* hier arbeitet Marcel */
 	public void setzeAnzeige() {
 		Leiste.add(Eins);
+		Leiste.add(LebenVoll);
+		Leiste.add(ManaVoll);
+		Leiste.add(RuestungVoll);
 		Leiste.add(Gold0);
 		Leiste.add(KeinEq);
 		Leiste.add(Herz1);
