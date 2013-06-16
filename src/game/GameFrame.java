@@ -71,7 +71,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon iconBrilleHals = new ImageIcon(
 			Konstanten.direction + "/src/game/Images/BrilleHals.png");
 	private static final Icon iconBrilleSchwert = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/BrilleShwert.png");
+			Konstanten.direction + "/src/game/Images/BrilleSchwert.png");
 	private static final Icon iconSchwertHals = new ImageIcon(
 			Konstanten.direction + "/src/game/Images/SchwertHals.png");
 	private static final Icon iconAllesEq = new ImageIcon(Konstanten.direction
