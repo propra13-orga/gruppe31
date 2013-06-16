@@ -170,7 +170,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	public GameFrame() throws Exception {
 		this.setResizable(true);
 		this.setTitle("Erna's Adventure");
-		this.setSize(810, 700);
+		this.setSize(900, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setFocusable(true);
@@ -225,6 +225,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (level == 8) {
 			Leiste.add(Drei);
 		}
+		Aktualisieren();
 
 		/* für die Healthanzeige */
 		if (health == 100) {
@@ -236,6 +237,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (health == 25) {
 			Leiste.add(LebenWenig);
 		}
+		Aktualisieren();
 
 		/* für die Manaanzeige */
 		if (mana == 2) {
@@ -253,6 +255,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (ruestung == 0) {
 			Leiste.add(RuestungWeg);
 		}
+		Aktualisieren();
 
 		/* für die Goldanzeige */
 		if (gold == 0) {
@@ -272,6 +275,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (gold == 350) {
 			Leiste.add(Gold350);
 		}
+		Aktualisieren();
 
 		if (bewaffnet == 0) {
 			if (beschwertet == 0) {
@@ -302,6 +306,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				}
 			}
 		}
+		Aktualisieren();
 
 		/* für die Lebenanzeige */
 		if (leben == 3) {
@@ -311,7 +316,6 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (leben == 1) {
 			Leiste.add(Herz1);
 		}
-
 		Aktualisieren();
 	}
 
@@ -521,8 +525,12 @@ public class GameFrame extends JFrame implements KeyListener {
 			/* zieht mir health ab */
 			if (ruestung > 0) {
 				ruestung = ruestung - 25;
+				if (ruestung == 0) {
+					halsband = 0;
+				}
 			} else if (ruestung == 0) {
 				health = health - 25;
+				halsband = 0;
 			}
 			/* wenn meine health <= 0 rufe Checkpoint auf */
 			if (health <= 0) {
@@ -796,7 +804,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			/* Abfrage für ich laufe auf SCHWERT */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.SCHWERT) {
 			beschwertet = 1;
-			System.out.print(beschwertet);
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
