@@ -7,16 +7,17 @@ externe Textdateien
 Carlos erklärt die Welt (NPC) 
 Aufteilung in 3 Level á 3 Räume
 bewegliche Gegner
+weitere Waffe
+Checkpoints
 
 komplett ausstehend:
-Anzeige
-weitere Waffe
+Anordnung der Anzeige
 
 teilweise ausstehend:
 Design
 Shop
 Zauber
-Checkpoints
+Gegner Waffe + Zauber !!!
 
 
 
