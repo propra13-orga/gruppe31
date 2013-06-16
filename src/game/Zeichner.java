@@ -16,8 +16,6 @@ public class Zeichner extends Canvas {
 			+ "/src/game/Images/Rasen1.jpg");
 	private static final Icon iconBaum1 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Baum1.jpg");
-	private static final Icon iconBaum2 = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Baum2.jpg");
 	private static final Icon iconPudel = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Pudel1.jpg");
 	private static final Icon iconGegner = new ImageIcon(Konstanten.direction
@@ -44,10 +42,6 @@ public class Zeichner extends Canvas {
 			+ "/src/game/Images/Boss3mitte.png");
 	private static final Icon iconBoss3w = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Boss3wenig.png");	
-	private static final Icon iconBoss2 = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Boss2voll.png");
-	private static final Icon iconBoss3 = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Boss3voll.png");
 	private static final Icon iconZurueck = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Zurueck1.jpg");
 	private static final Icon iconCarlos = new ImageIcon(Konstanten.direction
@@ -74,6 +68,8 @@ public class Zeichner extends Canvas {
 			+ "/src/game/Images/Gegnertot1.png");
 	private static final Icon iconCheckpoint = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Save.png");
+	private static final Icon iconSchwert = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Schwertrasen.png");
 
 	Integer[][] Spielfeld;
 
@@ -153,6 +149,9 @@ public class Zeichner extends Canvas {
 				break;
 			case Konstanten.MANA:
 				icon = iconMana;
+				break;
+			case Konstanten.SCHWERT:
+				icon = iconSchwert;
 				break;
 			case Konstanten.RUESTUNG:
 				icon = iconRuestung;

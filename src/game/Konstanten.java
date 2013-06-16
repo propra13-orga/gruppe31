@@ -32,4 +32,5 @@ public final class Konstanten {
 	public static final int LASER = (int) 'L';
 	public static final int GEGNERTOT = (int) 'T';
 	public static final int CHECKPOINT = (int) 'D';
+	public static final int SCHWERT = (int) 'ß';
 }
