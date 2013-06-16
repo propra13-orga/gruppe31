@@ -497,9 +497,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				setzeAnzeige();
 			} else if (ruestung == 0){
 			health = health - 25;
-			setzeAnzeige();
 			}
-			setzeAnzeige();
 			/* wenn meine health+rüstung <= 0 rufe Checkpoint auf */
 			if (health + ruestung <= 0) {
 				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
@@ -535,7 +533,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			} else if (ruestung == 0){
 			health = health - 25;
 			}
-			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
 				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
@@ -553,7 +550,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			} else if (ruestung == 0){
 			health = health - 25;
 			}
-			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
 				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
@@ -571,7 +567,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			} else if (ruestung == 0){
 			health = health - 25;
 			}
-			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
 				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
@@ -593,7 +588,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			} else if (ruestung == 0){
 			health = health - 50;
 			}
-			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
 				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
@@ -613,7 +607,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			} else if (ruestung == 0){
 			health = health - 50;
 			}
-			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
 				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
@@ -633,7 +626,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			} else if (ruestung == 0){
 			health = health - 50;
 			}
-			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
 				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
@@ -655,7 +647,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			} else if (ruestung == 0){
 			health = health - 100;
 			}
-			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
 				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
@@ -675,7 +666,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			} else if (ruestung == 0){
 			health = health - 100;
 			}
-			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
 				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
@@ -695,7 +685,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			} else if (ruestung == 0){
 			health = health - 100;
 			}
-			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
 				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
@@ -762,7 +751,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			/* Abfrage für ich laufe auf RUESTUNG */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.RUESTUNG) {
 			ruestung = 50;
-			setzeAnzeige();
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
@@ -770,7 +758,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			/* Abfrage für ich laufe auf HEALTH */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.HEALTH) {
 			health = 100;
-			setzeAnzeige();
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
@@ -778,7 +765,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			/* Abfrage für ich laufe auf WAFFE */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.WAFFE) {
 			bewaffnet = 1;
-			setzeAnzeige();
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
@@ -787,7 +773,6 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.SCHWERT) {
 			beschwertet = 1;
 			System.out.print(beschwertet);
-			setzeAnzeige();
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
@@ -963,6 +948,8 @@ public class GameFrame extends JFrame implements KeyListener {
 							}
 
 					}
+					
+					setzeAnzeige();
 				}
 				
 				/* Abfragen für die Steuerungstaste */
