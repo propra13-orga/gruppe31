@@ -477,6 +477,11 @@ public class GameFrame extends JFrame implements KeyListener {
 				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
 				Gegnerx = altGegx;
 				Gegnery = altGegy;
+			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.MANA) {
+				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.MANA;
+				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+				Gegnerx = altGegx;
+				Gegnery = altGegy;
 			}
 
 			/* wenn Gegner ko ungleich 0, tue nichts */
