@@ -75,7 +75,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon iconSchwertHals = new ImageIcon(
 			Konstanten.direction + "/src/game/Images/SchwertHals.png");
 	private static final Icon iconAllesEq = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/AllesEq.png");
+			+ "/src/game/Images/Eqalles.png");
 
 	private static final Icon iconHerz1 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Herz1.png");
@@ -146,13 +146,17 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	public int bewaffnet = 0;
 	public int beschwertet = 0;
+	public int halsband = 0;
+
 	public int gold = 0;
 	public int health = 100;
 	public int ruestung = 0;
 	public int mana = 0;
+
+	public int leben = 3;
+
 	public int ko = 0;
 	public int bosshealth = 100;
-	public int leben = 3;
 	public int save = 0;
 
 	/**
@@ -237,19 +241,18 @@ public class GameFrame extends JFrame implements KeyListener {
 		if (mana == 2) {
 			Leiste.add(ManaVoll);
 		} else if (mana == 1) {
-			Leiste.add(ManaHalb);  
+			Leiste.add(ManaHalb);
 		} else if (mana == 0) {
-			Leiste.add(ManaLeer); 
+			Leiste.add(ManaLeer);
 		}
-		
+
 		if (ruestung == 50) {
 			Leiste.add(RuestungVoll);
 		} else if (ruestung == 25) {
-			Leiste.add(RuestungHalb); 
+			Leiste.add(RuestungHalb);
 		} else if (ruestung == 0) {
-			Leiste.add(RuestungWeg); 
+			Leiste.add(RuestungWeg);
 		}
-		
 
 		/* für die Goldanzeige */
 		if (gold == 0) {
@@ -271,9 +274,33 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 
 		if (bewaffnet == 0) {
-			Leiste.add(KeinEq);
+			if (beschwertet == 0) {
+				if (halsband == 0) {
+					Leiste.add(KeinEq);
+				} else if (halsband == 1) {
+					Leiste.add(Hals);
+				}
+			} else if (beschwertet == 1) {
+				if (halsband == 0) {
+					Leiste.add(Schwert);
+				} else if (halsband == 1) {
+					Leiste.add(SchwertHals);
+				}
+			}
 		} else if (bewaffnet == 1) {
-			Leiste.add(Brille);
+			if (beschwertet == 0) {
+				if (halsband == 0) {
+					Leiste.add(Brille);
+				} else if (halsband == 1) {
+					Leiste.add(BrilleHals);
+				}
+			} else if (beschwertet == 1) {
+				if (halsband == 0) {
+					Leiste.add(BrilleSchwert);
+				} else if (halsband == 1) {
+					Leiste.add(AllesEq);
+				}
+			}
 		}
 
 		/* für die Lebenanzeige */
@@ -492,25 +519,23 @@ public class GameFrame extends JFrame implements KeyListener {
 		/* Abfragen für ich laufe auf GEGNER */
 		if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNER) {
 			/* zieht mir health ab */
-			if (ruestung > 0){
+			if (ruestung > 0) {
 				ruestung = ruestung - 25;
-				setzeAnzeige();
-			} else if (ruestung == 0){
-			health = health - 25;
+			} else if (ruestung == 0) {
+				health = health - 25;
 			}
-			/* wenn meine health+rüstung <= 0 rufe Checkpoint auf */
-			if (health + ruestung <= 0) {
+			/* wenn meine health <= 0 rufe Checkpoint auf */
+			if (health <= 0) {
 				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 				aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
 				leben = leben - 1;
 				Checkpoint();
 				/* ansonsten bleibt die Spielfigur (verletzt) auf seinem Feld */
-			} else if (health + ruestung > 0) {
+			} else if (health > 0) {
 				aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 				aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.GEGNER;
 				Spielfigurx = altx;
 				Spielfigury = alty;
-
 			}
 		}
 
@@ -528,10 +553,10 @@ public class GameFrame extends JFrame implements KeyListener {
 
 			/* Abfrage für ich laufe auf BOSS1 */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS1v) {
-			if (ruestung > 0){
+			if (ruestung > 0) {
 				ruestung = ruestung - 25;
-			} else if (ruestung == 0){
-			health = health - 25;
+			} else if (ruestung == 0) {
+				health = health - 25;
 			}
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -545,10 +570,10 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigury = alty;
 			}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS1m) {
-			if (ruestung > 0){
+			if (ruestung > 0) {
 				ruestung = ruestung - 25;
-			} else if (ruestung == 0){
-			health = health - 25;
+			} else if (ruestung == 0) {
+				health = health - 25;
 			}
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -562,10 +587,10 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigury = alty;
 			}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS1w) {
-			if (ruestung > 0){
+			if (ruestung > 0) {
 				ruestung = ruestung - 25;
-			} else if (ruestung == 0){
-			health = health - 25;
+			} else if (ruestung == 0) {
+				health = health - 25;
 			}
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -581,12 +606,12 @@ public class GameFrame extends JFrame implements KeyListener {
 
 			/* Abfrage für ich laufe gegen BOSS2 */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS2v) {
-			if (ruestung > 0){
+			if (ruestung > 0) {
 				ruestung = 50 - ruestung;
 				health = health - ruestung;
 				ruestung = 0;
-			} else if (ruestung == 0){
-			health = health - 50;
+			} else if (ruestung == 0) {
+				health = health - 50;
 			}
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -600,12 +625,12 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigury = alty;
 			}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS2m) {
-			if (ruestung > 0){
+			if (ruestung > 0) {
 				ruestung = 50 - ruestung;
 				health = health - ruestung;
 				ruestung = 0;
-			} else if (ruestung == 0){
-			health = health - 50;
+			} else if (ruestung == 0) {
+				health = health - 50;
 			}
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -619,12 +644,12 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigury = alty;
 			}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS2w) {
-			if (ruestung > 0){
+			if (ruestung > 0) {
 				ruestung = 50 - ruestung;
 				health = health - ruestung;
 				ruestung = 0;
-			} else if (ruestung == 0){
-			health = health - 50;
+			} else if (ruestung == 0) {
+				health = health - 50;
 			}
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -640,12 +665,12 @@ public class GameFrame extends JFrame implements KeyListener {
 
 			/* Abfrage für ich laufe gegen BOSS3 */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS3v) {
-			if (ruestung > 0){
+			if (ruestung > 0) {
 				ruestung = 100 - ruestung;
 				health = health - ruestung;
 				ruestung = 0;
-			} else if (ruestung == 0){
-			health = health - 100;
+			} else if (ruestung == 0) {
+				health = health - 100;
 			}
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -659,12 +684,12 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigury = alty;
 			}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS3m) {
-			if (ruestung > 0){
+			if (ruestung > 0) {
 				ruestung = 100 - ruestung;
 				health = health - ruestung;
 				ruestung = 0;
-			} else if (ruestung == 0){
-			health = health - 100;
+			} else if (ruestung == 0) {
+				health = health - 100;
 			}
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -678,12 +703,12 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigury = alty;
 			}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS3w) {
-			if (ruestung > 0){
+			if (ruestung > 0) {
 				ruestung = 100 - ruestung;
 				health = health - ruestung;
 				ruestung = 0;
-			} else if (ruestung == 0){
-			health = health - 100;
+			} else if (ruestung == 0) {
+				health = health - 100;
 			}
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -735,7 +760,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			/* ABfrage für ich laufe auf GOLD */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GOLD) {
 			gold = gold + 50;
-			setzeAnzeige();
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
@@ -743,7 +767,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			/* Abfrage für ich laufe auf MANA */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.MANA) {
 			mana = 2;
-			setzeAnzeige();
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
@@ -751,6 +774,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			/* Abfrage für ich laufe auf RUESTUNG */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.RUESTUNG) {
 			ruestung = 50;
+			halsband = 1;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
@@ -776,9 +800,9 @@ public class GameFrame extends JFrame implements KeyListener {
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-			
+
 			/* Abfrage für ich laufe auf GEGNERTOT */
-		}  else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNERTOT) {
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNERTOT) {
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
@@ -894,80 +918,77 @@ public class GameFrame extends JFrame implements KeyListener {
 					}
 				}
 			}
-				
-				
-			}if (e.getKeyCode() == KeyEvent.VK_X) {
-					locx = Spielfigurx;
-					/* wenn Erna nicht beschwertet, dann kein Ereignis */
-					if (beschwertet == 0) {
-						// nothing to do here
 
-						/* wenn Erna beschwertet */
-					} else if (beschwertet == 1) {
-						locx++;
-							if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.GEGNER) {
-								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.GEGNERTOT;
-								zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-								ko = 1;
-								/* wenn dort BOSS1 ziehe bosshealth ab */
-							} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1v) {
-								bosshealth = bosshealth - 34;
-								/* wenn bosshealth erschöpft, setze dort RASEN */
-								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS1m;
-								zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-							} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1m) {
-								bosshealth = bosshealth - 34;
-								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS1w;
-								zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-							} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1w) {
-								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
-							} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS2v) {
-								bosshealth = bosshealth - 34;
-								/* wenn bosshealth erschöpft, setze dort RASEN */
-								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS2m;
-								zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-							} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS2m) {
-								bosshealth = bosshealth - 34;
-								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS2w;
-								zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-							} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS2w) {
-								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
-							} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS3v) {
-								bosshealth = bosshealth - 34;
-								/* wenn bosshealth erschöpft, setze dort RASEN */
-								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS3m;
-								zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-							} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS3m) {
-								bosshealth = bosshealth - 34;
-								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS3w;
-								zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-							} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS3w) {
-								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
-							} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.RASEN) {
-								aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
-							}
+		}
+		if (e.getKeyCode() == KeyEvent.VK_X) {
+			locx = Spielfigurx;
+			/* wenn Erna nicht beschwertet, dann kein Ereignis */
+			if (beschwertet == 0) {
+				// nothing to do here
 
-					}
-					
-					setzeAnzeige();
+				/* wenn Erna beschwertet */
+			} else if (beschwertet == 1) {
+				locx++;
+				if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.GEGNER) {
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.GEGNERTOT;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+					ko = 1;
+					/* wenn dort BOSS1 ziehe bosshealth ab */
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1v) {
+					bosshealth = bosshealth - 34;
+					/* wenn bosshealth erschöpft, setze dort RASEN */
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS1m;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1m) {
+					bosshealth = bosshealth - 34;
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS1w;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1w) {
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS2v) {
+					bosshealth = bosshealth - 34;
+					/* wenn bosshealth erschöpft, setze dort RASEN */
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS2m;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS2m) {
+					bosshealth = bosshealth - 34;
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS2w;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS2w) {
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS3v) {
+					bosshealth = bosshealth - 34;
+					/* wenn bosshealth erschöpft, setze dort RASEN */
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS3m;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS3m) {
+					bosshealth = bosshealth - 34;
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS3w;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS3w) {
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.RASEN) {
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
 				}
-				
-				/* Abfragen für die Steuerungstaste */
-				if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
-					if (mana == 0) {
-						// nothing to do here
 
-						/*
-						 * wenn mana = 1, gib Erna ihre RayBan und pflege sie
-						 * gesund
-						 */
-					} else if (mana >= 1) {
-						bewaffnet = 1;
-						health = 100;
-					}
-				}
-				setzeAnzeige();
 			}
+		}
+
+		/* Abfragen für die Steuerungstaste */
+		if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+			if (mana == 0) {
+				// nothing to do here
+
+				/*
+				 * wenn mana = 1, gib Erna ihre RayBan und pflege sie gesund
+				 */
+			} else if (mana >= 1) {
+				bewaffnet = 1;
+				health = 100;
+			}
+		}
+		setzeAnzeige();
+	}
 
 	public void keyReleased(KeyEvent e) {
 		// nothing to do here
