@@ -54,6 +54,18 @@ public class Zeichner extends Canvas {
 			+ "/src/game/Images/Waffe1.png");
 	private static final Icon iconAggroErna = new ImageIcon(
 			Konstanten.direction + "/src/game/Images/PudelWaffe1.png");
+	private static final Icon iconSchwertErna = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/PudelSchwert.png");
+	private static final Icon iconTerminatorErna = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/PudelAllesan.png");
+	private static final Icon iconPudelBeides = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/PudelBeides.png");
+	private static final Icon iconVollErna = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/PudelBrilleSchwert.png");
+	private static final Icon iconPudelHalsband = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/PudelHalsband.png");
+	private static final Icon iconPudelSchwertHals = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/Pudelschwerthals.png");
 	private static final Icon iconGold = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Gold1.png");
 	private static final Icon iconMana = new ImageIcon(Konstanten.direction
@@ -61,7 +73,7 @@ public class Zeichner extends Canvas {
 	private static final Icon iconHealth = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Heiltrank1.png");
 	private static final Icon iconRuestung = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Ruestung1.png");
+			+ "/src/game/Images/HalsbandRasen.png");
 	private static final Icon iconLaser = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Laser1.png");
 	private static final Icon iconGegnertot = new ImageIcon(Konstanten.direction
@@ -70,6 +82,7 @@ public class Zeichner extends Canvas {
 			+ "/src/game/Images/Save.png");
 	private static final Icon iconSchwert = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Schwertrasen.png");
+
 
 	Integer[][] Spielfeld;
 
@@ -102,6 +115,34 @@ public class Zeichner extends Canvas {
 			case Konstanten.WEITER:
 				icon = iconWeiter;
 				break;
+				/* So würde es aussehen, wenn die Variablen hier wären
+			case Konstanten.BOSS1:
+				if (bosshealth == 100){
+					icon = iconBoss1v;
+				}else if (bosshealth == 66){
+					icon = iconBoss1m;
+				}else if (bosshealth == 32){
+					icon = iconBoss1w;
+				}
+			break;
+			case Konstanten.BOSS2:
+				if (bosshealth == 100){
+					icon = iconBoss2v;
+				}else if (bosshealth == 66){
+					icon = iconBoss2m;
+				}else if (bosshealth == 32){
+					icon = iconBoss2w;
+				}
+			break;
+			case Konstanten.BOSS1:
+				if (bosshealth == 100){
+					icon = iconBoss3v;
+				}else if (bosshealth == 66){
+					icon = iconBoss3m;
+				}else if (bosshealth == 32){
+					icon = iconBoss3w;
+				}
+			break;*/
 			case Konstanten.BOSS1v:
 				icon = iconBoss1v;
 				break;
@@ -168,6 +209,45 @@ public class Zeichner extends Canvas {
 			case Konstanten.CHECKPOINT:
 				icon = iconCheckpoint;
 				break;
+				/* So würde es aussehen, wenn die Variablen hier wären
+			case Konstanten.PUDEL:
+				if (bewaffnet == 1){
+					if (beschwertet == 1){
+						if (ruestung > 0){
+							icon = iconTerminatorErna;
+							}
+						else if (ruestung <= 0){
+							icon = iconVollErna;
+							}
+					else if (beschwertet == 0){
+						if (ruestung > 0){
+							icon = iconTerminatorErna;
+							}
+						else if (ruestung <= 0){
+							icon = iconAggroErna;
+							}
+					}
+				else if (bewaffnet == 0){
+					if (beschwertet == 1){
+						if (ruestung > 0){
+							icon = iconPudelSchwertHals;
+							}
+						else if (ruestung <= 0){
+							icon = iconSchwertErna;
+							}
+					else if (beschwertet == 0){
+						if (ruestung > 0){
+							icon = iconPudelHalsband;
+							}
+						else if (ruestung <= 0){
+							icon = iconPudel;
+							}
+					}
+			default:
+				icon = iconPudel;
+				break;
+			}
+				 */
 			case Konstanten.PUDEL:
 				icon = iconPudel;
 				break;
