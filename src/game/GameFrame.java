@@ -234,13 +234,22 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 
 		/* für die Manaanzeige */
-		if (mana == 1) {
+		if (mana == 2) {
 			Leiste.add(ManaVoll);
+		} else if (mana == 1) {
+			Leiste.add(ManaHalb);  
 		} else if (mana == 0) {
-			Leiste.add(ManaHalb);  // durch ManaLeer ersetzen, sobald Grafik vorhanden !
+			Leiste.add(ManaLeer); 
 		}
 		
-		Leiste.add(RuestungVoll);
+		if (ruestung == 50) {
+			Leiste.add(RuestungVoll);
+		} else if (ruestung == 25) {
+			Leiste.add(RuestungHalb); 
+		} else if (ruestung == 0) {
+			Leiste.add(RuestungWeg); 
+		}
+		
 
 		/* für die Goldanzeige */
 		if (gold == 0) {
@@ -478,7 +487,13 @@ public class GameFrame extends JFrame implements KeyListener {
 		/* Abfragen für ich laufe auf GEGNER */
 		if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNER) {
 			/* zieht mir health ab */
+			if (ruestung > 0){
+				ruestung = ruestung - 25;
+				setzeAnzeige();
+			} else if (ruestung == 0){
 			health = health - 25;
+			setzeAnzeige();
+			}
 			setzeAnzeige();
 			/* wenn meine health+rüstung <= 0 rufe Checkpoint auf */
 			if (health + ruestung <= 0) {
@@ -510,7 +525,11 @@ public class GameFrame extends JFrame implements KeyListener {
 
 			/* Abfrage für ich laufe auf BOSS1 */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS1v) {
+			if (ruestung > 0){
+				ruestung = ruestung - 25;
+			} else if (ruestung == 0){
 			health = health - 25;
+			}
 			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -524,7 +543,11 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigury = alty;
 			}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS1m) {
+			if (ruestung > 0){
+				ruestung = ruestung - 25;
+			} else if (ruestung == 0){
 			health = health - 25;
+			}
 			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -538,7 +561,11 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigury = alty;
 			}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS1w) {
+			if (ruestung > 0){
+				ruestung = ruestung - 25;
+			} else if (ruestung == 0){
 			health = health - 25;
+			}
 			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -554,7 +581,13 @@ public class GameFrame extends JFrame implements KeyListener {
 
 			/* Abfrage für ich laufe gegen BOSS2 */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS2v) {
+			if (ruestung > 0){
+				ruestung = 50 - ruestung;
+				health = health - ruestung;
+				ruestung = 0;
+			} else if (ruestung == 0){
 			health = health - 50;
+			}
 			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -568,7 +601,13 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigury = alty;
 			}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS2m) {
+			if (ruestung > 0){
+				ruestung = 50 - ruestung;
+				health = health - ruestung;
+				ruestung = 0;
+			} else if (ruestung == 0){
 			health = health - 50;
+			}
 			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -582,7 +621,13 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigury = alty;
 			}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS2w) {
+			if (ruestung > 0){
+				ruestung = 50 - ruestung;
+				health = health - ruestung;
+				ruestung = 0;
+			} else if (ruestung == 0){
 			health = health - 50;
+			}
 			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -598,7 +643,13 @@ public class GameFrame extends JFrame implements KeyListener {
 
 			/* Abfrage für ich laufe gegen BOSS3 */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS3v) {
+			if (ruestung > 0){
+				ruestung = 100 - ruestung;
+				health = health - ruestung;
+				ruestung = 0;
+			} else if (ruestung == 0){
 			health = health - 100;
+			}
 			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -612,7 +663,13 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigury = alty;
 			}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS3m) {
+			if (ruestung > 0){
+				ruestung = 100 - ruestung;
+				health = health - ruestung;
+				ruestung = 0;
+			} else if (ruestung == 0){
 			health = health - 100;
+			}
 			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -626,7 +683,13 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigury = alty;
 			}
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOSS3w) {
+			if (ruestung > 0){
+				ruestung = 100 - ruestung;
+				health = health - ruestung;
+				ruestung = 0;
+			} else if (ruestung == 0){
 			health = health - 100;
+			}
 			setzeAnzeige();
 			if (health + ruestung <= 0) {
 				leben = leben - 1;
@@ -685,7 +748,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 			/* Abfrage für ich laufe auf MANA */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.MANA) {
-			mana = 1;
+			mana = 2;
 			setzeAnzeige();
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
@@ -906,9 +969,9 @@ public class GameFrame extends JFrame implements KeyListener {
 						 * wenn mana = 1, gib Erna ihre RayBan und pflege sie
 						 * gesund
 						 */
-					} else if (mana == 1) {
+					} else if (mana >= 1) {
 						bewaffnet = 1;
-						health = 200;
+						health = 100;
 					}
 				}
 				setzeAnzeige();
