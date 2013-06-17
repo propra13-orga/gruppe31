@@ -440,6 +440,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		int altGegx = Gegnerx;
 		int altGegy = Gegnery;
 		int locx = Spielfigurx;
+		int locy = Spielfigury;
 
 		/* Abfragen für die Pfeiltasten */
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -991,6 +992,134 @@ public class GameFrame extends JFrame implements KeyListener {
 					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
 				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.RASEN) {
 					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+				}
+				locx=Spielfigurx;
+				locx--;
+				if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.GEGNER) {
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.GEGNERTOT;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+					ko = 1;
+					/* wenn dort BOSS1 ziehe bosshealth ab */
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1v) {
+					bosshealth = bosshealth - 34;
+					/* wenn bosshealth erschöpft, setze dort RASEN */
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS1m;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1m) {
+					bosshealth = bosshealth - 34;
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS1w;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1w) {
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS2v) {
+					bosshealth = bosshealth - 34;
+					/* wenn bosshealth erschöpft, setze dort RASEN */
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS2m;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS2m) {
+					bosshealth = bosshealth - 34;
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS2w;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS2w) {
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS3v) {
+					bosshealth = bosshealth - 34;
+					/* wenn bosshealth erschöpft, setze dort RASEN */
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS3m;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS3m) {
+					bosshealth = bosshealth - 34;
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.BOSS3w;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS3w) {
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.RASEN) {
+					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+				}
+				locy++;
+				if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.GEGNER) {
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.GEGNERTOT;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+					ko = 1;
+					/* wenn dort BOSS1 ziehe bosshealth ab */
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS1v) {
+					bosshealth = bosshealth - 34;
+					/* wenn bosshealth erschöpft, setze dort RASEN */
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.BOSS1m;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1m) {
+					bosshealth = bosshealth - 34;
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.BOSS1w;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS1w) {
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.RASEN;
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS2v) {
+					bosshealth = bosshealth - 34;
+					/* wenn bosshealth erschöpft, setze dort RASEN */
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.BOSS2m;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS2m) {
+					bosshealth = bosshealth - 34;
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.BOSS2w;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS2w) {
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.RASEN;
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS3v) {
+					bosshealth = bosshealth - 34;
+					/* wenn bosshealth erschöpft, setze dort RASEN */
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.BOSS3m;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS3m) {
+					bosshealth = bosshealth - 34;
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.BOSS3w;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS3w) {
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.RASEN;
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.RASEN) {
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.RASEN;
+				}
+				locy = Spielfigury;
+				locy--;
+				if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.GEGNER) {
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.GEGNERTOT;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+					ko = 1;
+					/* wenn dort BOSS1 ziehe bosshealth ab */
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS1v) {
+					bosshealth = bosshealth - 34;
+					/* wenn bosshealth erschöpft, setze dort RASEN */
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.BOSS1m;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.BOSS1m) {
+					bosshealth = bosshealth - 34;
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.BOSS1w;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS1w) {
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.RASEN;
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS2v) {
+					bosshealth = bosshealth - 34;
+					/* wenn bosshealth erschöpft, setze dort RASEN */
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.BOSS2m;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS2m) {
+					bosshealth = bosshealth - 34;
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.BOSS2w;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS2w) {
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.RASEN;
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS3v) {
+					bosshealth = bosshealth - 34;
+					/* wenn bosshealth erschöpft, setze dort RASEN */
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.BOSS3m;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS3m) {
+					bosshealth = bosshealth - 34;
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.BOSS3w;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.BOSS3w) {
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.RASEN;
+				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.RASEN) {
+					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.RASEN;
 				}
 
 			}
