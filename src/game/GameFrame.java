@@ -144,6 +144,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private int checkx;
 	private int checky;
 	private int level;
+	public int zaehler = 1;
 
 	public int bewaffnet = 0;
 	public int beschwertet = 0;
@@ -618,6 +619,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 			/* Abfrage für ich laufe auf WEITER */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.WEITER) {
+			zaehler = zaehler + 1;
 			levelManager.LevelWeiter();
 			bosshealth = 100;
 			ko = 0;
@@ -1187,10 +1189,16 @@ public class GameFrame extends JFrame implements KeyListener {
 				 * Boss nimmt ihr ihre Laser Ray Ban
 				 */
 			} else if (mana >= 1) {
-				beschwertet = 1;
-				bewaffnet = 0;
-				health = 100;
-				mana = mana - 1;
+				if (zaehler == 3 || zaehler == 6 || zaehler == 9){
+					bewaffnet = 0;
+					beschwertet = 1;
+					health = 100;
+					mana = mana - 1;
+				} else {
+					beschwertet = 1;
+					health = 100;
+					mana = mana - 1;
+				}
 				zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 			}
 		}
