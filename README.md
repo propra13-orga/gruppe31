@@ -9,15 +9,18 @@ Aufteilung in 3 Level á 3 Räume
 bewegliche Gegner
 weitere Waffe
 Checkpoints
+Design
+Zauber
 
-komplett ausstehend:
+ausstehend:
 Anordnung der Anzeige
 
 teilweise ausstehend:
 Design
+
+[abhängig nur von den Variablen]
 Shop
-Zauber
-Gegner Waffe + Zauber !!!
+Gegner Waffe+Zauber
 
 
 
