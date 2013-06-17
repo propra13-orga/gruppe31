@@ -14,6 +14,8 @@ public class Zeichner extends Canvas {
 
 	private static final Icon iconRasen = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Rasen1.jpg");
+	private static final Icon iconBombe = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Peng.png");
 	private static final Icon iconBaum1 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Baum1.jpg");
 	private static final Icon iconPudel = new ImageIcon(Konstanten.direction
@@ -115,6 +117,9 @@ public class Zeichner extends Canvas {
 				break;
 			case Konstanten.FALLE:
 				icon = iconFalle;
+				break;
+			case Konstanten.BOMBE:
+				icon = iconBombe;
 				break;
 			case Konstanten.WEITER:
 				icon = iconWeiter;

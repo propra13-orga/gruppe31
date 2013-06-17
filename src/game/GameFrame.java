@@ -144,8 +144,9 @@ public class GameFrame extends JFrame implements KeyListener {
 	private int checkx;
 	private int checky;
 	private int level;
-	public int zaehler = 1;
-
+	
+	public int zaehlerlevel = 1;
+	public int zaehlerbombe = 0;
 	public int bewaffnet = 0;
 	public int beschwertet = 0;
 	public int halsband = 0;
@@ -156,6 +157,8 @@ public class GameFrame extends JFrame implements KeyListener {
 	public int mana = 0;
 
 	public int leben = 3;
+	public int bombex;
+	public int bombey;
 
 	public int ko = 0;
 	public int bosshealth = 100;
@@ -372,6 +375,11 @@ public class GameFrame extends JFrame implements KeyListener {
 		level = levelManager.getlevel();
 	}
 
+	public static int Random(int low, int high) {
+		high++;
+		return (int) (Math.random() * (high - low) + low);
+	}
+	
 	/**
 	 * hier wird ein neues Fenster mit dem Spielausgang Gewonnen aufgerufen
 	 */
@@ -574,6 +582,11 @@ public class GameFrame extends JFrame implements KeyListener {
 				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
 				Gegnerx = altGegx;
 				Gegnery = altGegy;
+			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOMBE) {
+				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOMBE;
+				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+				Gegnerx = altGegx;
+				Gegnery = altGegy;
 			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.CHECKPOINT) {
 				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.CHECKPOINT;
 				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
@@ -611,6 +624,28 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigurx = altx;
 				Spielfigury = alty;
 			}
+		}else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOMBE) {
+			/* zieht mir health ab */
+			if (ruestung > 0) {
+				ruestung = ruestung - 25;
+				if (ruestung == 0) {
+					halsband = 0;
+				}
+			} else if (ruestung == 0) {
+				health = health - 25;
+				halsband = 0;
+			}
+			/* wenn meine health <= 0 rufe Checkpoint auf */
+			if (health <= 0) {
+				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+				aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
+				leben = leben - 1;
+				Checkpoint();
+				/* ansonsten bleibt die Spielfigur (verletzt) auf seinem Feld */
+			} else if (health > 0) {
+				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
+			}
 		}
 
 		/* Abfrage für ich laufe auf FALLE */
@@ -619,7 +654,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 			/* Abfrage für ich laufe auf WEITER */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.WEITER) {
-			zaehler = zaehler + 1;
+			zaehlerlevel = zaehlerlevel + 1;
 			levelManager.LevelWeiter();
 			bosshealth = 100;
 			ko = 0;
@@ -998,6 +1033,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 		if (e.getKeyCode() == KeyEvent.VK_X) {
 			locx = Spielfigurx;
+			locy = Spielfigury;
 			/* wenn Erna nicht beschwertet, dann kein Ereignis */
 			if (beschwertet == 0) {
 				// nothing to do here
@@ -1045,6 +1081,8 @@ public class GameFrame extends JFrame implements KeyListener {
 					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
 				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.RASEN) {
 					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+				}else{
+					//nothing to do here
 				}
 				locx = Spielfigurx;
 				locx--;
@@ -1088,6 +1126,8 @@ public class GameFrame extends JFrame implements KeyListener {
 					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
 				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.RASEN) {
 					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
+				}else{
+					//nothing to do here
 				}
 				locy++;
 				if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.GEGNER) {
@@ -1130,6 +1170,8 @@ public class GameFrame extends JFrame implements KeyListener {
 					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.RASEN;
 				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.RASEN) {
 					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.RASEN;
+				}else{
+					//nothing to do here
 				}
 				locy = Spielfigury;
 				locy--;
@@ -1173,6 +1215,8 @@ public class GameFrame extends JFrame implements KeyListener {
 					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.RASEN;
 				} else if (aktuellesSpielfeld[Spielfigurx][locy] == Konstanten.RASEN) {
 					aktuellesSpielfeld[Spielfigurx][locy] = Konstanten.RASEN;
+				}else{
+					//nothing to do here
 				}
 
 			}
@@ -1189,7 +1233,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				 * Boss nimmt ihr ihre Laser Ray Ban
 				 */
 			} else if (mana >= 1) {
-				if (zaehler == 3 || zaehler == 6 || zaehler == 9){
+				if (zaehlerlevel == 3 || zaehlerlevel == 6 || zaehlerlevel == 9){
 					bewaffnet = 0;
 					beschwertet = 1;
 					health = 100;
@@ -1201,6 +1245,22 @@ public class GameFrame extends JFrame implements KeyListener {
 				}
 				zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 			}
+		}
+		if (bosshealth > 0 && (zaehlerlevel == 3 || zaehlerlevel == 6 || zaehlerlevel == 9)){
+		zaehlerbombe = zaehlerbombe +1;
+		
+		if (zaehlerbombe == 5){
+			bombex = Random(2,15);
+			bombey = Random(2,11);
+		
+			if (aktuellesSpielfeld[bombex][bombey] == Konstanten.RASEN) {
+				aktuellesSpielfeld[bombex][bombey] = Konstanten.BOMBE;
+				zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				zaehlerbombe = 0;
+			} else{
+				zaehlerbombe = 0;
+			}
+		}
 		}
 		setzeAnzeige();
 	}
