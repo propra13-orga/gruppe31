@@ -991,6 +991,7 @@ public class GameFrame extends JFrame implements KeyListener {
 					}
 				}
 			}
+			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 
 		}
 		if (e.getKeyCode() == KeyEvent.VK_X) {
@@ -1173,6 +1174,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				}
 
 			}
+			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 		}
 
 		/* Abfragen für die Steuerungstaste */
@@ -1181,12 +1183,15 @@ public class GameFrame extends JFrame implements KeyListener {
 				// nothing to do here
 
 				/*
-				 * wenn mana = 1, gib Erna ihre RayBan und pflege sie gesund
+				 * wenn mana = 1, gib Erna ihr Schwert, pflege sie gesund
+				 * Boss nimmt ihr ihre Laser Ray Ban
 				 */
 			} else if (mana >= 1) {
-				bewaffnet = 1;
+				beschwertet = 1;
+				bewaffnet = 0;
 				health = 100;
 				mana = mana - 1;
+				zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 			}
 		}
 		setzeAnzeige();
