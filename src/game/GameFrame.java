@@ -529,6 +529,21 @@ public class GameFrame extends JFrame implements KeyListener {
 				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
 				Gegnerx = altGegx;
 				Gegnery = altGegy;
+			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.SCHWERT) {
+				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.SCHWERT;
+				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+				Gegnerx = altGegx;
+				Gegnery = altGegy;
+			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.RUESTUNG) {
+				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.RUESTUNG;
+				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+				Gegnerx = altGegx;
+				Gegnery = altGegy;
+			}else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.CHECKPOINT) {
+				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.CHECKPOINT;
+				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+				Gegnerx = altGegx;
+				Gegnery = altGegy;
 			}
 
 			/* wenn Gegner ko ungleich 0, tue nichts */
@@ -572,6 +587,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			levelManager.LevelWeiter();
 			bosshealth = 100;
 			ko = 0;
+			save = 0;
 			getLevel();
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 
