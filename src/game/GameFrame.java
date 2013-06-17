@@ -992,6 +992,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			} else if (mana >= 1) {
 				bewaffnet = 1;
 				health = 100;
+				mana = 0;
 			}
 		}
 		setzeAnzeige();
