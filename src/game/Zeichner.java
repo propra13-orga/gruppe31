@@ -86,20 +86,11 @@ public class Zeichner extends Canvas {
 	Integer[][] Spielfeld;
 
 	private GameFrame gameFrame;
-
-	int bewaffnet;
-	int beschwertet;
-	int halsband;
 	
-	public Zeichner() throws Exception {
-		/*gameFrame = new GameFrame();
-		
-		bewaffnet = gameFrame.getBewaffnet();
-		beschwertet = gameFrame.getBeschwertet();
-		halsband = gameFrame.getHalsband();*/
-		
+	public Zeichner(GameFrame pGameFrame) throws Exception {
+		gameFrame = pGameFrame;
 	}
-
+	
 	/**
 	 * für jedes Feld im Array Spielfeld kann ein Icon gesetzt werden, welches
 	 * anschließend gezeichnet wird
@@ -224,43 +215,42 @@ public class Zeichner extends Canvas {
 				break;
 	
 				//So würde es aussehen, wenn die Variablen hier wären
-			case Konstanten.PUDEL:				
-				if (bewaffnet == 1){
-					if (beschwertet == 1){
-						if (halsband == 1){
+			case Konstanten.PUDEL:
+				icon = iconPudel;
+				if (gameFrame.getBewaffnet() == 1){
+					if (gameFrame.getBeschwertet() == 1){
+						if (gameFrame.getHalsband() == 1){
 							icon = iconTerminatorErna;
 							}
-						else if (halsband == 0){
+						else if (gameFrame.getHalsband() == 0){
 							icon = iconVollErna;
 							}
 					}
-					else if (beschwertet == 0){
-						if (halsband ==1){
+					else if (gameFrame.getBeschwertet() == 0){
+						if (gameFrame.getHalsband() ==1){
 							icon = iconTerminatorErna;
 							}
-						else if (halsband == 0){
+						else if (gameFrame.getHalsband() == 0){
 							icon = iconAggroErna;
 							}
 					}
 				}
-				else if (bewaffnet == 0){
-					if (beschwertet == 1){
-						if (halsband == 1){
+				else if (gameFrame.getBewaffnet() == 0){
+					if (gameFrame.getBeschwertet() == 1){
+						if (gameFrame.getHalsband() == 1){
 							icon = iconPudelSchwertHals;
-						} else if (halsband ==0){
+						} else if (gameFrame.getHalsband() ==0){
 							icon = iconSchwertErna;
 						} 
-					} else if (beschwertet == 0){
-						if (halsband ==1){
+					} else if (gameFrame.getBeschwertet() == 0){
+						if (gameFrame.getHalsband() ==1){
 							icon = iconPudelHalsband;
-						} else if (halsband ==0){
+						} else if (gameFrame.getHalsband() ==0){
 							icon = iconPudel;
 						}
 					}
 				}
-		/*	case Konstanten.PUDEL:
-				icon = iconPudel;
-				break;*/
+				break;
 			default:
 				icon = iconPudel;
 				break;

@@ -177,7 +177,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setFocusable(true);
 		this.addKeyListener(this);
 
-		zeichner = new Zeichner();
+		zeichner = new Zeichner(this);
 		this.add(zeichner);
 
 		this.setVisible(true);
