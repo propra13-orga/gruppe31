@@ -163,6 +163,11 @@ public class GameFrame extends JFrame implements KeyListener {
 	public int ko = 0;
 	public int bosshealth = 100;
 	public int save = 0;
+	
+	public static int Random(int low, int high) {
+		high++;
+		return (int) (Math.random() * (high - low) + low);
+	}
 
 	/**
 	 * Konstruktor, der die Eigenschaften des Spielfensters festsetzt. der
@@ -373,11 +378,6 @@ public class GameFrame extends JFrame implements KeyListener {
 		Gegnerx = levelManager.getStartGegnerx();
 		Gegnery = levelManager.getStartGegnery();
 		level = levelManager.getlevel();
-	}
-
-	public static int Random(int low, int high) {
-		high++;
-		return (int) (Math.random() * (high - low) + low);
 	}
 	
 	/**
@@ -624,6 +624,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				Spielfigurx = altx;
 				Spielfigury = alty;
 			}
+			/* Abfragen für ich laufe auf BOMBE */
 		}else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.BOMBE) {
 			/* zieht mir health ab */
 			if (ruestung > 0) {
@@ -641,10 +642,11 @@ public class GameFrame extends JFrame implements KeyListener {
 				aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
 				leben = leben - 1;
 				Checkpoint();
-				/* ansonsten bleibt die Spielfigur (verletzt) auf seinem Feld */
+				/* ansonsten geht die Spielfigur (verletzt) ins Feuer und tritt es aus */
 			} else if (health > 0) {
-				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 				aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
+				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+				zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 			}
 		}
 
@@ -1030,7 +1032,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			}
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 
-		}
+		}/* Abfragen für die Taste X */
 		if (e.getKeyCode() == KeyEvent.VK_X) {
 			locx = Spielfigurx;
 			locy = Spielfigury;
@@ -1246,13 +1248,15 @@ public class GameFrame extends JFrame implements KeyListener {
 				zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 			}
 		}
+		
+		/* Abfragen ob Bosslevel */
 		if (bosshealth > 0 && (zaehlerlevel == 3 || zaehlerlevel == 6 || zaehlerlevel == 9)){
 		zaehlerbombe = zaehlerbombe +1;
-		
+		/* Abfragen ob genug Tasten gedrückt wurden */
 		if (zaehlerbombe == 5){
 			bombex = Random(2,15);
 			bombey = Random(2,11);
-		
+			/* BOMBE wird random gesetzt*/
 			if (aktuellesSpielfeld[bombex][bombey] == Konstanten.RASEN) {
 				aktuellesSpielfeld[bombex][bombey] = Konstanten.BOMBE;
 				zeichner.zeichneSpielfeld(aktuellesSpielfeld);
