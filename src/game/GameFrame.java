@@ -124,6 +124,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private JLabel Herz3 = new JLabel(iconHerz3);
 
 	private Panel Leiste = new Panel();
+	private Panel Spielfeld = new Panel();
 
 	private JButton GVschliessen;
 
@@ -205,74 +206,101 @@ public class GameFrame extends JFrame implements KeyListener {
 	public void setzeAnzeige() {
 		Leiste.removeAll();
 
-		/* für die Levelanzeige */
+		/* für die Levelanzeige , set Bounds funktioniert nur bei Layout null */
 		if (level == 0) {
+			Eins.setBounds(-40, 590, 100, 100);
 			Leiste.add(Eins);
 		} else if (level == 1) {
+			Eins.setBounds(-40, 590, 100, 100);
 			Leiste.add(Eins);
 		} else if (level == 2) {
+			Eins.setBounds(-40, 590, 100, 100);
 			Leiste.add(Eins);
 		} else if (level == 3) {
+			Zwei.setBounds(-40, 590, 100, 100);
 			Leiste.add(Zwei);
 		} else if (level == 4) {
+			Zwei.setBounds(-40, 590, 100, 100);
 			Leiste.add(Zwei);
 		} else if (level == 5) {
+			Zwei.setBounds(-40, 590, 100, 100);
 			Leiste.add(Zwei);
 		} else if (level == 6) {
+			Drei.setBounds(-40, 590, 100, 100);
 			Leiste.add(Drei);
 		} else if (level == 7) {
+			Drei.setBounds(-40, 590, 100, 100);
 			Leiste.add(Drei);
 		} else if (level == 8) {
+			Drei.setBounds(-40, 590, 100, 100);
 			Leiste.add(Drei);
 		}
 		Aktualisieren();
 
 		/* für die Healthanzeige */
 		if (health == 100) {
+			LebenVoll.setBounds(23, 590, 150, 100);
 			Leiste.add(LebenVoll);
 		} else if (health == 75) {
+			LebenFast.setBounds(23, 590, 150, 100);
 			Leiste.add(LebenFast);
 		} else if (health == 50) {
+			LebenFast.setBounds(23, 590, 150, 100);
 			Leiste.add(LebenHalb);
 		} else if (health == 25) {
+			LebenFast.setBounds(23, 590, 150, 100);
 			Leiste.add(LebenWenig);
 		}
 		Aktualisieren();
 
 		/* für die Manaanzeige */
 		if (mana == 2) {
+			ManaVoll.setBounds(170, 590, 150, 100);
 			Leiste.add(ManaVoll);
 		} else if (mana == 1) {
+			ManaHalb.setBounds(170, 590, 150, 100);
 			Leiste.add(ManaHalb);
 		} else if (mana == 0) {
+			ManaLeer.setBounds(170, 590, 150, 100);
 			Leiste.add(ManaLeer);
 		}
 
 		if (ruestung == 50) {
+			RuestungVoll.setBounds(320, 590, 150, 100);
 			Leiste.add(RuestungVoll);
 		} else if (ruestung == 25) {
+			RuestungHalb.setBounds(320, 590, 150, 100);
 			Leiste.add(RuestungHalb);
 		} else if (ruestung == 0) {
+			RuestungWeg.setBounds(320, 590, 150, 100);
 			Leiste.add(RuestungWeg);
 		}
 		Aktualisieren();
 
 		/* für die Goldanzeige */
 		if (gold == 0) {
+			Gold0.setBounds(470, 590, 100, 100);
 			Leiste.add(Gold0);
 		} else if (gold == 50) {
+			Gold50.setBounds(470, 590, 100, 100);
 			Leiste.add(Gold50);
 		} else if (gold == 100) {
+			Gold100.setBounds(470, 590, 100, 100);
 			Leiste.add(Gold100);
 		} else if (gold == 150) {
+			Gold150.setBounds(470, 590, 100, 100);
 			Leiste.add(Gold150);
 		} else if (gold == 200) {
+			Gold200.setBounds(470, 590, 100, 100);
 			Leiste.add(Gold200);
 		} else if (gold == 250) {
+			Gold250.setBounds(470, 590, 100, 100);
 			Leiste.add(Gold250);
 		} else if (gold == 300) {
+			Gold300.setBounds(470, 590, 100, 100);
 			Leiste.add(Gold300);
 		} else if (gold == 350) {
+			Gold350.setBounds(470, 590, 100, 100);
 			Leiste.add(Gold350);
 		}
 		Aktualisieren();
@@ -280,28 +308,36 @@ public class GameFrame extends JFrame implements KeyListener {
 		if (bewaffnet == 0) {
 			if (beschwertet == 0) {
 				if (halsband == 0) {
+					KeinEq.setBounds(570, 590, 125, 100);
 					Leiste.add(KeinEq);
 				} else if (halsband == 1) {
+					Hals.setBounds(570, 590, 125, 100);
 					Leiste.add(Hals);
 				}
 			} else if (beschwertet == 1) {
 				if (halsband == 0) {
+					Schwert.setBounds(570, 590, 125, 100);
 					Leiste.add(Schwert);
 				} else if (halsband == 1) {
+					SchwertHals.setBounds(570, 590, 125, 100);
 					Leiste.add(SchwertHals);
 				}
 			}
 		} else if (bewaffnet == 1) {
 			if (beschwertet == 0) {
 				if (halsband == 0) {
+					Brille.setBounds(570, 590, 125, 100);
 					Leiste.add(Brille);
 				} else if (halsband == 1) {
+					BrilleHals.setBounds(570, 590, 125, 100);
 					Leiste.add(BrilleHals);
 				}
 			} else if (beschwertet == 1) {
 				if (halsband == 0) {
+					BrilleSchwert.setBounds(570, 590, 125, 100);
 					Leiste.add(BrilleSchwert);
 				} else if (halsband == 1) {
+					AllesEq.setBounds(570, 590, 125, 100);
 					Leiste.add(AllesEq);
 				}
 			}
@@ -310,10 +346,13 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		/* für die Lebenanzeige */
 		if (leben == 3) {
+			Herz3.setBounds(690, 590, 100, 100);
 			Leiste.add(Herz3);
 		} else if (leben == 2) {
+			Herz2.setBounds(690, 590, 100, 100);
 			Leiste.add(Herz2);
 		} else if (leben == 1) {
+			Herz1.setBounds(690, 590, 100, 100);
 			Leiste.add(Herz1);
 		}
 		Aktualisieren();
@@ -1009,7 +1048,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				} else if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.RASEN) {
 					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.RASEN;
 				}
-				locx=Spielfigurx;
+				locx = Spielfigurx;
 				locx--;
 				if (aktuellesSpielfeld[locx][Spielfigury] == Konstanten.GEGNER) {
 					aktuellesSpielfeld[locx][Spielfigury] = Konstanten.GEGNERTOT;
