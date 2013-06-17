@@ -563,11 +563,6 @@ public class GameFrame extends JFrame implements KeyListener {
 				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
 				Gegnerx = altGegx;
 				Gegnery = altGegy;
-			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.MANA) {
-				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.MANA;
-				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-				Gegnerx = altGegx;
-				Gegnery = altGegy;
 			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.SCHWERT) {
 				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.SCHWERT;
 				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
@@ -578,7 +573,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
 				Gegnerx = altGegx;
 				Gegnery = altGegy;
-			}else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.CHECKPOINT) {
+			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.CHECKPOINT) {
 				aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.CHECKPOINT;
 				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
 				Gegnerx = altGegx;
