@@ -414,6 +414,21 @@ public class GameFrame extends JFrame implements KeyListener {
 		GVschliessen.addActionListener(alschliessen);
 	}
 
+	/** gibt bewaffnet wieder */
+	public int getBewaffnet() {
+		return bewaffnet;
+	}
+
+	/** gibt beschwertet wieder */
+	public int getBeschwertet() {
+		return beschwertet;
+	}
+
+	/** gibt halsband wieder */
+	public int getHalsband() {
+		return halsband;
+	}
+
 	/**
 	 * der KeyListener reagiert, wenn eine Taste gedrückt wurde und führt das
 	 * Programm entsprechend weiter
@@ -992,7 +1007,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			} else if (mana >= 1) {
 				bewaffnet = 1;
 				health = 100;
-				mana = 0;
+				mana = mana - 1;
 			}
 		}
 		setzeAnzeige();
