@@ -592,6 +592,11 @@ public class GameFrame extends JFrame implements KeyListener {
 				aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
 				Gegnerx = altGegx;
 				Gegnery = altGegy;
+			} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.FALLE) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.FALLE;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
 			}
 
 			/* wenn Gegner ko ungleich 0, tue nichts */
@@ -652,7 +657,17 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		/* Abfrage für ich laufe auf FALLE */
 		else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.FALLE) {
-			Verloren();
+			{aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.FALLE;
+			Spielfigurx = altx;
+			Spielfigury = alty;
+			leben = leben - 1;
+			}
+			
+			if (leben <= 0) {
+				Verloren();
+				
+			}
 
 			/* Abfrage für ich laufe auf WEITER */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.WEITER) {

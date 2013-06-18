@@ -22,6 +22,12 @@ public class Carlos {
 			+ "/src/game/Images/Carlos7.png");
 	private static final Icon iconCarlos8 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Carlos8.png");
+	private static final Icon iconCarlos9 = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Carlos9.png");
+	private static final Icon iconCarlos10 = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Carlos10.png");
+	private static final Icon iconCarlos11 = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Carlos11.png");
 	
 
 	private static final JLabel NPC1 = new JLabel(iconCarlos1);
@@ -32,6 +38,9 @@ public class Carlos {
 	private static final JLabel NPC6 = new JLabel(iconCarlos6);
 	private static final JLabel NPC7 = new JLabel(iconCarlos7);
 	private static final JLabel NPC8 = new JLabel(iconCarlos8);
+	private static final JLabel NPC9 = new JLabel(iconCarlos9);
+	private static final JLabel NPC10 = new JLabel(iconCarlos10);
+	private static final JLabel NPC11 = new JLabel(iconCarlos11);
 
 	private JButton Weiter;
 	private JButton Skip;
@@ -82,7 +91,19 @@ public class Carlos {
 		NPC8.setBounds(0, -50, 200, 600);
 		NPC8.setVisible(false);
 		frame.add(NPC8);
+		
+		NPC9.setBounds(0, -50, 200, 600);
+		NPC9.setVisible(false);
+		frame.add(NPC9);
 
+		NPC10.setBounds(0, -50, 200, 600);
+		NPC10.setVisible(false);
+		frame.add(NPC10);
+		
+		NPC11.setBounds(0, -50, 200, 600);
+		NPC11.setVisible(false);
+		frame.add(NPC11);
+		
 		Weiter = new JButton("Weiter");
 		Weiter.setBounds(0, 500, 200, 30);
 		frame.add(Weiter);
@@ -114,7 +135,16 @@ public class Carlos {
 				} else if (NPC7.isVisible()) {
 					NPC7.setVisible(false);
 					NPC8.setVisible(true);
-				}else if (NPC8.isVisible()) {
+				} else if (NPC8.isVisible()) {
+					NPC8.setVisible(false);
+					NPC9.setVisible(true);
+				} else if (NPC9.isVisible()) {
+					NPC9.setVisible(false);
+					NPC10.setVisible(true);
+				} else if (NPC10.isVisible()) {
+					NPC10.setVisible(false);
+					NPC11.setVisible(true);
+				}else if (NPC11.isVisible()) {
 					frame.dispose();
 				}
 			}
