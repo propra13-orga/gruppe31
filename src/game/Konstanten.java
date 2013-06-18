@@ -34,4 +34,16 @@ public final class Konstanten {
 	public static final int CHECKPOINT = (int) 'D';
 	public static final int BOMBE = (int) '/';
 	public static final int SCHWERT = (int) 'ﬂ';
+
+	public static final int SIZE = 50;
+	public static final int SPALTEN = 16;
+	public static final int ZEILEN = 12;
+
+	/**
+	 * privater Konstruktor, der verhindert, dass von auﬂen ein Exemplar dieser
+	 * Klasse gebildet werden kann
+	 */
+	private Konstanten() {
+		// nothing to do here
+	}
 }

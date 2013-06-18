@@ -135,7 +135,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private Shop shop;
 
 	private Integer aktuellesSpielfeld[][] = new Integer[16][12];
-	public Integer CheckSpielfeld[][] = new Integer[16][12];
+	private Integer CheckSpielfeld[][] = new Integer[16][12];
 
 	private int Spielfigurx;
 	private int Spielfigury;
@@ -145,24 +145,24 @@ public class GameFrame extends JFrame implements KeyListener {
 	private int checky;
 	private int level;
 	
-	public int zaehlerlevel = 1;
-	public int zaehlerbombe = 0;
-	public int bewaffnet = 0;
-	public int beschwertet = 0;
-	public int halsband = 0;
+	private int zaehlerlevel = 1;
+	private int zaehlerbombe = 0;
+	private int bewaffnet = 0;
+	private int beschwertet = 0;
+	private int halsband = 0;
 
-	public int gold = 0;
-	public int health = 100;
-	public int ruestung = 0;
-	public int mana = 0;
+	private int gold = 0;
+	private int health = 100;
+	private int ruestung = 0;
+	private int mana = 0;
 
-	public int leben = 3;
-	public int bombex;
-	public int bombey;
+	private int leben = 3;
+	private int bombex;
+	private int bombey;
 
-	public int ko = 0;
-	public int bosshealth = 100;
-	public int save = 0;
+	private int ko = 0;
+	private int bosshealth = 100;
+	private int save = 0;
 	
 	public static int Random(int low, int high) {
 		high++;

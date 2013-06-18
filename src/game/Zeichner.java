@@ -84,6 +84,8 @@ public class Zeichner extends Canvas {
 			Konstanten.direction + "/src/game/Images/Save.png");
 	private static final Icon iconSchwert = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Schwertrasen.png");
+	private static final Icon iconDefault = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Default.png");
 
 	Integer[][] Spielfeld;
 
@@ -99,7 +101,6 @@ public class Zeichner extends Canvas {
 	 */
 	public void paint(Graphics g) {
 		
-		int size = 50;
 		for (int i = 0; i < Spielfeld.length; i++) {
 			for (int j = 0; j < Spielfeld[i].length; j++) {
 
@@ -124,34 +125,6 @@ public class Zeichner extends Canvas {
 			case Konstanten.WEITER:
 				icon = iconWeiter;
 				break;
-				/* So würde es aussehen, wenn die Variablen hier wären
-			case Konstanten.BOSS1:
-				if (bosshealth == 100){
-					icon = iconBoss1v;
-				}else if (bosshealth == 66){
-					icon = iconBoss1m;
-				}else if (bosshealth == 32){
-					icon = iconBoss1w;
-				}
-			break;
-			case Konstanten.BOSS2:
-				if (bosshealth == 100){
-					icon = iconBoss2v;
-				}else if (bosshealth == 66){
-					icon = iconBoss2m;
-				}else if (bosshealth == 32){
-					icon = iconBoss2w;
-				}
-			break;
-			case Konstanten.BOSS1:
-				if (bosshealth == 100){
-					icon = iconBoss3v;
-				}else if (bosshealth == 66){
-					icon = iconBoss3m;
-				}else if (bosshealth == 32){
-					icon = iconBoss3w;
-				}
-			break;*/
 			case Konstanten.BOSS1v:
 				icon = iconBoss1v;
 				break;
@@ -218,8 +191,6 @@ public class Zeichner extends Canvas {
 			case Konstanten.CHECKPOINT:
 				icon = iconCheckpoint;
 				break;
-	
-				//So würde es aussehen, wenn die Variablen hier wären
 			case Konstanten.PUDEL:
 				icon = iconPudel;
 				if (gameFrame.getBewaffnet() == 1){
@@ -257,10 +228,10 @@ public class Zeichner extends Canvas {
 				}
 				break;
 			default:
-				icon = iconPudel;
+				icon = iconDefault;
 				break;
 			}
-			icon.paintIcon(this, g, i * size, j * size);
+			icon.paintIcon(this, g, i * Konstanten.SIZE, j * Konstanten.SIZE);
 			}
 		}
 	}

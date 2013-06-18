@@ -33,15 +33,15 @@ public class LevelManager {
 		String line = br.readLine();
 		do {
 			/* ein Array von 16*12 wird initialisiert */
-			Integer[][] array = new Integer[16][12];
+			Integer[][] array = new Integer[Konstanten.SPALTEN][Konstanten.ZEILEN];
 			/* Startpositionen der Spielfigur werden auf -1 gesetzt */
 			int startx = -1, starty = -1;
 			int gegnerx = 0, gegnery = 0;
 
 			/* die Zeilen werden gelesen, bis man bei der 16. angekommen ist */
-			for (int j = 0; j < 16; j++, line = br.readLine()) {
+			for (int j = 0; j < Konstanten.SPALTEN; j++, line = br.readLine()) {
 				/* wenn mehr als 12 Zeichen gelesen werden, Fehlermeldung */
-				if (line.length() != 12) {
+				if (line.length() != Konstanten.ZEILEN) {
 					throw new Exception(
 							"Falsche Anzahl an Zeichen in dieser Zeile!");
 				} else {
@@ -50,7 +50,7 @@ public class LevelManager {
 					 * die Zeichen einer Zeile werden gelesen und in das Array
 					 * geparst
 					 */
-					for (int i = 0; i < 12; i++) {
+					for (int i = 0; i < Konstanten.ZEILEN; i++) {
 						pruefe = array[j][i] = (int) line.charAt(i);
 
 						/*
@@ -104,8 +104,8 @@ public class LevelManager {
 
 	/** das aktuelleLevel wird in array gespeichert */
 	public void kopiereAktuellesLevel(Integer[][] array) {
-		for (int x = 0; x < 16; x++) {
-			for (int y = 0; y < 12; y++) {
+		for (int x = 0; x < Konstanten.SPALTEN; x++) {
+			for (int y = 0; y < Konstanten.ZEILEN; y++) {
 				array[x][y] = levels.get(level).feld[x][y];
 			}
 		}
