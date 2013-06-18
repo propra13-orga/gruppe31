@@ -7,6 +7,9 @@ import java.io.*;
 import javax.swing.*;
 import javax.imageio.ImageIO;
 
+import java.io.File;
+import javax.swing.filechooser.FileFilter;
+
 /**
  * MenuFrame erzeugt das Menufenster. Ein Hintergrundbild wird gesetzt, es
  * werden 3 Buttons und ein Label auf das Fenster gesetzt
@@ -16,7 +19,7 @@ public class MenuFrame extends JFrame {
 	private JButton start;
 	private JButton control;
 	private JButton ende;
-	
+
 	private GameFrame gameframe;
 	private Steuerung steuerung;
 
@@ -26,8 +29,9 @@ public class MenuFrame extends JFrame {
 	public MenuFrame() {
 
 		try {
-			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
-					Konstanten.direction + "/src/game/Images/Startscreen.jpg")))));
+			this.setContentPane(new JLabel(
+					new ImageIcon(ImageIO.read(new File(Konstanten.direction
+							+ "/src/game/Images/Startscreen.jpg")))));
 		} catch (IOException a) {
 			System.out.println("das Bild kann nicht gefunden werden");
 		}
@@ -43,7 +47,7 @@ public class MenuFrame extends JFrame {
 		start = new JButton("Spiel starten");
 		start.setBounds(350, 300, 200, 40);
 		this.add(start);
-		
+
 		control = new JButton("Steuerung");
 		control.setBounds(350, 350, 200, 40);
 		this.add(control);
