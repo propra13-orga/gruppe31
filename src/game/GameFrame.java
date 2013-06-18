@@ -181,7 +181,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setResizable(true);
 		this.setTitle("Erna's Adventure");
 		this.setSize(900, 700);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setFocusable(true);
 		this.addKeyListener(this);

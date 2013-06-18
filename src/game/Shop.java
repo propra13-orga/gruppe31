@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 /** löst aus, wenn der KeyListener im Gameplay HUETTE registriert */
 public class Shop {
@@ -31,7 +32,6 @@ public class Shop {
 	private JButton Mana = new JButton(iconMana);
 	private JButton Trank = new JButton(iconTrank);
 	private JButton Halsband = new JButton(iconHalsband);
-	private JButton schliessen = new JButton();
 
 	/** Konstruktor, der alle EIgenschaften des Fensters aufruft */
 	public Shop() {
@@ -40,7 +40,7 @@ public class Shop {
 		frame.setResizable(false);
 		frame.setSize(500, 300);
 		frame.setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
@@ -63,10 +63,6 @@ public class Shop {
 		Halsband.setBounds(375, 120, 75, 75);
 		Halsband.setVisible(true);
 		SHOP.add(Halsband);
-
-		schliessen = new JButton("Dieses Fenster schließen");
-		schliessen.setBounds(0, 250, 500, 25);
-		SHOP.add(schliessen);
 
 		ActionListener alWaffe = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -104,16 +100,9 @@ public class Shop {
 			}
 		};
 
-		ActionListener alschliessen = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-			}
-		};
-
 		Waffe.addActionListener(alWaffe);
 		Mana.addActionListener(alMana);
 		Trank.addActionListener(alTrank);
 		Halsband.addActionListener(alHalsband);
-		schliessen.addActionListener(alschliessen);
 	}
 }
