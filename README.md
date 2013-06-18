@@ -1,26 +1,17 @@
 gruppe31
 ========
 
-erledigt:
+2. Meilenstein:
 
-externe Textdateien
-Carlos erklärt die Welt (NPC) 
-Aufteilung in 3 Level á 3 Räume
-bewegliche Gegner
-weitere Waffe
-Checkpoints
-Design
-Zauber
+Shop ! (Items kaufen)
+Shop, NPC und Steuerungsfenster über X schließen können
+Pilze mit Waffen
+Checkpoint auch für Müllfallen
 
-ausstehend:
-Anordnung der Anzeige
+Validierung der Textdatei + FileChooser
+feste Zahlen als Konstanten
+Konstruktor der Klasse Konstanten auf private setzen
 
-teilweise ausstehend:
-Design
-
-[abhängig nur von den Variablen]
-Shop
-Gegner Waffe+Zauber
 
 
 
