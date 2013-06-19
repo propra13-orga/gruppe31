@@ -3,12 +3,18 @@ gruppe31
 
 Zweiter Meilenstein:
 
-Shop ! (Items kaufen), 
-Pilze mit Waffen, 
-Checkpoint auch für Müllfallen, 
+Denise erledigt:
+Checkpoint auch für Müllfallen, Validierung der Textdatei, FileChooser, feste Zahlen als Konstanten 
+(nur noch im KeyListner), alle Fenster bis auf Menufenster über[x] Schließbar, ohne, dass das ganze 
+Programm geschlossen wird
 
-Validierung der Textdatei,
-feste Zahlen als Konstanten (nur noch im KeyListner)
+Marcel und Valentin ausstehend:
+Shop (Items kaufen), 
+Pilze mit Waffen
+
+
+
+
 
 
 
