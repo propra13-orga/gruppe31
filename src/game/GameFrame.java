@@ -843,9 +843,12 @@ public class GameFrame extends JFrame implements KeyListener {
 			{
 				aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 				aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.FALLE;
+				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+				aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
 				Spielfigurx = altx;
 				Spielfigury = alty;
 				leben = leben - 1;
+				Checkpoint();
 			}
 
 			if (leben <= 0) {

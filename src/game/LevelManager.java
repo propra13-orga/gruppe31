@@ -50,8 +50,12 @@ public class LevelManager {
 			for (int j = 0; j < Konstanten.SPALTEN; j++, line = br.readLine()) {
 				/* wenn mehr als 12 Zeichen gelesen werden, Fehlermeldung */
 				if (line.length() != Konstanten.ZEILEN) {
-					JOptionPane.showMessageDialog(null, "Die Anzahl der Zeichen in dieser Textdatei ist ungültig!","Error", JOptionPane.ERROR_MESSAGE);
-					System.exit( 0 );
+					JOptionPane
+							.showMessageDialog(
+									null,
+									"Die Anzahl der Zeichen in dieser Textdatei ist ungültig!",
+									"Error", JOptionPane.ERROR_MESSAGE);
+					System.exit(1);
 				} else {
 					int pruefe;
 					/*
