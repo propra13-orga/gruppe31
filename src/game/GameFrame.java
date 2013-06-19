@@ -656,7 +656,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				}
 			} /* wenn Gegner ko ungleich 0, tue nichts */
 			else if (ko != 0) {
-			// nothing to do here
+				// nothing to do here
 			}
 		} else {
 			// nothing to do here
@@ -759,7 +759,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
 				Gegnersx = altGegsx;
 				Gegnersy = altGegsy;
-			} 
+			}
 		} else {
 			// nothing to do here
 		}
@@ -840,6 +840,8 @@ public class GameFrame extends JFrame implements KeyListener {
 			bosshealth = 100;
 			ko = 0;
 			save = 0;
+			Gegner1 = 0;
+			Gegner2 = 0;
 			getLevel();
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 
