@@ -116,6 +116,9 @@ public class Zeichner extends Canvas {
 			case Konstanten.GEGNER:
 				icon = iconGegner;
 				break;
+			case Konstanten.GEGNER2:
+				icon = iconGegner;
+				break;
 			case Konstanten.FALLE:
 				icon = iconFalle;
 				break;

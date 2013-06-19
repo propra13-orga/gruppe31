@@ -11,6 +11,9 @@ public class LevelManager {
 
 	private int level = 0;
 
+	private int Gegner1 = 0;
+	private int Gegner2 = 0;
+
 	/* Liste von Spielfeldern */
 	private ArrayList<InfoLevel> levels = new ArrayList<InfoLevel>();
 
@@ -37,6 +40,7 @@ public class LevelManager {
 			/* Startpositionen der Spielfigur werden auf -1 gesetzt */
 			int startx = -1, starty = -1;
 			int gegnerx = 0, gegnery = 0;
+			int gegnersx = 0, gegnersy = 0;
 
 			/* die Zeilen werden gelesen, bis man bei der 16. angekommen ist */
 			for (int j = 0; j < Konstanten.SPALTEN; j++, line = br.readLine()) {
@@ -63,8 +67,17 @@ public class LevelManager {
 						}
 
 						if (pruefe == Konstanten.GEGNER) {
+							Gegner1 = 1;
 							gegnerx = j;
 							gegnery = i;
+						} else {
+							//nothing to do here
+						}
+
+						if (pruefe == Konstanten.GEGNER2) {
+							Gegner2 = 1;
+							gegnersx = j;
+							gegnersy = i;
 						}
 					}
 				}
@@ -73,7 +86,8 @@ public class LevelManager {
 			 * in die ArrayList wird ein neues Level gespeichert (sowohl das
 			 * Spielfeldarray, als auch die Position der Spielfigur
 			 */
-			levels.add(new InfoLevel(array, startx, starty, gegnerx, gegnery));
+			levels.add(new InfoLevel(array, startx, starty, gegnerx, gegnery,
+					gegnersx, gegnersy, Gegner1, Gegner2));
 			do
 				line = br.readLine();
 			/*
@@ -110,7 +124,7 @@ public class LevelManager {
 			}
 		}
 	}
-	
+
 	/** gibt die X-Koordinate der Spielfigur wieder */
 	public int getlevel() {
 		return level;
@@ -134,5 +148,25 @@ public class LevelManager {
 	/** gibt die Y-Koordinate des Gegners wieder */
 	public int getStartGegnery() {
 		return levels.get(level).gegnery;
+	}
+
+	/** gibt die X-Koordinate des Gegners wieder */
+	public int getStartGegnersx() {
+		return levels.get(level).gegnersx;
+	}
+
+	/** gibt die Y-Koordinate des Gegners wieder */
+	public int getStartGegnersy() {
+		return levels.get(level).gegnersy;
+	}
+
+	/** gibt wieder, ob Gegner1 vorhanden */
+	public int getGegner1() {
+		return levels.get(level).Gegner1;
+	}
+
+	/** gibt wieder, ob Gegner2 vorhanden */
+	public int getGegner2() {
+		return levels.get(level).Gegner2;
 	}
 }
