@@ -3,6 +3,8 @@ package game;
 import java.io.*;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 /**
  * die Klasse kann die Räume aus den Textdateien einlesen, das aktuelleSpielfeld
  * speichern und ein Level vor oder zurück gehen
@@ -48,8 +50,8 @@ public class LevelManager {
 			for (int j = 0; j < Konstanten.SPALTEN; j++, line = br.readLine()) {
 				/* wenn mehr als 12 Zeichen gelesen werden, Fehlermeldung */
 				if (line.length() != Konstanten.ZEILEN) {
-					throw new Exception(
-							"Falsche Anzahl an Zeichen in dieser Zeile!");
+					JOptionPane.showMessageDialog(null, "Die Anzahl der Zeichen in dieser Textdatei ist ungültig!","Error", JOptionPane.ERROR_MESSAGE);
+					System.exit( 0 );
 				} else {
 					int pruefe;
 					/*

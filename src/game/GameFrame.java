@@ -239,9 +239,10 @@ public class GameFrame extends JFrame implements KeyListener {
 			File file = fc.getSelectedFile();
 			Datei = file.getName();
 			/* fängt die Varianten Error und Abbruch durch Nutzer ab */
-		} else
-			fc.cancelSelection();
-
+		} else if (state == JFileChooser.CANCEL_OPTION ) {
+			JOptionPane.showMessageDialog(null,"Auswahl abgebrochen","Dateiselektion", JOptionPane.INFORMATION_MESSAGE);
+			System.exit( 0 );
+		}
 		return Datei;
 	}
 
