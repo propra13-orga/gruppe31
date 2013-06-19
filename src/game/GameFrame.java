@@ -6,6 +6,7 @@ import java.io.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 
 /**
  * GameFrame erzeugt das Spielfenster. Der KeyListener fragt die Werte der
@@ -164,6 +165,8 @@ public class GameFrame extends JFrame implements KeyListener {
 	private int bosshealth = 100;
 	private int save = 0;
 	
+	private String Datei;
+	
 	public static int Random(int low, int high) {
 		high++;
 		return (int) (Math.random() * (high - low) + low);
@@ -189,10 +192,8 @@ public class GameFrame extends JFrame implements KeyListener {
 		zeichner = new Zeichner(this);
 		this.add(zeichner);
 
-		this.setVisible(true);
-
 		levelManager = new LevelManager();
-		levelManager.init();
+		levelManager.init(chooseFile());
 
 		getLevel();
 
@@ -202,7 +203,42 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		getContentPane().add(Leiste, BorderLayout.SOUTH);
 
+		this.setVisible(true);
 		this.requestFocus();
+	}
+	
+	public String chooseFile () {
+		/* erzeugt neuen FileChooser */
+		JFileChooser fc = new JFileChooser(Konstanten.direction
+				+ "/src/game/Spielfeld");
+		/* FileChooser kann nur eine Datei auswählen */
+		fc.setMultiSelectionEnabled(false);
+		/* fügt einen FileFilter hinzu */
+		fc.setFileFilter(new FileFilter() {
+			/* akzeptiert nur txt-Dateien */
+			@Override
+			public boolean accept(File f) {
+				return f.isDirectory()
+						|| f.getName().toLowerCase().endsWith(".txt");
+			}
+
+			/* Beschreibung des Filters */
+			@Override
+			public String getDescription() {
+				return "Textdateien";
+			}
+		});
+
+		int state = fc.showOpenDialog(this);
+		/* wenn ein oder mehrere Dateien ausgewählt */
+		if (state == JFileChooser.APPROVE_OPTION) {
+			File file = fc.getSelectedFile();
+			Datei = file.getName();
+			/* fängt die Varianten Error und Abbruch durch Nutzer ab */
+		} else
+			fc.cancelSelection();
+		
+		return Datei;
 	}
 
 	/** aktualisiert die Darstellung */

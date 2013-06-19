@@ -22,10 +22,10 @@ public class LevelManager {
 	 * 
 	 * @throws Exception
 	 */
-	public void init() throws Exception {
+	public void init(String datei) throws Exception {
 		/* öffnet FileReader mit Textdatei */
 		FileReader fr = new FileReader(Konstanten.direction
-				+ "/src/game/Raum/Raum.txt");
+				+ "/src/game/Spielfeld/" + datei);
 		/* öffnet BufferedReader und liest .txt hinein */
 		BufferedReader br = new BufferedReader(fr);
 
