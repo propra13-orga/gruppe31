@@ -1,6 +1,6 @@
 package game;
 
-/** ist für das jeweilige Level zuständig */
+/** ist für die wichtigen Informationen aus dem jeweiligen Level zuständig */
 public class InfoLevel {
 
 	/* diese Angaben sollen aus anderen Klassen abfragbar sein, daher public */
@@ -9,8 +9,18 @@ public class InfoLevel {
 			Gegner1, Gegner2;
 
 	/**
-	 * ruft aus dem abgefragten Level das Spielfeldarray und die Position der
+	 * * ruft aus dem abgefragten Level das Spielfeldarray und die Position der
 	 * Spielfigur ab
+	 * 
+	 * @param feld
+	 * @param startx
+	 * @param starty
+	 * @param gegnerx
+	 * @param gegnery
+	 * @param gegnersx
+	 * @param gegnersy
+	 * @param Gegner1
+	 * @param Gegner2
 	 */
 	public InfoLevel(Integer[][] feld, int startx, int starty, int gegnerx,
 			int gegnery, int gegnersx, int gegnersy, int Gegner1, int Gegner2) {

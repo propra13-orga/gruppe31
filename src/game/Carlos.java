@@ -3,7 +3,10 @@ package game;
 import java.awt.event.*;
 import javax.swing.*;
 
-/** löst aus, wenn der KeyListener CARLOS registriert */
+/**
+ * ein Objekt dieser Klasse ist das NPCFenster, in welchem dem Spieler die
+ * wichtigsten Informationen zum Spiel vom NPC gegeben werden
+ */
 public class Carlos {
 
 	private static final Icon iconCarlos1 = new ImageIcon(Konstanten.direction
@@ -28,7 +31,6 @@ public class Carlos {
 			+ "/src/game/Images/Carlos10.png");
 	private static final Icon iconCarlos11 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Carlos11.png");
-	
 
 	private static final JLabel NPC1 = new JLabel(iconCarlos1);
 	private static final JLabel NPC2 = new JLabel(iconCarlos2);
@@ -46,8 +48,8 @@ public class Carlos {
 	private JButton Skip;
 
 	/**
-	 * Konstruktor erstellt ein neues Fenster und zeigt bei jedem Klick auf
-	 * Button weiter ein neues Label an
+	 * Konstruktor erstellt ein neues Fenster, in dem der Nutzer mit dem NPC
+	 * interagieren kann
 	 */
 	public Carlos() {
 
@@ -79,19 +81,19 @@ public class Carlos {
 		NPC5.setBounds(0, -50, 200, 600);
 		NPC5.setVisible(false);
 		frame.add(NPC5);
-		
+
 		NPC6.setBounds(0, -50, 200, 600);
 		NPC6.setVisible(false);
 		frame.add(NPC6);
-		
+
 		NPC7.setBounds(0, -50, 200, 600);
 		NPC7.setVisible(false);
 		frame.add(NPC7);
-		
+
 		NPC8.setBounds(0, -50, 200, 600);
 		NPC8.setVisible(false);
 		frame.add(NPC8);
-		
+
 		NPC9.setBounds(0, -50, 200, 600);
 		NPC9.setVisible(false);
 		frame.add(NPC9);
@@ -99,11 +101,11 @@ public class Carlos {
 		NPC10.setBounds(0, -50, 200, 600);
 		NPC10.setVisible(false);
 		frame.add(NPC10);
-		
+
 		NPC11.setBounds(0, -50, 200, 600);
 		NPC11.setVisible(false);
 		frame.add(NPC11);
-		
+
 		Weiter = new JButton("Weiter");
 		Weiter.setBounds(0, 500, 200, 30);
 		frame.add(Weiter);
@@ -144,7 +146,7 @@ public class Carlos {
 				} else if (NPC10.isVisible()) {
 					NPC10.setVisible(false);
 					NPC11.setVisible(true);
-				}else if (NPC11.isVisible()) {
+				} else if (NPC11.isVisible()) {
 					frame.dispose();
 				}
 			}

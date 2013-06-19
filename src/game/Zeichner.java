@@ -96,8 +96,7 @@ public class Zeichner extends Canvas {
 	}
 	
 	/**
-	 * für jedes Feld im Array Spielfeld kann ein Icon gesetzt werden, welches
-	 * anschließend gezeichnet wird
+	 * für jedes Feld im Array wird ein Icon gesetzt
 	 */
 	public void paint(Graphics g) {
 		

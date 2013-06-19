@@ -3,7 +3,10 @@ package game;
 import java.awt.event.*;
 import javax.swing.*;
 
-/** öffnet ein neues Fenster, wenn im Menufenster Button control gedrückt wurde */
+/**
+ * ein Objekt dieser Klasse ist das Steuerungsfenster, in welchem sich der
+ * Nutzer die Steuerung ansehen kann
+ */
 public class Steuerung {
 
 	private JButton Sschliessen;
@@ -13,7 +16,7 @@ public class Steuerung {
 
 	private static final JLabel STEUERUNG = new JLabel(iconSteuerung);
 
-	/** Konstruktor der alle EInstellungen des Fensters aufruft */
+	/** Konstruktor, der ein neues Fenster mit Hintergrundbild aufruft */
 	public Steuerung() {
 		final JFrame frame = new JFrame();
 

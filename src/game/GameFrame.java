@@ -171,11 +171,6 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	private String Datei;
 
-	public static int Random(int low, int high) {
-		high++;
-		return (int) (Math.random() * (high - low) + low);
-	}
-
 	/**
 	 * Konstruktor, der die Eigenschaften des Spielfensters festsetzt. der
 	 * Zeichner wird auf das Spielfenster gesetzt und der LevelManager wird
@@ -211,6 +206,11 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.requestFocus();
 	}
 
+	/**
+	 * ein FileChooser wird aufgerufen
+	 * 
+	 * @return
+	 */
 	public String chooseFile() {
 		/* erzeugt neuen FileChooser */
 		JFileChooser fc = new JFileChooser(Konstanten.direction
@@ -245,13 +245,29 @@ public class GameFrame extends JFrame implements KeyListener {
 		return Datei;
 	}
 
-	/** aktualisiert die Darstellung */
+	/**
+	 * 
+	 * @param low
+	 * @param high
+	 * @return
+	 */
+	public static int Random(int low, int high) {
+		high++;
+		return (int) (Math.random() * (high - low) + low);
+	}
+
+	/**
+	 * aktualisiert die Grafik
+	 */
 	public void Aktualisieren() {
 		validate();
 		repaint();
 	}
 
-	/** setzt die Anzeige mit all den Informationen */
+	/**
+	 * fragt die benötigten Variablen ab und setzt die Informationsleiste im
+	 * unteren Bereich des Spielfensters
+	 */
 	public void setzeAnzeige() {
 		Leiste.removeAll();
 
@@ -408,8 +424,8 @@ public class GameFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * das aktuelle Spielfeld wird kopiert und die Position der Spielfigur wird
-	 * festgehalten
+	 * das aktuelle Spielfeld wird kopiert und die Position der Spielfigur, der
+	 * Gegner und das aktuelle Level werden festgehalten
 	 */
 	public void getLevel() {
 		levelManager.kopiereAktuellesLevel(aktuellesSpielfeld);
@@ -425,7 +441,27 @@ public class GameFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * hier wird ein neues Fenster mit dem Spielausgang Gewonnen aufgerufen
+	 * Prüfung ob Checkpoint besucht wurde und Zurücksetzen des Spiels oder
+	 * Ausgang Verloren
+	 */
+	public void Checkpoint() {
+		if (save == 1) {
+			if (leben > 0) {
+				health = 100;
+				Spielfigurx = checkx;
+				Spielfigury = checky;
+				zeichner.zeichneSpielfeld(CheckSpielfeld);
+				setzeAnzeige();
+			} else if (leben <= 0) {
+				Verloren();
+			}
+		} else if (save == 0) {
+			Verloren();
+		}
+	}
+
+	/**
+	 * es wird ein neues Fenster mit dem Spielausgang Gewonnen aufgerufen
 	 */
 	public void Gewonnen() {
 		getContentPane().removeAll();
@@ -456,25 +492,8 @@ public class GameFrame extends JFrame implements KeyListener {
 		GVschliessen.addActionListener(alschliessen);
 	}
 
-	/** hier wird geprüft, ob ein Checkpoint überlaufen wurde */
-	public void Checkpoint() {
-		if (save == 1) {
-			if (leben > 0) {
-				health = 100;
-				Spielfigurx = checkx;
-				Spielfigury = checky;
-				zeichner.zeichneSpielfeld(CheckSpielfeld);
-				setzeAnzeige();
-			} else if (leben <= 0) {
-				Verloren();
-			}
-		} else if (save == 0) {
-			Verloren();
-		}
-	}
-
 	/**
-	 * hier wird ein neues Fenster mit dem Spielausgang Verloren aufgerufen
+	 * es wird ein neues Fenster mit dem Spielausgang Verloren aufgerufen
 	 */
 	public void Verloren() {
 
@@ -540,19 +559,19 @@ public class GameFrame extends JFrame implements KeyListener {
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			Spielfigurx--;
 			Gegnerx++;
-			Gegnersx++;
+			Gegnersy++;
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			Spielfigurx++;
 			Gegnerx--;
-			Gegnersx--;
+			Gegnersy--;
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
 			Spielfigury--;
 			Gegnery++;
-			Gegnersy++;
+			Gegnersx++;
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 			Spielfigury++;
 			Gegnery--;
-			Gegnersy--;
+			Gegnersx--;
 		}
 
 		/* wenn Gegner vorhanden und ko = 0, dann führe die Gegnerbewegung aus */

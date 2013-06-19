@@ -10,9 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 
-/** löst aus, wenn der KeyListener im Gameplay HUETTE registriert */
+/**
+ * ein Objekt dieser Klasse ist ein Shopfenster, in welchem der Spieler Items
+ * kaufen kann
+ */
 public class Shop {
-	
+
 	private GameFrame gameFrame;
 
 	private static final Icon iconShop = new ImageIcon(Konstanten.direction
@@ -33,7 +36,10 @@ public class Shop {
 	private JButton Trank = new JButton(iconTrank);
 	private JButton Halsband = new JButton(iconHalsband);
 
-	/** Konstruktor, der alle EIgenschaften des Fensters aufruft */
+	/**
+	 * Konstruktor, der ein neues Fenster aufruft, in welchem der Nutzer Items
+	 * kaufen kann
+	 */
 	public Shop() {
 		final JFrame frame = new JFrame();
 
@@ -66,37 +72,41 @@ public class Shop {
 
 		ActionListener alWaffe = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//gold = gold - 50;
-				//bewaffnet = 1;
-				//gameFrame.setzeAnzeige();
-				System.out.println("Du hast dir eine Waffe gekauft und musstest mit Münzen bezahlen!");
+				// gold = gold - 50;
+				// bewaffnet = 1;
+				// gameFrame.setzeAnzeige();
+				System.out
+						.println("Du hast dir eine Waffe gekauft und musstest mit Münzen bezahlen!");
 			}
 		};
 
 		ActionListener alMana = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//gold = gold - 50;
-				//mana = 1;
-				//gameFrame.setzeAnzeige();
-				System.out.println("Du hast dir Mana gekauft und musstest mit Münzen bezahlen!");
+				// gold = gold - 50;
+				// mana = 1;
+				// gameFrame.setzeAnzeige();
+				System.out
+						.println("Du hast dir Mana gekauft und musstest mit Münzen bezahlen!");
 			}
 		};
 
 		ActionListener alTrank = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//gold = gold - 50;
-				//health = 100;
-				//gameFrame.setzeAnzeige();
-				System.out.println("Du hast dir einen Trank gekauft und musstest mit Münzen bezahlen!");
+				// gold = gold - 50;
+				// health = 100;
+				// gameFrame.setzeAnzeige();
+				System.out
+						.println("Du hast dir einen Trank gekauft und musstest mit Münzen bezahlen!");
 			}
 		};
 
 		ActionListener alHalsband = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//gold = gold - 50;
-				//ruestung = 50;
-				//gameFrame.setzeAnzeige();
-				System.out.println("Du hast dir eine Rüstung gekauft und musstest mit Münzen bezahlen!");
+				// gold = gold - 50;
+				// ruestung = 50;
+				// gameFrame.setzeAnzeige();
+				System.out
+						.println("Du hast dir eine Rüstung gekauft und musstest mit Münzen bezahlen!");
 			}
 		};
 

@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * die Klasse kann die Räume aus der Textdatei einlesen, das aktuelleSpielfeld
+ * die Klasse kann die Räume aus den Textdateien einlesen, das aktuelleSpielfeld
  * speichern und ein Level vor oder zurück gehen
  */
 public class LevelManager {
@@ -19,10 +19,12 @@ public class LevelManager {
 
 	/**
 	 * die Methode liest die einzelnen Räume ein und schreibt sie in die
-	 * ArrayList array
+	 * ArrayList array. Zusätzlich werden die Positionen der Spielfigur und der
+	 * Gegner festgehalten
 	 * 
 	 * in Textdatei rechts=y-Achse (12 Zeichen) runter=x-Achse (16 Zeichen)
 	 * 
+	 * @param datei
 	 * @throws Exception
 	 */
 	public void init(String datei) throws Exception {
@@ -71,7 +73,7 @@ public class LevelManager {
 							gegnerx = j;
 							gegnery = i;
 						} else {
-							//nothing to do here
+							// nothing to do here
 						}
 
 						if (pruefe == Konstanten.GEGNER2) {
@@ -104,7 +106,7 @@ public class LevelManager {
 		fr.close();
 	}
 
-	/** durch das Hochzählen von level gelangt man einen Raum weiter */
+	/** man gelangt einen Raum weiter */
 	public boolean LevelWeiter() {
 		/* wird geprüft, ob man sich bereits im letzten Level befindet */
 		if (level == levels.size() - 1) {
@@ -125,7 +127,7 @@ public class LevelManager {
 		}
 	}
 
-	/** gibt die X-Koordinate der Spielfigur wieder */
+	/** gibt das aktuelle level wieder */
 	public int getlevel() {
 		return level;
 	}
@@ -140,22 +142,22 @@ public class LevelManager {
 		return levels.get(level).starty;
 	}
 
-	/** gibt die X-Koordinate des Gegners wieder */
+	/** gibt die X-Koordinate von Gegner wieder */
 	public int getStartGegnerx() {
 		return levels.get(level).gegnerx;
 	}
 
-	/** gibt die Y-Koordinate des Gegners wieder */
+	/** gibt die Y-Koordinate von Gegner wieder */
 	public int getStartGegnery() {
 		return levels.get(level).gegnery;
 	}
 
-	/** gibt die X-Koordinate des Gegners wieder */
+	/** gibt die X-Koordinate von Gegner2 wieder */
 	public int getStartGegnersx() {
 		return levels.get(level).gegnersx;
 	}
 
-	/** gibt die Y-Koordinate des Gegners wieder */
+	/** gibt die Y-Koordinate von Gegner2 wieder */
 	public int getStartGegnersy() {
 		return levels.get(level).gegnersy;
 	}
