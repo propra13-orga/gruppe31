@@ -238,7 +238,10 @@ public class Zeichner extends Canvas {
 		}
 	}
 
-	/** zeichnet das Spielfeld (erneut) */
+	/**
+	 * zeichnet das Spielfeld (erneut) 
+	 * @param feld
+	 */
 	public void zeichneSpielfeld(Integer[][] feld) {
 		Spielfeld = feld;
 		repaint();

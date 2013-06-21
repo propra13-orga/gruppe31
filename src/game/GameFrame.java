@@ -207,8 +207,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * ein FileChooser wird aufgerufen
-	 * 
+	 * erzeugt FileChooser
 	 * @return
 	 */
 	public String chooseFile() {
@@ -247,7 +246,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * 
+	 * bitte ergänzen
 	 * @param low
 	 * @param high
 	 * @return
@@ -526,17 +525,26 @@ public class GameFrame extends JFrame implements KeyListener {
 		GVschliessen.addActionListener(alschliessen);
 	}
 
-	/** gibt bewaffnet wieder */
+	/**
+	 * gibt bewaffnet wieder
+	 * @return
+	 */
 	public int getBewaffnet() {
 		return bewaffnet;
 	}
 
-	/** gibt beschwertet wieder */
+	/**
+	 * gibt beschwertet wieder
+	 * @return
+	 */
 	public int getBeschwertet() {
 		return beschwertet;
 	}
 
-	/** gibt halsband wieder */
+	/** 
+	 * gibt halsband wieder 
+	 * @return
+	 */
 	public int getHalsband() {
 		return halsband;
 	}
