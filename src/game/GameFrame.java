@@ -208,6 +208,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/**
 	 * erzeugt FileChooser
+	 * 
 	 * @return
 	 */
 	public String chooseFile() {
@@ -238,15 +239,17 @@ public class GameFrame extends JFrame implements KeyListener {
 			File file = fc.getSelectedFile();
 			Datei = file.getName();
 			/* fängt die Varianten Error und Abbruch durch Nutzer ab */
-		} else if (state == JFileChooser.CANCEL_OPTION ) {
-			JOptionPane.showMessageDialog(null,"Auswahl abgebrochen","Dateiselektion", JOptionPane.INFORMATION_MESSAGE);
-			System.exit( 0 );
+		} else if (state == JFileChooser.CANCEL_OPTION) {
+			JOptionPane.showMessageDialog(null, "Auswahl abgebrochen",
+					"Dateiselektion", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
 		}
 		return Datei;
 	}
 
 	/**
 	 * bitte ergänzen
+	 * 
 	 * @param low
 	 * @param high
 	 * @return
@@ -527,6 +530,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/**
 	 * gibt bewaffnet wieder
+	 * 
 	 * @return
 	 */
 	public int getBewaffnet() {
@@ -535,14 +539,16 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/**
 	 * gibt beschwertet wieder
+	 * 
 	 * @return
 	 */
 	public int getBeschwertet() {
 		return beschwertet;
 	}
 
-	/** 
-	 * gibt halsband wieder 
+	/**
+	 * gibt halsband wieder
+	 * 
 	 * @return
 	 */
 	public int getHalsband() {
@@ -814,6 +820,33 @@ public class GameFrame extends JFrame implements KeyListener {
 			} else if (health > 0) {
 				aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 				aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.GEGNER;
+				Spielfigurx = altx;
+				Spielfigury = alty;
+			}
+		}
+
+		/* Abfragen für ich laufe auf GEGNER2 */
+		else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNER2) {
+			/* zieht mir health ab */
+			if (ruestung > 0) {
+				ruestung = ruestung - 25;
+				if (ruestung == 0) {
+					halsband = 0;
+				}
+			} else if (ruestung == 0) {
+				health = health - 25;
+				halsband = 0;
+			}
+			/* wenn meine health <= 0 rufe Checkpoint auf */
+			if (health <= 0) {
+				aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+				aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
+				leben = leben - 1;
+				Checkpoint();
+				/* ansonsten bleibt die Spielfigur (verletzt) auf seinem Feld */
+			} else if (health > 0) {
+				aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+				aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.GEGNER2;
 				Spielfigurx = altx;
 				Spielfigury = alty;
 			}
