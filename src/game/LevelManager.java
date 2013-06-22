@@ -29,7 +29,8 @@ public class LevelManager {
 	 * @param datei
 	 * @throws Exception
 	 */
-	public void init(String datei) throws Exception {
+	public void init(String datei) throws Exception { 
+		
 		/* öffnet FileReader mit Textdatei */
 		FileReader fr = new FileReader(Konstanten.direction
 				+ "/src/game/Spielfeld/" + datei);
@@ -55,7 +56,7 @@ public class LevelManager {
 									null,
 									"Die Anzahl der Zeichen in dieser Textdatei ist ungültig!",
 									"Error", JOptionPane.ERROR_MESSAGE);
-					System.exit(1);
+					System.exit(0);
 				} else {
 					int pruefe;
 					/*
@@ -124,8 +125,9 @@ public class LevelManager {
 		return true;
 	}
 
-	/** 
+	/**
 	 * das aktuelleLevel wird in array gespeichert
+	 * 
 	 * @param array
 	 */
 	public void kopiereAktuellesLevel(Integer[][] array) {
@@ -136,72 +138,81 @@ public class LevelManager {
 		}
 	}
 
-	/** 
+	/**
 	 * gibt das aktuelle level wieder
+	 * 
 	 * @return
 	 */
 	public int getlevel() {
 		return level;
 	}
 
-	/** 
-	 * gibt die X-Koordinate der Spielfigur wieder 
+	/**
+	 * gibt die X-Koordinate der Spielfigur wieder
+	 * 
 	 * @return
 	 */
 	public int getStartx() {
 		return levels.get(level).startx;
 	}
 
-	/** 
-	 * gibt die Y-Koordinate der Spielfigur wieder 
+	/**
+	 * gibt die Y-Koordinate der Spielfigur wieder
+	 * 
 	 * @return
 	 */
 	public int getStarty() {
 		return levels.get(level).starty;
 	}
 
-	/** 
-	 * gibt die X-Koordinate von Gegner wieder 
+	/**
+	 * gibt die X-Koordinate von Gegner wieder
+	 * 
 	 * @return
 	 */
 	public int getStartGegnerx() {
 		return levels.get(level).gegnerx;
 	}
 
-	/** 
+	/**
 	 * gibt die Y-Koordinate von Gegner wieder
+	 * 
 	 * @return
 	 */
 	public int getStartGegnery() {
 		return levels.get(level).gegnery;
 	}
 
-	/** 
-	 * gibt die X-Koordinate von Gegner2 wieder 
+	/**
+	 * gibt die X-Koordinate von Gegner2 wieder
+	 * 
 	 * @return
 	 */
 	public int getStartGegnersx() {
 		return levels.get(level).gegnersx;
 	}
 
-	/** 
-	 * gibt die Y-Koordinate von Gegner2 wieder 
+	/**
+	 * gibt die Y-Koordinate von Gegner2 wieder
+	 * 
 	 * @return
 	 */
 	public int getStartGegnersy() {
 		return levels.get(level).gegnersy;
 	}
 
-	/** 
-	 * gibt wieder, ob Gegner1 vorhanden 
+	/**
+	 * gibt wieder, ob Gegner1 vorhanden
+	 * 
 	 * @return
 	 */
 	public int getGegner1() {
 		return levels.get(level).Gegner1;
 	}
 
-	/** 
-	 * gibt wieder, ob Gegner2 vorhanden 
+	/**
+	 * gibt wieder, ob Gegner2 vorhanden
+	 * 
 	 * @return
 	 */
 	public int getGegner2() {

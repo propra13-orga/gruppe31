@@ -92,156 +92,154 @@ public class Zeichner extends Canvas {
 	Integer[][] Spielfeld;
 
 	private GameFrame gameFrame;
-	
+
 	public Zeichner(GameFrame pGameFrame) throws Exception {
 		gameFrame = pGameFrame;
 	}
-	
+
 	/**
 	 * für jedes Feld im Array wird ein Icon gesetzt
 	 */
 	public void paint(Graphics g) {
-		
+
 		for (int i = 0; i < Spielfeld.length; i++) {
 			for (int j = 0; j < Spielfeld[i].length; j++) {
 
 				Icon icon;
 
-			switch (Spielfeld[i][j]) {
-			case Konstanten.RASEN:
-				icon = iconRasen;
-				break;
-			case Konstanten.GRENZE:
-				icon = iconBaum1;
-				break;
-			case Konstanten.GEGNER:
-				icon = iconGegner;
-				break;
-			case Konstanten.GEGNER2:
-				icon = iconGegner2;
-				break;
-			case Konstanten.FALLE:
-				icon = iconFalle;
-				break;
-			case Konstanten.BOMBE:
-				icon = iconBombe;
-				break;
-			case Konstanten.WEITER:
-				icon = iconWeiter;
-				break;
-			case Konstanten.BOSS1v:
-				icon = iconBoss1v;
-				break;
-			case Konstanten.BOSS1m:
-				icon = iconBoss1m;
-				break;
-			case Konstanten.BOSS1w:
-				icon = iconBoss1w;
-				break;
-			case Konstanten.BOSS2v:
-				icon = iconBoss2v;
-				break;
-			case Konstanten.BOSS2m:
-				icon = iconBoss2m;
-				break;
-			case Konstanten.BOSS2w:
-				icon = iconBoss2w;
-				break;
-			case Konstanten.BOSS3v:
-				icon = iconBoss3v;
-				break;
-			case Konstanten.BOSS3m:
-				icon = iconBoss3m;
-				break;
-			case Konstanten.BOSS3w:
-				icon = iconBoss3w;
-				break;
-			case Konstanten.ZURUECK:
-				icon = iconZurueck;
-				break;
-			case Konstanten.CARLOS:
-				icon = iconCarlos;
-				break;
-			case Konstanten.CUPCAKE:
-				icon = iconCupcake;
-				break;
-			case Konstanten.HUETTE:
-				icon = iconShop;
-				break;
-			case Konstanten.WAFFE:
-				icon = iconWaffe;
-				break;
-			case Konstanten.GOLD:
-				icon = iconGold;
-				break;
-			case Konstanten.MANA:
-				icon = iconMana;
-				break;
-			case Konstanten.SCHWERT:
-				icon = iconSchwert;
-				break;
-			case Konstanten.RUESTUNG:
-				icon = iconRuestung;
-				break;
-			case Konstanten.HEALTH:
-				icon = iconHealth;
-				break;
-			case Konstanten.LASER:
-				icon = iconLaser;
-				break;
-			case Konstanten.GEGNERTOT:
-				icon = iconGegnertot;
-				break;
-			case Konstanten.CHECKPOINT:
-				icon = iconCheckpoint;
-				break;
-			case Konstanten.PUDEL:
-				icon = iconPudel;
-				if (gameFrame.getBewaffnet() == 1){
-					if (gameFrame.getBeschwertet() == 1){
-						if (gameFrame.getHalsband() == 1){
-							icon = iconTerminatorErna;
+				switch (Spielfeld[i][j]) {
+				case Konstanten.RASEN:
+					icon = iconRasen;
+					break;
+				case Konstanten.GRENZE:
+					icon = iconBaum1;
+					break;
+				case Konstanten.GEGNER:
+					icon = iconGegner;
+					break;
+				case Konstanten.GEGNER2:
+					icon = iconGegner2;
+					break;
+				case Konstanten.FALLE:
+					icon = iconFalle;
+					break;
+				case Konstanten.BOMBE:
+					icon = iconBombe;
+					break;
+				case Konstanten.WEITER:
+					icon = iconWeiter;
+					break;
+				case Konstanten.BOSS1v:
+					icon = iconBoss1v;
+					break;
+				case Konstanten.BOSS1m:
+					icon = iconBoss1m;
+					break;
+				case Konstanten.BOSS1w:
+					icon = iconBoss1w;
+					break;
+				case Konstanten.BOSS2v:
+					icon = iconBoss2v;
+					break;
+				case Konstanten.BOSS2m:
+					icon = iconBoss2m;
+					break;
+				case Konstanten.BOSS2w:
+					icon = iconBoss2w;
+					break;
+				case Konstanten.BOSS3v:
+					icon = iconBoss3v;
+					break;
+				case Konstanten.BOSS3m:
+					icon = iconBoss3m;
+					break;
+				case Konstanten.BOSS3w:
+					icon = iconBoss3w;
+					break;
+				case Konstanten.ZURUECK:
+					icon = iconZurueck;
+					break;
+				case Konstanten.CARLOS:
+					icon = iconCarlos;
+					break;
+				case Konstanten.CUPCAKE:
+					icon = iconCupcake;
+					break;
+				case Konstanten.HUETTE:
+					icon = iconShop;
+					break;
+				case Konstanten.WAFFE:
+					icon = iconWaffe;
+					break;
+				case Konstanten.GOLD:
+					icon = iconGold;
+					break;
+				case Konstanten.MANA:
+					icon = iconMana;
+					break;
+				case Konstanten.SCHWERT:
+					icon = iconSchwert;
+					break;
+				case Konstanten.RUESTUNG:
+					icon = iconRuestung;
+					break;
+				case Konstanten.HEALTH:
+					icon = iconHealth;
+					break;
+				case Konstanten.LASER:
+					icon = iconLaser;
+					break;
+				case Konstanten.GEGNERTOT:
+					icon = iconGegnertot;
+					break;
+				case Konstanten.CHECKPOINT:
+					icon = iconCheckpoint;
+					break;
+				case Konstanten.PUDEL:
+					icon = iconPudel;
+					if (gameFrame.getBewaffnet() == 1) {
+						if (gameFrame.getBeschwertet() == 1) {
+							if (gameFrame.getHalsband() == 1) {
+								icon = iconTerminatorErna;
+							} else if (gameFrame.getHalsband() == 0) {
+								icon = iconVollErna;
 							}
-						else if (gameFrame.getHalsband() == 0){
-							icon = iconVollErna;
+						} else if (gameFrame.getBeschwertet() == 0) {
+							if (gameFrame.getHalsband() == 1) {
+								icon = iconTerminatorErna;
+							} else if (gameFrame.getHalsband() == 0) {
+								icon = iconAggroErna;
 							}
-					}
-					else if (gameFrame.getBeschwertet() == 0){
-						if (gameFrame.getHalsband() ==1){
-							icon = iconTerminatorErna;
+						}
+					} else if (gameFrame.getBewaffnet() == 0) {
+						if (gameFrame.getBeschwertet() == 1) {
+							if (gameFrame.getHalsband() == 1) {
+								icon = iconPudelSchwertHals;
+							} else if (gameFrame.getHalsband() == 0) {
+								icon = iconSchwertErna;
 							}
-						else if (gameFrame.getHalsband() == 0){
-							icon = iconAggroErna;
+						} else if (gameFrame.getBeschwertet() == 0) {
+							if (gameFrame.getHalsband() == 1) {
+								icon = iconPudelHalsband;
+							} else if (gameFrame.getHalsband() == 0) {
+								icon = iconPudel;
 							}
-					}
-				}
-				else if (gameFrame.getBewaffnet() == 0){
-					if (gameFrame.getBeschwertet() == 1){
-						if (gameFrame.getHalsband() == 1){
-							icon = iconPudelSchwertHals;
-						} else if (gameFrame.getHalsband() ==0){
-							icon = iconSchwertErna;
-						} 
-					} else if (gameFrame.getBeschwertet() == 0){
-						if (gameFrame.getHalsband() ==1){
-							icon = iconPudelHalsband;
-						} else if (gameFrame.getHalsband() ==0){
-							icon = iconPudel;
 						}
 					}
+					break;
+				default:
+					icon = iconDefault;
+					break;
 				}
-				break;
-			default:
-				icon = iconDefault;
-				break;
-			}
-			icon.paintIcon(this, g, i * Konstanten.SIZE, j * Konstanten.SIZE);
+				icon.paintIcon(this, g, i * Konstanten.SIZE, j
+						* Konstanten.SIZE);
 			}
 		}
 	}
 
 	/**
-	 * zeichnet das Spielfeld (erneut) 
+	 * zeichnet das Spielfeld (erneut)
+	 * 
 	 * @param feld
 	 */
 	public void zeichneSpielfeld(Integer[][] feld) {

@@ -192,7 +192,11 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.add(zeichner);
 
 		levelManager = new LevelManager();
-		levelManager.init(chooseFile());
+		chooseFile();
+		if (Datei == null) {
+			return;
+		} 
+		levelManager.init(Datei);
 
 		getLevel();
 
@@ -208,6 +212,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/**
 	 * erzeugt FileChooser
+	 * @return 
 	 * 
 	 * @return
 	 */
@@ -242,7 +247,6 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (state == JFileChooser.CANCEL_OPTION) {
 			JOptionPane.showMessageDialog(null, "Auswahl abgebrochen",
 					"Dateiselektion", JOptionPane.INFORMATION_MESSAGE);
-			System.exit(0);
 		}
 		return Datei;
 	}

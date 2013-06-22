@@ -44,16 +44,16 @@ public final class Konstanten {
 	public static final int DREIVIERTELH = 75;
 	public static final int HALBH = 50;
 	public static final int EINVIERTELH = 25;
-	public static final int LEERH =0;
+	public static final int LEERH = 0;
 
 	public static final int VOLLR = 50;
 	public static final int HALBR = 25;
 	public static final int LEERR = 0;
-	
+
 	public static final int VOLLM = 2;
 	public static final int HALBM = 1;
 	public static final int LEERM = 0;
-	
+
 	public static final int VOLLL = 3;
 	public static final int ZWEIDRITTELL = 2;
 	public static final int EINDRITTELL = 1;
@@ -62,7 +62,7 @@ public final class Konstanten {
 	public static final int NULL = 0;
 	public static final int EINS = 1;
 	public static final int ZWEI = 2;
-	
+
 	public static final int GOLD0 = 0;
 	public static final int GOLD50 = 50;
 	public static final int GOLD100 = 100;
