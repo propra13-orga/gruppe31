@@ -592,215 +592,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			Gegnersx--;
 		}
 
-		/* wenn Gegner vorhanden und ko = 0, dann führe die Gegnerbewegung aus */
-		if (Gegner1 == 1) {
-			if (ko == 0) {
-
-				if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.RASEN) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GEGNER;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.RASEN;
-					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.GRENZE) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GRENZE;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.PUDEL) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.PUDEL;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS1v) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS1v;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS2v) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS2v;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS3v) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS3v;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.CUPCAKE) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.CUPCAKE;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.ZURUECK) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.ZURUECK;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.GOLD) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GOLD;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.HEALTH) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.HEALTH;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.CARLOS) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.CARLOS;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.HUETTE) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.HUETTE;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.MANA) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.MANA;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.SCHWERT) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.SCHWERT;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.RUESTUNG) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.RUESTUNG;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOMBE) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOMBE;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.CHECKPOINT) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.CHECKPOINT;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.FALLE) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.FALLE;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.GEGNER2) {
-					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GEGNER2;
-					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
-					Gegnerx = altGegx;
-					Gegnery = altGegy;
-				}
-			} /* wenn Gegner ko ungleich 0, tue nichts */
-			else if (ko != 0) {
-				// nothing to do here
-			}
-		} else {
-			// nothing to do here
-		}
-
-		/* Gegnersbewegung */
-		if (Gegner2 == 1) {
-
-			if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.RASEN) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.GEGNER2;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.RASEN;
-				zeichner.zeichneSpielfeld(aktuellesSpielfeld);
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.GRENZE) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.GRENZE;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.PUDEL) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.PUDEL;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.BOSS1v) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.BOSS1v;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.BOSS2v) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.BOSS2v;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.BOSS3v) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.BOSS3v;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.CUPCAKE) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.CUPCAKE;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.ZURUECK) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.ZURUECK;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.GOLD) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.GOLD;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.HEALTH) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.HEALTH;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.CARLOS) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.CARLOS;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.HUETTE) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.HUETTE;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.MANA) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.MANA;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.SCHWERT) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.SCHWERT;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.RUESTUNG) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.RUESTUNG;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.BOMBE) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.BOMBE;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.CHECKPOINT) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.CHECKPOINT;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.FALLE) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.FALLE;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.GEGNER) {
-				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.GEGNER;
-				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
-				Gegnersx = altGegsx;
-				Gegnersy = altGegsy;
-			}
-		} else {
-			// nothing to do here
-		}
-
 		/* Abfragen für ich laufe auf GEGNER */
 		if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.GEGNER) {
 			/* zieht mir health ab */
@@ -1211,6 +1002,329 @@ public class GameFrame extends JFrame implements KeyListener {
 			checky = Spielfigury;
 			save = 1;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+		}
+		
+		/* wenn Gegner vorhanden und ko = 0, dann führe die Gegnerbewegung aus */
+		if (Gegner1 == 1) {
+			if (ko == 0) {
+
+				if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.RASEN) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GEGNER;
+					
+						if (aktuellesSpielfeld[Gegnerx-1][Gegnery] == Konstanten.RASEN){
+							aktuellesSpielfeld[Gegnerx-1][Gegnery] = Konstanten.STUNK;
+						}
+						if (aktuellesSpielfeld[Gegnerx][Gegnery-1] == Konstanten.RASEN){
+							aktuellesSpielfeld[Gegnerx][Gegnery-1] = Konstanten.STUNK;
+						}
+						if (aktuellesSpielfeld[Gegnerx][Gegnery+1] == Konstanten.RASEN){
+							aktuellesSpielfeld[Gegnerx][Gegnery+1] = Konstanten.STUNK;
+						}
+						if (aktuellesSpielfeld[Gegnerx+1][Gegnery] == Konstanten.RASEN){
+							aktuellesSpielfeld[Gegnerx+1][Gegnery] = Konstanten.STUNK;
+						}
+						if (aktuellesSpielfeld[Gegnerx-1][Gegnery] == Konstanten.PUDEL){
+							aktuellesSpielfeld[Gegnerx-1][Gegnery] = Konstanten.PUDEL;
+							if (ruestung > 0) {
+								ruestung = ruestung - 25;
+								if (ruestung == 0) {
+									halsband = 0;
+								}
+							} else if (ruestung == 0) {
+								health = health - 25;
+								halsband = 0;
+								if (health <= 0) {
+									aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+									aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
+									leben = leben - 1;
+									Checkpoint();
+								}
+							}
+						}
+						if (aktuellesSpielfeld[Gegnerx][Gegnery-1] == Konstanten.PUDEL){
+							aktuellesSpielfeld[Gegnerx][Gegnery-1] = Konstanten.PUDEL;
+							if (ruestung > 0) {
+								ruestung = ruestung - 25;
+								if (ruestung == 0) {
+									halsband = 0;
+								}
+							} else if (ruestung == 0) {
+								health = health - 25;
+								halsband = 0;
+								if (health <= 0) {
+									aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+									aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
+									leben = leben - 1;
+									Checkpoint();
+								}
+							}
+						}
+						if (aktuellesSpielfeld[Gegnerx][Gegnery+1] == Konstanten.PUDEL){
+							aktuellesSpielfeld[Gegnerx][Gegnery+1] = Konstanten.PUDEL;
+							if (ruestung > 0) {
+								ruestung = ruestung - 25;
+								if (ruestung == 0) {
+									halsband = 0;
+								}
+							} else if (ruestung == 0) {
+								health = health - 25;
+								halsband = 0;
+								if (health <= 0) {
+									aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+									aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
+									leben = leben - 1;
+									Checkpoint();
+								}
+							}
+						}
+						if (aktuellesSpielfeld[Gegnerx+1][Gegnery] == Konstanten.PUDEL){
+							aktuellesSpielfeld[Gegnerx+1][Gegnery] = Konstanten.PUDEL;
+							if (ruestung > 0) {
+								ruestung = ruestung - 25;
+								if (ruestung == 0) {
+									halsband = 0;
+								}
+							} else if (ruestung == 0) {
+								health = health - 25;
+								halsband = 0;
+								if (health <= 0) {
+									aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+									aktuellesSpielfeld[checkx][checky] = Konstanten.PUDEL;
+									leben = leben - 1;
+									Checkpoint();
+								}
+							}
+						}
+						if (aktuellesSpielfeld[Gegnerx-1][Gegnery] == (Konstanten.GEGNER)){
+							aktuellesSpielfeld[Gegnerx-1][Gegnery] = Konstanten.STUNK;
+						}
+						if (aktuellesSpielfeld[Gegnerx][Gegnery-1] == (Konstanten.GEGNER)){
+							aktuellesSpielfeld[Gegnerx][Gegnery-1] = Konstanten.STUNK;
+						}
+						if (aktuellesSpielfeld[Gegnerx][Gegnery+1] == Konstanten.GEGNER){
+							aktuellesSpielfeld[Gegnerx][Gegnery+1] = Konstanten.STUNK;
+						}
+						if (aktuellesSpielfeld[Gegnerx+1][Gegnery] == Konstanten.GEGNER){
+							aktuellesSpielfeld[Gegnerx+1][Gegnery] = Konstanten.STUNK;
+						}
+					
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+					
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.STUNK) {
+						if (aktuellesSpielfeld[altGegx-1][altGegy] == Konstanten.STUNK){
+							aktuellesSpielfeld[altGegx-1][altGegy] = Konstanten.RASEN;
+						}
+						if (aktuellesSpielfeld[altGegx+1][altGegy] == Konstanten.STUNK){
+							aktuellesSpielfeld[altGegx+1][altGegy] = Konstanten.RASEN;
+						}
+						if (aktuellesSpielfeld[altGegx][altGegy-1] == Konstanten.STUNK){
+							aktuellesSpielfeld[altGegx][altGegy-1] = Konstanten.RASEN;
+						}
+						if (aktuellesSpielfeld[altGegx][altGegy+1] == Konstanten.STUNK){
+							aktuellesSpielfeld[altGegx][altGegy+1] = Konstanten.RASEN;
+						}
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.RASEN;
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GEGNER;
+					zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.GRENZE) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GRENZE;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.PUDEL) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.PUDEL;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS1v) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS1v;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS2v) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS2v;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOSS3v) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOSS3v;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.CUPCAKE) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.CUPCAKE;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.ZURUECK) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.ZURUECK;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.GOLD) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GOLD;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.HEALTH) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.HEALTH;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.CARLOS) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.CARLOS;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.HUETTE) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.HUETTE;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.MANA) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.MANA;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.SCHWERT) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.SCHWERT;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.RUESTUNG) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.RUESTUNG;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.BOMBE) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.BOMBE;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.CHECKPOINT) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.CHECKPOINT;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.FALLE) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.FALLE;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				} else if (aktuellesSpielfeld[Gegnerx][Gegnery] == Konstanten.GEGNER2) {
+					aktuellesSpielfeld[Gegnerx][Gegnery] = Konstanten.GEGNER2;
+					aktuellesSpielfeld[altGegx][altGegy] = Konstanten.GEGNER;
+					Gegnerx = altGegx;
+					Gegnery = altGegy;
+				}
+			} /* wenn Gegner ko ungleich 0, tue nichts */
+			else if (ko != 0) {
+				// nothing to do here
+			}
+		} else {
+			// nothing to do here
+		}
+
+		/* Gegnersbewegung */
+		if (Gegner2 == 1) {
+
+			if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.RASEN) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.GEGNER2;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.RASEN;
+				zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.GRENZE) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.GRENZE;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.PUDEL) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.PUDEL;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.BOSS1v) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.BOSS1v;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.BOSS2v) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.BOSS2v;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.BOSS3v) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.BOSS3v;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.CUPCAKE) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.CUPCAKE;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.ZURUECK) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.ZURUECK;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.GOLD) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.GOLD;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.HEALTH) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.HEALTH;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.CARLOS) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.CARLOS;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.HUETTE) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.HUETTE;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.MANA) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.MANA;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.SCHWERT) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.SCHWERT;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.RUESTUNG) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.RUESTUNG;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.BOMBE) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.BOMBE;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.CHECKPOINT) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.CHECKPOINT;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.FALLE) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.FALLE;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			} else if (aktuellesSpielfeld[Gegnersx][Gegnersy] == Konstanten.GEGNER) {
+				aktuellesSpielfeld[Gegnersx][Gegnersy] = Konstanten.GEGNER;
+				aktuellesSpielfeld[altGegsx][altGegsy] = Konstanten.GEGNER2;
+				Gegnersx = altGegsx;
+				Gegnersy = altGegsy;
+			}
+		} else {
+			// nothing to do here
 		}
 
 		/* Abfragen für die Leertaste */

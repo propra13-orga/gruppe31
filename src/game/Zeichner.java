@@ -86,6 +86,8 @@ public class Zeichner extends Canvas {
 			Konstanten.direction + "/src/game/Images/Save.png");
 	private static final Icon iconSchwert = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Schwertrasen.png");
+	private static final Icon iconStunk = new ImageIcon(Konstanten.direction
+			+ "/src/game/Images/Stunk.jpg");
 	private static final Icon iconDefault = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Default.png");
 
@@ -173,6 +175,9 @@ public class Zeichner extends Canvas {
 					break;
 				case Konstanten.GOLD:
 					icon = iconGold;
+					break;
+				case Konstanten.STUNK:
+					icon = iconStunk;
 					break;
 				case Konstanten.MANA:
 					icon = iconMana;
