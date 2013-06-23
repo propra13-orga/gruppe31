@@ -186,6 +186,15 @@ public class Zeichner extends Canvas {
 				case Konstanten.HEALTH:
 					icon = iconHealth;
 					break;
+				case Konstanten.SHOPMANA:
+					icon = iconMana;
+					break;
+				case Konstanten.SHOPRUESTUNG:
+					icon = iconRuestung;
+					break;
+				case Konstanten.SHOPHEALTH:
+					icon = iconHealth;
+					break;
 				case Konstanten.LASER:
 					icon = iconLaser;
 					break;
@@ -206,7 +215,7 @@ public class Zeichner extends Canvas {
 							}
 						} else if (gameFrame.getBeschwertet() == 0) {
 							if (gameFrame.getHalsband() == 1) {
-								icon = iconTerminatorErna;
+								icon = iconPudelBeides;
 							} else if (gameFrame.getHalsband() == 0) {
 								icon = iconAggroErna;
 							}

@@ -35,6 +35,9 @@ public final class Konstanten {
 	public static final int CHECKPOINT = (int) 'D';
 	public static final int BOMBE = (int) '/';
 	public static final int SCHWERT = (int) 'ß';
+	public static final int SHOPMANA = (int) 'A';
+	public static final int SHOPHEALTH = (int) 'Q';
+	public static final int SHOPRUESTUNG = (int) 'Ü';
 
 	public static final int SIZE = 50;
 	public static final int SPALTEN = 16;

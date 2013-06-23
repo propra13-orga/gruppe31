@@ -133,7 +133,6 @@ public class GameFrame extends JFrame implements KeyListener {
 	private GameFrame gameFrame;
 	private Carlos carlos;
 	private Zeichner zeichner;
-	private Shop shop;
 
 	private Integer aktuellesSpielfeld[][] = new Integer[16][12];
 	private Integer CheckSpielfeld[][] = new Integer[16][12];
@@ -1101,8 +1100,6 @@ public class GameFrame extends JFrame implements KeyListener {
 
 			/* Abfrage für ich laufe gegen HUETTE */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.HUETTE) {
-			shop = new Shop();
-			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.RASEN;
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.HUETTE;
 			Spielfigurx = altx;
@@ -1133,6 +1130,16 @@ public class GameFrame extends JFrame implements KeyListener {
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 
+			/* Abfrage für ich laufe auf SHOPMANA */
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.SHOPMANA) {
+			mana = 2;
+			gold = gold - 50;
+			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.SHOPMANA;
+			Spielfigurx = altx;
+			Spielfigury = alty;
+			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+
 			/* Abfrage für ich laufe auf RUESTUNG */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.RUESTUNG) {
 			ruestung = 50;
@@ -1140,12 +1147,33 @@ public class GameFrame extends JFrame implements KeyListener {
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+			
+			/* Abfrage für ich laufe auf SHOPRUESTUNG */
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.SHOPRUESTUNG) {
+			ruestung = 50;
+			halsband = 1;
+			gold = gold - 50;
+			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.SHOPRUESTUNG;
+			Spielfigurx = altx;
+			Spielfigury = alty;
+			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 
 			/* Abfrage für ich laufe auf HEALTH */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.HEALTH) {
 			health = 100;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+			
+			/* Abfrage für ich laufe auf SHOPHEALTH */
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.SHOPHEALTH) {
+			health = 100;
+			gold = gold - 50;
+			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.SHOPHEALTH;
+			Spielfigurx = altx;
+			Spielfigury = alty;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 
 			/* Abfrage für ich laufe auf WAFFE */
