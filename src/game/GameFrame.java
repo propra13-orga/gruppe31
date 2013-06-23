@@ -979,6 +979,12 @@ public class GameFrame extends JFrame implements KeyListener {
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
 			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
 			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
+			
+			/* Abfrage für ich laufe auf STUNK */
+		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.STUNK) {
+			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.PUDEL;
+			aktuellesSpielfeld[altx][alty] = Konstanten.RASEN;
+			zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 
 			/* Abfrage für ich laufe auf SCHWERT */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.SCHWERT) {
