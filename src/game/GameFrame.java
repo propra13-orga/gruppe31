@@ -923,8 +923,10 @@ public class GameFrame extends JFrame implements KeyListener {
 
 			/* Abfrage für ich laufe auf SHOPMANA */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.SHOPMANA) {
-			mana = 2;
-			gold = gold - 50;
+			if (gold>=50){
+				mana = 2;
+				gold = gold - 50;
+				}
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.SHOPMANA;
 			Spielfigurx = altx;
@@ -941,9 +943,11 @@ public class GameFrame extends JFrame implements KeyListener {
 			
 			/* Abfrage für ich laufe auf SHOPRUESTUNG */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.SHOPRUESTUNG) {
-			ruestung = 50;
-			halsband = 1;
-			gold = gold - 50;
+			if (gold>=50){
+				ruestung = 50;
+				halsband = 1;
+				gold = gold - 50;
+				}
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.SHOPRUESTUNG;
 			Spielfigurx = altx;
@@ -959,8 +963,10 @@ public class GameFrame extends JFrame implements KeyListener {
 			
 			/* Abfrage für ich laufe auf SHOPHEALTH */
 		} else if (aktuellesSpielfeld[Spielfigurx][Spielfigury] == Konstanten.SHOPHEALTH) {
-			health = 100;
-			gold = gold - 50;
+			if (gold>=50){
+				health = 100;
+				gold = gold - 50;
+				}
 			aktuellesSpielfeld[altx][alty] = Konstanten.PUDEL;
 			aktuellesSpielfeld[Spielfigurx][Spielfigury] = Konstanten.SHOPHEALTH;
 			Spielfigurx = altx;
