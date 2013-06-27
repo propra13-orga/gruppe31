@@ -1,17 +1,23 @@
 gruppe31
 ========
 
-Zweiter Meilenstein:
+Dritter Meilenstein:
 
-Denise erledigt:
-Checkpoint auch für Müllfallen, Validierung der Textdatei, FileChooser, feste Zahlen als Konstanten 
-(nur noch im KeyListner), alle Fenster bis auf Menufenster über[x] Schließbar, ohne, dass das ganze 
-Programm geschlossen wird
+Refactoring: zusammen
 
-Marcel und Valentin ausstehend:
-Shop (Items kaufen), 
-Pilze mit Waffen
+Quests & Rätsel: Valentin
 
+Stein-Schere-Papier-Prinzip für Waffen, Zauber und Rüstungen: Marcel
+
+Javadoc und Handbuch: Denise
+
+Netzwerkmodus: zusammen
+  - Chat während und/oder vor dem Spiel: Denise
+  - Netzwerklobby: Marcel
+  - Co-Op-Rätsel: Valentin
+
+zusätzlich: 
+Soundeffekte: Valentin
 
 
 
