@@ -4,18 +4,18 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
- * ein Objekt dieser Klasse ist Carlos, der NPC
- *
+ * ein Objekt dieser Klasse ist die Shopruestung
+ * 
  */
-public class Carlos extends GameObject {
-	
+public class Shopruestung extends Item {
+
 	private static final Icon icon = new ImageIcon(Konstanten.direction
-			+ "/src/game/Images/Carlos.png");
+			+ "/src/game/Images/HalsbandRasen.png");
 
 	@Override
 	public Icon getIcon() {
 		// TODO Auto-generated method stub
-		return null;
+		return icon;
 	}
 
 }

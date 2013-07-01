@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.Color;
 import java.awt.event.*;
 import java.io.*;
 
@@ -8,7 +7,7 @@ import javax.swing.*;
 import javax.imageio.ImageIO;
 
 import java.io.File;
-import javax.swing.filechooser.FileFilter;
+
 
 /**
  * MenuFrame erzeugt das Menufenster. Ein Hintergrundbild wird gesetzt, es
