@@ -5,7 +5,7 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: MyConfig
+    Checkstyle-Configuration: ProPra2
     Description: none
 -->
 <module name="Checker">
@@ -23,7 +23,6 @@
     <module name="AvoidStarImport"/>
     <module name="AvoidStaticImport"/>
     <module name="IllegalImport"/>
-    <module name="ImportOrder"/>
     <module name="RedundantImport"/>
     <module name="UnusedImports"/>
     <module name="AvoidInlineConditionals"/>
@@ -96,7 +95,6 @@
     <module name="EmptyBlock"/>
     <module name="JavaNCSS"/>
     <module name="TodoComment"/>
-    <module name="UncommentedMain"/>
     <module name="OuterTypeFilename"/>
     <module name="LocalVariableName"/>
     <module name="TrailingComment"/>
@@ -111,8 +109,8 @@
     <module name="ParameterName"/>
     <module name="StaticVariableName"/>
     <module name="TypeName"/>
+    <module name="PackageName"/>
   </module>
-  <module name="JavadocPackage"/>
   <module name="StrictDuplicateCode">
     <property name="fileExtensions" value="java"/>
   </module>
