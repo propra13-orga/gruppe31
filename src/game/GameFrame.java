@@ -188,17 +188,12 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setFocusable(true);
 		this.addKeyListener(this);
 
-		zeichner = new Zeichner(this);
-		this.add(zeichner);
-
 		spiel = new Spiel();
 		chooseFile();
 		if (Datei == null) {
 			return;
 		} 
 		spiel.init(Datei);
-
-	//	zeichner.zeichneSpielfeld(aktuellesSpielfeld);
 
 		setzeAnzeige();
 

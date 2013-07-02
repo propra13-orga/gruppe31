@@ -18,8 +18,7 @@ public class Zeichner extends Canvas {
 	private static final Icon iconStunk = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Stunk.jpg");
 
-	Spielfeld spielfeld;
-
+	private Spielfeld spielfeld;
 	private GameFrame gameFrame;
 
 	public Zeichner(GameFrame pGameFrame) throws Exception {
@@ -29,6 +28,8 @@ public class Zeichner extends Canvas {
 	/**
 	 * für jedes Feld im Array wird ein Icon gesetzt, welches aus den jeweiligen
 	 * Objektklassen geholt wird
+	 * 
+	 * @param Graphics g
 	 */
 	public void paint(Graphics g) {
 

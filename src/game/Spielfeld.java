@@ -85,7 +85,7 @@ public class Spielfeld extends Spiel {
 					gameObject = new Shopruestung();
 					break;
 				default:
-					throw new SpielfeldException("Unbekannter GameObject Typ");
+					throw new SpielfeldException("Unbekannter GameObject Typ");	
 				}
 				this.feld[x][y] = gameObject;
 			}
