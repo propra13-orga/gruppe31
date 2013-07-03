@@ -15,10 +15,12 @@ import java.io.File;
  */
 public class MenuFrame extends JFrame {
 
+	/** Deklaration der Buttons für MenuFrame*/
 	private JButton start;
 	private JButton control;
 	private JButton ende;
 
+	/** Deklaration von Feldern*/
 	private GameFrame gameframe;
 	private Steuerung steuerung;
 
@@ -64,7 +66,6 @@ public class MenuFrame extends JFrame {
 				try {
 					gameframe = new GameFrame();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

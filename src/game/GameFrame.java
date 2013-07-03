@@ -157,7 +157,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	private JButton GVschliessen;
 
-	/** Deklaration der ... */
+	/** Deklaration von Feldern */
 	private Spiel spiel;
 	private GameFrame gameFrame;
 	private NPC carlos;
