@@ -43,7 +43,7 @@ public class Spieler extends Spielfigur {
 
 	/** Konstruktor weist Icon das richtige Icon zu */
 	public Spieler() {
-		if (getBewaffnet() == 1) {
+		if (getBewaffnet() == true) {
 			if (beschwertet == 1) {
 				if (halsband == 1) {
 					icon = ICONTERMINATORERNA;
@@ -57,7 +57,7 @@ public class Spieler extends Spielfigur {
 					icon = ICONAGGROERNA;
 				}
 			}
-		} else if (getBewaffnet() == 0) {
+		} else if (getBewaffnet() == false) {
 			if (beschwertet == 1) {
 				if (halsband == 1) {
 					icon = ICONPUDELSCHWERTHALSBAND;

@@ -9,7 +9,7 @@ public abstract class Spielfigur extends GameObject {
 
 	/** int-Variablen für Spielfigur */
 	private int schaden;
-	private int bewaffnet;
+	private boolean bewaffnet;
 	private int gesundheit;
 
 	/**
@@ -17,7 +17,7 @@ public abstract class Spielfigur extends GameObject {
 	 * 
 	 * @return
 	 */
-	public int getBewaffnet() {
+	public boolean getBewaffnet() {
 		return bewaffnet;
 	}
 
@@ -26,7 +26,7 @@ public abstract class Spielfigur extends GameObject {
 	 * 
 	 * @param bewaffnet
 	 */
-	public void setBewaffnet(int bewaffnet) {
+	public void setBewaffnet(boolean bewaffnet) {
 		this.bewaffnet = bewaffnet;
 	}
 

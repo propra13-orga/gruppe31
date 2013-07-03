@@ -8,21 +8,26 @@ import javax.imageio.ImageIO;
 
 import java.io.File;
 
-
 /**
  * MenuFrame erzeugt das Menufenster. Ein Hintergrundbild wird gesetzt, es
  * werden 3 Buttons und ein Label auf das Fenster gesetzt
  */
 public class MenuFrame extends JFrame {
 
-	/** Deklaration der Buttons für MenuFrame*/
+	/** Deklaration der Buttons für MenuFrame */
 	private JButton start;
 	private JButton control;
 	private JButton ende;
 
-	/** Deklaration von Feldern*/
+	/** Deklaration von Feldern */
 	private GameFrame gameframe;
-	private Steuerung steuerung;
+
+	/** Icon für Steuerung wird deklariert */
+	private static final Icon ICONSTEUERUNG = new ImageIcon(
+			Konstanten.direction + "/src/game/Images/Steuerung.png");
+
+	/** Label für Steuerung wird deklariert */
+	private static final JLabel STEUERUNG = new JLabel(ICONSTEUERUNG);
 
 	/**
 	 * Konstruktor, der alle Einstellungen des Menüfensters aufruft
@@ -73,7 +78,7 @@ public class MenuFrame extends JFrame {
 
 		ActionListener alsteuerung = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				steuerung = new Steuerung();
+				Steuerung();
 			}
 		};
 
@@ -86,6 +91,22 @@ public class MenuFrame extends JFrame {
 		start.addActionListener(alstart);
 		control.addActionListener(alsteuerung);
 		ende.addActionListener(alende);
+	}
+
+	/** Methode ruft neues Fenster auf */
+	public void Steuerung() {
+		final JFrame frame = new JFrame();
+
+		frame.setResizable(true);
+		frame.setSize(400, 310);
+		frame.setLayout(null);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+
+		STEUERUNG.setBounds(0, 0, 400, 310);
+		STEUERUNG.setVisible(true);
+		frame.add(STEUERUNG);
 	}
 
 	/**
