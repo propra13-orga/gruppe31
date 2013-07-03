@@ -172,9 +172,9 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/** Deklaration eines Strings für Exception */
 	private String Exception = "Das Bild kann nicht gefunden werden ";
-	
-	/** Deklaration eines Strings für das Schließen*/
-	private String Schließen = "Dieses Fenster schließen";
+
+	/** Deklaration eines Strings für das Schließen */
+	private String Schliessen = "Dieses Fenster schließen";
 
 	/**
 	 * Deklaration von int-Variablen, werden später durch Variablen aus
@@ -460,7 +460,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 
-		GVschliessen = new JButton(Schließen);
+		GVschliessen = new JButton(Schliessen);
 		GVschliessen.setBounds(550, 450, 200, 40);
 		this.add(GVschliessen);
 
@@ -494,7 +494,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 
-		GVschliessen = new JButton(Schließen);
+		GVschliessen = new JButton(Schliessen);
 		GVschliessen.setBounds(550, 450, 200, 40);
 		this.add(GVschliessen);
 
@@ -507,21 +507,28 @@ public class GameFrame extends JFrame implements KeyListener {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+	public void keyPressed(KeyEvent e) {
 
+		/* Abfragen für die Pfeiltasten */
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			// Fokus x-- setzen und in Spielfigur TryMove aufrufen
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			// Fokus x++ setzen und in Spielfigur TryMove aufrufen
+		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+			// Fokus y-- setzen und in Spielfigur TryMove aufrufen
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			// Fokus y++ setzen und in Spielfigur TryMove aufrufen
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-
+		// nothing to do here
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-
+		// nothing to do here
 	}
 
 }

@@ -31,8 +31,8 @@ public class Spieler extends Spielfigur {
 	private Icon icon;
 
 	/**
-	 * Variablen für leben, beschwertet, halsband, mana, gold, ruestung werden
-	 * deklariert
+	 * Variablen für leben, beschwertet, halsband, mana, gold, ruestung und
+	 * Spielfigur Koordinaten werden deklariert
 	 */
 	private int leben;
 	private int beschwertet;
@@ -40,9 +40,20 @@ public class Spieler extends Spielfigur {
 	private int mana;
 	private int gold;
 	private int ruestung;
+	private int Spielfigurx;
+	private int Spielfigury;
 
-	/** Konstruktor weist Icon das richtige Icon zu */
-	public Spieler() {
+	/**
+	 * Konstruktor weist Icon das richtige Icon zu
+	 * 
+	 * @param y
+	 * @param x
+	 */
+	public Spieler(int x, int y) {
+
+		Spielfigurx = x;
+		Spielfigury = y;
+
 		if (getBewaffnet() == true) {
 			if (beschwertet == 1) {
 				if (halsband == 1) {
@@ -72,6 +83,42 @@ public class Spieler extends Spielfigur {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Getter für Spielfigurx
+	 * 
+	 * @return
+	 */
+	public int getSpielfigurx() {
+		return Spielfigurx;
+	}
+
+	/**
+	 * Setter für Spielfigurx
+	 * 
+	 * @param Spielfigurx
+	 */
+	public void setSpielfigurx(int Spielfigurx) {
+		this.Spielfigurx = Spielfigurx;
+	}
+
+	/**
+	 * Getter für Spielfigurx
+	 * 
+	 * @return
+	 */
+	public int getSpielfigury() {
+		return Spielfigury;
+	}
+
+	/**
+	 * Setter für Spielfigury
+	 * 
+	 * @param Spielfigury
+	 */
+	public void setSpielfigury(int Spielfigury) {
+		this.Spielfigury = Spielfigury;
 	}
 
 	/**

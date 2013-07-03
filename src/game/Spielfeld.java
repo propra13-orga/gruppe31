@@ -1,9 +1,9 @@
 package game;
 
-/** ist für den jeweiligen Raum zuständig. das Spielfeld wird erstellt  */
+/** ist für den jeweiligen Raum zuständig. das Spielfeld wird erstellt */
 public class Spielfeld extends Spiel {
 
-	/** Deklaration eines GameObject Arrays*/
+	/** Deklaration eines GameObject Arrays */
 	public final GameObject[][] feld;
 
 	/**
@@ -28,7 +28,7 @@ public class Spielfeld extends Spiel {
 					gameObject = new Grenze();
 					break;
 				case Konstanten.PUDEL:
-					gameObject = new Spieler();
+					gameObject = new Spieler(x, y);
 					break;
 				case Konstanten.GEGNER:
 					gameObject = new Gegner();
@@ -85,7 +85,7 @@ public class Spielfeld extends Spiel {
 					gameObject = new Shopruestung();
 					break;
 				default:
-					throw new SpielfeldException("Unbekannter GameObject Typ");	
+					throw new SpielfeldException("Unbekannter GameObject Typ");
 				}
 				this.feld[x][y] = gameObject;
 			}
