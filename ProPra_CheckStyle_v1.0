@@ -23,6 +23,7 @@
     <module name="AvoidStarImport"/>
     <module name="AvoidStaticImport"/>
     <module name="IllegalImport"/>
+    <module name="ImportOrder"/>
     <module name="RedundantImport"/>
     <module name="UnusedImports"/>
     <module name="AvoidInlineConditionals"/>
@@ -45,7 +46,10 @@
     <module name="IllegalInstantiation"/>
     <module name="IllegalCatch"/>
     <module name="IllegalThrows"/>
-    <module name="IllegalToken"/>
+    <module name="IllegalToken">
+      <property name="severity" value="ignore"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
     <module name="IllegalTokenText"/>
     <module name="IllegalType"/>
     <module name="InnerAssignment"/>
@@ -95,6 +99,10 @@
     <module name="EmptyBlock"/>
     <module name="JavaNCSS"/>
     <module name="TodoComment"/>
+    <module name="UncommentedMain">
+      <property name="severity" value="ignore"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
     <module name="OuterTypeFilename"/>
     <module name="LocalVariableName"/>
     <module name="TrailingComment"/>
@@ -110,6 +118,10 @@
     <module name="StaticVariableName"/>
     <module name="TypeName"/>
     <module name="PackageName"/>
+  </module>
+  <module name="JavadocPackage">
+    <property name="severity" value="ignore"/>
+    <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
   </module>
   <module name="StrictDuplicateCode">
     <property name="fileExtensions" value="java"/>
