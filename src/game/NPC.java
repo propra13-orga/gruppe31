@@ -1,7 +1,14 @@
 package game;
 
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 /**
  * ein Objekt dieser Klasse ist das NPCFenster, in welchem dem Spieler die
@@ -9,6 +16,7 @@ import javax.swing.*;
  */
 public class NPC {
 
+	/** Icons für NPX Anzeige werden deklariert*/
 	private static final Icon iconCarlos1 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Carlos1.png");
 	private static final Icon iconCarlos2 = new ImageIcon(Konstanten.direction
@@ -32,6 +40,7 @@ public class NPC {
 	private static final Icon iconCarlos11 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Carlos11.png");
 
+	/** Labels für NPC Anzeige werden deklariert*/
 	private static final JLabel NPC1 = new JLabel(iconCarlos1);
 	private static final JLabel NPC2 = new JLabel(iconCarlos2);
 	private static final JLabel NPC3 = new JLabel(iconCarlos3);
@@ -44,6 +53,7 @@ public class NPC {
 	private static final JLabel NPC10 = new JLabel(iconCarlos10);
 	private static final JLabel NPC11 = new JLabel(iconCarlos11);
 
+	/** Buttons für NOC Anzeige werden deklariert*/
 	private JButton Weiter;
 	private JButton Skip;
 

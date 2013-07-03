@@ -7,9 +7,10 @@ package game;
  */
 public abstract class Spielfigur extends GameObject {
 
-	private int schaden; // wieviel Schaden kann ausgeteilt werden
-	private int bewaffnet; // 1 oder 0
-	private int gesundheit; // wie hoch ist der Lebensbalken
+	/** int-Variablen für Spielfigur */
+	private int schaden;
+	private int bewaffnet;
+	private int gesundheit;
 
 	/**
 	 * Getter

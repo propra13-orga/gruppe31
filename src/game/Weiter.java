@@ -9,12 +9,20 @@ import javax.swing.ImageIcon;
  */
 public class Weiter extends GameObject {
 	
-	private static final Icon icon = new ImageIcon(Konstanten.direction
+	/** Icon für Weiter wird deklariert*/
+	private static final Icon ICONWEITER = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Weiter1.jpg");
-
+	
+	/** icon vom Typ Icon wird deklariert*/
+	private Icon icon;
+	
+	/** Konstruktor initialisiert icon*/
+	public Weiter() {
+		icon = ICONWEITER;
+	}
+	
 	@Override
 	public Icon getIcon() {
-		// TODO Auto-generated method stub
 		return icon;
 	}
 }

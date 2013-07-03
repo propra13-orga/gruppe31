@@ -5,16 +5,24 @@ import javax.swing.ImageIcon;
 
 /**
  * ein Objekt dieser Klasse ist die Laserbrille
- *
+ * 
  */
 public class Brille extends Item {
-	
-	private static final Icon icon = new ImageIcon(Konstanten.direction
+
+	/** Icon für Waffe wird deklariert */
+	private static final Icon ICONWAFFE = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Waffe1.png");
+
+	/** icon vom Typ Icon wird deklariert */
+	private Icon icon;
+
+	/** Konstruktor initialisiert icon */
+	public Brille() {
+		icon = ICONWAFFE;
+	}
 
 	@Override
 	public Icon getIcon() {
-		// TODO Auto-generated method stub
 		return icon;
 	}
 

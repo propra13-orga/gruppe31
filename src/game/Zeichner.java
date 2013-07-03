@@ -1,7 +1,7 @@
 package game;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
+import java.awt.Canvas;
+import java.awt.Graphics;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
  */
 public class Zeichner extends Canvas {
 
+	/** Icons für diverse andere Sachen werden deklariert */
 	private static final Icon iconLaser = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Laser1.png");
 	private static final Icon iconGegnertot = new ImageIcon(
@@ -18,18 +19,20 @@ public class Zeichner extends Canvas {
 	private static final Icon iconStunk = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Stunk.jpg");
 
+	/** Deklaration der ... */
 	private Spielfeld spielfeld;
 	private GameFrame gameFrame;
 
+	/** Konstruktor mit Parameter */
 	public Zeichner(GameFrame pGameFrame) throws Exception {
 		gameFrame = pGameFrame;
 	}
 
 	/**
-	 * für jedes Feld im Array wird ein Icon gesetzt, welches aus den jeweiligen
+	 *  für jedes Feld im Array wird ein Icon gesetzt, welches aus den jeweiligen
 	 * Objektklassen geholt wird
 	 * 
-	 * @param Graphics g
+	 * @param g
 	 */
 	public void paint(Graphics g) {
 

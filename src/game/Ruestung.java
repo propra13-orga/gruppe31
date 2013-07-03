@@ -8,13 +8,21 @@ import javax.swing.ImageIcon;
  * 
  */
 public class Ruestung extends Item {
-	
-	private static final Icon icon = new ImageIcon(Konstanten.direction
+
+	/** Icon für Ruestung wird deklariert */
+	private static final Icon ICONRUESTUNG = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/HalsbandRasen.png");
+
+	/** icon vom Typ Icon wird deklariert */
+	private Icon icon;
+
+	/** Konstruktor initialisiert icon */
+	public Ruestung() {
+		icon = ICONRUESTUNG;
+	}
 
 	@Override
 	public Icon getIcon() {
-		// TODO Auto-generated method stub
 		return icon;
 	}
 }

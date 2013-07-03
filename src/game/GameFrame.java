@@ -1,11 +1,23 @@
 package game;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
+import java.awt.BorderLayout;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileFilter;
 
 /**
@@ -14,6 +26,7 @@ import javax.swing.filechooser.FileFilter;
  */
 public class GameFrame extends JFrame implements KeyListener {
 
+	/** Icons für die Anzeige des Levels werden deklariert */
 	private static final Icon iconEins = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/1.png");
 	private static final Icon iconZwei = new ImageIcon(Konstanten.direction
@@ -21,6 +34,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon iconDrei = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/3.png");
 
+	/** Icons für die Anzeige der Gesundheitsleiste werden deklariert */
 	private static final Icon iconLebenVoll = new ImageIcon(
 			Konstanten.direction + "/src/game/Images/Lebenvoll.png");
 	private static final Icon iconLebenFast = new ImageIcon(
@@ -30,6 +44,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon iconLebenWenig = new ImageIcon(
 			Konstanten.direction + "/src/game/Images/Lebenwenig.png");
 
+	/** Icons für die Anzeige der Manaleiste werden deklariert */
 	private static final Icon iconManaVoll = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Manavoll.png");
 	private static final Icon iconManaHalb = new ImageIcon(Konstanten.direction
@@ -37,6 +52,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon iconManaLeer = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Manaleer.png");
 
+	/** Icons für die Ruestungsanzeige deklariert */
 	private static final Icon iconRuestungVoll = new ImageIcon(
 			Konstanten.direction + "/src/game/Images/Ruestungvoll.png");
 	private static final Icon iconRuestungHalb = new ImageIcon(
@@ -44,6 +60,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon iconRuestungWeg = new ImageIcon(
 			Konstanten.direction + "/src/game/Images/Ruestungweg.png");
 
+	/** Icons für die Goldanzeige deklariert */
 	private static final Icon icon0Gold = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Gold0.png");
 	private static final Icon icon50Gold = new ImageIcon(Konstanten.direction
@@ -61,6 +78,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon icon350Gold = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Gold350.png");
 
+	/** Icons für die Anzeige der aktuellen Waffe(n) deklariert */
 	private static final Icon iconKeinEq = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/KeinEq.png");
 	private static final Icon iconSchwert = new ImageIcon(Konstanten.direction
@@ -78,6 +96,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon iconAllesEq = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Eqalles.png");
 
+	/** Icons für die Anzeige der Leben deklariert */
 	private static final Icon iconHerz1 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Herz1.png");
 	private static final Icon iconHerz2 = new ImageIcon(Konstanten.direction
@@ -85,23 +104,28 @@ public class GameFrame extends JFrame implements KeyListener {
 	private static final Icon iconHerz3 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Herz3.png");
 
+	/** Labels für Anzeige des aktuellen Levels deklariert */
 	private JLabel Eins = new JLabel(iconEins);
 	private JLabel Zwei = new JLabel(iconZwei);
 	private JLabel Drei = new JLabel(iconDrei);
 
+	/** Labels für Anzeige der Gesundheitslietse deklariert */
 	private JLabel LebenVoll = new JLabel(iconLebenVoll);
 	private JLabel LebenFast = new JLabel(iconLebenFast);
 	private JLabel LebenHalb = new JLabel(iconLebenHalb);
 	private JLabel LebenWenig = new JLabel(iconLebenWenig);
 
+	/** Labels für die Manaanzeige deklariert */
 	private JLabel ManaVoll = new JLabel(iconManaVoll);
 	private JLabel ManaHalb = new JLabel(iconManaHalb);
 	private JLabel ManaLeer = new JLabel(iconManaLeer);
 
+	/** Labels für die Ruestungsanzeige deklariert */
 	private JLabel RuestungVoll = new JLabel(iconRuestungVoll);
 	private JLabel RuestungHalb = new JLabel(iconRuestungHalb);
 	private JLabel RuestungWeg = new JLabel(iconRuestungWeg);
 
+	/** Labels für die Goldanzeige deklariert */
 	private JLabel Gold0 = new JLabel(icon0Gold);
 	private JLabel Gold50 = new JLabel(icon50Gold);
 	private JLabel Gold100 = new JLabel(icon100Gold);
@@ -111,6 +135,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private JLabel Gold300 = new JLabel(icon300Gold);
 	private JLabel Gold350 = new JLabel(icon350Gold);
 
+	/** Labels für die Anzeige der aktuellen Waffe(n)deklariert */
 	private JLabel KeinEq = new JLabel(iconKeinEq);
 	private JLabel Schwert = new JLabel(iconSchwert);
 	private JLabel Brille = new JLabel(iconBrille);
@@ -120,56 +145,50 @@ public class GameFrame extends JFrame implements KeyListener {
 	private JLabel BrilleHals = new JLabel(iconBrilleHals);
 	private JLabel AllesEq = new JLabel(iconAllesEq);
 
+	/** Labels für die Anzeige der Leben deklariert */
 	private JLabel Herz1 = new JLabel(iconHerz1);
 	private JLabel Herz2 = new JLabel(iconHerz2);
 	private JLabel Herz3 = new JLabel(iconHerz3);
 
+	/** Panel für Anzeigenleiste deklariert */
 	private Panel Leiste = new Panel();
+	/** Panel für Spielfeld deklariert */
 	private Panel Spielfeld = new Panel();
 
 	private JButton GVschliessen;
 
+	/** Deklaration der ... */
 	private Spiel spiel;
 	private GameFrame gameFrame;
 	private NPC carlos;
 	private Zeichner zeichner;
 
+	/** Deklaration von Integer Arrays */
 	private Integer aktuellesSpielfeld[][] = new Integer[16][12];
 	private Integer CheckSpielfeld[][] = new Integer[16][12];
 
-	private int Spielfigurx;
-	private int Spielfigury;
-	private int Gegnerx;
-	private int Gegnery;
-	private int Gegnersx;
-	private int Gegnersy;
-	private int Gegner1;
-	private int Gegner2;
-	private int checkx;
-	private int checky;
-	private int level;
-
-	private int zaehlerlevel = 1;
-	private int zaehlerbombe = 0;
-	
-	private int bewaffnet = 0;
-	private int beschwertet = 0;
-	private int halsband = 0;
-
-	private int gold = 0;
-	private int health = 100;
-	private int ruestung = 0;
-	private int mana = 0;
-
-	private int leben = 3;
-	private int bombex;
-	private int bombey;
-
-	private int ko = 0;
-	private int bosshealth = 100;
-	private int save = 0;
-
+	/** Deklaration eines Strings Datei */
 	private String Datei;
+
+	/** Deklaration eines Strings für Exception */
+	private String Exception = "Das Bild kann nicht gefunden werden ";
+	
+	/** Deklaration eines Strings für das Schließen*/
+	private String Schließen = "Dieses Fenster schließen";
+
+	/**
+	 * Deklaration von int-Variablen, werden später durch Variablen aus
+	 * GameObject Klassen ersetzt
+	 */
+	private int level;
+	private int health;
+	private int mana;
+	private int ruestung;
+	private int gold;
+	private int bewaffnet;
+	private int beschwertet;
+	private int halsband;
+	private int leben;
 
 	/**
 	 * Konstruktor, der die Eigenschaften des Spielfensters festsetzt. der
@@ -192,7 +211,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		chooseFile();
 		if (Datei == null) {
 			return;
-		} 
+		}
 		spiel.init(Datei);
 
 		setzeAnzeige();
@@ -205,7 +224,6 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/**
 	 * erzeugt FileChooser
-	 * @return 
 	 * 
 	 * @return
 	 */
@@ -245,7 +263,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * aktualisiert die Grafik
+	 * aktualisiert die Grafik CheckStyle erwartet anderes Muster, welches ?
 	 */
 	public void Aktualisieren() {
 		validate();
@@ -359,37 +377,37 @@ public class GameFrame extends JFrame implements KeyListener {
 		Aktualisieren();
 
 		if (bewaffnet == 0) {
-			if (beschwertet == Konstanten.NULL) {
-				if (halsband == Konstanten.NULL) {
+			if (beschwertet == 0) {
+				if (halsband == 0) {
 					KeinEq.setBounds(570, 590, 125, 100);
 					Leiste.add(KeinEq);
-				} else if (halsband == Konstanten.EINS) {
+				} else if (halsband == 1) {
 					Hals.setBounds(570, 590, 125, 100);
 					Leiste.add(Hals);
 				}
-			} else if (beschwertet == Konstanten.EINS) {
-				if (halsband == Konstanten.NULL) {
+			} else if (beschwertet == 1) {
+				if (halsband == 0) {
 					Schwert.setBounds(570, 590, 125, 100);
 					Leiste.add(Schwert);
-				} else if (halsband == Konstanten.EINS) {
+				} else if (halsband == 1) {
 					SchwertHals.setBounds(570, 590, 125, 100);
 					Leiste.add(SchwertHals);
 				}
 			}
-		} else if (bewaffnet == Konstanten.EINS) {
-			if (beschwertet == Konstanten.NULL) {
-				if (halsband == Konstanten.NULL) {
+		} else if (bewaffnet == 1) {
+			if (beschwertet == 0) {
+				if (halsband == 0) {
 					Brille.setBounds(570, 590, 125, 100);
 					Leiste.add(Brille);
-				} else if (halsband == Konstanten.EINS) {
+				} else if (halsband == 1) {
 					BrilleHals.setBounds(570, 590, 125, 100);
 					Leiste.add(BrilleHals);
 				}
-			} else if (beschwertet == Konstanten.EINS) {
-				if (halsband == Konstanten.NULL) {
+			} else if (beschwertet == 1) {
+				if (halsband == 0) {
 					BrilleSchwert.setBounds(570, 590, 125, 100);
 					Leiste.add(BrilleSchwert);
-				} else if (halsband == Konstanten.EINS) {
+				} else if (halsband == 1) {
 					AllesEq.setBounds(570, 590, 125, 100);
 					Leiste.add(AllesEq);
 				}
@@ -414,25 +432,16 @@ public class GameFrame extends JFrame implements KeyListener {
 	/*
 	 * Prüfung ob Checkpoint besucht wurde und Zurücksetzen des Spiels oder
 	 * Ausgang Verloren
-	 
-	public void Checkpoint() {
-		if (save == 1) {
-			if (leben > 0) {
-				health = 100;
-				Spielfigurx = checkx;
-				Spielfigury = checky;
-				zeichner.zeichneSpielfeld(CheckSpielfeld);
-				setzeAnzeige();
-			} else if (leben <= 0) {
-				Verloren();
-			}
-		} else if (save == 0) {
-			Verloren();
-		}
-	}*/
+	 * 
+	 * public void Checkpoint() { if (save == 1) { if (leben > 0) { health =
+	 * 100; Spielfigurx = checkx; Spielfigury = checky;
+	 * zeichner.zeichneSpielfeld(CheckSpielfeld); setzeAnzeige(); } else if
+	 * (leben <= 0) { Verloren(); } } else if (save == 0) { Verloren(); } }
+	 */
 
 	/**
 	 * es wird ein neues Fenster mit dem Spielausgang Gewonnen aufgerufen
+	 * CheckStyle erwartet anderes Muster, welches ?
 	 */
 	public void Gewonnen() {
 		getContentPane().removeAll();
@@ -441,7 +450,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
 					Konstanten.direction + "/src/game/Images/Gewonnen.jpg")))));
 		} catch (IOException a) {
-			System.out.println("das Bild kann nicht gefunden werden");
+			System.out.println(Exception);
 		}
 
 		this.setResizable(false);
@@ -451,7 +460,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 
-		GVschliessen = new JButton("Dieses Fenster schließen");
+		GVschliessen = new JButton(Schließen);
 		GVschliessen.setBounds(550, 450, 200, 40);
 		this.add(GVschliessen);
 
@@ -465,6 +474,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/**
 	 * es wird ein neues Fenster mit dem Spielausgang Verloren aufgerufen
+	 * CheckStyle erwartet anderes Muster, welches ?
 	 */
 	public void Verloren() {
 
@@ -474,7 +484,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
 					Konstanten.direction + "/src/game/Images/GameOver.jpg")))));
 		} catch (IOException a) {
-			System.out.println("das Bild kann nicht gefunden werden");
+			System.out.println(Exception);
 		}
 
 		this.setResizable(false);
@@ -484,7 +494,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 
-		GVschliessen = new JButton("Dieses Fenster schließen");
+		GVschliessen = new JButton(Schließen);
 		GVschliessen.setBounds(550, 450, 200, 40);
 		this.add(GVschliessen);
 
@@ -499,20 +509,19 @@ public class GameFrame extends JFrame implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
 }

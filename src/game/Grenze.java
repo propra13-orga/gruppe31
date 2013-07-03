@@ -8,9 +8,18 @@ import javax.swing.ImageIcon;
  * 
  */
 public class Grenze extends GameObject {
-	
-	private static final Icon icon = new ImageIcon(Konstanten.direction
+
+	/** Icon für Baum wird deklariert */
+	private static final Icon ICONBAUM = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Baum1.jpg");
+
+	/** icon vom Typ Icon wird deklariert */
+	private Icon icon;
+
+	/** Konstruktor initialisiert icon */
+	public Grenze() {
+		icon = ICONBAUM;
+	}
 
 	@Override
 	public Icon getIcon() {

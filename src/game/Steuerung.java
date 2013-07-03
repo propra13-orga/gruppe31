@@ -1,6 +1,10 @@
 package game;
 
-import javax.swing.*;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 /**
  * ein Objekt dieser Klasse ist das Steuerungsfenster, in welchem sich der
@@ -8,12 +12,13 @@ import javax.swing.*;
  */
 public class Steuerung {
 
-	private JButton Sschliessen;
-
-	private static final Icon iconSteuerung = new ImageIcon(
+	/** Icon für Steuerung wird deklariert*/
+	private static final Icon ICONSTEUERUNG = new ImageIcon(
 			Konstanten.direction + "/src/game/Images/Steuerung.png");
 
-	private static final JLabel STEUERUNG = new JLabel(iconSteuerung);
+	/** Label für Steuerung wird deklariert*/
+	private static final JLabel STEUERUNG = new JLabel(ICONSTEUERUNG);
+
 
 	/** Konstruktor, der ein neues Fenster mit Hintergrundbild aufruft */
 	public Steuerung() {

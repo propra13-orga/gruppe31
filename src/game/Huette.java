@@ -8,13 +8,21 @@ import javax.swing.ImageIcon;
  * 
  */
 public class Huette extends GameObject {
-	
-	private static final Icon icon = new ImageIcon(Konstanten.direction
+
+	/** Icon für Shop wird deklariert */
+	private static final Icon ICONSHOP = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Shop.png");
+
+	/** icon vom Typ Icon wird deklariert */
+	private Icon icon;
+
+	/** Konstruktor initialisiert icon */
+	public Huette() {
+		icon = ICONSHOP;
+	}
 
 	@Override
 	public Icon getIcon() {
-		// TODO Auto-generated method stub
 		return icon;
 	}
 

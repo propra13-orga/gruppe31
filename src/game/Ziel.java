@@ -8,13 +8,21 @@ import javax.swing.ImageIcon;
  * 
  */
 public class Ziel extends GameObject {
-	
-	private static final Icon icon = new ImageIcon(Konstanten.direction
+
+	/** Icon für Ziel wird deklariert */
+	private static final Icon ICONCUPCAKE = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Cupcake.jpg");
+
+	/** icon vom Typ Icon wird deklariert */
+	private Icon icon;
+
+	/** Konstruktor initialisiert icon */
+	public Ziel() {
+		icon = ICONCUPCAKE;
+	}
 
 	@Override
 	public Icon getIcon() {
-		// TODO Auto-generated method stub
 		return icon;
 	}
 

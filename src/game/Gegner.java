@@ -8,21 +8,28 @@ import javax.swing.ImageIcon;
  * 
  */
 public class Gegner extends Spielfigur {
-	private int ko;
 
-	private static final Icon iconGegner = new ImageIcon(Konstanten.direction
+	/** verschiedene Icons für verschiedene Gegner werden deklariert */
+	private static final Icon ICONGEGNER1 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Gegner1.png");
-	private static final Icon iconGegner2 = new ImageIcon(Konstanten.direction
+	private static final Icon ICONGEGNER2 = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Gegner2.png");
 
+	/** icon vom Typ Icon wird deklariert */
+	private Icon icon;
+
+	/** ko wird deklariert */
+	private int ko;
+
+	/** Koonstrauktor initialisiert icon */
 	public Gegner() {
-		setKo(0);
-		setBewaffnet(0);
-		setGesundheit(100);
+		/* richtiges Icon setzen */
 	}
 
 	/**
-	 * bitte ergänzen
+	 * Wertebereich wird festgelegt und zufällige Zahl ausgegeben
+	 * 
+	 * CheckStyle erwartet anderes Muster, welches ?
 	 * 
 	 * @param low
 	 * @param high
@@ -33,10 +40,18 @@ public class Gegner extends Spielfigur {
 		return (int) (Math.random() * (high - low) + low);
 	}
 
+	/**
+	 * Getter von ko
+	 * @return
+	 */
 	public int getKo() {
 		return ko;
 	}
 
+	/**
+	 * Setter von ko
+	 * @param ko
+	 */
 	public void setKo(int ko) {
 		this.ko = ko;
 	}
@@ -49,7 +64,6 @@ public class Gegner extends Spielfigur {
 
 	@Override
 	public Icon getIcon() {
-		// TODO Auto-generated method stub
-		return null;
+		return icon;
 	}
 }

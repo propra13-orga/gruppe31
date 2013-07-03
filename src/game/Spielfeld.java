@@ -3,7 +3,7 @@ package game;
 /** ist für den jeweiligen Raum zuständig. das Spielfeld wird erstellt  */
 public class Spielfeld extends Spiel {
 
-	/* diese Angaben sollen aus anderen Klassen abfragbar sein, daher public */
+	/** Deklaration eines GameObject Arrays*/
 	public final GameObject[][] feld;
 
 	/**
@@ -15,10 +15,10 @@ public class Spielfeld extends Spiel {
 	 * @throws SpielfeldException
 	 */
 	public Spielfeld(Integer[][] feld) throws SpielfeldException {
-		this.feld = new GameObject[16][12];
+		this.feld = new GameObject[Konstanten.SPALTEN][Konstanten.ZEILEN];
 
-		for (int x = 0; x < 16; x++) {
-			for (int y = 0; y < 12; y++) {
+		for (int x = 0; x < Konstanten.SPALTEN; x++) {
+			for (int y = 0; y < Konstanten.ZEILEN; y++) {
 				GameObject gameObject;
 				switch (feld[x][y]) {
 				case Konstanten.RASEN:

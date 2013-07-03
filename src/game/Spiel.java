@@ -1,8 +1,8 @@
 package game;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -10,11 +10,13 @@ import javax.swing.JOptionPane;
  */
 public class Spiel {
 
-	/* Liste von Spielfeldern */
+	/** Liste von Spielfeldern wird deklariert */
 	private ArrayList<Spielfeld> levels = new ArrayList<Spielfeld>();
 
+	/** Deklaration der ... */
 	private Spielfeld spielfeld;
 
+	/** Deklaration eines Integer Arrays */
 	private Integer[][] array;
 
 	/**
@@ -76,6 +78,11 @@ public class Spiel {
 		fr.close();
 	}
 
+	/**
+	 * Getter für aktuellesSpielfeld
+	 * 
+	 * @return
+	 */
 	public Integer[][] getAktuellesSpielfeld() {
 		return array;
 	}

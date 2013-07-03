@@ -8,13 +8,21 @@ import javax.swing.ImageIcon;
  * 
  */
 public class Health extends Item {
-	
-	private static final Icon icon = new ImageIcon(Konstanten.direction
+
+	/** Icon für Trank wird deklariert */
+	private static final Icon ICONTRANK = new ImageIcon(Konstanten.direction
 			+ "/src/game/Images/Heiltrank1.png");
+
+	/** icon vom Typ Icon wird deklariert */
+	private Icon icon;
+
+	/** Konstruktor initialisiert icon */
+	public Health() {
+		icon = ICONTRANK;
+	}
 
 	@Override
 	public Icon getIcon() {
-		// TODO Auto-generated method stub
 		return icon;
 	}
 }
