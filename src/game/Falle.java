@@ -10,9 +10,9 @@ import javax.swing.ImageIcon;
 public class Falle extends GameObject {
 
 	/** Icons für verschiedene Arten von Waffe werden deklariert */
-	private static final Icon ICONBOMBE = new ImageIcon(Konstanten.direction
+	private static final Icon ICONBOMBE = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Peng.png");
-	private static final Icon ICONMUELL = new ImageIcon(Konstanten.direction
+	private static final Icon ICONMUELL = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Falle.png");
 
 	/** icon vom Typ Icon wird initialisiert */
@@ -28,12 +28,12 @@ public class Falle extends GameObject {
 
 	/**
 	 * Getter für schaden
+	 * 
 	 * @return schaden Der Schaden, der von dieser Falle ausgehen kann
 	 */
 	public int getSchaden() {
 		return schaden;
 	}
-
 
 	@Override
 	public Icon getIcon() {

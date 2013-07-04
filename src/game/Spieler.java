@@ -10,22 +10,22 @@ import javax.swing.ImageIcon;
 public class Spieler extends Spielfigur {
 
 	/** Icons für den Spieler werden deklariert */
-	private static final Icon ICONPUDEL = new ImageIcon(Konstanten.direction
+	private static final Icon ICONPUDEL = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Pudel1.jpg");
 	private static final Icon ICONAGGROERNA = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/PudelWaffe1.png");
+			Konstanten.DIRECTION + "/src/game/Images/PudelWaffe1.png");
 	private static final Icon ICONSCHWERTERNA = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/PudelSchwert.png");
+			Konstanten.DIRECTION + "/src/game/Images/PudelSchwert.png");
 	private static final Icon ICONTERMINATORERNA = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/PudelAllesan.png");
+			Konstanten.DIRECTION + "/src/game/Images/PudelAllesan.png");
 	private static final Icon ICONPUDELBEIDES = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/PudelBeides.png");
-	private static final Icon ICONVOLLERNA = new ImageIcon(Konstanten.direction
+			Konstanten.DIRECTION + "/src/game/Images/PudelBeides.png");
+	private static final Icon ICONVOLLERNA = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/PudelBrilleSchwert.png");
 	private static final Icon ICONPUDELHALSBAND = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/PudelHalsband.png");
+			Konstanten.DIRECTION + "/src/game/Images/PudelHalsband.png");
 	private static final Icon ICONPUDELSCHWERTHALSBAND = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/Pudelschwerthals.png");
+			Konstanten.DIRECTION + "/src/game/Images/Pudelschwerthals.png");
 
 	/** icon vom Typ Icon wird deklariert */
 	private Icon icon;
@@ -47,7 +47,9 @@ public class Spieler extends Spielfigur {
 	 * Konstruktor weist Icon das richtige Icon zu
 	 * 
 	 * @param y
+	 *            Kommandozeilenparameter
 	 * @param x
+	 *            Kommandozeilenparameter
 	 */
 	public Spieler(int x, int y) {
 
@@ -98,7 +100,7 @@ public class Spieler extends Spielfigur {
 	 * Setter für Spielfigurx
 	 * 
 	 * @param Spielfigurx
-	 *            setzt die Y-Position des Spielers
+	 *            Kommandozeilenparameter
 	 */
 	public void setSpielfigurx(int Spielfigurx) {
 		this.Spielfigurx = Spielfigurx;
@@ -116,7 +118,8 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Setter für Spielfigury
 	 * 
-	 * @param Spielfigury setzt die Y-Position des Spielers
+	 * @param Spielfigury
+	 *            Kommandozeilenparameter
 	 */
 	public void setSpielfigury(int Spielfigury) {
 		this.Spielfigury = Spielfigury;
@@ -125,7 +128,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Getter für beschwertet
 	 * 
-	 * @return beschwertet Gibt an, ob Spieler beschwertet ist oder nicht 
+	 * @return beschwertet Gibt an, ob Spieler beschwertet ist oder nicht
 	 */
 	public int getBeschwertet() {
 		return beschwertet;
@@ -134,7 +137,8 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Setter für beschwertet
 	 * 
-	 * @param beschwertet setzt den Spieler auf beschwertet oder zurück
+	 * @param beschwertet
+	 *            Kommandozeilenparameter
 	 */
 	public void setBeschwertet(int beschwertet) {
 		this.beschwertet = beschwertet;
@@ -152,7 +156,8 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Setter für halsband
 	 * 
-	 * @param halsband setzt den Spieler auf beschwertet oder zurück
+	 * @param halsband
+	 *            Kommandozeilenparameter
 	 */
 	public void setHalsband(int halsband) {
 		this.halsband = halsband;
@@ -170,7 +175,8 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Setter für mana
 	 * 
-	 * @param mana setzt den Manawert des Spielers
+	 * @param mana
+	 *            Kommandozeilenparameter
 	 */
 	public void setMana(int mana) {
 		this.mana = mana;
@@ -188,7 +194,8 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Setter für leben
 	 * 
-	 * @param leben setzt die verbleibenden Leben des Spielers
+	 * @param leben
+	 *            Kommandozeilenparameter
 	 */
 	public void setLeben(int leben) {
 		this.leben = leben;
@@ -206,7 +213,8 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Setter für ruestung
 	 * 
-	 * @param ruestung Setzt den Rüstungswert des Spielers
+	 * @param ruestung
+	 *            Kommandozeilenparameter
 	 */
 	public void setRuestung(int ruestung) {
 		this.ruestung = ruestung;
@@ -224,7 +232,8 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Setter für gold
 	 * 
-	 * @param gold Setzt den Goldwert des Spielers
+	 * @param gold
+	 *            Kommandozeilenparameter
 	 */
 	public void setGold(int gold) {
 		this.gold = gold;

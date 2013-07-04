@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 public class Brille extends Item {
 
 	/** Icon für Waffe wird deklariert */
-	private static final Icon ICONWAFFE = new ImageIcon(Konstanten.direction
+	private static final Icon ICONWAFFE = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Waffe1.png");
 
 	/** icon vom Typ Icon wird deklariert */

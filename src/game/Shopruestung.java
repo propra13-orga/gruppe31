@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 public class Shopruestung extends Item {
 	
 	/** Icon für Rüstung im SHop wird deklariert*/
-	private static final Icon ICONSHOPRUESTUNG = new ImageIcon(Konstanten.direction
+	private static final Icon ICONSHOPRUESTUNG = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/HalsbandRasen.png");
 	
 	/** icon vom Typ Icon wird deklariert*/

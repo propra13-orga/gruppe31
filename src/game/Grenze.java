@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 public class Grenze extends GameObject {
 
 	/** Icon für Baum wird deklariert */
-	private static final Icon ICONBAUM = new ImageIcon(Konstanten.direction
+	private static final Icon ICONBAUM = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Baum1.jpg");
 
 	/** icon vom Typ Icon wird deklariert */

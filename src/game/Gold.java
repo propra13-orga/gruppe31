@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 public class Gold extends Item {
 
 	/** Icon für Gold wird deklariert */
-	private static final Icon ICONGOLD = new ImageIcon(Konstanten.direction
+	private static final Icon ICONGOLD = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Gold1.png");
 
 	/** icon vom Typ Icon wird deklariert */
@@ -37,7 +37,8 @@ public class Gold extends Item {
 	/**
 	 * Setter für gold
 	 * 
-	 * @param gold setzt die aktuelle Anzahl an Goldmünzen
+	 * @param gold
+	 *            Kommandozeilenparameter
 	 */
 	public void setGold(int gold) {
 		this.gold = gold;

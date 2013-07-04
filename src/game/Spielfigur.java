@@ -15,7 +15,7 @@ public abstract class Spielfigur extends GameObject {
 	/**
 	 * Getter
 	 * 
-	 * @return
+	 * @return bewaffnet gibt wieder, ob Spieler bewaffnet
 	 */
 	public boolean getBewaffnet() {
 		return bewaffnet;
@@ -25,6 +25,7 @@ public abstract class Spielfigur extends GameObject {
 	 * Setter
 	 * 
 	 * @param bewaffnet
+	 *            Kommandozeilenparameter
 	 */
 	public void setBewaffnet(boolean bewaffnet) {
 		this.bewaffnet = bewaffnet;
@@ -33,7 +34,7 @@ public abstract class Spielfigur extends GameObject {
 	/**
 	 * Getter
 	 * 
-	 * @return
+	 * @return gesundheit gibt die Gesundheit des Spielers wieder
 	 */
 	public int getGesundheit() {
 		return gesundheit;
@@ -43,6 +44,7 @@ public abstract class Spielfigur extends GameObject {
 	 * Setter
 	 * 
 	 * @param gesundheit
+	 *            Kommandozeilenparameter
 	 */
 	public void setGesundheit(int gesundheit) {
 		this.gesundheit = gesundheit;
@@ -53,7 +55,8 @@ public abstract class Spielfigur extends GameObject {
 	 * kann sich Figur bewegen, wenn nicht Weiterleitung
 	 * 
 	 * @param ziel
-	 * @return
+	 *            Kommandozeilenparameter
+	 * @return true
 	 */
 	public boolean tryMove(GameObject ziel) {
 		if (ziel == null) {
@@ -67,7 +70,8 @@ public abstract class Spielfigur extends GameObject {
 	 * abgefragten Stelle befindet, abzufragen
 	 * 
 	 * @param ziel
-	 * @return
+	 *            Kommandozeilenparameter
+	 * @return true
 	 */
 	protected abstract boolean internalTryMove(GameObject ziel);
 

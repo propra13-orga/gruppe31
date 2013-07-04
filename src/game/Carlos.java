@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 public class Carlos extends GameObject {
 
 	/** Icon für Carlos wird deklariert */
-	private static final Icon ICONCARLOS = new ImageIcon(Konstanten.direction
+	private static final Icon ICONCARLOS = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Carlos.png");
 
 	/** icon vom Typ Icon wird deklariert */

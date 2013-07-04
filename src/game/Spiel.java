@@ -20,6 +20,13 @@ public class Spiel {
 	private Integer[][] array;
 
 	/**
+	 * leerer Konstruktor, um kein Objekt dieser Klasse aufrufen zu können
+	 */
+	public Spiel() {
+		//
+	}
+
+	/**
 	 * die Methode liest die einzelnen Räume ein und schreibt sie in die
 	 * ArrayList array. Zusätzlich werden die Positionen der Spielfigur und der
 	 * Gegner festgehalten
@@ -27,12 +34,15 @@ public class Spiel {
 	 * in Textdatei rechts=y-Achse (12 Zeichen) runter=x-Achse (16 Zeichen)
 	 * 
 	 * @param datei
+	 *            Kommandozeilenparameter
 	 * @throws Exception
+	 *             Beschreibung der Exception, die von dieser Methode geworfen
+	 *             werden kann
 	 */
 	public void init(String datei) throws Exception {
 
 		/* öffnet FileReader mit Textdatei */
-		FileReader fr = new FileReader(Konstanten.direction
+		FileReader fr = new FileReader(Konstanten.DIRECTION
 				+ "/src/game/Szenario/" + datei);
 		/* öffnet BufferedReader und liest .txt hinein */
 		BufferedReader br = new BufferedReader(fr);
@@ -69,7 +79,7 @@ public class Spiel {
 			 * der obere Block wird ausgeführt bis eine Leerzeile gefunden wird,
 			 * geschieht das, wird ein neues Spielfeldarray angelegt
 			 */
-			while (line == "");
+			while ("".equals(line));
 			/*
 			 * und der komplette obere Block wird ausgeführt, bis der
 			 * BufferedReader das Ende der Datei gefunden hat
@@ -81,7 +91,7 @@ public class Spiel {
 	/**
 	 * Getter für aktuellesSpielfeld
 	 * 
-	 * @return
+	 * @return array gibt das array dieser Klasse zurück
 	 */
 	public Integer[][] getAktuellesSpielfeld() {
 		return array;

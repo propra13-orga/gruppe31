@@ -16,46 +16,46 @@ import javax.swing.WindowConstants;
  */
 public class NPC {
 
-	/** Icons für NPX Anzeige werden deklariert*/
-	private static final Icon iconCarlos1 = new ImageIcon(Konstanten.direction
+	/** Icons für NPX Anzeige werden deklariert */
+	private static final Icon ICONCARLOS1 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Carlos1.png");
-	private static final Icon iconCarlos2 = new ImageIcon(Konstanten.direction
+	private static final Icon ICONCARLOS2 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Carlos2.png");
-	private static final Icon iconCarlos3 = new ImageIcon(Konstanten.direction
+	private static final Icon ICONCARLOS3 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Carlos3.png");
-	private static final Icon iconCarlos4 = new ImageIcon(Konstanten.direction
+	private static final Icon ICONCARLOS4 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Carlos4.png");
-	private static final Icon iconCarlos5 = new ImageIcon(Konstanten.direction
+	private static final Icon ICONCARLOS5 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Carlos5.png");
-	private static final Icon iconCarlos6 = new ImageIcon(Konstanten.direction
+	private static final Icon ICONCARLOS6 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Carlos6.png");
-	private static final Icon iconCarlos7 = new ImageIcon(Konstanten.direction
+	private static final Icon ICONCARLOS7 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Carlos7.png");
-	private static final Icon iconCarlos8 = new ImageIcon(Konstanten.direction
+	private static final Icon ICONCARLOS8 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Carlos8.png");
-	private static final Icon iconCarlos9 = new ImageIcon(Konstanten.direction
+	private static final Icon ICONCARLOS9 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Carlos9.png");
-	private static final Icon iconCarlos10 = new ImageIcon(Konstanten.direction
+	private static final Icon ICONCARLOS10 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Carlos10.png");
-	private static final Icon iconCarlos11 = new ImageIcon(Konstanten.direction
+	private static final Icon ICONCARLOS11 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Carlos11.png");
 
-	/** Labels für NPC Anzeige werden deklariert*/
-	private static final JLabel NPC1 = new JLabel(iconCarlos1);
-	private static final JLabel NPC2 = new JLabel(iconCarlos2);
-	private static final JLabel NPC3 = new JLabel(iconCarlos3);
-	private static final JLabel NPC4 = new JLabel(iconCarlos4);
-	private static final JLabel NPC5 = new JLabel(iconCarlos5);
-	private static final JLabel NPC6 = new JLabel(iconCarlos6);
-	private static final JLabel NPC7 = new JLabel(iconCarlos7);
-	private static final JLabel NPC8 = new JLabel(iconCarlos8);
-	private static final JLabel NPC9 = new JLabel(iconCarlos9);
-	private static final JLabel NPC10 = new JLabel(iconCarlos10);
-	private static final JLabel NPC11 = new JLabel(iconCarlos11);
+	/** Labels für NPC Anzeige werden deklariert */
+	private static final JLabel NPC1 = new JLabel(ICONCARLOS1);
+	private static final JLabel NPC2 = new JLabel(ICONCARLOS2);
+	private static final JLabel NPC3 = new JLabel(ICONCARLOS3);
+	private static final JLabel NPC4 = new JLabel(ICONCARLOS4);
+	private static final JLabel NPC5 = new JLabel(ICONCARLOS5);
+	private static final JLabel NPC6 = new JLabel(ICONCARLOS6);
+	private static final JLabel NPC7 = new JLabel(ICONCARLOS7);
+	private static final JLabel NPC8 = new JLabel(ICONCARLOS8);
+	private static final JLabel NPC9 = new JLabel(ICONCARLOS9);
+	private static final JLabel NPC10 = new JLabel(ICONCARLOS10);
+	private static final JLabel NPC11 = new JLabel(ICONCARLOS11);
 
-	/** Buttons für NOC Anzeige werden deklariert*/
-	private JButton Weiter;
-	private JButton Skip;
+	/** Buttons für NPC Anzeige werden deklariert */
+	private JButton weiter;
+	private JButton skip;
 
 	/**
 	 * Konstruktor erstellt ein neues Fenster, in dem der Nutzer mit dem NPC
@@ -116,13 +116,13 @@ public class NPC {
 		NPC11.setVisible(false);
 		frame.add(NPC11);
 
-		Weiter = new JButton("Weiter");
-		Weiter.setBounds(0, 500, 200, 30);
-		frame.add(Weiter);
+		weiter = new JButton("Weiter");
+		weiter.setBounds(0, 500, 200, 30);
+		frame.add(weiter);
 
-		Skip = new JButton("Überspringen");
-		Skip.setBounds(0, 532, 200, 30);
-		frame.add(Skip);
+		skip = new JButton("Überspringen");
+		skip.setBounds(0, 532, 200, 30);
+		frame.add(skip);
 
 		ActionListener alweiter = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,7 +167,7 @@ public class NPC {
 				frame.dispose();
 			}
 		};
-		Weiter.addActionListener(alweiter);
-		Skip.addActionListener(alskip);
+		weiter.addActionListener(alweiter);
+		skip.addActionListener(alskip);
 	}
 }

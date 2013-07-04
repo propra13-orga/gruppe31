@@ -27,81 +27,81 @@ import javax.swing.filechooser.FileFilter;
 public class GameFrame extends JFrame implements KeyListener {
 
 	/** Icons für die Anzeige des Levels werden deklariert */
-	private static final Icon iconEins = new ImageIcon(Konstanten.direction
+	private static final Icon iconEins = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/1.png");
-	private static final Icon iconZwei = new ImageIcon(Konstanten.direction
+	private static final Icon iconZwei = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/2.png");
-	private static final Icon iconDrei = new ImageIcon(Konstanten.direction
+	private static final Icon iconDrei = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/3.png");
 
 	/** Icons für die Anzeige der Gesundheitsleiste werden deklariert */
 	private static final Icon iconLebenVoll = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/Lebenvoll.png");
+			Konstanten.DIRECTION + "/src/game/Images/Lebenvoll.png");
 	private static final Icon iconLebenFast = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/Lebenfast.png");
+			Konstanten.DIRECTION + "/src/game/Images/Lebenfast.png");
 	private static final Icon iconLebenHalb = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/Lebenhalb.png");
+			Konstanten.DIRECTION + "/src/game/Images/Lebenhalb.png");
 	private static final Icon iconLebenWenig = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/Lebenwenig.png");
+			Konstanten.DIRECTION + "/src/game/Images/Lebenwenig.png");
 
 	/** Icons für die Anzeige der Manaleiste werden deklariert */
-	private static final Icon iconManaVoll = new ImageIcon(Konstanten.direction
+	private static final Icon iconManaVoll = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Manavoll.png");
-	private static final Icon iconManaHalb = new ImageIcon(Konstanten.direction
+	private static final Icon iconManaHalb = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Manahalb.png");
-	private static final Icon iconManaLeer = new ImageIcon(Konstanten.direction
+	private static final Icon iconManaLeer = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Manaleer.png");
 
 	/** Icons für die Ruestungsanzeige deklariert */
 	private static final Icon iconRuestungVoll = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/Ruestungvoll.png");
+			Konstanten.DIRECTION + "/src/game/Images/Ruestungvoll.png");
 	private static final Icon iconRuestungHalb = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/Ruestunghalb.png");
+			Konstanten.DIRECTION + "/src/game/Images/Ruestunghalb.png");
 	private static final Icon iconRuestungWeg = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/Ruestungweg.png");
+			Konstanten.DIRECTION + "/src/game/Images/Ruestungweg.png");
 
 	/** Icons für die Goldanzeige deklariert */
-	private static final Icon icon0Gold = new ImageIcon(Konstanten.direction
+	private static final Icon icon0Gold = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Gold0.png");
-	private static final Icon icon50Gold = new ImageIcon(Konstanten.direction
+	private static final Icon icon50Gold = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Gold50.png");
-	private static final Icon icon100Gold = new ImageIcon(Konstanten.direction
+	private static final Icon icon100Gold = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Gold100.png");
-	private static final Icon icon150Gold = new ImageIcon(Konstanten.direction
+	private static final Icon icon150Gold = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Gold150.png");
-	private static final Icon icon200Gold = new ImageIcon(Konstanten.direction
+	private static final Icon icon200Gold = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Gold200.png");
-	private static final Icon icon250Gold = new ImageIcon(Konstanten.direction
+	private static final Icon icon250Gold = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Gold250.png");
-	private static final Icon icon300Gold = new ImageIcon(Konstanten.direction
+	private static final Icon icon300Gold = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Gold300.png");
-	private static final Icon icon350Gold = new ImageIcon(Konstanten.direction
+	private static final Icon icon350Gold = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Gold350.png");
 
 	/** Icons für die Anzeige der aktuellen Waffe(n) deklariert */
-	private static final Icon iconKeinEq = new ImageIcon(Konstanten.direction
+	private static final Icon iconKeinEq = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/KeinEq.png");
-	private static final Icon iconSchwert = new ImageIcon(Konstanten.direction
+	private static final Icon iconSchwert = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Schwert.png");
-	private static final Icon iconHals = new ImageIcon(Konstanten.direction
+	private static final Icon iconHals = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Hals.png");
-	private static final Icon iconBrille = new ImageIcon(Konstanten.direction
+	private static final Icon iconBrille = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Brille.png");
 	private static final Icon iconBrilleHals = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/BrilleHals.png");
+			Konstanten.DIRECTION + "/src/game/Images/BrilleHals.png");
 	private static final Icon iconBrilleSchwert = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/BrilleSchwert.png");
+			Konstanten.DIRECTION + "/src/game/Images/BrilleSchwert.png");
 	private static final Icon iconSchwertHals = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/SchwertHals.png");
-	private static final Icon iconAllesEq = new ImageIcon(Konstanten.direction
+			Konstanten.DIRECTION + "/src/game/Images/SchwertHals.png");
+	private static final Icon iconAllesEq = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Eqalles.png");
 
 	/** Icons für die Anzeige der Leben deklariert */
-	private static final Icon iconHerz1 = new ImageIcon(Konstanten.direction
+	private static final Icon iconHerz1 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Herz1.png");
-	private static final Icon iconHerz2 = new ImageIcon(Konstanten.direction
+	private static final Icon iconHerz2 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Herz2.png");
-	private static final Icon iconHerz3 = new ImageIcon(Konstanten.direction
+	private static final Icon iconHerz3 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Herz3.png");
 
 	/** Labels für Anzeige des aktuellen Levels deklariert */
@@ -213,8 +213,8 @@ public class GameFrame extends JFrame implements KeyListener {
 			return;
 		}
 		spiel.init(Datei);
-		
-		zeichner.paint(/*was muss hier rein*/);
+
+		zeichner.paint(/* was muss hier rein */);
 
 		setzeAnzeige();
 
@@ -227,11 +227,11 @@ public class GameFrame extends JFrame implements KeyListener {
 	/**
 	 * erzeugt FileChooser
 	 * 
-	 * @return
+	 * @return f.isDirectory
 	 */
 	public String chooseFile() {
 		/* erzeugt neuen FileChooser */
-		JFileChooser fc = new JFileChooser(Konstanten.direction
+		JFileChooser fc = new JFileChooser(Konstanten.DIRECTION
 				+ "/src/game/Szenario");
 		/* FileChooser kann nur eine Datei auswählen */
 		fc.setMultiSelectionEnabled(false);
@@ -265,9 +265,9 @@ public class GameFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * aktualisiert die Grafik CheckStyle erwartet anderes Muster, welches ?
+	 * aktualisiert die Grafik
 	 */
-	public void Aktualisieren() {
+	public void aktualisieren() {
 		validate();
 		repaint();
 	}
@@ -308,7 +308,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			Drei.setBounds(-40, 590, 100, 100);
 			Leiste.add(Drei);
 		}
-		Aktualisieren();
+		aktualisieren();
 
 		/* für die Healthanzeige */
 		if (health == Konstanten.VOLLH) {
@@ -324,7 +324,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			LebenFast.setBounds(23, 590, 150, 100);
 			Leiste.add(LebenWenig);
 		}
-		Aktualisieren();
+		aktualisieren();
 
 		/* für die Manaanzeige */
 		if (mana == Konstanten.VOLLM) {
@@ -348,7 +348,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			RuestungWeg.setBounds(320, 590, 150, 100);
 			Leiste.add(RuestungWeg);
 		}
-		Aktualisieren();
+		aktualisieren();
 
 		/* für die Goldanzeige */
 		if (gold == Konstanten.GOLD0) {
@@ -376,7 +376,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			Gold350.setBounds(470, 590, 100, 100);
 			Leiste.add(Gold350);
 		}
-		Aktualisieren();
+		aktualisieren();
 
 		if (bewaffnet == 0) {
 			if (beschwertet == 0) {
@@ -415,7 +415,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				}
 			}
 		}
-		Aktualisieren();
+		aktualisieren();
 
 		/* für die Lebenanzeige */
 		if (leben == Konstanten.VOLLL) {
@@ -428,7 +428,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			Herz1.setBounds(690, 590, 100, 100);
 			Leiste.add(Herz1);
 		}
-		Aktualisieren();
+		aktualisieren();
 	}
 
 	/*
@@ -443,14 +443,13 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/**
 	 * es wird ein neues Fenster mit dem Spielausgang Gewonnen aufgerufen
-	 * CheckStyle erwartet anderes Muster, welches ?
 	 */
-	public void Gewonnen() {
+	public void gewonnen() {
 		getContentPane().removeAll();
 
 		try {
 			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
-					Konstanten.direction + "/src/game/Images/Gewonnen.jpg")))));
+					Konstanten.DIRECTION + "/src/game/Images/Gewonnen.jpg")))));
 		} catch (IOException a) {
 			System.out.println(Exception);
 		}
@@ -476,15 +475,14 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/**
 	 * es wird ein neues Fenster mit dem Spielausgang Verloren aufgerufen
-	 * CheckStyle erwartet anderes Muster, welches ?
 	 */
-	public void Verloren() {
+	public void verloren() {
 
 		getContentPane().removeAll();
 
 		try {
 			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
-					Konstanten.direction + "/src/game/Images/GameOver.jpg")))));
+					Konstanten.DIRECTION + "/src/game/Images/GameOver.jpg")))));
 		} catch (IOException a) {
 			System.out.println(Exception);
 		}

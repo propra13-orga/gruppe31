@@ -8,7 +8,9 @@ public class SpielfeldException extends Exception {
 
 	/**
 	 * Konstruktor ruft Exception Fenster auf
+	 * 
 	 * @param message
+	 *            fordert einen String
 	 */
 	public SpielfeldException(String message) {
 		super(message);

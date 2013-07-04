@@ -1,18 +1,30 @@
 package game;
 
-import java.awt.event.*;
-import java.io.*;
-
-import javax.swing.*;
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * MenuFrame erzeugt das Menufenster. Ein Hintergrundbild wird gesetzt, es
  * werden 3 Buttons und ein Label auf das Fenster gesetzt
  */
 public class MenuFrame extends JFrame {
+	
+	/** Icon für Steuerung wird deklariert */
+	private static final Icon ICONSTEUERUNG = new ImageIcon(
+			Konstanten.DIRECTION + "/src/game/Images/Steuerung.png");
+
+	/** Label für Steuerung wird deklariert */
+	private static final JLabel STEUERUNG = new JLabel(ICONSTEUERUNG);
 
 	/** Deklaration der Buttons für MenuFrame */
 	private JButton start;
@@ -22,13 +34,6 @@ public class MenuFrame extends JFrame {
 	/** Deklaration von Feldern */
 	private GameFrame gameframe;
 
-	/** Icon für Steuerung wird deklariert */
-	private static final Icon ICONSTEUERUNG = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/Steuerung.png");
-
-	/** Label für Steuerung wird deklariert */
-	private static final JLabel STEUERUNG = new JLabel(ICONSTEUERUNG);
-
 	/**
 	 * Konstruktor, der alle Einstellungen des Menüfensters aufruft
 	 */
@@ -36,7 +41,7 @@ public class MenuFrame extends JFrame {
 
 		try {
 			this.setContentPane(new JLabel(
-					new ImageIcon(ImageIO.read(new File(Konstanten.direction
+					new ImageIcon(ImageIO.read(new File(Konstanten.DIRECTION
 							+ "/src/game/Images/Startscreen.jpg")))));
 		} catch (IOException a) {
 			System.out.println("das Bild kann nicht gefunden werden");
@@ -78,7 +83,7 @@ public class MenuFrame extends JFrame {
 
 		ActionListener alsteuerung = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Steuerung();
+				steuerung();
 			}
 		};
 
@@ -94,7 +99,7 @@ public class MenuFrame extends JFrame {
 	}
 
 	/** Methode ruft neues Fenster auf */
-	public void Steuerung() {
+	public void steuerung() {
 		final JFrame frame = new JFrame();
 
 		frame.setResizable(true);
@@ -112,9 +117,9 @@ public class MenuFrame extends JFrame {
 	/**
 	 * Main-Methode erzeugt ein neues Menufenster aus dem Konstruktor
 	 * 
-	 * @param args
+	 * @param args Kommandozeilenparameter
 	 */
 	public static void main(String[] args) {
-		MenuFrame Frame = new MenuFrame();
+		MenuFrame frame = new MenuFrame();
 	}
 }

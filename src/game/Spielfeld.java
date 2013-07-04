@@ -12,7 +12,9 @@ public class Spielfeld extends Spiel {
 	 * überschreibt
 	 * 
 	 * @param feld
+	 *            Kommandozeilenparameter
 	 * @throws SpielfeldException
+	 *             wirft eine Exception
 	 */
 	public Spielfeld(Integer[][] feld) throws SpielfeldException {
 		this.feld = new GameObject[Konstanten.SPALTEN][Konstanten.ZEILEN];

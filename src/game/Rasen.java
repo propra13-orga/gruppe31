@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 public class Rasen extends GameObject {
 
 	/** Icon für Rasen wird deklariert*/
-	private static final Icon ICONRASEN = new ImageIcon(Konstanten.direction
+	private static final Icon ICONRASEN = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Rasen1.jpg");
 
 	/** icon vom Typ Icon wird deklariert*/

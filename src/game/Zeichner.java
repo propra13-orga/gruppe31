@@ -12,27 +12,35 @@ import javax.swing.ImageIcon;
 public class Zeichner extends Canvas {
 
 	/** Icons für diverse andere Sachen werden deklariert */
-	private static final Icon iconLaser = new ImageIcon(Konstanten.direction
+	private static final Icon ICONLASER = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Laser1.png");
-	private static final Icon iconGegnertot = new ImageIcon(
-			Konstanten.direction + "/src/game/Images/Gegnertot1.png");
-	private static final Icon iconStunk = new ImageIcon(Konstanten.direction
+	private static final Icon ICONGEGNERTOT = new ImageIcon(
+			Konstanten.DIRECTION + "/src/game/Images/Gegnertot1.png");
+	private static final Icon ICONSTUNK = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Stunk.jpg");
 
-	/** Deklaration der ... */
+	/** Deklaration der Felder */
 	private Spielfeld spielfeld;
 	private GameFrame gameFrame;
 
-	/** Konstruktor mit Parameter */
+	/**
+	 * Konstruktor ruft neues GameFrame auf
+	 * 
+	 * @param pGameFrame
+	 *            Kommandozeilenparameter
+	 * @throws Exception
+	 *             wirft Exception
+	 */
 	public Zeichner(GameFrame pGameFrame) throws Exception {
 		gameFrame = pGameFrame;
 	}
 
 	/**
-	 *  für jedes Feld im Array wird ein Icon gesetzt, welches aus den jeweiligen
+	 * für jedes Feld im Array wird ein Icon gesetzt, welches aus den jeweiligen
 	 * Objektklassen geholt wird
 	 * 
 	 * @param g
+	 *            fordert Graphics
 	 */
 	public void paint(Graphics g) {
 
@@ -51,6 +59,7 @@ public class Zeichner extends Canvas {
 	 * zeichnet das Spielfeld (erneut)
 	 * 
 	 * @param feld
+	 *            Kommandozeilenparameter
 	 */
 	public void zeichneSpielfeld(Spielfeld feld) {
 		spielfeld = feld;

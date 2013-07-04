@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 public class Shopmana extends Item {
 
 	/** Icon für Mana im Shop wird deklariert */
-	private static final Icon ICONSHOPMANA = new ImageIcon(Konstanten.direction
+	private static final Icon ICONSHOPMANA = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Mana1.png");
 
 	/** icon vom Typ Icon wird deklariert */
@@ -27,7 +27,7 @@ public class Shopmana extends Item {
 	/**
 	 * Getter für mana
 	 * 
-	 * @return mana 
+	 * @return mana
 	 */
 	public int getMana() {
 		return mana;
@@ -36,7 +36,8 @@ public class Shopmana extends Item {
 	/**
 	 * Setter für mana
 	 * 
-	 * @param mana Die aktuelle Manaanzeige
+	 * @param mana
+	 *            Kommandozeilenparameter
 	 */
 	public void setMana(int mana) {
 		this.mana = mana;

@@ -3,8 +3,11 @@ package game;
 /** eigene Klasse für Konstanten, die hier nur einmal deklariert werden müssen */
 public final class Konstanten {
 
-	/** String direction wird deklariert */
-	public static final String direction = System.getProperty("user.dir");
+	/**
+	 * String direction wird deklariert CheckStyle erwartet anderes Muster
+	 * kleingeschrieben: selber Fehler
+	 */
+	public static final String DIRECTION = System.getProperty("user.dir");
 
 	/** int-Varbiablen werden für txt-Zeichen deklariert */
 	public static final int RASEN = (int) ' ';
@@ -43,37 +46,37 @@ public final class Konstanten {
 	public static final int BOSS3m = (int) '{';
 	public static final int BOSS3w = (int) '}';
 
-	/** die Größe eines Feldes wird deklariert*/
+	/** die Größe eines Feldes wird deklariert */
 	public static final int SIZE = 50;
-	/** die Spalten werden deklariert*/
+	/** die Spalten werden deklariert */
 	public static final int SPALTEN = 16;
-	/** die Zeilen werden deklariert*/
+	/** die Zeilen werden deklariert */
 	public static final int ZEILEN = 12;
 
-	/** die Health Staffelungen werden deklariert*/
+	/** die Health Staffelungen werden deklariert */
 	public static final int VOLLH = 100;
 	public static final int DREIVIERTELH = 75;
 	public static final int HALBH = 50;
 	public static final int EINVIERTELH = 25;
 	public static final int LEERH = 0;
 
-	/** die Rüstungs Staffelungen werden deklariert*/
+	/** die Rüstungs Staffelungen werden deklariert */
 	public static final int VOLLR = 50;
 	public static final int HALBR = 25;
 	public static final int LEERR = 0;
 
-	/** die Mana Staffelungen werden deklariert*/
+	/** die Mana Staffelungen werden deklariert */
 	public static final int VOLLM = 2;
 	public static final int HALBM = 1;
 	public static final int LEERM = 0;
 
-	/** die Leben Staffelungen werden deklariert*/
+	/** die Leben Staffelungen werden deklariert */
 	public static final int VOLLL = 3;
 	public static final int ZWEIDRITTELL = 2;
 	public static final int EINDRITTELL = 1;
 	public static final int LEERL = 0;
 
-	/** die Gold Staffelungen werden angezeigt*/
+	/** die Gold Staffelungen werden angezeigt */
 	public static final int GOLD0 = 0;
 	public static final int GOLD50 = 50;
 	public static final int GOLD100 = 100;

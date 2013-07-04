@@ -11,7 +11,8 @@ public abstract class GameObject {
 
 	/**
 	 * abstrakte Methode, Getter des Icons
-	 * @return
+	 * 
+	 * @return Icon gibt das Icon des GameObjektes zurück
 	 */
 	public abstract Icon getIcon();
 }

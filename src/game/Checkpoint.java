@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 public class Checkpoint extends GameObject {
 
 	/** Icon für Checkpoint wird deklariert */
-	private static final Icon ICONSAVE = new ImageIcon(Konstanten.direction
+	private static final Icon ICONSAVE = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Save.png");
 
 	/** icon vom Typ Icon wird deklariert */

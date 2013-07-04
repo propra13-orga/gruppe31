@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 public class Schwert extends Item {
 
 	/** Icon für Schwert wird deklariert */
-	private static final Icon ICONSCHWERT = new ImageIcon(Konstanten.direction
+	private static final Icon ICONSCHWERT = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Schwertrasen.png");
 
 	/** icon vom Typ Icon wird deklariert */

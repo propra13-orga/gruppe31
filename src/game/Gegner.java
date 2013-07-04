@@ -10,9 +10,9 @@ import javax.swing.ImageIcon;
 public class Gegner extends Spielfigur {
 
 	/** verschiedene Icons für verschiedene Gegner werden deklariert */
-	private static final Icon ICONGEGNER1 = new ImageIcon(Konstanten.direction
+	private static final Icon ICONGEGNER1 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Gegner1.png");
-	private static final Icon ICONGEGNER2 = new ImageIcon(Konstanten.direction
+	private static final Icon ICONGEGNER2 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Gegner2.png");
 
 	/** icon vom Typ Icon wird deklariert */
@@ -32,17 +32,20 @@ public class Gegner extends Spielfigur {
 	 * CheckStyle erwartet anderes Muster, welches ?
 	 * 
 	 * @param low
+	 *            Kommandozeilenparameter
 	 * @param high
-	 * @return
+	 *            Kommandozeilenparameter
+	 * @return int
 	 */
-	public static int Random(int low, int high) {
+	public static int random(int low, int high) {
 		high++;
 		return (int) (Math.random() * (high - low) + low);
 	}
 
 	/**
 	 * Getter von ko
-	 * @return
+	 * 
+	 * @return ko
 	 */
 	public int getKo() {
 		return ko;
@@ -50,7 +53,9 @@ public class Gegner extends Spielfigur {
 
 	/**
 	 * Setter von ko
+	 * 
 	 * @param ko
+	 *            Kommandozeilenparameter
 	 */
 	public void setKo(int ko) {
 		this.ko = ko;
