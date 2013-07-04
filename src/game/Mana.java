@@ -26,7 +26,7 @@ public class Mana extends Item {
 	
 	/**
 	 * Getter für mana;
-	 * @return
+	 * @return mana Anzahl an Mana die man bekommen kann
 	 */
 	public int getMana() {
 		return mana;
@@ -34,7 +34,7 @@ public class Mana extends Item {
 
 	/**
 	 * Setter für mana
-	 * @param mana
+	 * @param mana setzt die Manaanzeige beim Spieler
 	 */
 	public void setMana(int mana) {
 		this.mana = mana;

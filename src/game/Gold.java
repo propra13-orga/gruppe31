@@ -25,9 +25,10 @@ public class Gold extends Item {
 	}
 
 	/**
-	 * Getter für gold;
+	 * Gibt die Anzahl an Gold zurück, die der Spieler aktuell besitzt.
 	 * 
-	 * @return
+	 * @return gold Die aktuelle Anzahl an Goldmünzen, -1 wenn der Spieler
+	 *         überschuldet ist.
 	 */
 	public int getGold() {
 		return gold;
@@ -36,7 +37,7 @@ public class Gold extends Item {
 	/**
 	 * Setter für gold
 	 * 
-	 * @param gold
+	 * @param gold setzt die aktuelle Anzahl an Goldmünzen
 	 */
 	public void setGold(int gold) {
 		this.gold = gold;

@@ -213,6 +213,8 @@ public class GameFrame extends JFrame implements KeyListener {
 			return;
 		}
 		spiel.init(Datei);
+		
+		zeichner.paint(/*was muss hier rein*/);
 
 		setzeAnzeige();
 

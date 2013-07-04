@@ -88,7 +88,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Getter für Spielfigurx
 	 * 
-	 * @return
+	 * @return Spielfigurx Die X-Position des Spielers
 	 */
 	public int getSpielfigurx() {
 		return Spielfigurx;
@@ -98,6 +98,7 @@ public class Spieler extends Spielfigur {
 	 * Setter für Spielfigurx
 	 * 
 	 * @param Spielfigurx
+	 *            setzt die Y-Position des Spielers
 	 */
 	public void setSpielfigurx(int Spielfigurx) {
 		this.Spielfigurx = Spielfigurx;
@@ -106,7 +107,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Getter für Spielfigurx
 	 * 
-	 * @return
+	 * @return Spielfigury Die Y-Position des Spielers
 	 */
 	public int getSpielfigury() {
 		return Spielfigury;
@@ -115,7 +116,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Setter für Spielfigury
 	 * 
-	 * @param Spielfigury
+	 * @param Spielfigury setzt die Y-Position des Spielers
 	 */
 	public void setSpielfigury(int Spielfigury) {
 		this.Spielfigury = Spielfigury;
@@ -124,7 +125,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Getter für beschwertet
 	 * 
-	 * @return
+	 * @return beschwertet Gibt an, ob Spieler beschwertet ist oder nicht 
 	 */
 	public int getBeschwertet() {
 		return beschwertet;
@@ -133,7 +134,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Setter für beschwertet
 	 * 
-	 * @param beschwertet
+	 * @param beschwertet setzt den Spieler auf beschwertet oder zurück
 	 */
 	public void setBeschwertet(int beschwertet) {
 		this.beschwertet = beschwertet;
@@ -142,7 +143,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Getter für halsband
 	 * 
-	 * @return
+	 * @return halsband Gibt an, ob Spieler berüstet ist, oder nicht
 	 */
 	public int getHalsband() {
 		return halsband;
@@ -151,7 +152,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Setter für halsband
 	 * 
-	 * @param halsband
+	 * @param halsband setzt den Spieler auf beschwertet oder zurück
 	 */
 	public void setHalsband(int halsband) {
 		this.halsband = halsband;
@@ -160,7 +161,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Getter für mana
 	 * 
-	 * @return
+	 * @return mana Gibt den Manawert des Spielers an
 	 */
 	public int getMana() {
 		return mana;
@@ -169,7 +170,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Setter für mana
 	 * 
-	 * @param mana
+	 * @param mana setzt den Manawert des Spielers
 	 */
 	public void setMana(int mana) {
 		this.mana = mana;
@@ -178,7 +179,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Getterfür leben
 	 * 
-	 * @return
+	 * @return leben Gibt die verbleibenden Leben des Spielers an
 	 */
 	public int getLeben() {
 		return leben;
@@ -187,7 +188,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Setter für leben
 	 * 
-	 * @param leben
+	 * @param leben setzt die verbleibenden Leben des Spielers
 	 */
 	public void setLeben(int leben) {
 		this.leben = leben;
@@ -196,7 +197,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Getter für ruestung
 	 * 
-	 * @return
+	 * @return ruestung Gibt an, über wie viel Rüstung der Spieler noch verfügt
 	 */
 	public int getRuestung() {
 		return ruestung;
@@ -205,7 +206,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Setter für ruestung
 	 * 
-	 * @param ruestung
+	 * @param ruestung Setzt den Rüstungswert des Spielers
 	 */
 	public void setRuestung(int ruestung) {
 		this.ruestung = ruestung;
@@ -214,7 +215,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Getter für gold
 	 * 
-	 * @return
+	 * @return gold Gibt den Goldwert des Spielers an
 	 */
 	public int getGold() {
 		return gold;
@@ -223,7 +224,7 @@ public class Spieler extends Spielfigur {
 	/**
 	 * Setter für gold
 	 * 
-	 * @param gold
+	 * @param gold Setzt den Goldwert des Spielers
 	 */
 	public void setGold(int gold) {
 		this.gold = gold;

@@ -28,19 +28,12 @@ public class Falle extends GameObject {
 
 	/**
 	 * Getter für schaden
-	 * @return
+	 * @return schaden Der Schaden, der von dieser Falle ausgehen kann
 	 */
 	public int getSchaden() {
 		return schaden;
 	}
 
-	/** 
-	 * Setter für schaden
-	 * @param schaden
-	 */
-	public void setSchaden(int schaden) {
-		this.schaden = schaden;
-	}
 
 	@Override
 	public Icon getIcon() {

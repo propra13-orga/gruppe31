@@ -27,7 +27,7 @@ public class Shopmana extends Item {
 	/**
 	 * Getter für mana
 	 * 
-	 * @return
+	 * @return mana 
 	 */
 	public int getMana() {
 		return mana;
@@ -36,7 +36,7 @@ public class Shopmana extends Item {
 	/**
 	 * Setter für mana
 	 * 
-	 * @return
+	 * @param mana Die aktuelle Manaanzeige
 	 */
 	public void setMana(int mana) {
 		this.mana = mana;
