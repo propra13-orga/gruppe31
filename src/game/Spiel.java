@@ -11,19 +11,16 @@ import javax.swing.JOptionPane;
 public class Spiel {
 
 	/** Liste von Spielfeldern wird deklariert */
-	private ArrayList<Spielfeld> levels = new ArrayList<Spielfeld>();
-
-	/** Deklaration der ... */
-	private Spielfeld spielfeld;
+	private ArrayList<Spielfeld> levels;
 
 	/** Deklaration eines Integer Arrays */
 	private Integer[][] array;
 
 	/**
-	 * leerer Konstruktor, um kein Objekt dieser Klasse aufrufen zu können
+	 * Konstruktor erzeugt ArrayList
 	 */
 	public Spiel() {
-		//
+		levels = new ArrayList<Spielfeld>();
 	}
 
 	/**

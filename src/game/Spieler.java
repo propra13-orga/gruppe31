@@ -52,9 +52,16 @@ public class Spieler extends Spielfigur {
 	 *            Kommandozeilenparameter
 	 */
 	public Spieler(int x, int y) {
-
-		Spielfigurx = x;
-		Spielfigury = y;
+		
+		setBewaffnet(false);
+		setGesundheit(Konstanten.VOLLH);
+		setBeschwertet(0);
+		setHalsband(0);
+		setMana(0);
+		setGold(0);
+		setRuestung(0);
+		setSpielfigurx(x);
+		setSpielfigury(y);
 
 		if (getBewaffnet() == true) {
 			if (beschwertet == 1) {

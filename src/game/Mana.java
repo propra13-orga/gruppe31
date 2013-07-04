@@ -22,6 +22,8 @@ public class Mana extends Item {
 	/** Konstruktor initialisiert icon */
 	public Mana() {
 		icon = ICONMANA;
+		
+		mana = Konstanten.VOLLM;
 	}
 
 	/**

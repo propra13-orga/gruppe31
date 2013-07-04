@@ -23,6 +23,9 @@ public class Gegner extends Spielfigur {
 
 	/** Koonstrauktor initialisiert icon */
 	public Gegner() {
+		setKo(0);
+		setGesundheit(Konstanten.VOLLH);
+		
 		/* richtiges Icon setzen */
 	}
 
