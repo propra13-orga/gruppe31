@@ -1,7 +1,9 @@
 package game;
 
 import java.awt.BorderLayout;
+import java.awt.Graphics;
 import java.awt.Panel;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -161,7 +163,9 @@ public class GameFrame extends JFrame implements KeyListener {
 	private Spiel spiel;
 	private GameFrame gameFrame;
 	private NPC carlos;
-	private Zeichner zeichner;
+	private GameObject[][] spielfeld;
+	private Spieler spieler;
+	private GameObject gameObject;
 
 	/** Deklaration von Integer Arrays */
 	private Integer aktuellesSpielfeld[][] = new Integer[16][12];
@@ -214,11 +218,11 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 		spiel.init(Datei);
 
-		zeichner.paint(/* was muss hier rein */);
-
 		setzeAnzeige();
 
 		getContentPane().add(Leiste, BorderLayout.SOUTH);
+		
+		zeichnen();
 
 		this.setVisible(true);
 		this.requestFocus();
@@ -267,6 +271,16 @@ public class GameFrame extends JFrame implements KeyListener {
 	/**
 	 * aktualisiert die Grafik
 	 */
+	public void zeichnen() {
+		spielfeld = this.spiel.getAktuellesSpielfeld();
+		for (int i = 0; i<spielfeld.length; i++) {
+			for (int j = 0; j<spielfeld[i].length; j++) {
+				//gameObject = Spielfeld.readObject(new Point(i,j));
+				StdDraw.picture(i+100,j*100, gameObject.getIcon());
+			}
+		}
+	}
+	
 	public void aktualisieren() {
 		validate();
 		repaint();
@@ -277,6 +291,9 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * unteren Bereich des Spielfensters
 	 */
 	public void setzeAnzeige() {
+		
+		spieler = new Spieler();
+		
 		Leiste.removeAll();
 
 		/* für die Levelanzeige , set Bounds funktioniert nur bei Layout null */
@@ -311,6 +328,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		aktualisieren();
 
 		/* für die Healthanzeige */
+		//spieler.getGesundheit();	
 		if (health == Konstanten.VOLLH) {
 			LebenVoll.setBounds(23, 590, 150, 100);
 			Leiste.add(LebenVoll);

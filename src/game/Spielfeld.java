@@ -1,7 +1,7 @@
 package game;
 
 /** ist für den jeweiligen Raum zuständig. das Spielfeld wird erstellt */
-public class Spielfeld extends Spiel {
+public class Spielfeld {
 
 	/** Deklaration eines GameObject Arrays */
 	public final GameObject[][] feld;
@@ -30,7 +30,7 @@ public class Spielfeld extends Spiel {
 					gameObject = new Grenze();
 					break;
 				case Konstanten.PUDEL:
-					gameObject = new Spieler(x, y);
+					gameObject = new Spieler();
 					break;
 				case Konstanten.GEGNER:
 					gameObject = new Gegner();

@@ -51,7 +51,7 @@ public class Spieler extends Spielfigur {
 	 * @param x
 	 *            Kommandozeilenparameter
 	 */
-	public Spieler(int x, int y) {
+	public Spieler() {
 		
 		setBewaffnet(false);
 		setGesundheit(Konstanten.VOLLH);
@@ -60,8 +60,6 @@ public class Spieler extends Spielfigur {
 		setMana(0);
 		setGold(0);
 		setRuestung(0);
-		setSpielfigurx(x);
-		setSpielfigury(y);
 
 		if (getBewaffnet() == true) {
 			if (beschwertet == 1) {
@@ -92,44 +90,6 @@ public class Spieler extends Spielfigur {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Getter für Spielfigurx
-	 * 
-	 * @return Spielfigurx Die X-Position des Spielers
-	 */
-	public int getSpielfigurx() {
-		return Spielfigurx;
-	}
-
-	/**
-	 * Setter für Spielfigurx
-	 * 
-	 * @param Spielfigurx
-	 *            Kommandozeilenparameter
-	 */
-	public void setSpielfigurx(int Spielfigurx) {
-		this.Spielfigurx = Spielfigurx;
-	}
-
-	/**
-	 * Getter für Spielfigurx
-	 * 
-	 * @return Spielfigury Die Y-Position des Spielers
-	 */
-	public int getSpielfigury() {
-		return Spielfigury;
-	}
-
-	/**
-	 * Setter für Spielfigury
-	 * 
-	 * @param Spielfigury
-	 *            Kommandozeilenparameter
-	 */
-	public void setSpielfigury(int Spielfigury) {
-		this.Spielfigury = Spielfigury;
 	}
 
 	/**

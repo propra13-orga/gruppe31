@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -10,11 +11,12 @@ import javax.swing.JOptionPane;
  */
 public class Spiel {
 
+	private Spielfeld aktspielfeld;
+
 	/** Liste von Spielfeldern wird deklariert */
 	private ArrayList<Spielfeld> levels;
 
-	/** Deklaration eines Integer Arrays */
-	private Integer[][] array;
+	private GameObject[][] aktSpielfeld;
 
 	/**
 	 * Konstruktor erzeugt ArrayList
@@ -48,7 +50,7 @@ public class Spiel {
 		String line = br.readLine();
 		do {
 			/* ein Array von 16*12 wird initialisiert */
-			array = new Integer[Konstanten.SPALTEN][Konstanten.ZEILEN];
+			aktSpielfeld = new GameObject[Konstanten.SPALTEN][Konstanten.ZEILEN];
 
 			/* die Zeilen werden gelesen, bis man bei der 16. angekommen ist */
 			for (int j = 0; j < Konstanten.SPALTEN; j++, line = br.readLine()) {
@@ -66,7 +68,62 @@ public class Spiel {
 					 * geparst
 					 */
 					for (int i = 0; i < Konstanten.ZEILEN; i++) {
-						array[j][i] = (int) line.charAt(i);
+						int pruefe;
+						GameObject gameObject = null;
+
+						pruefe = (int) line.charAt(i);
+
+						java.awt.Point position = new java.awt.Point();
+
+						if (pruefe == Konstanten.RASEN) {
+							gameObject = new Rasen();
+						} else if (pruefe == Konstanten.GRENZE) {
+							gameObject = new Grenze();
+						} else if (pruefe == Konstanten.PUDEL) {
+							gameObject = new Spieler();
+						} else if (pruefe == Konstanten.GEGNER) {
+							gameObject = new Gegner();
+						} else if (pruefe == Konstanten.FALLE) {
+							gameObject = new Falle();
+						} else if (pruefe == Konstanten.WEITER) {
+							gameObject = new Weiter();
+						} else if (pruefe == Konstanten.BOSS) {
+							gameObject = new Bossgegner();
+						} else if (pruefe == Konstanten.ZURUECK) {
+							gameObject = new Zurueck();
+						} else if (pruefe == Konstanten.CARLOS) {
+							gameObject = new Carlos();
+						} else if (pruefe == Konstanten.CUPCAKE) {
+							gameObject = new Ziel();
+						} else if (pruefe == Konstanten.HUETTE) {
+							gameObject = new Huette();
+						} else if (pruefe == Konstanten.WAFFE) {
+							gameObject = new Brille();
+						} else if (pruefe == Konstanten.GOLD) {
+							gameObject = new Gold();
+						} else if (pruefe == Konstanten.MANA) {
+							gameObject = new Mana();
+						} else if (pruefe == Konstanten.HEALTH) {
+							gameObject = new Health();
+						} else if (pruefe == Konstanten.RUESTUNG) {
+							gameObject = new Ruestung();
+						} else if (pruefe == Konstanten.CHECKPOINT) {
+							gameObject = new Checkpoint();
+						} else if (pruefe == Konstanten.SCHWERT) {
+							gameObject = new Schwert();
+						} else if (pruefe == Konstanten.SHOPMANA) {
+							gameObject = new Shopmana();
+						} else if (pruefe == Konstanten.SHOPHEALTH) {
+							gameObject = new Shophealth();
+						} else if (pruefe == Konstanten.SHOPRUESTUNG) {
+							gameObject = new Shopruestung();
+						}
+
+						position.x = j;
+						position.y = i;
+
+						setzeObjekt(gameObject, position);
+						aktSpielfeld[j][i] = gameObject;
 					}
 				}
 			}
@@ -85,12 +142,16 @@ public class Spiel {
 		fr.close();
 	}
 
+	public void setzeObjekt(GameObject objekt, Point point) {
+
+	}
+
 	/**
 	 * Getter für aktuellesSpielfeld
 	 * 
 	 * @return array gibt das array dieser Klasse zurück
 	 */
-	public Integer[][] getAktuellesSpielfeld() {
-		return array;
+	public GameObject[][] getAktuellesSpielfeld() {
+		return aktSpielfeld;
 	}
 }
