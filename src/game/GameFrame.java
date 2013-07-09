@@ -1,9 +1,7 @@
 package game;
 
 import java.awt.BorderLayout;
-import java.awt.Graphics;
 import java.awt.Panel;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -160,11 +158,9 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/** Deklaration von Feldern */
 	private Spiel spiel;
-	private GameFrame gameFrame;
 	private NPC carlos;
 	private Spieler spieler;
 	private GameObject gameObject;
-	private Spielfeld spielfeld;
 	private Spielfigur spielfigur;
 
 	/** Deklaration von Integer Arrays */
@@ -202,7 +198,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	public GameFrame() {
 		this.setResizable(true);
 		this.setTitle("Erna's Adventure");
-		this.setSize(900, 700);
+		this.setSize(Konstanten.BREITE, Konstanten.HOEHE);
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setFocusable(true);
@@ -266,7 +262,10 @@ public class GameFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * aktualisiert die Grafik
+	 * zeichnet das Spielfeld
+	 * 
+	 * @param spielfeld
+	 *            Kommandozeilenparameter
 	 */
 	public void zeichnen(Spielfeld spielfeld) {
 		for (int i = 0; i < Konstanten.SPALTEN; i++) {
@@ -274,7 +273,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				GameObject object = spielfeld
 						.gibObjekt(new java.awt.Point(i, j));
 				StdDraw.picture(i * Konstanten.SIZE, j * Konstanten.SIZE,
-						gameObject.getPicture());
+						object.getPicture());
 			}
 		}
 	}
@@ -297,7 +296,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		leiste.removeAll();
 
-		/* für die Levelanzeige , set Bounds funktioniert nur bei Layout null */
+		/* für die Levelanzeige */
 		if (level == 0) {
 			leiste.add(EINS);
 		} else if (level == 1) {
@@ -436,7 +435,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 
 		this.setResizable(false);
-		this.setSize(800, 600);
+		this.setSize(Konstanten.BREITE, Konstanten.HOEHE);
 		this.setLayout(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -469,7 +468,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 
 		this.setResizable(false);
-		this.setSize(800, 600);
+		this.setSize(Konstanten.BREITE, Konstanten.HOEHE);
 		this.setLayout(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -492,7 +491,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		this.spielfigur.tryMove(e.getKeyChar());
 		this.zeichnen(spiel.getAktuellesSpielfeld());
-		
+
 	}
 
 	@Override

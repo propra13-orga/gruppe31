@@ -8,22 +8,25 @@ public class Spielfeld {
 	/** Deklaration eines GameObject Arrays */
 	public final GameObject[][] feld;
 
-	private int Zeilen;
-	private int Spalten;
+	/** Deklaration von Variablen für Zeilen und Spalten */
+	private int zeilen;
+	private int spalten;
 
 	/**
 	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann für jeden
 	 * case wird ein Objekt der jeweiligen Klasse erstellt, welches den case
 	 * überschreibt
 	 * 
-	 * @param feld
-	 *            Kommandozeilenparameter
+	 * @param hoehe
+	 *            hoehe des Spielfeldes
+	 * @param breite
+	 *            breite des Spielfeldes
 	 * @throws SpielfeldException
 	 *             wirft eine Exception
 	 */
 	public Spielfeld(int hoehe, int breite) throws SpielfeldException {
-		this.Spalten = hoehe;
-		this.Zeilen = breite;
+		this.spalten = hoehe;
+		this.zeilen = breite;
 		this.feld = new GameObject[hoehe][breite];
 	}
 
@@ -33,7 +36,7 @@ public class Spielfeld {
 	 * @return Die Breite dieses Spielfelds.
 	 */
 	public int gibBreite() {
-		return this.Spalten;
+		return this.spalten;
 	}
 
 	/**
@@ -42,7 +45,7 @@ public class Spielfeld {
 	 * @return Die Hoehe dieses Spielfelds.
 	 */
 	public int gibHoehe() {
-		return this.Zeilen;
+		return this.zeilen;
 	}
 
 	/**
@@ -51,6 +54,7 @@ public class Spielfeld {
 	 * @param objekt
 	 *            Das Objekt, welches bewegt werden soll
 	 * @param position
+	 *            Angabe der Position des Objektes
 	 */
 	public void setzeObjekt(GameObject objekt, Point position) {
 		this.feld[position.x][position.y] = objekt;

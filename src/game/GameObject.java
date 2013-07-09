@@ -1,7 +1,5 @@
 package game;
 
-import javax.swing.Icon;
-
 /**
  * abstrakte Klasse GameObject, alle untergeordneten Klassen benötigen ein Icon,
  * daher hier der getter
@@ -12,7 +10,7 @@ public abstract class GameObject {
 	/**
 	 * wird auf alle Unterklassen vererbt, gibt das jeweilige Bild wieder
 	 * 
-	 * @return
+	 * @return bild
 	 */
 	public abstract String getPicture();
 }

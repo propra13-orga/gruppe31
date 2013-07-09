@@ -42,11 +42,6 @@ public class Spieler extends Spielfigur {
 
 	/**
 	 * Konstruktor weist Icon das richtige Icon zu
-	 * 
-	 * @param y
-	 *            Kommandozeilenparameter
-	 * @param x
-	 *            Kommandozeilenparameter
 	 */
 	public Spieler() {
 

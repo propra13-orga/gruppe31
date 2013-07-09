@@ -86,6 +86,14 @@ public final class Konstanten {
 	public static final int GOLD300 = 300;
 	public static final int GOLD350 = 350;
 
+	/** die Groessen fuer das Fenster */
+	public static final int BREITE = 900;
+	public static final int HOEHE = 700;
+	
+	/** die Groessen für das Steuerungsfenster */
+	public static final int BREITEST = 400;
+	public static final int HOEHEST = 310;
+	
 	/**
 	 * privater Konstruktor, der verhindert, dass von außen ein Exemplar dieser
 	 * Klasse gebildet werden kann

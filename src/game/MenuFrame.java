@@ -49,7 +49,7 @@ public class MenuFrame extends JFrame {
 
 		this.setResizable(false);
 		this.setTitle("Menu");
-		this.setSize(800, 600);
+		this.setSize(Konstanten.BREITE, Konstanten.HOEHE);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
@@ -103,13 +103,13 @@ public class MenuFrame extends JFrame {
 		final JFrame frame = new JFrame();
 
 		frame.setResizable(true);
-		frame.setSize(400, 310);
+		frame.setSize(Konstanten.BREITEST, Konstanten.HOEHEST);
 		frame.setLayout(null);
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
-		STEUERUNG.setBounds(0, 0, 400, 310);
+		STEUERUNG.setBounds(0, 0, Konstanten.BREITEST, Konstanten.HOEHEST);
 		STEUERUNG.setVisible(true);
 		frame.add(STEUERUNG);
 	}

@@ -12,7 +12,8 @@ import javax.swing.JOptionPane;
  */
 public class Spiel {
 
-	private static final int ANZ_RAUM_PRO_LEVEL = 3;
+	/** Raum Anzahl pro Level */
+	private static final int RAUM = 3;
 
 	/** Liste von Spielfeldern wird deklariert */
 	private ArrayList<Spielfeld> levels;
@@ -23,6 +24,7 @@ public class Spiel {
 	/** Zeiger auf das aktuelle Spielfeld */
 	private int aktSpielfeld;
 
+	/** Deklarierung des Feldes */
 	private Spielfeld spielfeld;
 
 	/**
@@ -60,7 +62,7 @@ public class Spiel {
 		do {
 			int hoehe = line.charAt(0);
 			int breite = line.charAt(1);
-			
+
 			/* ein neues Spielfeld wird initialisiert */
 			spielfeld = new Spielfeld(Konstanten.ZEILEN, Konstanten.SPALTEN);
 
