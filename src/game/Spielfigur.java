@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Point;
+
 /**
  * abstrakte Klasse, die untergeordneten Klassen haben gemein, dass ihre Objekte
  * bewaffne, schaden und gesundheit haben
@@ -53,16 +55,12 @@ public abstract class Spielfigur extends GameObject {
 	/**
 	 * Methode prüft, ob an abgefragter Stelle nichts (also Rasen) ist, wenn ja
 	 * kann sich Figur bewegen, wenn nicht Weiterleitung
-	 * 
-	 * @param ziel
-	 *            Kommandozeilenparameter
-	 * @return true
 	 */
-	public boolean tryMove(GameObject ziel) {
-		if (ziel == null) {
-			return true;
-		} else
-			return internalTryMove(ziel);
+	public void tryMove(char c) {
+		/*
+		 * TODO: Pruefen, ob das Feld, auf das bewegt werden soll frei ist,
+		 * danach bewegen
+		 */
 	}
 
 	/**

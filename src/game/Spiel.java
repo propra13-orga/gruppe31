@@ -7,22 +7,31 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- * die Klasse kann die Räume aus den Textdateien einlesen
+ * diese Klasse repräsentiert das komplette Spiel, welches aus verschiedenen
+ * Spielfelder besteht. Das Spiel wird aus einer Textdatei eingelesen
  */
 public class Spiel {
 
-	private Spielfeld aktspielfeld;
+	private static final int ANZ_RAUM_PRO_LEVEL = 3;
 
 	/** Liste von Spielfeldern wird deklariert */
 	private ArrayList<Spielfeld> levels;
 
-	private GameObject[][] aktSpielfeld;
+	/** Liste aller Spieler */
+	private ArrayList<Spieler> Spieler;
+
+	/** Zeiger auf das aktuelle Spielfeld */
+	private int aktSpielfeld;
+
+	private Spielfeld spielfeld;
 
 	/**
-	 * Konstruktor erzeugt ArrayList
+	 * Konstruktor erzeugt ArrayList, welche Spielfelder beinhaltet
 	 */
 	public Spiel() {
 		levels = new ArrayList<Spielfeld>();
+		this.aktSpielfeld = -1;
+		Spieler = new ArrayList<Spieler>();
 	}
 
 	/**
@@ -49,8 +58,11 @@ public class Spiel {
 		/* in line wird eine Zeile gespeichert */
 		String line = br.readLine();
 		do {
-			/* ein Array von 16*12 wird initialisiert */
-			aktSpielfeld = new GameObject[Konstanten.SPALTEN][Konstanten.ZEILEN];
+			int hoehe = line.charAt(0);
+			int breite = line.charAt(1);
+			
+			/* ein neues Spielfeld wird initialisiert */
+			spielfeld = new Spielfeld(Konstanten.ZEILEN, Konstanten.SPALTEN);
 
 			/* die Zeilen werden gelesen, bis man bei der 16. angekommen ist */
 			for (int j = 0; j < Konstanten.SPALTEN; j++, line = br.readLine()) {
@@ -69,11 +81,8 @@ public class Spiel {
 					 */
 					for (int i = 0; i < Konstanten.ZEILEN; i++) {
 						int pruefe;
-						GameObject gameObject = null;
-
+						GameObject gameObject;
 						pruefe = (int) line.charAt(i);
-
-						java.awt.Point position = new java.awt.Point();
 
 						if (pruefe == Konstanten.RASEN) {
 							gameObject = new Rasen();
@@ -117,13 +126,12 @@ public class Spiel {
 							gameObject = new Shophealth();
 						} else if (pruefe == Konstanten.SHOPRUESTUNG) {
 							gameObject = new Shopruestung();
+						} else {
+							gameObject = new Spieler();
 						}
 
-						position.x = j;
-						position.y = i;
-
-						setzeObjekt(gameObject, position);
-						aktSpielfeld[j][i] = gameObject;
+						spielfeld.setzeObjekt(gameObject, new Point(i, j));
+						levels.add(spielfeld);
 					}
 				}
 			}
@@ -142,16 +150,12 @@ public class Spiel {
 		fr.close();
 	}
 
-	public void setzeObjekt(GameObject objekt, Point point) {
-
-	}
-
 	/**
 	 * Getter für aktuellesSpielfeld
 	 * 
 	 * @return array gibt das array dieser Klasse zurück
 	 */
-	public GameObject[][] getAktuellesSpielfeld() {
-		return aktSpielfeld;
+	public Spielfeld getAktuellesSpielfeld() {
+		return levels.get(aktSpielfeld);
 	}
 }

@@ -75,7 +75,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			+ "/src/game/Images/Gold200.png");
 	private static final Icon ICON250GOLD = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Gold250.png");
-	private static final Icon ICON300GOLD= new ImageIcon(Konstanten.DIRECTION
+	private static final Icon ICON300GOLD = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Gold300.png");
 	private static final Icon ICON350GOLD = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Gold350.png");
@@ -153,32 +153,31 @@ public class GameFrame extends JFrame implements KeyListener {
 	private JLabel HERZ3 = new JLabel(ICONHERZ3);
 
 	/** Panel für Anzeigenleiste deklariert */
-	private Panel Leiste = new Panel();
-	/** Panel für Spielfeld deklariert */
-	private Panel Spielfeld = new Panel();
+	private Panel leiste = new Panel();
 
-	private JButton GVschliessen;
+	/** Button wird für Gewonnen- und Verlorenfenster deklariert */
+	private JButton gvschliessen;
 
 	/** Deklaration von Feldern */
 	private Spiel spiel;
 	private GameFrame gameFrame;
 	private NPC carlos;
-	private GameObject[][] spielfeld;
 	private Spieler spieler;
 	private GameObject gameObject;
+	private Spielfeld spielfeld;
+	private Spielfigur spielfigur;
 
 	/** Deklaration von Integer Arrays */
-	private Integer aktuellesSpielfeld[][] = new Integer[16][12];
-	private Integer CheckSpielfeld[][] = new Integer[16][12];
+	private Integer aktuellesSpielfeld[][] = new Integer[Konstanten.SPALTEN][Konstanten.ZEILEN];
 
 	/** Deklaration eines Strings Datei */
-	private String Datei;
+	private String datei;
 
-	/** Deklaration eines Strings für Exception */
-	private String Exception = "Das Bild kann nicht gefunden werden ";
+	/** Deklaration eines Strings für Exception im Gewonnen- und Verlorenfenster */
+	private String exception = "Das Bild kann nicht gefunden werden ";
 
 	/** Deklaration eines Strings für das Schließen */
-	private String Schliessen = "Dieses Fenster schließen";
+	private String schliessen = "Dieses Fenster schließen";
 
 	/**
 	 * Deklaration von int-Variablen, werden später durch Variablen aus
@@ -199,10 +198,8 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * Zeichner wird auf das Spielfenster gesetzt und der LevelManager wird
 	 * aufgerufen. Das nächste (hier: erste) Level wird aufgerufen und der
 	 * Zeichner zeichnet das entsprechende Spielfeld
-	 * 
-	 * @throws Exception
 	 */
-	public GameFrame() throws Exception {
+	public GameFrame() {
 		this.setResizable(true);
 		this.setTitle("Erna's Adventure");
 		this.setSize(900, 700);
@@ -213,16 +210,16 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		spiel = new Spiel();
 		chooseFile();
-		if (Datei == null) {
+		if (datei == null) {
 			return;
 		}
-		spiel.init(Datei);
+		// spiel.init(Datei);
 
 		setzeAnzeige();
 
-		getContentPane().add(Leiste, BorderLayout.SOUTH);
+		getContentPane().add(leiste, BorderLayout.SOUTH);
 
-		zeichnen();
+		// zeichnen();
 
 		this.setVisible(true);
 		this.requestFocus();
@@ -259,28 +256,32 @@ public class GameFrame extends JFrame implements KeyListener {
 		/* wenn ein oder mehrere Dateien ausgewählt */
 		if (state == JFileChooser.APPROVE_OPTION) {
 			File file = fc.getSelectedFile();
-			Datei = file.getName();
+			datei = file.getName();
 			/* fängt die Varianten Error und Abbruch durch Nutzer ab */
 		} else if (state == JFileChooser.CANCEL_OPTION) {
 			JOptionPane.showMessageDialog(null, "Auswahl abgebrochen",
 					"Dateiselektion", JOptionPane.INFORMATION_MESSAGE);
 		}
-		return Datei;
+		return datei;
 	}
 
 	/**
 	 * aktualisiert die Grafik
 	 */
-	public void zeichnen() {
-		spielfeld = this.spiel.getAktuellesSpielfeld();
-		for (int i = 0; i < spielfeld.length; i++) {
-			for (int j = 0; j < spielfeld[i].length; j++) {
+	public void zeichnen(Spielfeld spielfeld) {
+		for (int i = 0; i < Konstanten.SPALTEN; i++) {
+			for (int j = 0; j < Konstanten.ZEILEN; j++) {
+				GameObject object = spielfeld
+						.gibObjekt(new java.awt.Point(i, j));
 				StdDraw.picture(i * Konstanten.SIZE, j * Konstanten.SIZE,
 						gameObject.getPicture());
 			}
 		}
 	}
 
+	/**
+	 * aktualisiert die Informationsleiste
+	 */
 	public void aktualisieren() {
 		validate();
 		repaint();
@@ -294,142 +295,107 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		spieler = new Spieler();
 
-		Leiste.removeAll();
+		leiste.removeAll();
 
 		/* für die Levelanzeige , set Bounds funktioniert nur bei Layout null */
 		if (level == 0) {
-			EINS.setBounds(-40, 590, 100, 100);
-			Leiste.add(EINS);
+			leiste.add(EINS);
 		} else if (level == 1) {
-			EINS.setBounds(-40, 590, 100, 100);
-			Leiste.add(EINS);
+			leiste.add(EINS);
 		} else if (level == 2) {
-			EINS.setBounds(-40, 590, 100, 100);
-			Leiste.add(EINS);
+			leiste.add(EINS);
 		} else if (level == 3) {
-			ZWEI.setBounds(-40, 590, 100, 100);
-			Leiste.add(ZWEI);
+			leiste.add(ZWEI);
 		} else if (level == 4) {
-			ZWEI.setBounds(-40, 590, 100, 100);
-			Leiste.add(ZWEI);
+			leiste.add(ZWEI);
 		} else if (level == 5) {
-			ZWEI.setBounds(-40, 590, 100, 100);
-			Leiste.add(ZWEI);
+			leiste.add(ZWEI);
 		} else if (level == 6) {
-			DREI.setBounds(-40, 590, 100, 100);
-			Leiste.add(DREI);
+			leiste.add(DREI);
 		} else if (level == 7) {
-			DREI.setBounds(-40, 590, 100, 100);
-			Leiste.add(DREI);
+			leiste.add(DREI);
 		} else if (level == 8) {
-			DREI.setBounds(-40, 590, 100, 100);
-			Leiste.add(DREI);
+			leiste.add(DREI);
 		}
 		aktualisieren();
 
 		/* für die Healthanzeige */
 		// spieler.getGesundheit();
 		if (health == Konstanten.VOLLH) {
-			LEBENVOLL.setBounds(23, 590, 150, 100);
-			Leiste.add(LEBENVOLL);
+			leiste.add(LEBENVOLL);
 		} else if (health == Konstanten.DREIVIERTELH) {
-			LEBENFAST.setBounds(23, 590, 150, 100);
-			Leiste.add(LEBENFAST);
+			leiste.add(LEBENFAST);
 		} else if (health == Konstanten.HALBH) {
-			LEBENHALB.setBounds(23, 590, 150, 100);
-			Leiste.add(LEBENHALB);
+			leiste.add(LEBENHALB);
 		} else if (health == Konstanten.EINVIERTELH) {
-			LEBENWENIG.setBounds(23, 590, 150, 100);
-			Leiste.add(LEBENWENIG);
+			leiste.add(LEBENWENIG);
 		}
 		aktualisieren();
 
 		/* für die Manaanzeige */
 		if (mana == Konstanten.VOLLM) {
-			MANAVOLL.setBounds(170, 590, 150, 100);
-			Leiste.add(MANAVOLL);
+			leiste.add(MANAVOLL);
 		} else if (mana == Konstanten.HALBM) {
-			MANAHALB.setBounds(170, 590, 150, 100);
-			Leiste.add(MANAHALB);
+			leiste.add(MANAHALB);
 		} else if (mana == Konstanten.LEERM) {
-			MANALEER.setBounds(170, 590, 150, 100);
-			Leiste.add(MANALEER);
+			leiste.add(MANALEER);
 		}
 
 		if (ruestung == Konstanten.VOLLR) {
-			RUESTUNGVOLL.setBounds(320, 590, 150, 100);
-			Leiste.add(RUESTUNGVOLL);
+			leiste.add(RUESTUNGVOLL);
 		} else if (ruestung == Konstanten.HALBR) {
-			RUESTUNGHALB.setBounds(320, 590, 150, 100);
-			Leiste.add(RUESTUNGHALB);
+			leiste.add(RUESTUNGHALB);
 		} else if (ruestung == Konstanten.LEERR) {
-			RUESTUNGWEG.setBounds(320, 590, 150, 100);
-			Leiste.add(RUESTUNGWEG);
+			leiste.add(RUESTUNGWEG);
 		}
 		aktualisieren();
 
 		/* für die Goldanzeige */
 		if (gold == Konstanten.GOLD0) {
-			GOLD0.setBounds(470, 590, 100, 100);
-			Leiste.add(GOLD0);
+			leiste.add(GOLD0);
 		} else if (gold == Konstanten.GOLD50) {
-			GOLD50.setBounds(470, 590, 100, 100);
-			Leiste.add(GOLD50);
+			leiste.add(GOLD50);
 		} else if (gold == Konstanten.GOLD100) {
-			GOLD100.setBounds(470, 590, 100, 100);
-			Leiste.add(GOLD100);
+			leiste.add(GOLD100);
 		} else if (gold == Konstanten.GOLD150) {
-			GOLD150.setBounds(470, 590, 100, 100);
-			Leiste.add(GOLD150);
+			leiste.add(GOLD150);
 		} else if (gold == Konstanten.GOLD200) {
-			GOLD200.setBounds(470, 590, 100, 100);
-			Leiste.add(GOLD200);
+			leiste.add(GOLD200);
 		} else if (gold == Konstanten.GOLD250) {
-			GOLD250.setBounds(470, 590, 100, 100);
-			Leiste.add(GOLD250);
+			leiste.add(GOLD250);
 		} else if (gold == Konstanten.GOLD300) {
-			GOLD300.setBounds(470, 590, 100, 100);
-			Leiste.add(GOLD300);
+			leiste.add(GOLD300);
 		} else if (gold == Konstanten.GOLD350) {
-			GOLD350.setBounds(470, 590, 100, 100);
-			Leiste.add(GOLD350);
+			leiste.add(GOLD350);
 		}
 		aktualisieren();
 
 		if (bewaffnet == 0) {
 			if (beschwertet == 0) {
 				if (halsband == 0) {
-					KEINRQ.setBounds(570, 590, 125, 100);
-					Leiste.add(KEINRQ);
+					leiste.add(KEINRQ);
 				} else if (halsband == 1) {
-					HALS.setBounds(570, 590, 125, 100);
-					Leiste.add(HALS);
+					leiste.add(HALS);
 				}
 			} else if (beschwertet == 1) {
 				if (halsband == 0) {
-					SCHWERT.setBounds(570, 590, 125, 100);
-					Leiste.add(SCHWERT);
+					leiste.add(SCHWERT);
 				} else if (halsband == 1) {
-					SCHWERTHALS.setBounds(570, 590, 125, 100);
-					Leiste.add(SCHWERTHALS);
+					leiste.add(SCHWERTHALS);
 				}
 			}
 		} else if (bewaffnet == 1) {
 			if (beschwertet == 0) {
 				if (halsband == 0) {
-					BRILLE.setBounds(570, 590, 125, 100);
-					Leiste.add(BRILLE);
+					leiste.add(BRILLE);
 				} else if (halsband == 1) {
-					BRILLEHALS.setBounds(570, 590, 125, 100);
-					Leiste.add(BRILLEHALS);
+					leiste.add(BRILLEHALS);
 				}
 			} else if (beschwertet == 1) {
 				if (halsband == 0) {
-					BRILLESCHWERT.setBounds(570, 590, 125, 100);
-					Leiste.add(BRILLESCHWERT);
+					leiste.add(BRILLESCHWERT);
 				} else if (halsband == 1) {
-					ALLESEQ.setBounds(570, 590, 125, 100);
-					Leiste.add(ALLESEQ);
+					leiste.add(ALLESEQ);
 				}
 			}
 		}
@@ -437,14 +403,11 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		/* für die Lebenanzeige */
 		if (leben == Konstanten.VOLLL) {
-			HERZ3.setBounds(690, 590, 100, 100);
-			Leiste.add(HERZ3);
+			leiste.add(HERZ3);
 		} else if (leben == Konstanten.ZWEIDRITTELL) {
-			HERZ2.setBounds(690, 590, 100, 100);
-			Leiste.add(HERZ2);
+			leiste.add(HERZ2);
 		} else if (leben == Konstanten.EINDRITTELL) {
-			HERZ1.setBounds(690, 590, 100, 100);
-			Leiste.add(HERZ1);
+			leiste.add(HERZ1);
 		}
 		aktualisieren();
 	}
@@ -469,7 +432,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
 					Konstanten.DIRECTION + "/src/game/Images/Gewonnen.jpg")))));
 		} catch (IOException a) {
-			System.out.println(Exception);
+			System.out.println(exception);
 		}
 
 		this.setResizable(false);
@@ -479,16 +442,16 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 
-		GVschliessen = new JButton(Schliessen);
-		GVschliessen.setBounds(550, 450, 200, 40);
-		this.add(GVschliessen);
+		gvschliessen = new JButton(schliessen);
+		gvschliessen.setBounds(550, 450, 200, 40);
+		this.add(gvschliessen);
 
 		ActionListener alschliessen = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		};
-		GVschliessen.addActionListener(alschliessen);
+		gvschliessen.addActionListener(alschliessen);
 	}
 
 	/**
@@ -502,7 +465,7 @@ public class GameFrame extends JFrame implements KeyListener {
 			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
 					Konstanten.DIRECTION + "/src/game/Images/GameOver.jpg")))));
 		} catch (IOException a) {
-			System.out.println(Exception);
+			System.out.println(exception);
 		}
 
 		this.setResizable(false);
@@ -512,31 +475,24 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 
-		GVschliessen = new JButton(Schliessen);
-		GVschliessen.setBounds(550, 450, 200, 40);
-		this.add(GVschliessen);
+		gvschliessen = new JButton(schliessen);
+		gvschliessen.setBounds(550, 450, 200, 40);
+		this.add(gvschliessen);
 
 		ActionListener alschliessen = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		};
-		GVschliessen.addActionListener(alschliessen);
+		gvschliessen.addActionListener(alschliessen);
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 
-		/* Abfragen für die Pfeiltasten */
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			// Fokus x-- setzen und in Spielfigur TryMove aufrufen
-		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			// Fokus x++ setzen und in Spielfigur TryMove aufrufen
-		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			// Fokus y-- setzen und in Spielfigur TryMove aufrufen
-		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			// Fokus y++ setzen und in Spielfigur TryMove aufrufen
-		}
+		this.spielfigur.tryMove(e.getKeyChar());
+		this.zeichnen(spiel.getAktuellesSpielfeld());
+		
 	}
 
 	@Override

@@ -1,10 +1,15 @@
 package game;
 
+import java.awt.Point;
+
 /** ist für den jeweiligen Raum zuständig. das Spielfeld wird erstellt */
 public class Spielfeld {
 
 	/** Deklaration eines GameObject Arrays */
 	public final GameObject[][] feld;
+
+	private int Zeilen;
+	private int Spalten;
 
 	/**
 	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann für jeden
@@ -16,81 +21,49 @@ public class Spielfeld {
 	 * @throws SpielfeldException
 	 *             wirft eine Exception
 	 */
-	public Spielfeld(Integer[][] feld) throws SpielfeldException {
-		this.feld = new GameObject[Konstanten.SPALTEN][Konstanten.ZEILEN];
+	public Spielfeld(int hoehe, int breite) throws SpielfeldException {
+		this.Spalten = hoehe;
+		this.Zeilen = breite;
+		this.feld = new GameObject[hoehe][breite];
+	}
 
-		for (int x = 0; x < Konstanten.SPALTEN; x++) {
-			for (int y = 0; y < Konstanten.ZEILEN; y++) {
-				GameObject gameObject;
-				switch (feld[x][y]) {
-				case Konstanten.RASEN:
-					gameObject = new Rasen();
-					break;
-				case Konstanten.GRENZE:
-					gameObject = new Grenze();
-					break;
-				case Konstanten.PUDEL:
-					gameObject = new Spieler();
-					break;
-				case Konstanten.GEGNER:
-					gameObject = new Gegner();
-					break;
-				case Konstanten.FALLE:
-					gameObject = new Falle();
-					break;
-				case Konstanten.WEITER:
-					gameObject = new Weiter();
-					break;
-				case Konstanten.BOSS:
-					gameObject = new Bossgegner();
-					break;
-				case Konstanten.ZURUECK:
-					gameObject = new Zurueck();
-					break;
-				case Konstanten.CARLOS:
-					gameObject = new Carlos();
-					break;
-				case Konstanten.CUPCAKE:
-					gameObject = new Ziel();
-					break;
-				case Konstanten.HUETTE:
-					gameObject = new Huette();
-					break;
-				case Konstanten.WAFFE:
-					gameObject = new Brille();
-					break;
-				case Konstanten.GOLD:
-					gameObject = new Gold();
-					break;
-				case Konstanten.MANA:
-					gameObject = new Mana();
-					break;
-				case Konstanten.HEALTH:
-					gameObject = new Health();
-					break;
-				case Konstanten.RUESTUNG:
-					gameObject = new Ruestung();
-					break;
-				case Konstanten.CHECKPOINT:
-					gameObject = new Checkpoint();
-					break;
-				case Konstanten.SCHWERT:
-					gameObject = new Schwert();
-					break;
-				case Konstanten.SHOPMANA:
-					gameObject = new Shopmana();
-					break;
-				case Konstanten.SHOPHEALTH:
-					gameObject = new Shophealth();
-					break;
-				case Konstanten.SHOPRUESTUNG:
-					gameObject = new Shopruestung();
-					break;
-				default:
-					throw new SpielfeldException("Unbekannter GameObject Typ");
-				}
-				this.feld[x][y] = gameObject;
-			}
-		}
+	/**
+	 * Gibt die Breite dieses Spielfelds zurueck.
+	 * 
+	 * @return Die Breite dieses Spielfelds.
+	 */
+	public int gibBreite() {
+		return this.Spalten;
+	}
+
+	/**
+	 * Gibt die Hoehe dieses Spielfelds zurueck.
+	 * 
+	 * @return Die Hoehe dieses Spielfelds.
+	 */
+	public int gibHoehe() {
+		return this.Zeilen;
+	}
+
+	/**
+	 * setzt das GameObject an die gewünschte Position
+	 * 
+	 * @param objekt
+	 *            Das Objekt, welches bewegt werden soll
+	 * @param position
+	 */
+	public void setzeObjekt(GameObject objekt, Point position) {
+		this.feld[position.x][position.y] = objekt;
+	}
+
+	/**
+	 * gibt das GameObject an Postion wieder
+	 * 
+	 * @param position
+	 *            Position des GameObjects
+	 * @return position
+	 */
+	public GameObject gibObjekt(Point position) {
+		return this.feld[position.x][position.y];
 	}
 }
