@@ -10,9 +10,9 @@ import javax.swing.Icon;
 public abstract class GameObject {
 
 	/**
-	 * abstrakte Methode, Getter des Icons
+	 * wird auf alle Unterklassen vererbt, gibt das jeweilige Bild wieder
 	 * 
-	 * @return Icon gibt das Icon des GameObjektes zurück
+	 * @return
 	 */
-	public abstract Icon getIcon();
+	public abstract String getPicture();
 }

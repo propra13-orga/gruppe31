@@ -1,29 +1,26 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * ein Objekt dieser Klasse ist die Shopruestung
  * 
  */
 public class Shopruestung extends Item {
-	
-	/** Icon für Rüstung im SHop wird deklariert*/
-	private static final Icon ICONSHOPRUESTUNG = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/HalsbandRasen.png");
-	
-	/** icon vom Typ Icon wird deklariert*/
-	private Icon icon;
 
-		/** Konstruktor initialisiert icon*/
+	/** Icon für Rüstung im SHop wird deklariert */
+	private static final String ICONSHOPRUESTUNG = Konstanten.DIRECTION
+			+ "/src/game/Images/HalsbandRasen.png";
+
+	/** bild vom Typ String wird deklariert */
+	private String bild;
+
+	/** Konstruktor initialisiert icon */
 	public Shopruestung() {
-		icon = ICONSHOPRUESTUNG;
+		bild = ICONSHOPRUESTUNG;
 	}
-	
+
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 
 }

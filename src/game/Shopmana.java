@@ -10,18 +10,18 @@ import javax.swing.ImageIcon;
 public class Shopmana extends Item {
 
 	/** Icon für Mana im Shop wird deklariert */
-	private static final Icon ICONSHOPMANA = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Mana1.png");
+	private static final String ICONSHOPMANA = Konstanten.DIRECTION
+			+ "/src/game/Images/Mana1.png";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/** mana wird deklariert */
 	private int mana;
 
 	/** Konstruktor initialisiert icon */
 	public Shopmana() {
-		icon = ICONSHOPMANA;
+		bild = ICONSHOPMANA;
 	}
 
 	/**
@@ -44,8 +44,8 @@ public class Shopmana extends Item {
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 
 }

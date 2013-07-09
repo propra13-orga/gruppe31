@@ -1,8 +1,5 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * ein Objekt dieser Klasse ist die Grenze
  * 
@@ -10,20 +7,20 @@ import javax.swing.ImageIcon;
 public class Grenze extends GameObject {
 
 	/** Icon für Baum wird deklariert */
-	private static final Icon ICONBAUM = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Baum1.jpg");
+	private static final String ICONBAUM = Konstanten.DIRECTION
+			+ "/src/game/Images/Baum1.jpg";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/** Konstruktor initialisiert icon */
 	public Grenze() {
-		icon = ICONBAUM;
+		bild = ICONBAUM;
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 
 }

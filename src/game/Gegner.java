@@ -1,8 +1,5 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * die Objekte dieser Klasse sind der Fliegenpilz und die Biene
  * 
@@ -10,13 +7,13 @@ import javax.swing.ImageIcon;
 public class Gegner extends Spielfigur {
 
 	/** verschiedene Icons für verschiedene Gegner werden deklariert */
-	private static final Icon ICONGEGNER1 = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Gegner1.png");
-	private static final Icon ICONGEGNER2 = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Gegner2.png");
+	private static final String ICONGEGNER1 = Konstanten.DIRECTION
+			+ "/src/game/Images/Gegner1.png";
+	private static final String ICONGEGNER2 = Konstanten.DIRECTION
+			+ "/src/game/Images/Gegner2.png";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/** ko wird deklariert */
 	private int ko;
@@ -25,7 +22,7 @@ public class Gegner extends Spielfigur {
 	public Gegner() {
 		setKo(0);
 		setGesundheit(Konstanten.VOLLH);
-		
+
 		/* richtiges Icon setzen */
 	}
 
@@ -71,7 +68,7 @@ public class Gegner extends Spielfigur {
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 }

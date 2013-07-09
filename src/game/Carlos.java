@@ -1,8 +1,5 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * ein Objekt dieser Klasse ist Carlos, der NPC
  * 
@@ -10,20 +7,20 @@ import javax.swing.ImageIcon;
 public class Carlos extends GameObject {
 
 	/** Icon für Carlos wird deklariert */
-	private static final Icon ICONCARLOS = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Carlos.png");
+	private static final String ICONCARLOS = Konstanten.DIRECTION
+			+ "/src/game/Images/Carlos.png";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/** Konstruktor initialisiert icon */
 	public Carlos() {
-		icon = ICONCARLOS;
+		bild = ICONCARLOS;
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 
 }

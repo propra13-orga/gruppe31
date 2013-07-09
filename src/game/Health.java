@@ -1,8 +1,5 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * ein Objekt dieser Klasse ist Health
  * 
@@ -10,19 +7,19 @@ import javax.swing.ImageIcon;
 public class Health extends Item {
 
 	/** Icon für Trank wird deklariert */
-	private static final Icon ICONTRANK = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Heiltrank1.png");
+	private static final String ICONTRANK = Konstanten.DIRECTION
+			+ "/src/game/Images/Heiltrank1.png";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/** Konstruktor initialisiert icon */
 	public Health() {
-		icon = ICONTRANK;
+		bild = ICONTRANK;
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 }

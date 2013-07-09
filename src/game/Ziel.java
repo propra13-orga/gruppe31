@@ -1,8 +1,5 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * ein Objekt dieser Klasse ist das Ziel
  * 
@@ -10,20 +7,20 @@ import javax.swing.ImageIcon;
 public class Ziel extends GameObject {
 
 	/** Icon für Ziel wird deklariert */
-	private static final Icon ICONCUPCAKE = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Cupcake.jpg");
+	private static final String ICONCUPCAKE = Konstanten.DIRECTION
+			+ "/src/game/Images/Cupcake.jpg";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/** Konstruktor initialisiert icon */
 	public Ziel() {
-		icon = ICONCUPCAKE;
+		bild = ICONCUPCAKE;
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 
 }

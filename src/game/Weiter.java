@@ -1,8 +1,5 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * ein Objekt dieser Klasse ist Weiter
  * 
@@ -10,19 +7,19 @@ import javax.swing.ImageIcon;
 public class Weiter extends GameObject {
 
 	/** Icon für Weiter wird deklariert */
-	private static final Icon ICONWEITER = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Weiter1.jpg");
+	private static final String ICONWEITER = Konstanten.DIRECTION
+			+ "/src/game/Images/Weiter1.jpg";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/** Konstruktor initialisiert icon */
 	public Weiter() {
-		icon = ICONWEITER;
+		bild = ICONWEITER;
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 }

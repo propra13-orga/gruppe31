@@ -1,8 +1,5 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * ein Objekt dieser Klasse ist der Spieler
  * 
@@ -10,25 +7,25 @@ import javax.swing.ImageIcon;
 public class Spieler extends Spielfigur {
 
 	/** Icons für den Spieler werden deklariert */
-	private static final Icon ICONPUDEL = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Pudel1.jpg");
-	private static final Icon ICONAGGROERNA = new ImageIcon(
-			Konstanten.DIRECTION + "/src/game/Images/PudelWaffe1.png");
-	private static final Icon ICONSCHWERTERNA = new ImageIcon(
-			Konstanten.DIRECTION + "/src/game/Images/PudelSchwert.png");
-	private static final Icon ICONTERMINATORERNA = new ImageIcon(
-			Konstanten.DIRECTION + "/src/game/Images/PudelAllesan.png");
-	private static final Icon ICONPUDELBEIDES = new ImageIcon(
-			Konstanten.DIRECTION + "/src/game/Images/PudelBeides.png");
-	private static final Icon ICONVOLLERNA = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/PudelBrilleSchwert.png");
-	private static final Icon ICONPUDELHALSBAND = new ImageIcon(
-			Konstanten.DIRECTION + "/src/game/Images/PudelHalsband.png");
-	private static final Icon ICONPUDELSCHWERTHALSBAND = new ImageIcon(
-			Konstanten.DIRECTION + "/src/game/Images/Pudelschwerthals.png");
+	private static final String ICONPUDEL = Konstanten.DIRECTION
+			+ "/src/game/Images/Pudel1.jpg";
+	private static final String ICONAGGROERNA = Konstanten.DIRECTION
+			+ "/src/game/Images/PudelWaffe1.png";
+	private static final String ICONSCHWERTERNA = Konstanten.DIRECTION
+			+ "/src/game/Images/PudelSchwert.png";
+	private static final String ICONTERMINATORERNA = Konstanten.DIRECTION
+			+ "/src/game/Images/PudelAllesan.png";
+	private static final String ICONPUDELBEIDES = Konstanten.DIRECTION
+			+ "/src/game/Images/PudelBeides.png";
+	private static final String ICONVOLLERNA = Konstanten.DIRECTION
+			+ "/src/game/Images/PudelBrilleSchwert.png";
+	private static final String ICONPUDELHALSBAND = Konstanten.DIRECTION
+			+ "/src/game/Images/PudelHalsband.png";
+	private static final String ICONPUDELSCHWERTHALSBAND = Konstanten.DIRECTION
+			+ "/src/game/Images/Pudelschwerthals.png";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/**
 	 * Variablen für leben, beschwertet, halsband, mana, gold, ruestung und
@@ -52,7 +49,7 @@ public class Spieler extends Spielfigur {
 	 *            Kommandozeilenparameter
 	 */
 	public Spieler() {
-		
+
 		setBewaffnet(false);
 		setGesundheit(Konstanten.VOLLH);
 		setBeschwertet(0);
@@ -64,29 +61,29 @@ public class Spieler extends Spielfigur {
 		if (getBewaffnet() == true) {
 			if (beschwertet == 1) {
 				if (halsband == 1) {
-					icon = ICONTERMINATORERNA;
+					bild = ICONTERMINATORERNA;
 				} else if (halsband == 0) {
-					icon = ICONVOLLERNA;
+					bild = ICONVOLLERNA;
 				}
 			} else if (beschwertet == 0) {
 				if (halsband == 1) {
-					icon = ICONPUDELBEIDES;
+					bild = ICONPUDELBEIDES;
 				} else if (halsband == 0) {
-					icon = ICONAGGROERNA;
+					bild = ICONAGGROERNA;
 				}
 			}
 		} else if (getBewaffnet() == false) {
 			if (beschwertet == 1) {
 				if (halsband == 1) {
-					icon = ICONPUDELSCHWERTHALSBAND;
+					bild = ICONPUDELSCHWERTHALSBAND;
 				} else if (halsband == 0) {
-					icon = ICONSCHWERTERNA;
+					bild = ICONSCHWERTERNA;
 				}
 			} else if (beschwertet == 0) {
 				if (halsband == 1) {
-					icon = ICONPUDELHALSBAND;
+					bild = ICONPUDELHALSBAND;
 				} else if (halsband == 0) {
-					icon = ICONPUDEL;
+					bild = ICONPUDEL;
 				}
 			}
 		}
@@ -207,13 +204,13 @@ public class Spieler extends Spielfigur {
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
-	}
-
-	@Override
 	protected boolean internalTryMove(GameObject ziel) {
 		// darf ich dahin oder nicht
 		return false;
+	}
+
+	@Override
+	public String getPicture() {
+		return bild;
 	}
 }

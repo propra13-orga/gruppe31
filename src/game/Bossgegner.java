@@ -1,36 +1,33 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * ein Objekt dieser Klasse ist ein Bossgegner
  * 
  */
 public class Bossgegner extends Spielfigur {
 
-	/** verschiedene Icons für den Bossgegner werden deklariert */
-	private static final Icon ICONBOSS1V = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Boss1voll.png");
-	private static final Icon ICONBOSS1M = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Boss1mitte.png");
-	private static final Icon ICONBOSS1W = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Boss1wenig.png");
-	private static final Icon ICONBOSS2V = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Boss2voll.png");
-	private static final Icon ICONBOSS2M = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Boss2mitte.png");
-	private static final Icon ICONBOSS2W = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Boss2wenig.png");
-	private static final Icon ICONBOSS3V = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Boss3voll.png");
-	private static final Icon ICONBOSS3M = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Boss3mitte.png");
-	private static final Icon ICONBOSS3W = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Boss3wenig.png");
+	/** verschiedene Bilder für den Bossgegner werden deklariert */
+	private static final String ICONBOSS1V = Konstanten.DIRECTION
+			+ "/src/game/Images/Boss1voll.png";
+	private static final String ICONBOSS1M = Konstanten.DIRECTION
+			+ "/src/game/Images/Boss1mitte.png";
+	private static final String ICONBOSS1W = Konstanten.DIRECTION
+			+ "/src/game/Images/Boss1wenig.png";
+	private static final String ICONBOSS2V = Konstanten.DIRECTION
+			+ "/src/game/Images/Boss2voll.png";
+	private static final String ICONBOSS2M = Konstanten.DIRECTION
+			+ "/src/game/Images/Boss2mitte.png";
+	private static final String ICONBOSS2W = Konstanten.DIRECTION
+			+ "/src/game/Images/Boss2wenig.png";
+	private static final String ICONBOSS3V = Konstanten.DIRECTION
+			+ "/src/game/Images/Boss3voll.png";
+	private static final String ICONBOSS3M = Konstanten.DIRECTION
+			+ "/src/game/Images/Boss3mitte.png";
+	private static final String ICONBOSS3W = Konstanten.DIRECTION
+			+ "/src/game/Images/Boss3wenig.png";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/** Konstruktor initialisiert icon */
 	public Bossgegner() {
@@ -38,8 +35,8 @@ public class Bossgegner extends Spielfigur {
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 
 	@Override

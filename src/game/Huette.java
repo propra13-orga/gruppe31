@@ -1,8 +1,5 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * ein Objekt dieser Klasse ist die Huette
  * 
@@ -10,20 +7,20 @@ import javax.swing.ImageIcon;
 public class Huette extends GameObject {
 
 	/** Icon für Shop wird deklariert */
-	private static final Icon ICONSHOP = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Shop.png");
+	private static final String ICONSHOP = Konstanten.DIRECTION
+			+ "/src/game/Images/Shop.png";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/** Konstruktor initialisiert icon */
 	public Huette() {
-		icon = ICONSHOP;
+		bild = ICONSHOP;
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 
 }

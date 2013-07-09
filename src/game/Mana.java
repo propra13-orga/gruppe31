@@ -1,8 +1,5 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * ein Objekt dieser Klasse ist Mana
  * 
@@ -10,19 +7,19 @@ import javax.swing.ImageIcon;
 public class Mana extends Item {
 
 	/** Icon für Mana wird deklariert */
-	private static final Icon ICONMANA = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Mana1.png");
+	private static final String ICONMANA = Konstanten.DIRECTION
+			+ "/src/game/Images/Mana1.png";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/** mana wird deklariert */
 	private int mana;
 
 	/** Konstruktor initialisiert icon */
 	public Mana() {
-		icon = ICONMANA;
-		
+		bild = ICONMANA;
+
 		mana = Konstanten.VOLLM;
 	}
 
@@ -46,7 +43,7 @@ public class Mana extends Item {
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 }

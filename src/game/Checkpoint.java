@@ -1,8 +1,5 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * ein Objekt dieser Klasse ist der Checkpoint
  * 
@@ -10,20 +7,20 @@ import javax.swing.ImageIcon;
 public class Checkpoint extends GameObject {
 
 	/** Icon für Checkpoint wird deklariert */
-	private static final Icon ICONSAVE = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Save.png");
+	private static final String ICONSAVE = Konstanten.DIRECTION
+			+ "/src/game/Images/Save.png";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/** Konstruktor initialisiert icon */
 	public Checkpoint() {
-		icon = ICONSAVE;
+		bild = ICONSAVE;
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 
 }

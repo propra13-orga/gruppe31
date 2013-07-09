@@ -1,8 +1,5 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * ein Objekt dieser Klasse ist die Ruestung
  * 
@@ -10,19 +7,19 @@ import javax.swing.ImageIcon;
 public class Ruestung extends Item {
 
 	/** Icon für Ruestung wird deklariert */
-	private static final Icon ICONRUESTUNG = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/HalsbandRasen.png");
+	private static final String ICONRUESTUNG = Konstanten.DIRECTION
+			+ "/src/game/Images/HalsbandRasen.png";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/** Konstruktor initialisiert icon */
 	public Ruestung() {
-		icon = ICONRUESTUNG;
+		bild = ICONRUESTUNG;
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 }

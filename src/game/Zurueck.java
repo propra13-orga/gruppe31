@@ -1,8 +1,5 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * ein Objekt dieser Klasse ist Zurueck
  * 
@@ -10,20 +7,20 @@ import javax.swing.ImageIcon;
 public class Zurueck extends GameObject {
 
 	/** Icon für Zurueck wird deklariert */
-	private static final Icon ICONZURUECK = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Zurueck1.jpg");
+	private static final String ICONZURUECK = Konstanten.DIRECTION
+			+ "/src/game/Images/Zurueck1.jpg";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/** Konstruktor initialisiert icon */
 	public Zurueck() {
-		icon = ICONZURUECK;
+		bild = ICONZURUECK;
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 
 }

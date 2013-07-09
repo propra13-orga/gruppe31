@@ -1,8 +1,5 @@
 package game;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 /**
  * ein Objekt dieser Klasse ist die Laserbrille
  * 
@@ -10,20 +7,20 @@ import javax.swing.ImageIcon;
 public class Brille extends Item {
 
 	/** Icon für Waffe wird deklariert */
-	private static final Icon ICONWAFFE = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Waffe1.png");
+	private static final String ICONWAFFE = Konstanten.DIRECTION
+			+ "/src/game/Images/Waffe1.png";
 
-	/** icon vom Typ Icon wird deklariert */
-	private Icon icon;
+	/** bild vom Typ String wird deklariert */
+	private String bild;
 
 	/** Konstruktor initialisiert icon */
 	public Brille() {
-		icon = ICONWAFFE;
+		bild = ICONWAFFE;
 	}
 
 	@Override
-	public Icon getIcon() {
-		return icon;
+	public String getPicture() {
+		return bild;
 	}
 
 }
