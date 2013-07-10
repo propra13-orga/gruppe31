@@ -148,6 +148,7 @@ public class Spiel {
 			 */
 		} while (line != null);
 		fr.close();
+		aktSpielfeld = 0;
 	}
 
 	/**

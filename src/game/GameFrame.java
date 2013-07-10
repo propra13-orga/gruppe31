@@ -194,7 +194,8 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * Zeichner wird auf das Spielfenster gesetzt und der LevelManager wird
 	 * aufgerufen. Das nächste (hier: erste) Level wird aufgerufen und der
 	 * Zeichner zeichnet das entsprechende Spielfeld
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	public GameFrame() throws Exception {
 		this.setResizable(true);
@@ -273,9 +274,14 @@ public class GameFrame extends JFrame implements KeyListener {
 			for (int j = 0; j < Konstanten.ZEILEN; j++) {
 				GameObject object = spielfeld
 						.gibObjekt(new java.awt.Point(i, j));
+				/* eigener Debugger ;-) */
+				System.out.println(object.getClass().getSimpleName() + ":"
+						+ object.getPicture());
+				
 				Icon icon = new ImageIcon(object.getPicture());
 				JLabel label = new JLabel(icon);
-				label.setBounds(i * Konstanten.SIZE, j * Konstanten.SIZE, icon.getIconWidth(), icon.getIconHeight());
+				label.setBounds(i * Konstanten.SIZE, j * Konstanten.SIZE,
+						icon.getIconWidth(), icon.getIconHeight());
 				this.add(label);
 			}
 		}
@@ -492,8 +498,8 @@ public class GameFrame extends JFrame implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 
-		this.spielfigur.tryMove(e.getKeyChar());
-		this.zeichnen(spiel.getAktuellesSpielfeld());
+		// this.spielfigur.tryMove(e.getKeyChar());
+		// this.zeichnen(spiel.getAktuellesSpielfeld());
 
 	}
 

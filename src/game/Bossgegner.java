@@ -31,7 +31,14 @@ public class Bossgegner extends Spielfigur {
 
 	/** Konstruktor initialisiert icon */
 	public Bossgegner() {
-		// * richtiges Icon auswählen */
+		
+		/* TODO if (raum == 2) {
+			bild = ICONBOSS1V;
+		} else if (raum == 5) {
+			bild = ICONBOSS2V;
+		} else if (raum == 8) {
+			bild = ICONBOSS3V;
+		}*/
 	}
 
 	@Override

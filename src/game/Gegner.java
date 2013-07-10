@@ -23,7 +23,8 @@ public class Gegner extends Spielfigur {
 		setKo(0);
 		setGesundheit(Konstanten.VOLLH);
 
-		/* richtiges Icon setzen */
+		bild = ICONGEGNER1;
+		/* TODO ICONGEGNER2 ebenfalls setzen*/
 	}
 
 	/**

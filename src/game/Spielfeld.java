@@ -61,7 +61,8 @@ public class Spielfeld {
 	}
 
 	/**
-	 * gibt das GameObject an Postion wieder
+	 * gibt das GameObject an Postion wieder Achtung: position.x ist die
+	 * y-Position und andersrum
 	 * 
 	 * @param position
 	 *            Position des GameObjects

@@ -20,7 +20,7 @@ public class Falle extends GameObject {
 
 	/** Konstruktor weist Icon das richtige Icon zu */
 	public Falle() {
-		bild = ICONBOMBE;
+		bild = ICONMUELL;
 
 		schaden = Konstanten.HALBH;
 	}
