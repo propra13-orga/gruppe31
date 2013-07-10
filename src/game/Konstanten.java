@@ -97,10 +97,6 @@ public final class Konstanten {
 	/** die Groessen für das Chatfenster */
 	public static final int BREITECHAT = 700;
 	public static final int HOEHECHAT = 600;
-	
-	/** Position für das Chatfenster */
-	public static final int XCHAT = 200;
-	public static final int YCHAT = 100;
 
 	/**
 	 * privater Konstruktor, der verhindert, dass von außen ein Exemplar dieser

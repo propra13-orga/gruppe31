@@ -12,9 +12,6 @@ import javax.swing.JOptionPane;
  */
 public class Spiel {
 
-	/** Raum Anzahl pro Level */
-	private static final int RAUM = 3;
-
 	/** Liste von Spielfeldern wird deklariert */
 	private ArrayList<Spielfeld> levels;
 
@@ -134,6 +131,7 @@ public class Spiel {
 
 						spielfeld.setzeObjekt(gameObject, new Point(i, j));
 						levels.add(spielfeld);
+						aktSpielfeld++;
 					}
 				}
 			}

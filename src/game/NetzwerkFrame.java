@@ -49,10 +49,10 @@ public class NetzwerkFrame extends JFrame {
 	 * @param in
 	 *            Kommandozeilenparamter
 	 */
-	NetzwerkFrame(String titel, PrintWriter out, BufferedReader in) {
+	NetzwerkFrame(String titel, PrintWriter out, BufferedReader in, int x, int y) {
 		ausgehend = out;
 		eintreffend = in;
-		init(titel);
+		init(titel, x, y);
 	}
 
 	/**
@@ -61,8 +61,8 @@ public class NetzwerkFrame extends JFrame {
 	 * @param titel
 	 *            fordert Titel für Fenster
 	 */
-	void init(String titel) {
-		setLocation(Konstanten.XCHAT, Konstanten.YCHAT);
+	void init(String titel, int x, int y) {
+		setLocation(x, y);
 		setSize(Konstanten.BREITECHAT, Konstanten.HOEHECHAT);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
@@ -98,7 +98,6 @@ public class NetzwerkFrame extends JFrame {
 		/* unten und Ausgabefenster werden auf Frame gesetzt */
 		this.add(unten, BorderLayout.SOUTH);
 		this.add(feld, BorderLayout.CENTER);
-		// this.add(ausgabe, BorderLayout.CENTER);
 	}
 
 	/**

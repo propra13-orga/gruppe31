@@ -68,6 +68,6 @@ public class Spielfeld {
 	 * @return position
 	 */
 	public GameObject gibObjekt(Point position) {
-		return this.feld[position.x][position.y];
+		return this.feld[position.y][position.x];
 	}
 }

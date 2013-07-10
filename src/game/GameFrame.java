@@ -194,8 +194,9 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * Zeichner wird auf das Spielfenster gesetzt und der LevelManager wird
 	 * aufgerufen. Das nächste (hier: erste) Level wird aufgerufen und der
 	 * Zeichner zeichnet das entsprechende Spielfeld
+	 * @throws Exception 
 	 */
-	public GameFrame() {
+	public GameFrame() throws Exception {
 		this.setResizable(true);
 		this.setTitle("Erna's Adventure");
 		this.setSize(Konstanten.BREITE, Konstanten.HOEHE);
@@ -209,13 +210,13 @@ public class GameFrame extends JFrame implements KeyListener {
 		if (datei == null) {
 			return;
 		}
-		// spiel.init(Datei);
+		spiel.init(datei);
 
 		setzeAnzeige();
 
 		getContentPane().add(leiste, BorderLayout.SOUTH);
 
-		// zeichnen();
+		zeichnen(spiel.getAktuellesSpielfeld());
 
 		this.setVisible(true);
 		this.requestFocus();

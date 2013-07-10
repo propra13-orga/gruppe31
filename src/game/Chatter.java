@@ -34,7 +34,7 @@ public class Chatter extends Thread {
 			ausgehendPr = new PrintWriter(socket.getOutputStream(), true);
 			eintreffendBr = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
-			frame = new NetzwerkFrame("Client", ausgehendPr, eintreffendBr);
+			frame = new NetzwerkFrame("Client", ausgehendPr, eintreffendBr, 100, 100);
 		} catch (Exception e) {
 			System.exit(1);
 		}
