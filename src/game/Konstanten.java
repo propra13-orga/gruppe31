@@ -89,11 +89,19 @@ public final class Konstanten {
 	/** die Groessen fuer das Fenster */
 	public static final int BREITE = 900;
 	public static final int HOEHE = 700;
-	
+
 	/** die Groessen für das Steuerungsfenster */
 	public static final int BREITEST = 400;
 	public static final int HOEHEST = 310;
+
+	/** die Groessen für das Chatfenster */
+	public static final int BREITECHAT = 500;
+	public static final int HOEHECHAT = 400;
 	
+	/** Position für das Chatfenster */
+	public static final int XCHAT = 200;
+	public static final int YCHAT = 100;
+
 	/**
 	 * privater Konstruktor, der verhindert, dass von außen ein Exemplar dieser
 	 * Klasse gebildet werden kann

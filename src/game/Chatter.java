@@ -7,28 +7,34 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-/** 
+/**
  * 
  * @author Denise
- *
+ * 
  */
 public class Chatter extends Thread {
+	/** Deklaration des Feldes */
 	NetzwerkFrame frame;
-	Socket _Socket = null;
-	PrintWriter _out = null;
-	BufferedReader _in = null;
-	Scanner _keyboard = new Scanner(System.in);
+	/** Deklaration von Socket */
+	Socket socket = null;
+	/** Deklaration von PrintWriter */
+	PrintWriter ausgehendPr = null;
+	/** Deklaration von BufferedReader */
+	BufferedReader eintreffendBr = null;
+	/** Deklaration von Scanner */
+	Scanner tasten = new Scanner(System.in);
 
 	/**
-	 * Konstruktor
+	 * Konstruktor initialisiert Socket, PrintWriterm BufferedReader und ein
+	 * Frame fuer den Client
 	 */
 	Chatter() {
 		try {
-			_Socket = new Socket("localhost", 4711);
-			_out = new PrintWriter(_Socket.getOutputStream(), true);
-			_in = new BufferedReader(new InputStreamReader(
-					_Socket.getInputStream()));
-			frame = new NetzwerkFrame("Chat :: Client", _out, _in);
+			socket = new Socket("localhost", 4711);
+			ausgehendPr = new PrintWriter(socket.getOutputStream(), true);
+			eintreffendBr = new BufferedReader(new InputStreamReader(
+					socket.getInputStream()));
+			frame = new NetzwerkFrame("Client", ausgehendPr, eintreffendBr);
 		} catch (Exception e) {
 			System.exit(1);
 		}
@@ -39,10 +45,10 @@ public class Chatter extends Thread {
 	 */
 	public void run() {
 		while (true) {
-			String incoming;
+			String eintreffend;
 			try {
-				incoming = _in.readLine();
-				frame.addAusgabe(incoming);
+				eintreffend = eintreffendBr.readLine();
+				frame.addAusgabe(eintreffend);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

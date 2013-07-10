@@ -29,35 +29,35 @@ public class NetzwerkFrame extends JFrame {
 	ActionListener sende;
 
 	/**
-	 * Konstruktor
+	 * Konstruktor ruft die Initialisierungsmethode auf
 	 * 
-	 * @param Titel
+	 * @param titel
 	 *            erwartet Titel für Fenster
 	 * @param out
 	 *            Kommandozeilenparamter
 	 * @param in
 	 *            Kommandozeilenparamter
 	 */
-	NetzwerkFrame(String Titel, PrintWriter out, BufferedReader in) {
+	NetzwerkFrame(String titel, PrintWriter out, BufferedReader in) {
 		ausgehend = out;
 		eintreffend = in;
-		init(Titel);
+		init(titel);
 	}
 
 	/**
 	 * initialisiert das Fenster
 	 * 
 	 * @param titel
-	 *            Kommandozeilenparamter
+	 *            fordert Titel für Fenster
 	 */
 	void init(String titel) {
-		setLocation(200, 100);
-		setSize(Konstanten.BREITE, Konstanten.HOEHE - 100);
+		setLocation(Konstanten.XCHAT, Konstanten.YCHAT);
+		setSize(Konstanten.BREITECHAT, Konstanten.HOEHECHAT);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setVisible(true);
 		this.setTitle(titel);
 
-		/* initialisert TextAreass */
+		/* initialisert TextAreas */
 		eingabe = new TextArea();
 		ausgabe = new TextArea();
 
@@ -75,23 +75,30 @@ public class NetzwerkFrame extends JFrame {
 		/* Container für alle Fragmente im unteren Teil des Fensters */
 		Container unten = new Container();
 		unten.setLayout(new BorderLayout());
+
+		/*
+		 * im unteren Bereich werden das Eingabefenster und der Sendebutton
+		 * angesiedelt
+		 */
 		unten.add(eingabe, BorderLayout.CENTER);
 		unten.add(btSende, BorderLayout.EAST);
 
+		/* unten und Ausgabefenster werden auf Frame gesetzt */
 		this.add(unten, BorderLayout.SOUTH);
 		this.add(ausgabe, BorderLayout.CENTER);
 	}
 
 	/**
-	 * verkettet die einzelnen Ausgaben miteinander
+	 * verkettet die einzelnen Ausgaben miteinander und setzt den Text in die
+	 * Ausgabe
 	 * 
-	 * @param add
+	 * @param neu
 	 *            Kommandozeilenparameter
 	 */
-	public void addAusgabe(String add) {
-		String temp = ausgabe.getText();
-		temp += add;
-		ausgabe.setText(temp);
+	public void addAusgabe(String neu) {
+		String text = ausgabe.getText();
+		text = text + neu;
+		ausgabe.setText(text);
 	}
 }
 
@@ -101,9 +108,12 @@ public class NetzwerkFrame extends JFrame {
  * 
  */
 class Action implements ActionListener {
-	PrintWriter _out;
-	BufferedReader _in;
-	TextArea _Eingabe;
+	/**
+	 * Deklaration von PrintWriter, BufferedReader und TextArea
+	 */
+	PrintWriter ausgehendPr;
+	BufferedReader eintreffendBr;
+	TextArea eingabeTa;
 
 	/**
 	 * 
@@ -111,13 +121,13 @@ class Action implements ActionListener {
 	 *            Kommandozeilenparamter
 	 * @param in
 	 *            Kommandozeilenparamter
-	 * @param Text
+	 * @param text
 	 *            Kommandozeilenparamter
 	 */
-	Action(PrintWriter out, BufferedReader in, TextArea Text) {
-		_out = out;
-		_in = in;
-		_Eingabe = Text;
+	Action(PrintWriter out, BufferedReader in, TextArea text) {
+		ausgehendPr = out;
+		eintreffendBr = in;
+		eingabeTa = text;
 	}
 
 	/**
@@ -125,9 +135,10 @@ class Action implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getActionCommand().equals("Send")) {
-			String Ausgabe = _Eingabe.getText() + "\n";
-			_out.print(Ausgabe);
-			_out.flush();
+			String ausgabe = eingabeTa.getText() + "\n";
+			ausgehendPr.print(ausgabe);
+			ausgehendPr.flush();
+			eingabeTa.setText(" ");
 		}
 	}
 }

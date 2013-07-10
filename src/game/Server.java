@@ -6,14 +6,23 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 /** Server erzeugt ServerSocket und verbindet mit Client, wenn dieser 'anklopft' */
 class Server extends Thread {
+	
+	/** Deklaration des Feldes */
 	NetzwerkFrame frame;
-	ServerSocket _ServerSocket = null;
-	Socket _ClientSocket = null;
-	PrintWriter _out = null;
-	BufferedReader _in = null;
+	/** Deklaration von ServerSocket */
+	ServerSocket serverSocket = null;
+	/** Deklaration von ClientSocket */
+	Socket clientSocket = null;
+	/** Deklaration von PrintWriter */
+	PrintWriter ausgehendPr = null;
+	/** Deklaration von BufferedReader */
+	BufferedReader eintreffendBr = null;
+	/** Deklaration von Scanner */
+	Scanner tasten = new Scanner(System.in);
 
 	/**
 	 * erstellt neuen Socket
@@ -22,7 +31,7 @@ class Server extends Thread {
 	 *             wirft Exception
 	 */
 	Server() throws Exception {
-		_ServerSocket = new ServerSocket(4711);
+		serverSocket = new ServerSocket(4711);
 	}
 
 	/**
@@ -32,15 +41,15 @@ class Server extends Thread {
 		while (true) {
 			try {
 				/* Wartet auf Verbindung */
-				_ClientSocket = _ServerSocket.accept();
+				clientSocket = serverSocket.accept();
 				/* Ausgabestrom */
-				_out = new PrintWriter(_ClientSocket.getOutputStream(), true);
-				_in = new BufferedReader(new InputStreamReader(
+				ausgehendPr = new PrintWriter(clientSocket.getOutputStream(), true);
+				eintreffendBr = new BufferedReader(new InputStreamReader(
 				/* Eingabestrom */
-				_ClientSocket.getInputStream()));
-				frame = new NetzwerkFrame("Chat :: Server", _out, _in);
+				clientSocket.getInputStream()));
+				frame = new NetzwerkFrame("Server", ausgehendPr, eintreffendBr);
 				while (true) {
-					String incoming = _in.readLine();
+					String incoming = eintreffendBr.readLine();
 					frame.addAusgabe(incoming);
 				}
 			} catch (IOException e) {
