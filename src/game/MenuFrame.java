@@ -36,16 +36,6 @@ public class MenuFrame extends JFrame {
 	private JButton start2;
 	private JButton control;
 	private JButton ende;
-	
-	PrintWriter _out;
-	BufferedReader _in;
-	ActionListener _x;
-	
-	/** Textareas im Fenster */
-	TextArea _Eingabe;
-	TextArea _Ausgabe;
-	/** Button im Fenster */
-	JButton _Send;
 
 	/** Deklaration von Feldern */
 	private GameFrame gameframe;
@@ -107,7 +97,6 @@ public class MenuFrame extends JFrame {
 					try {
 						new Server().start();
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					new Chatter().start();

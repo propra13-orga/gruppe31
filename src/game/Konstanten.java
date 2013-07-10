@@ -91,12 +91,12 @@ public final class Konstanten {
 	public static final int HOEHE = 700;
 
 	/** die Groessen für das Steuerungsfenster */
-	public static final int BREITEST = 400;
+	public static final int BREITEST = 440;
 	public static final int HOEHEST = 310;
 
 	/** die Groessen für das Chatfenster */
-	public static final int BREITECHAT = 500;
-	public static final int HOEHECHAT = 400;
+	public static final int BREITECHAT = 700;
+	public static final int HOEHECHAT = 600;
 	
 	/** Position für das Chatfenster */
 	public static final int XCHAT = 200;

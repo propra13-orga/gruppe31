@@ -7,8 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * erstellt die nötige GUI für das Netzwerk
@@ -17,6 +21,13 @@ import javax.swing.JFrame;
  * 
  */
 public class NetzwerkFrame extends JFrame {
+
+	/** Platzhalter für Spieldeld */
+	private static final Icon SPIELFELD = new ImageIcon(Konstanten.DIRECTION
+			+ "/src/game/Images/Spielfeld.jpg");
+
+	/** Labelfür Platzhalter */
+	private JLabel feld = new JLabel(SPIELFELD);
 
 	/** Textareas im Fenster */
 	TextArea eingabe;
@@ -80,12 +91,14 @@ public class NetzwerkFrame extends JFrame {
 		 * im unteren Bereich werden das Eingabefenster und der Sendebutton
 		 * angesiedelt
 		 */
-		unten.add(eingabe, BorderLayout.CENTER);
-		unten.add(btSende, BorderLayout.EAST);
+		unten.add(ausgabe, BorderLayout.EAST);
+		unten.add(eingabe, BorderLayout.WEST);
+		unten.add(btSende, BorderLayout.SOUTH);
 
 		/* unten und Ausgabefenster werden auf Frame gesetzt */
 		this.add(unten, BorderLayout.SOUTH);
-		this.add(ausgabe, BorderLayout.CENTER);
+		this.add(feld, BorderLayout.CENTER);
+		// this.add(ausgabe, BorderLayout.CENTER);
 	}
 
 	/**
