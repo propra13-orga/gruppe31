@@ -1,5 +1,8 @@
 package game;
 
+import java.awt.Point;
+import java.awt.event.KeyEvent;
+
 /**
  * ein Objekt dieser Klasse ist der Spieler
  * 
@@ -27,6 +30,9 @@ public class Spieler extends Spielfigur {
 	/** bild vom Typ String wird deklariert */
 	private String bild;
 
+	/** Deklaration der Felder */
+	private Spiel spiel;
+
 	/**
 	 * Variablen für leben, beschwertet, halsband, mana, gold, ruestung und
 	 * Spielfigur Koordinaten werden deklariert
@@ -37,8 +43,9 @@ public class Spieler extends Spielfigur {
 	private int mana;
 	private int gold;
 	private int ruestung;
-	private int Spielfigurx;
-	private int Spielfigury;
+
+	/** Die Position dieser Figur in der xy-Ebene. */
+	private Point position;
 
 	/**
 	 * Konstruktor weist Icon das richtige Icon zu
@@ -198,14 +205,59 @@ public class Spieler extends Spielfigur {
 		this.gold = gold;
 	}
 
-	@Override
-	protected boolean internalTryMove(GameObject ziel) {
-		// darf ich dahin oder nicht
-		return false;
+	/**
+	 * Bewegung des Spielers wird ausgeführt
+	 * 
+	 * @param e
+	 *            registrierter Tastendruck
+	 */
+	public void bewegeSpieler(KeyEvent e) {
+
+		Spielfeld aktuellesSpielfeld = spiel.getAktuellesSpielfeld();
+
+		int Spielfigurx = getPosition().x;
+		int Spielfigury = getPosition().y;
+
+		/* Abfragen für die Pfeiltasten */
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			Spielfigurx--;
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			Spielfigurx++;
+		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+			Spielfigury--;
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			Spielfigury++;
+		}
+		
+		/* TODO: Prüfe was da ist */
+		
+		//setzeObjekt(GameObject objekt, Point position);
+
 	}
 
 	@Override
 	public String getPicture() {
 		return bild;
+	}
+
+	/**
+	 * Gibt die aktuelle Position dieser Figur zurück.
+	 * 
+	 * @return Die aktuelle Position der Figur.
+	 */
+	public Point getPosition() {
+
+		return position;
+	}
+
+	/**
+	 * Setzt die aktuelle Position dieser Figur.
+	 * 
+	 * @param neuePosition
+	 *            Die neue Position der Figur.
+	 */
+	public void setPosition(Point neuePosition) {
+
+		this.position = neuePosition;
 	}
 }

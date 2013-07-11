@@ -94,9 +94,14 @@ public final class Konstanten {
 	public static final int BREITEST = 440;
 	public static final int HOEHEST = 310;
 
-	/** die Groessen für das Chatfenster */
+	/** die Groessen für das Netzwerkfenster */
 	public static final int BREITECHAT = 700;
 	public static final int HOEHECHAT = 600;
+	
+	/** Postionen für Netzwerkfenster*/
+	public static final int XSERVER = 30;
+	public static final int XCLIENT = 650;
+	public static final int YSERVERCLIENT = 100;
 
 	/**
 	 * privater Konstruktor, der verhindert, dass von außen ein Exemplar dieser

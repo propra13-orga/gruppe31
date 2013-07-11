@@ -497,10 +497,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-
-		// this.spielfigur.tryMove(e.getKeyChar());
-		// this.zeichnen(spiel.getAktuellesSpielfeld());
-
+		spielfigur.bewegeSpielfiguren(e);
 	}
 
 	@Override

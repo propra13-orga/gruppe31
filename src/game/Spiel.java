@@ -15,14 +15,13 @@ public class Spiel {
 	/** Liste von Spielfeldern wird deklariert */
 	private ArrayList<Spielfeld> levels;
 
-	/** Liste aller Spieler */
-	private ArrayList<Spieler> Spieler;
-
 	/** Zeiger auf das aktuelle Spielfeld */
 	private int aktSpielfeld;
 
 	/** Deklarierung des Feldes */
 	private Spielfeld spielfeld;
+	private Spieler spieler;
+	private Gegner gegner;
 
 	/**
 	 * Konstruktor erzeugt ArrayList, welche Spielfelder beinhaltet
@@ -30,7 +29,6 @@ public class Spiel {
 	public Spiel() {
 		levels = new ArrayList<Spielfeld>();
 		this.aktSpielfeld = -1;
-		Spieler = new ArrayList<Spieler>();
 	}
 
 	/**
@@ -89,8 +87,10 @@ public class Spiel {
 							gameObject = new Grenze();
 						} else if (pruefe == Konstanten.PUDEL) {
 							gameObject = new Spieler();
+							//spieler.setPosition(new Point(i, j));
 						} else if (pruefe == Konstanten.GEGNER) {
 							gameObject = new Gegner();
+							//gegner.setPosition(new Point(i, j));
 						} else if (pruefe == Konstanten.FALLE) {
 							gameObject = new Falle();
 						} else if (pruefe == Konstanten.WEITER) {

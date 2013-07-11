@@ -29,17 +29,20 @@ public class NetzwerkFrame extends JFrame {
 	/** Labelfür Platzhalter */
 	private JLabel feld = new JLabel(SPIELFELD);
 
-	/** Textareas im Fenster */
-	TextArea eingabe;
-	TextArea ausgabe;
-	/** Button im Fenster */
-	JButton btSende;
 	/** deklariert PrintWriter, BufferedReader und ActionListener */
-	PrintWriter ausgehend;
-	BufferedReader eintreffend;
-	ActionListener sende;
+	private PrintWriter ausgehend;
+	private BufferedReader eintreffend;
+	private ActionListener sende;
+
+	/** Textareas im Fenster */
+	private TextArea eingabe;
+	private TextArea ausgabe;
+
+	/** Button im Fenster */
+	private JButton btSende;
 
 	/**
+	 * 
 	 * Konstruktor ruft die Initialisierungsmethode auf
 	 * 
 	 * @param titel
@@ -48,6 +51,10 @@ public class NetzwerkFrame extends JFrame {
 	 *            Kommandozeilenparamter
 	 * @param in
 	 *            Kommandozeilenparamter
+	 * @param x
+	 *            Angabe für x-Position
+	 * @param y
+	 *            Angabe für y-Position
 	 */
 	NetzwerkFrame(String titel, PrintWriter out, BufferedReader in, int x, int y) {
 		ausgehend = out;
@@ -56,10 +63,14 @@ public class NetzwerkFrame extends JFrame {
 	}
 
 	/**
-	 * initialisiert das Fenster
+	 * * initialisiert das Fenster
 	 * 
 	 * @param titel
 	 *            fordert Titel für Fenster
+	 * @param x
+	 *            x-Position des Fensters
+	 * @param y
+	 *            y-Position des Fensters
 	 */
 	void init(String titel, int x, int y) {
 		setLocation(x, y);

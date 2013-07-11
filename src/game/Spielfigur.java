@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.event.KeyEvent;
+
 /**
  * abstrakte Klasse, die untergeordneten Klassen haben gemein, dass ihre Objekte
  * bewaffne, schaden und gesundheit haben
@@ -11,6 +13,10 @@ public abstract class Spielfigur extends GameObject {
 	private int schaden;
 	private boolean bewaffnet;
 	private int gesundheit;
+	
+	/** Deklaration der Felder*/
+	private Spieler spieler;
+	private Gegner gegner;
 
 	/**
 	 * Getter
@@ -54,24 +60,11 @@ public abstract class Spielfigur extends GameObject {
 	 * Methode prüft, ob an abgefragter Stelle nichts (also Rasen) ist, wenn ja
 	 * kann sich Figur bewegen, wenn nicht Weiterleitung
 	 * 
-	 * @param c
+	 * @param e
 	 *            Kommandozeilenparamter
 	 */
-	public void tryMove(char c) {
-
-		// TODO: Pruefen, ob das Feld, auf das bewegt werden soll frei ist,
-		// danach bewegen
-
+	public void bewegeSpielfiguren(KeyEvent e) {
+		spieler.bewegeSpieler(e);
+		gegner.bewegeGegner(e);
 	}
-
-	/**
-	 * abstrakte Methode, um die anderen Möglichkeiten, was sich an der
-	 * abgefragten Stelle befindet, abzufragen
-	 * 
-	 * @param ziel
-	 *            Kommandozeilenparameter
-	 * @return true
-	 */
-	protected abstract boolean internalTryMove(GameObject ziel);
-
 }

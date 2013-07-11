@@ -47,7 +47,7 @@ class Server extends Thread {
 				eintreffendBr = new BufferedReader(new InputStreamReader(
 				/* Eingabestrom */
 				clientSocket.getInputStream()));
-				frame = new NetzwerkFrame("Server", ausgehendPr, eintreffendBr, 600, 100);
+				frame = new NetzwerkFrame("Server", ausgehendPr, eintreffendBr, Konstanten.XSERVER, Konstanten.YSERVERCLIENT);
 				while (true) {
 					String incoming = eintreffendBr.readLine();
 					frame.addAusgabe(incoming);

@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 /**
- * 
+ * öffnet den Client-Thread
  * @author Denise
  * 
  */
@@ -34,7 +34,7 @@ public class Chatter extends Thread {
 			ausgehendPr = new PrintWriter(socket.getOutputStream(), true);
 			eintreffendBr = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
-			frame = new NetzwerkFrame("Client", ausgehendPr, eintreffendBr, 100, 100);
+			frame = new NetzwerkFrame("Client", ausgehendPr, eintreffendBr, Konstanten.XCLIENT, Konstanten.YSERVERCLIENT);
 		} catch (Exception e) {
 			frame.dispose();
 		}

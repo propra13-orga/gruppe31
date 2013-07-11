@@ -45,11 +45,4 @@ public class Bossgegner extends Spielfigur {
 	public String getPicture() {
 		return bild;
 	}
-
-	@Override
-	protected boolean internalTryMove(GameObject ziel) {
-		// darf ich dahin oder nicht
-		return false;
-	}
-
 }
