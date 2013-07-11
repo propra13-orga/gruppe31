@@ -39,6 +39,7 @@ public class MenuFrame extends JFrame {
 
 	/** Deklaration von Feldern */
 	private GameFrame gameframe;
+	private Netzwerk netzwerk;
 
 	/**
 	 * Konstruktor, der alle Einstellungen des Menüfensters aufruft
@@ -93,13 +94,12 @@ public class MenuFrame extends JFrame {
 		
 		ActionListener alstart2 = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					/* Server und Client Thread werden erstellt */
+					/* Netzwerkauswahl wird erstellt */	
 					try {
-						new Server().start();
+						netzwerk = new Netzwerk();
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
-					new Chatter().start();
 
 			}
 		};

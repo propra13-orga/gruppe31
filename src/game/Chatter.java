@@ -36,7 +36,7 @@ public class Chatter extends Thread {
 					socket.getInputStream()));
 			frame = new NetzwerkFrame("Client", ausgehendPr, eintreffendBr, 100, 100);
 		} catch (Exception e) {
-			System.exit(1);
+			frame.dispose();
 		}
 	}
 
