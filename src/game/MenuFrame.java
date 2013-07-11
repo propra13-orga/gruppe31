@@ -6,17 +6,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * MenuFrame erzeugt das Menufenster. Ein Hintergrundbild wird gesetzt, es
@@ -37,9 +34,12 @@ public class MenuFrame extends JFrame {
 	private JButton control;
 	private JButton ende;
 
+	/** Deklaration der Buttons für NetzwerkFrame */
+	private JButton server;
+	private JButton client;
+
 	/** Deklaration von Feldern */
 	private GameFrame gameframe;
-	private Netzwerk netzwerk;
 
 	/**
 	 * Konstruktor, der alle Einstellungen des Menüfensters aufruft
@@ -91,15 +91,15 @@ public class MenuFrame extends JFrame {
 				}
 			}
 		};
-		
+
 		ActionListener alstart2 = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					/* Netzwerkauswahl wird erstellt */	
-					try {
-						netzwerk = new Netzwerk();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
+				/* Netzwerkauswahl wird erstellt */
+				try {
+					netzwerk();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 
 			}
 		};
@@ -120,6 +120,30 @@ public class MenuFrame extends JFrame {
 		start2.addActionListener(alstart2);
 		control.addActionListener(alsteuerung);
 		ende.addActionListener(alende);
+	}
+
+	/**
+	 * Methode ruft neues Fenster zu Netzwerkauswahl auf
+	 * 
+	 * @throws Exception
+	 *             wirft möglicherweise Exception
+	 */
+	public void netzwerk() throws Exception {
+
+		// Erstellung Array vom Datentyp Object, Hinzufügen der Optionen
+		Object[] options = { "Sever", "Client" };
+
+		int selected = JOptionPane.showOptionDialog(null, "Netzwerkrolle",
+				"Alternativen", JOptionPane.DEFAULT_OPTION,
+				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+		/* wenn Server gewählt wurde, wird Server-Thread gestartet */
+		if (selected == 0) {
+			new Server().start();
+			/* wenn Client gewählt wurde, wird Client-Thread gestartet */
+		} else if (selected == 1) {
+			new Chatter().start();
+		}
 	}
 
 	/** Methode ruft neues Fenster auf */
