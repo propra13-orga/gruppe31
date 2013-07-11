@@ -114,7 +114,7 @@ public class Spiel {
 						} else if (pruefe == Konstanten.GEGNER) {
 							this.gegner = new Gegner();
 							gegner.setPosition(new Point(i, j));
-							gameObject = this.gegner;							
+							gameObject = this.gegner;
 						} else if (pruefe == Konstanten.FALLE) {
 							gameObject = new Falle();
 						} else if (pruefe == Konstanten.WEITER) {
@@ -172,6 +172,10 @@ public class Spiel {
 			 */
 		} while (line != null);
 		fr.close();
+		/*
+		 * setzt das aktuelleSpielfeld wieder an den Anfang, damit der erste
+		 * Raum angezeigt wird
+		 */
 		aktSpielfeld = 0;
 	}
 
@@ -183,15 +187,26 @@ public class Spiel {
 	public Spielfeld getAktuellesSpielfeld() {
 		return levels.get(aktSpielfeld);
 	}
-	
+
+	/**
+	 * Getter für den Spieler
+	 * 
+	 * @return spieler
+	 */
 	public Spieler getSpieler() {
 		return this.spieler;
 	}
-	
+
+	/**
+	 * Bewegung wird auf dem aktuellen Spielfeld durchgeführt
+	 * 
+	 * @param keyCode
+	 *            Kommandozeilenparameter
+	 */
 	public void aktion(int keyCode) {
-		
-		/* Aktuelles Spielfeld raussuchen und dieses Spielfeld die Bewegung durchführen lassen. Den Spieler aus dem Spiel dafür übergeben. */
+		/* aktuelles Spielfeld übergeben lassen */
 		Spielfeld aktSpielfeld = this.getAktuellesSpielfeld();
+		/* Spieler und KeyCode übergeben, Bewegung durchführen lassen */
 		aktSpielfeld.aktion(this.spieler, keyCode);
 	}
 }

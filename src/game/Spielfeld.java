@@ -1,6 +1,9 @@
 package game;
 
+import game.figuren.Spieler;
+
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 
 /** ist für den jeweiligen Raum zuständig. das Spielfeld wird erstellt */
 public class Spielfeld {
@@ -11,6 +14,9 @@ public class Spielfeld {
 	/** Deklaration von Variablen für Zeilen und Spalten */
 	private int zeilen;
 	private int spalten;
+
+	/** Deklaration von Feldern */
+	private Spieler spieler;
 
 	/**
 	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann für jeden
@@ -71,10 +77,38 @@ public class Spielfeld {
 	public GameObject gibObjekt(Point position) {
 		return this.feld[position.y][position.x];
 	}
-	
+
+	/**
+	 * Spielfigur wird bewegt
+	 * 
+	 * @param figur
+	 *            Spielfigur wird übergeben
+	 * @param keyCode
+	 *            KeyCode wird übergeben
+	 */
 	public void aktion(Spielfigur figur, int keyCode) {
 		
-		/* Position der Spielfigur abfragen und Objekte um die Position herum prüfen. 
-		 * Bewegung durchführen. Fertig. Neu gezeichnet wird ja im GameFrame. */
+		/* Spielfigur Position abfragen */
+		Point position = spieler.getPosition();
+		Point pruefe = position;
+		
+		/* Abfragen für die Pfeiltasten */
+		if (keyCode == KeyEvent.VK_LEFT) {
+			pruefe.x--;
+		} else if (keyCode == KeyEvent.VK_RIGHT) {
+			pruefe.x++;
+		} else if (keyCode == KeyEvent.VK_UP) {
+			pruefe.y--;
+		} else if (keyCode == KeyEvent.VK_DOWN) {
+			pruefe.y++;
+		}
+		
+		System.out.println(pruefe);
+
+		
+		/* Objekte drum herum prüfen */
+		
+		/* Bewegung durchführen */
+
 	}
 }

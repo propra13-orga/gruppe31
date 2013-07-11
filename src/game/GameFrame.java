@@ -493,7 +493,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
+		// nothing to do here
 	}
 
 	@Override

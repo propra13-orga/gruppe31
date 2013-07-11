@@ -59,16 +59,4 @@ public abstract class Spielfigur extends GameObject {
 	public void setGesundheit(int gesundheit) {
 		this.gesundheit = gesundheit;
 	}
-
-	/**
-	 * Methode prüft, ob an abgefragter Stelle nichts (also Rasen) ist, wenn ja
-	 * kann sich Figur bewegen, wenn nicht Weiterleitung
-	 * 
-	 * @param e
-	 *            Kommandozeilenparamter
-	 */
-	public void bewegeSpielfiguren(KeyEvent e) {
-		spieler.bewegeSpieler(e);
-		gegner.bewegeGegner(e);
-	}
 }

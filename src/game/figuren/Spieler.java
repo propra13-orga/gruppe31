@@ -214,33 +214,6 @@ public class Spieler extends Spielfigur {
 		this.gold = gold;
 	}
 
-	/**
-	 * Bewegung des Spielers wird ausgeführt
-	 * 
-	 * @param e
-	 *            registrierter Tastendruck
-	 */
-	public void bewegeSpieler(KeyEvent e) {
-
-		Spielfeld aktuellesSpielfeld = spiel.getAktuellesSpielfeld();
-
-		int Spielfigurx = getPosition().x;
-		int Spielfigury = getPosition().y;
-
-		/* Abfragen für die Pfeiltasten */
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			// lege den Fokus einen nach links
-		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			// Fokus einen nach rechts 
-		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			/* Fokus einen nach oben */
-		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			/* Fokus enen nach unten */
-		}
-
-		GameObject objekt = spielfeld.gibObjekt(getPosition());
-	}
-
 	@Override
 	public String getPicture() {
 		return bild;
