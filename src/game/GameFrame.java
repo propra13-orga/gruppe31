@@ -231,7 +231,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	public String chooseFile() {
 		/* erzeugt neuen FileChooser */
 		JFileChooser fc = new JFileChooser(Konstanten.DIRECTION
-				+ "/src/game/Szenario");
+				+ "/src/game/Einzelspieler-Szenario");
 		/* FileChooser kann nur eine Datei auswählen */
 		fc.setMultiSelectionEnabled(false);
 		/* fügt einen FileFilter hinzu */
@@ -274,9 +274,9 @@ public class GameFrame extends JFrame implements KeyListener {
 			for (int j = 0; j < Konstanten.ZEILEN; j++) {
 				GameObject object = spielfeld
 						.gibObjekt(new java.awt.Point(i, j));
-				/* eigener Debugger ;-) */
+				/* eigener Debugger ;-) 
 				System.out.println(object.getClass().getSimpleName() + ":"
-						+ object.getPicture());
+						+ object.getPicture());*/
 				
 				Icon icon = new ImageIcon(object.getPicture());
 				JLabel label = new JLabel(icon);

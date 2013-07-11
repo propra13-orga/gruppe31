@@ -26,11 +26,10 @@ class Server extends Thread {
 
 	/**
 	 * erstellt neuen Socket
-	 * 
-	 * @throws Exception
+	 * @throws IOException 
 	 *             wirft Exception
 	 */
-	Server() throws Exception {
+	Server() throws IOException {
 		serverSocket = new ServerSocket(4711);
 	}
 
@@ -52,7 +51,7 @@ class Server extends Thread {
 					String incoming = eintreffendBr.readLine();
 					frame.addAusgabe(incoming);
 				}
-			} catch (IOException e) {
+			} catch (Exception e) {
 				System.out.println("Fehler - ServerSocket.accept()");
 			}
 		}

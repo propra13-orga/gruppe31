@@ -19,9 +19,9 @@ public class Spiel {
 	private int aktSpielfeld;
 
 	/** Deklarierung des Feldes */
-	private Spielfeld spielfeld;
 	private Spieler spieler;
 	private Gegner gegner;
+	private Spielfeld spielfeld;
 
 	/**
 	 * Konstruktor erzeugt ArrayList, welche Spielfelder beinhaltet
@@ -48,7 +48,7 @@ public class Spiel {
 
 		/* öffnet FileReader mit Textdatei */
 		FileReader fr = new FileReader(Konstanten.DIRECTION
-				+ "/src/game/Szenario/" + datei);
+				+ "/src/game/Einzelspieler-Szenario/" + datei);
 		/* öffnet BufferedReader und liest .txt hinein */
 		BufferedReader br = new BufferedReader(fr);
 

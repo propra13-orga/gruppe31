@@ -47,6 +47,9 @@ public class Spieler extends Spielfigur {
 	/** Die Position dieser Figur in der xy-Ebene. */
 	private Point position;
 
+	/** Deklaration der Felder */
+	private Spielfeld spielfeld;
+
 	/**
 	 * Konstruktor weist Icon das richtige Icon zu
 	 */
@@ -220,19 +223,16 @@ public class Spieler extends Spielfigur {
 
 		/* Abfragen für die Pfeiltasten */
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			Spielfigurx--;
+			// lege den Fokus einen nach links
 		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			Spielfigurx++;
+			// Fokus einen nach rechts 
 		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			Spielfigury--;
+			/* Fokus einen nach oben */
 		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			Spielfigury++;
+			/* Fokus enen nach unten */
 		}
-		
-		/* TODO: Prüfe was da ist */
-		
-		//setzeObjekt(GameObject objekt, Point position);
 
+		GameObject objekt = spielfeld.gibObjekt(getPosition());
 	}
 
 	@Override
