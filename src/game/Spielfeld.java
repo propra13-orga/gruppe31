@@ -71,4 +71,10 @@ public class Spielfeld {
 	public GameObject gibObjekt(Point position) {
 		return this.feld[position.y][position.x];
 	}
+	
+	public void aktion(Spielfigur figur, int keyCode) {
+		
+		/* Position der Spielfigur abfragen und Objekte um die Position herum prüfen. 
+		 * Bewegung durchführen. Fertig. Neu gezeichnet wird ja im GameFrame. */
+	}
 }

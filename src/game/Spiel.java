@@ -108,11 +108,13 @@ public class Spiel {
 						} else if (pruefe == Konstanten.GRENZE) {
 							gameObject = new Grenze();
 						} else if (pruefe == Konstanten.PUDEL) {
-							gameObject = new Spieler();
-							//spieler.setPosition(new Point(i, j));
+							this.spieler = new Spieler();
+							this.spieler.setPosition(new Point(i, j));
+							gameObject = this.spieler;
 						} else if (pruefe == Konstanten.GEGNER) {
-							gameObject = new Gegner();
-							//gegner.setPosition(new Point(i, j));
+							this.gegner = new Gegner();
+							gegner.setPosition(new Point(i, j));
+							gameObject = this.gegner;							
 						} else if (pruefe == Konstanten.FALLE) {
 							gameObject = new Falle();
 						} else if (pruefe == Konstanten.WEITER) {
@@ -180,5 +182,16 @@ public class Spiel {
 	 */
 	public Spielfeld getAktuellesSpielfeld() {
 		return levels.get(aktSpielfeld);
+	}
+	
+	public Spieler getSpieler() {
+		return this.spieler;
+	}
+	
+	public void aktion(int keyCode) {
+		
+		/* Aktuelles Spielfeld raussuchen und dieses Spielfeld die Bewegung durchführen lassen. Den Spieler aus dem Spiel dafür übergeben. */
+		Spielfeld aktSpielfeld = this.getAktuellesSpielfeld();
+		aktSpielfeld.aktion(this.spieler, keyCode);
 	}
 }

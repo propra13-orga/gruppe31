@@ -160,13 +160,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/** Deklaration von Feldern */
 	private Spiel spiel;
-	private NPC carlos;
-	private Spieler spieler;
-	private GameObject gameObject;
-	private Spielfigur spielfigur;
-
-	/** Deklaration von Integer Arrays */
-	private Integer aktuellesSpielfeld[][] = new Integer[Konstanten.SPALTEN][Konstanten.ZEILEN];
+//	private Spielfigur spielfigur;
 
 	/** Deklaration eines Strings Datei */
 	private String datei;
@@ -303,7 +297,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	 */
 	public void setzeAnzeige() {
 
-		spieler = new Spieler();
+		Spieler spieler = this.spiel.getSpieler();
 
 		leiste.removeAll();
 
@@ -499,7 +493,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		spielfigur.bewegeSpielfiguren(e);
+		
 	}
 
 	@Override
@@ -509,7 +503,8 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// nothing to do here
+		this.spiel.aktion(arg0.getKeyCode());
+		this.zeichnen(this.spiel.getAktuellesSpielfeld());
 	}
 
 }
