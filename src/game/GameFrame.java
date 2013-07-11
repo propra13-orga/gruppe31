@@ -1,5 +1,7 @@
 package game;
 
+import game.figuren.Spieler;
+
 import java.awt.BorderLayout;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;

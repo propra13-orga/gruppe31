@@ -1,4 +1,6 @@
-package game;
+package game.items;
+
+import game.GameObject;
 
 /**
  * abstrakte Klasse Item zur Ordnung

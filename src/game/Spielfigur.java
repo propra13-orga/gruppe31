@@ -1,5 +1,9 @@
 package game;
 
+import game.figuren.Gegner;
+import game.figuren.Spieler;
+
+
 import java.awt.event.KeyEvent;
 
 /**

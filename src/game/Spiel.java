@@ -1,5 +1,27 @@
 package game;
 
+import game.figuren.Bossgegner;
+import game.figuren.Falle;
+import game.figuren.Gegner;
+import game.figuren.Spieler;
+import game.icons.Carlos;
+import game.icons.Checkpoint;
+import game.icons.Grenze;
+import game.icons.Huette;
+import game.icons.Weiter;
+import game.icons.Ziel;
+import game.icons.Zurueck;
+import game.items.Brille;
+import game.items.Gold;
+import game.items.Health;
+import game.items.Mana;
+import game.items.Rasen;
+import game.items.Ruestung;
+import game.items.Schwert;
+import game.items.Shophealth;
+import game.items.Shopmana;
+import game.items.Shopruestung;
+
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,4 +1,7 @@
-package game;
+package game.icons;
+
+import game.GameObject;
+import game.Konstanten;
 
 /**
  * ein Objekt dieser Klasse ist das Ziel

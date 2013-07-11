@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -138,7 +139,7 @@ public class MenuFrame extends JFrame {
 
 		/* wenn Server gewählt wurde, wird Server-Thread gestartet */
 		if (selected == 0) {
-			new Server().start();
+			new game.Server().start();
 			/* wenn Client gewählt wurde, wird Client-Thread gestartet */
 		} else if (selected == 1) {
 			new Chatter().start();

@@ -1,4 +1,7 @@
-package game;
+package game.items;
+
+import game.GameObject;
+import game.Konstanten;
 
 /**
  * ein Objekt dieser Klasse ist der Rasen

@@ -1,4 +1,9 @@
-package game;
+package game.figuren;
+
+import game.Konstanten;
+import game.Spiel;
+import game.Spielfeld;
+import game.Spielfigur;
 
 import java.awt.Point;
 import java.awt.event.KeyEvent;

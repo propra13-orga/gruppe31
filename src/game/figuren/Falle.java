@@ -1,4 +1,7 @@
-package game;
+package game.figuren;
+
+import game.GameObject;
+import game.Konstanten;
 
 /**
  * die Objekte dieser Klasse sind die Bombe und der Müll

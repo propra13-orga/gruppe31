@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
+
 /** Server erzeugt ServerSocket und verbindet mit Client, wenn dieser 'anklopft' */
 class Server extends Thread {
 	
