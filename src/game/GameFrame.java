@@ -416,16 +416,6 @@ public class GameFrame extends JFrame implements KeyListener {
 		aktualisieren();
 	}
 
-	/*
-	 * Prüfung ob Checkpoint besucht wurde und Zurücksetzen des Spiels oder
-	 * Ausgang Verloren
-	 * 
-	 * public void Checkpoint() { if (save == 1) { if (leben > 0) { health =
-	 * 100; Spielfigurx = checkx; Spielfigury = checky;
-	 * zeichner.zeichneSpielfeld(CheckSpielfeld); setzeAnzeige(); } else if
-	 * (leben <= 0) { Verloren(); } } else if (save == 0) { Verloren(); } }
-	 */
-
 	/**
 	 * es wird ein neues Fenster mit dem Spielausgang Gewonnen aufgerufen
 	 */

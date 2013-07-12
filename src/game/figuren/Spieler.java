@@ -41,8 +41,8 @@ public class Spieler extends Spielfigur {
 	 * Spielfigur Koordinaten werden deklariert
 	 */
 	private int leben;
-	private int beschwertet;
-	private int halsband;
+	private boolean beschwertet;
+	private boolean halsband;
 	private int mana;
 	private int gold;
 	private int ruestung;
@@ -60,37 +60,37 @@ public class Spieler extends Spielfigur {
 
 		setBewaffnet(false);
 		setGesundheit(Konstanten.VOLLH);
-		setBeschwertet(0);
-		setHalsband(0);
+		setBeschwertet(false);
+		setHalsband(false);
 		setMana(0);
 		setGold(0);
 		setRuestung(0);
 
 		if (getBewaffnet() == true) {
-			if (beschwertet == 1) {
-				if (halsband == 1) {
+			if (beschwertet == true) {
+				if (halsband == true) {
 					bild = ICONTERMINATORERNA;
-				} else if (halsband == 0) {
+				} else if (halsband == false) {
 					bild = ICONVOLLERNA;
 				}
-			} else if (beschwertet == 0) {
-				if (halsband == 1) {
+			} else if (beschwertet == false) {
+				if (halsband == true) {
 					bild = ICONPUDELBEIDES;
-				} else if (halsband == 0) {
+				} else if (halsband == false) {
 					bild = ICONAGGROERNA;
 				}
 			}
 		} else if (getBewaffnet() == false) {
-			if (beschwertet == 1) {
-				if (halsband == 1) {
+			if (beschwertet == true) {
+				if (halsband == true) {
 					bild = ICONPUDELSCHWERTHALSBAND;
-				} else if (halsband == 0) {
+				} else if (halsband == false) {
 					bild = ICONSCHWERTERNA;
 				}
-			} else if (beschwertet == 0) {
-				if (halsband == 1) {
+			} else if (beschwertet == false) {
+				if (halsband == true) {
 					bild = ICONPUDELHALSBAND;
-				} else if (halsband == 0) {
+				} else if (halsband == false) {
 					bild = ICONPUDEL;
 				}
 			}
@@ -102,18 +102,18 @@ public class Spieler extends Spielfigur {
 	 * 
 	 * @return beschwertet Gibt an, ob Spieler beschwertet ist oder nicht
 	 */
-	public int getBeschwertet() {
+	public boolean getBeschwertet() {
 		return beschwertet;
 	}
 
 	/**
 	 * Setter für beschwertet
 	 * 
-	 * @param beschwertet
+	 * @param b
 	 *            Kommandozeilenparameter
 	 */
-	public void setBeschwertet(int beschwertet) {
-		this.beschwertet = beschwertet;
+	public void setBeschwertet(boolean b) {
+		this.beschwertet = b;
 	}
 
 	/**
@@ -121,18 +121,18 @@ public class Spieler extends Spielfigur {
 	 * 
 	 * @return halsband Gibt an, ob Spieler berüstet ist, oder nicht
 	 */
-	public int getHalsband() {
+	public boolean getHalsband() {
 		return halsband;
 	}
 
 	/**
 	 * Setter für halsband
 	 * 
-	 * @param halsband
+	 * @param b
 	 *            Kommandozeilenparameter
 	 */
-	public void setHalsband(int halsband) {
-		this.halsband = halsband;
+	public void setHalsband(boolean b) {
+		this.halsband = b;
 	}
 
 	/**

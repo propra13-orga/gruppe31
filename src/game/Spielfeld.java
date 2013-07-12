@@ -18,6 +18,8 @@ public class Spielfeld {
 	/** Deklaration von Feldern */
 	private Spieler spieler;
 	private Spiel spiel;
+	private NPC npc;
+	private GameFrame gameFrame;
 
 	/**
 	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann für jeden
@@ -88,13 +90,13 @@ public class Spielfeld {
 	 *            KeyCode wird übergeben
 	 */
 	public void aktion(Spieler spielfigur, int keyCode) {
-		
+
 		/* Spielfigur Position abfragen */
 		Point position = spielfigur.getPosition();
 		Point fokus = position;
-		
+
 		System.out.print(position);
-		
+
 		/* Abfragen für die Pfeiltasten */
 		if (keyCode == KeyEvent.VK_LEFT) {
 			fokus.x--;
@@ -105,16 +107,68 @@ public class Spielfeld {
 		} else if (keyCode == KeyEvent.VK_DOWN) {
 			fokus.y++;
 		}
-		
-		/* Abfrage für ich laufe auf RASEN = normale Bewegung */
-		if(gibObjekt(fokus).getClass() == Rasen.class){
-			position = fokus;
-		} 
-		
+
 		/* Objekte drum herum prüfen */
-		
+		if (gibObjekt(fokus) instanceof Rasen) {
+			position = fokus;
+		} else if (gibObjekt(fokus) instanceof Grenze) {
+			fokus = position;
+		} else if (gibObjekt(fokus) instanceof Huette) {
+			fokus = position;
+		} else if (gibObjekt(fokus) instanceof Carlos) {
+			npc = new NPC();
+		} else if (gibObjekt(fokus) instanceof Checkpoint) {
+			Checkpoint();
+		} else if (gibObjekt(fokus) instanceof Weiter) {
+			spiel.levelWeiter(1);
+		} else if (gibObjekt(fokus) instanceof Zurueck) {
+			spiel.levelZurueck(1);
+		} else if (gibObjekt(fokus) instanceof Ziel) {
+			gameFrame.gewonnen();
+		} else if (gibObjekt(fokus) instanceof Brille) {
+			spieler.setBewaffnet(true);
+			position = fokus;
+		} else if (gibObjekt(fokus) instanceof Gold) {
+			spieler.setGold(+50);
+			position = fokus;
+		} else if (gibObjekt(fokus) instanceof Health) {
+			spieler.setGesundheit(Konstanten.VOLLH);
+			position = fokus;
+		} else if (gibObjekt(fokus) instanceof Mana) {
+			spieler.setMana(Konstanten.VOLLM);
+			position = fokus;
+		} else if (gibObjekt(fokus) instanceof Ruestung) {
+			spieler.setHalsband(true);
+			position = fokus;
+		} else if (gibObjekt(fokus) instanceof Schwert) {
+			spieler.setBeschwertet(true);
+			position = fokus;
+		} else if (gibObjekt(fokus) instanceof Shophealth) {
+			spieler.setGesundheit(Konstanten.VOLLH);
+			spieler.setGold(-50);
+			position = fokus;
+		} else if (gibObjekt(fokus) instanceof Shopmana) {
+			spieler.setMana(Konstanten.VOLLM);
+			spieler.setGold(-50);
+			position = fokus;
+		} else if (gibObjekt(fokus) instanceof Shopruestung) {
+			spieler.setHalsband(true);
+			spieler.setGold(-50);
+			position = fokus;
+		}
+
 		/* Bewegung durchführen */
 		this.setzeObjekt(spielfigur, position);
 
 	}
+
+	/*
+	 * Prüfung ob Checkpoint besucht wurde und Zurücksetzen des Spiels oder
+	 * Ausgang Verloren
+	 * 
+	 * public void Checkpoint() { if (save == 1) { if (leben > 0) { health =
+	 * 100; Spielfigurx = checkx; Spielfigury = checky;
+	 * zeichner.zeichneSpielfeld(CheckSpielfeld); setzeAnzeige(); } else if
+	 * (leben <= 0) { Verloren(); } } else if (save == 0) { Verloren(); } }
+	 */
 }
