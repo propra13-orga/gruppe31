@@ -1,6 +1,23 @@
 package game;
 
 import game.figuren.Spieler;
+import game.icons.Carlos;
+import game.icons.Checkpoint;
+import game.icons.Grenze;
+import game.icons.Huette;
+import game.icons.Rasen;
+import game.icons.Weiter;
+import game.icons.Ziel;
+import game.icons.Zurueck;
+import game.items.Brille;
+import game.items.Gold;
+import game.items.Health;
+import game.items.Mana;
+import game.items.Ruestung;
+import game.items.Schwert;
+import game.items.Shophealth;
+import game.items.Shopmana;
+import game.items.Shopruestung;
 
 import java.awt.Point;
 import java.awt.event.KeyEvent;
@@ -107,9 +124,11 @@ public class Spielfeld {
 		} else if (keyCode == KeyEvent.VK_DOWN) {
 			fokus.y++;
 		}
+		
+		GameObject obj = this.gibObjekt(fokus);
 
 		/* Objekte drum herum prüfen */
-		if (gibObjekt(fokus) instanceof Rasen) {
+		if (obj instanceof Rasen) {
 			position = fokus;
 		} else if (gibObjekt(fokus) instanceof Grenze) {
 			fokus = position;
