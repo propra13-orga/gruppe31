@@ -1,13 +1,10 @@
 package game.figuren;
 
-import game.GameObject;
 import game.Konstanten;
 import game.Spiel;
 import game.Spielfeld;
-import game.Spielfigur;
 
 import java.awt.Point;
-import java.awt.event.KeyEvent;
 
 /**
  * ein Objekt dieser Klasse ist der Spieler

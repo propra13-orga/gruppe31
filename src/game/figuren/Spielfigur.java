@@ -1,7 +1,6 @@
-package game;
+package game.figuren;
 
-import game.figuren.Gegner;
-import game.figuren.Spieler;
+import game.GameObject;
 
 
 import java.awt.event.KeyEvent;

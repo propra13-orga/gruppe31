@@ -17,6 +17,7 @@ public class Spielfeld {
 
 	/** Deklaration von Feldern */
 	private Spieler spieler;
+	private Spiel spiel;
 
 	/**
 	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann für jeden
@@ -86,29 +87,34 @@ public class Spielfeld {
 	 * @param keyCode
 	 *            KeyCode wird übergeben
 	 */
-	public void aktion(Spielfigur figur, int keyCode) {
+	public void aktion(Spieler spielfigur, int keyCode) {
 		
 		/* Spielfigur Position abfragen */
-		Point position = spieler.getPosition();
-		Point pruefe = position;
+		Point position = spielfigur.getPosition();
+		Point fokus = position;
+		
+		System.out.print(position);
 		
 		/* Abfragen für die Pfeiltasten */
 		if (keyCode == KeyEvent.VK_LEFT) {
-			pruefe.x--;
+			fokus.x--;
 		} else if (keyCode == KeyEvent.VK_RIGHT) {
-			pruefe.x++;
+			fokus.x++;
 		} else if (keyCode == KeyEvent.VK_UP) {
-			pruefe.y--;
+			fokus.y--;
 		} else if (keyCode == KeyEvent.VK_DOWN) {
-			pruefe.y++;
+			fokus.y++;
 		}
 		
-		System.out.println(pruefe);
-
+		/* Abfrage für ich laufe auf RASEN = normale Bewegung */
+		if(gibObjekt(fokus).getClass() == Rasen.class){
+			position = fokus;
+		} 
 		
 		/* Objekte drum herum prüfen */
 		
 		/* Bewegung durchführen */
+		this.setzeObjekt(spielfigur, position);
 
 	}
 }

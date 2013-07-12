@@ -1,7 +1,6 @@
 package game.figuren;
 
 import game.Konstanten;
-import game.Spielfigur;
 
 /**
  * ein Objekt dieser Klasse ist ein Bossgegner
