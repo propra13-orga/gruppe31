@@ -124,53 +124,53 @@ public class Spielfeld {
 		} else if (keyCode == KeyEvent.VK_DOWN) {
 			fokus.y++;
 		}
-		
+
 		GameObject obj = this.gibObjekt(fokus);
 
 		/* Objekte drum herum prüfen */
 		if (obj instanceof Rasen) {
 			position = fokus;
-		} else if (gibObjekt(fokus) instanceof Grenze) {
+		} else if (obj instanceof Grenze) {
 			fokus = position;
-		} else if (gibObjekt(fokus) instanceof Huette) {
+		} else if (obj instanceof Huette) {
 			fokus = position;
-		} else if (gibObjekt(fokus) instanceof Carlos) {
+		} else if (obj instanceof Carlos) {
 			npc = new NPC();
-		} else if (gibObjekt(fokus) instanceof Checkpoint) {
-			Checkpoint();
-		} else if (gibObjekt(fokus) instanceof Weiter) {
+		} else if (obj instanceof Checkpoint) {
+			// Checkpoint();
+		} else if (obj instanceof Weiter) {
 			spiel.levelWeiter(1);
-		} else if (gibObjekt(fokus) instanceof Zurueck) {
+		} else if (obj instanceof Zurueck) {
 			spiel.levelZurueck(1);
-		} else if (gibObjekt(fokus) instanceof Ziel) {
+		} else if (obj instanceof Ziel) {
 			gameFrame.gewonnen();
-		} else if (gibObjekt(fokus) instanceof Brille) {
+		} else if (obj instanceof Brille) {
 			spieler.setBewaffnet(true);
 			position = fokus;
-		} else if (gibObjekt(fokus) instanceof Gold) {
+		} else if (obj instanceof Gold) {
 			spieler.setGold(+50);
 			position = fokus;
-		} else if (gibObjekt(fokus) instanceof Health) {
+		} else if (obj instanceof Health) {
 			spieler.setGesundheit(Konstanten.VOLLH);
 			position = fokus;
-		} else if (gibObjekt(fokus) instanceof Mana) {
+		} else if (obj instanceof Mana) {
 			spieler.setMana(Konstanten.VOLLM);
 			position = fokus;
-		} else if (gibObjekt(fokus) instanceof Ruestung) {
+		} else if (obj instanceof Ruestung) {
 			spieler.setHalsband(true);
 			position = fokus;
-		} else if (gibObjekt(fokus) instanceof Schwert) {
+		} else if (obj instanceof Schwert) {
 			spieler.setBeschwertet(true);
 			position = fokus;
-		} else if (gibObjekt(fokus) instanceof Shophealth) {
+		} else if (obj instanceof Shophealth) {
 			spieler.setGesundheit(Konstanten.VOLLH);
 			spieler.setGold(-50);
 			position = fokus;
-		} else if (gibObjekt(fokus) instanceof Shopmana) {
+		} else if (obj instanceof Shopmana) {
 			spieler.setMana(Konstanten.VOLLM);
 			spieler.setGold(-50);
 			position = fokus;
-		} else if (gibObjekt(fokus) instanceof Shopruestung) {
+		} else if (obj instanceof Shopruestung) {
 			spieler.setHalsband(true);
 			spieler.setGold(-50);
 			position = fokus;
