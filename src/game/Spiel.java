@@ -111,7 +111,11 @@ public class Spiel {
 						} else if (pruefe == Konstanten.GRENZE) {
 							gameObject = new Grenze();
 						} else if (pruefe == Konstanten.PUDEL) {
-							this.spieler = new Spieler();
+							this.spieler = new Spieler("Erna");
+							this.spieler.setPosition(new Point(i, j));
+							gameObject = this.spieler;
+						} else if (pruefe == Konstanten.PUDEL2) {
+							this.spieler = new Spieler("Luke");
 							this.spieler.setPosition(new Point(i, j));
 							gameObject = this.spieler;
 						} else if (pruefe == Konstanten.GEGNER) {
@@ -157,12 +161,12 @@ public class Spiel {
 						} else if (pruefe == Konstanten.SHOPRUESTUNG) {
 							gameObject = new Shopruestung();
 						} else if (pruefe == Konstanten.LUKE) {
-								gameObject = new Luke();
+							gameObject = new Luke();
 						} else if (pruefe == Konstanten.SCHALTERZU) {
 							gameObject = new SchalterZu();
 						} else if (pruefe == Konstanten.SCHALTERAUF) {
 							gameObject = new SchalterAuf();
-						} 
+						}
 
 						spielfeld.setzeObjekt(gameObject, new Point(i, j));
 						levels.add(spielfeld);
@@ -215,10 +219,6 @@ public class Spiel {
 	 *            Kommandozeilenparameter
 	 */
 	public void aktion(int keyCode) {
-		/* aktuelles Spielfeld übergeben lassen */
-		//Spielfeld aktSpielfeld = this.getAktuellesSpielfeld();
-		/* Spieler und KeyCode übergeben, Bewegung durchführen lassen */
-		//aktSpielfeld.aktion(this.spieler, keyCode);
 		levels.get(aktSpielfeld).aktion(this.spieler, keyCode);
 	}
 
@@ -228,19 +228,19 @@ public class Spiel {
 	 * @param i
 	 *            Kommandozeilenparameter
 	 */
-	public void levelWeiter(int i) {
-		this.aktSpielfeld = aktSpielfeld + i;
+	public void levelWeiter() {
+		this.aktSpielfeld = aktSpielfeld + 1;
 
 	}
-	
+
 	/**
 	 * set aktuelles Spielfeld einen runter
 	 * 
 	 * @param i
 	 *            Kommandozeilenparameter
 	 */
-	public void levelZurueck(int i) {
-		this.aktSpielfeld = aktSpielfeld - i;
+	public void levelZurueck() {
+		this.aktSpielfeld = aktSpielfeld - 1;
 
 	}
 }

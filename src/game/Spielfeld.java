@@ -34,13 +34,12 @@ public class Spielfeld {
 	/** Speichert die Groesse des Spielfelds */
 	private int zeilen;
 	private int spalten;
-	
+
 	/** Deklaration von Feldern */
 	private Spiel spiel;
 	private NPC npc;
 	private NPC2 npc2;
 	private GameFrame gameFrame;
-
 
 	/**
 	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann für jeden
@@ -125,7 +124,6 @@ public class Spielfeld {
 		} else if (keyCode == KeyEvent.VK_DOWN) {
 			neuPos.x++;
 		} else {
-			
 			/* Andere Tasten wollen wir nicht beruecksichtigen. */
 			return;
 		}
@@ -135,29 +133,27 @@ public class Spielfeld {
 
 		/* Objekte drum herum prüfen */
 		if (obj instanceof Rasen) {
-			
 			sollBewegtWerden = true;
 		} else if (obj instanceof Grenze) {
-			
-			/* Bewegung ignorieren */
+			sollBewegtWerden = false;
 		} else if (obj instanceof Huette) {
-
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Carlos) {
-//			npc = new NPC();
+			npc = new NPC();
+			/* Bewegung igorieren */
 		} else if (obj instanceof Checkpoint) {
-			//Checkpoint();
+			// Checkpoint();
 		} else if (obj instanceof Weiter) {
-			spiel.levelWeiter(1);
+			spiel.levelWeiter();
 		} else if (obj instanceof Zurueck) {
-			spiel.levelZurueck(1);
+			spiel.levelZurueck();
 		} else if (obj instanceof Ziel) {
 			gameFrame.gewonnen();
 		} else if (obj instanceof Brille) {
 			spielfigur.setBewaffnet(true);
 			sollBewegtWerden = true;
 		} else if (obj instanceof Gold) {
-			//spieler.setGold(+50);
+			// spieler.setGold(+50);
 			sollBewegtWerden = true;
 		} else if (obj instanceof Health) {
 			spielfigur.setGesundheit(Konstanten.VOLLH);
@@ -173,15 +169,15 @@ public class Spielfeld {
 			sollBewegtWerden = true;
 		} else if (obj instanceof Shophealth) {
 			spielfigur.setGesundheit(Konstanten.VOLLH);
-			//spieler.setGold(-50);
+			// spieler.setGold(-50);
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Shopmana) {
 			spielfigur.setMana(Konstanten.VOLLM);
-			//spieler.setGold(-50);
+			// spieler.setGold(-50);
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Shopruestung) {
 			spielfigur.setHalsband(true);
-			//spieler.setGold(-50);
+			// spieler.setGold(-50);
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Luke) {
 			npc2 = new NPC2();
@@ -190,13 +186,12 @@ public class Spielfeld {
 			//
 		}
 
-
 		if (sollBewegtWerden) {
-			
-			/* Bewegung durchfuehren. */
+			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
 			this.setzeObjekt(obj, aktPos);
 			this.setzeObjekt(spielfigur, neuPos);
 
+			/* setzt die neue Position */
 			spielfigur.setPosition(neuPos);
 		}
 	}

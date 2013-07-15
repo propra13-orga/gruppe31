@@ -29,6 +29,9 @@ public class Spieler extends Spielfigur {
 			+ "/src/game/Images/PudelHalsband.png";
 	private static final String ICONPUDELSCHWERTHALSBAND = Konstanten.DIRECTION
 			+ "/src/game/Images/Pudelschwerthals.png";
+	
+	private static final String ICONLUKE = Konstanten.DIRECTION
+			+ "/src/game/Images/Luke.png";
 
 	/** bild vom Typ String wird deklariert */
 	private String bild;
@@ -55,8 +58,10 @@ public class Spieler extends Spielfigur {
 
 	/**
 	 * Konstruktor weist Icon das richtige Icon zu
+	 * 
+	 * @param art
 	 */
-	public Spieler() {
+	public Spieler(String art) {
 
 		setBewaffnet(false);
 		setGesundheit(Konstanten.VOLLH);
@@ -66,34 +71,38 @@ public class Spieler extends Spielfigur {
 		setGold(0);
 		setRuestung(0);
 
-		if (getBewaffnet()) {
-			if (beschwertet) {
-				if (halsband) {
-					bild = ICONTERMINATORERNA;
-				} else if (!halsband) {
-					bild = ICONVOLLERNA;
+		if (art == "Erna") {
+			if (getBewaffnet()) {
+				if (beschwertet) {
+					if (halsband) {
+						bild = ICONTERMINATORERNA;
+					} else if (!halsband) {
+						bild = ICONVOLLERNA;
+					}
+				} else if (!beschwertet) {
+					if (halsband) {
+						bild = ICONPUDELBEIDES;
+					} else if (!halsband) {
+						bild = ICONAGGROERNA;
+					}
 				}
-			} else if (!beschwertet) {
-				if (halsband) {
-					bild = ICONPUDELBEIDES;
-				} else if (!halsband) {
-					bild = ICONAGGROERNA;
+			} else if (!getBewaffnet()) {
+				if (beschwertet) {
+					if (halsband) {
+						bild = ICONPUDELSCHWERTHALSBAND;
+					} else if (!halsband) {
+						bild = ICONSCHWERTERNA;
+					}
+				} else if (!beschwertet) {
+					if (halsband) {
+						bild = ICONPUDELHALSBAND;
+					} else if (!halsband) {
+						bild = ICONPUDEL;
+					}
 				}
 			}
-		} else if (!getBewaffnet()) {
-			if (beschwertet) {
-				if (halsband) {
-					bild = ICONPUDELSCHWERTHALSBAND;
-				} else if (!halsband) {
-					bild = ICONSCHWERTERNA;
-				}
-			} else if (!beschwertet) {
-				if (halsband) {
-					bild = ICONPUDELHALSBAND;
-				} else if (!halsband) {
-					bild = ICONPUDEL;
-				}
-			}
+		} else if (art == "Luke") {
+			bild = ICONLUKE;
 		}
 	}
 
@@ -233,7 +242,6 @@ public class Spieler extends Spielfigur {
 	 *            Die neue Position der Figur.
 	 */
 	public void setPosition(Point neuePosition) {
-
 		this.position = neuePosition;
 	}
 }

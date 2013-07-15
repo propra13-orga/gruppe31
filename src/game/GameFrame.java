@@ -191,7 +191,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	 *             wirft Exception
 	 */
 	public GameFrame(String titel, int x, int y) throws Exception {
-		
+
 		/* Fenster-Eigenschaften setzen. */
 		this.setResizable(false);
 		this.setTitle(titel);
@@ -201,21 +201,22 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setFocusable(true);
 		this.addKeyListener(this);
 		this.setVisible(true);
-		
+
 		/* Fenster-Komponenten erzeugen. */
 		Container contentPane = this.getContentPane();
 		contentPane.setLayout(null);
 		this.panelSpielfeld.setLayout(null);
 
-		this.panelSpielfeld.setBounds(contentPane.getBounds().x, contentPane.getBounds().y, 
-				contentPane.getBounds().width, 
-				contentPane.getBounds().height - (contentPane.getBounds().height / 10));
-		
+		this.panelSpielfeld.setBounds(contentPane.getBounds().x,
+				contentPane.getBounds().y, contentPane.getBounds().width,
+				contentPane.getBounds().height
+						- (contentPane.getBounds().height / 10));
 
-		this.panelAnzeige.setBounds(contentPane.getBounds().x, 
-				contentPane.getBounds().y + contentPane.getBounds().height - (contentPane.getBounds().height / 10), 
-				contentPane.getBounds().width, 
-				contentPane.getBounds().height - (contentPane.getBounds().height / 10));
+		this.panelAnzeige.setBounds(contentPane.getBounds().x,
+				contentPane.getBounds().y + contentPane.getBounds().height
+						- (contentPane.getBounds().height / 10),
+				contentPane.getBounds().width, contentPane.getBounds().height
+						- (contentPane.getBounds().height / 10));
 
 		getContentPane().add(panelSpielfeld);
 		getContentPane().add(panelAnzeige);
@@ -229,10 +230,8 @@ public class GameFrame extends JFrame implements KeyListener {
 		spiel.init(datei);
 
 		setzeAnzeige();
-		
 
 		zeichnen(spiel.getAktuellesSpielfeld());
-
 
 		this.requestFocus();
 
@@ -286,13 +285,14 @@ public class GameFrame extends JFrame implements KeyListener {
 	 *            Kommandozeilenparameter
 	 */
 	public void zeichnen(Spielfeld spielfeld) {
-		
+
 		this.panelSpielfeld.removeAll();
 
 		for (int i = 0; i < Konstanten.SPALTEN; i++) {
 			for (int j = 0; j < Konstanten.ZEILEN; j++) {
-				
-				GameObject object = spielfeld.gibObjekt(new java.awt.Point(i, j));
+
+				GameObject object = spielfeld
+						.gibObjekt(new java.awt.Point(i, j));
 
 				/*
 				 * eigener Debugger ;-)
@@ -301,24 +301,23 @@ public class GameFrame extends JFrame implements KeyListener {
 				 */
 				Icon icon = new ImageIcon(object.getPicture());
 				JLabel label = new JLabel(new ImageIcon(object.getPicture()));
-				label.setBounds(i * Konstanten.SIZE, j * Konstanten.SIZE, icon.getIconWidth(), icon.getIconHeight());
+				label.setBounds(i * Konstanten.SIZE, j * Konstanten.SIZE,
+						icon.getIconWidth(), icon.getIconHeight());
 				this.panelSpielfeld.add(label);
 			}
 		}
-		
+
 		aktualisieren();
 	}
-	
 
 	/**
-	* aktualisiert die Informationsleiste
-	*/
+	 * aktualisiert die Informationsleiste
+	 */
 	public void aktualisieren() {
-		
+
 		this.revalidate();
 		this.repaint();
 	}
-
 
 	/**
 	 * fragt die benötigten Variablen ab und setzt die Informationsleiste im
@@ -330,7 +329,8 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		/* für die Levelanzeige */
 		int level = 0;
-//		int level = this.spiel.getSpielfeldNummer(); // So etwas sollte da eigentlich hin...
+		// int level = this.spiel.getSpielfeldNummer(); // So etwas sollte da
+		// eigentlich hin...
 		if (level == Konstanten.RAUMEINS) {
 			panelAnzeige.add(eins);
 		} else if (level == Konstanten.RAUMZWEI) {
@@ -445,7 +445,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (leben == Konstanten.EINDRITTELL) {
 			panelAnzeige.add(herz1);
 		}
-		
+
 		aktualisieren();
 
 		setzeLoadButton();
@@ -572,7 +572,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		
+
 		this.spiel.aktion(arg0.getKeyCode());
 		this.zeichnen(this.spiel.getAktuellesSpielfeld());
 		this.setzeAnzeige();

@@ -13,6 +13,7 @@ public final class Konstanten {
 	public static final int RASEN = (int) ' ';
 	public static final int GRENZE = (int) '#';
 	public static final int PUDEL = (int) 'P';
+	public static final int PUDEL2 = (int) '!';
 	public static final int GEGNER = (int) 'G';
 	public static final int GEGNER2 = (int) 'J';
 	public static final int FALLE = (int) 'U';
