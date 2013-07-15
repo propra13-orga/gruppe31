@@ -30,7 +30,7 @@ public class Musik {
 							.getAudioInputStream(new File(fileName));
 					clip.open(inputStream);
 					clip.start();
-					clip.loop(Konstanten.LOOP);
+					//clip.loop(Konstanten.LOOP);
 				} catch (Exception e) {
 					System.out.println("play sound error: " + e.getMessage()
 							+ " for " + fileName);

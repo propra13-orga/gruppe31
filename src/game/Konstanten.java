@@ -57,15 +57,15 @@ public final class Konstanten {
 	public static final int ZEILEN = 12;
 
 	/** die Level-Staffelungen werden deklariert */
-	public static final int RAUMEINS = 1;
-	public static final int RAUMZWEI = 2;
-	public static final int RAUMDREI = 3;
-	public static final int RAUMVIER = 4;
-	public static final int RAUMFUENF = 5;
-	public static final int RAUMSECHS = 6;
-	public static final int RAUMSIEBEN = 7;
-	public static final int RAUMACHT = 8;
-	public static final int RAUMNEUN = 9;
+	public static final int RAUMEINS = 0;
+	public static final int RAUMZWEI = 1;
+	public static final int RAUMDREI = 2;
+	public static final int RAUMVIER = 3;
+	public static final int RAUMFUENF = 4;
+	public static final int RAUMSECHS = 5;
+	public static final int RAUMSIEBEN = 6;
+	public static final int RAUMACHT = 7;
+	public static final int RAUMNEUN = 8;
 
 	/** die Health Staffelungen werden deklariert */
 	public static final int VOLLH = 100;
@@ -106,13 +106,13 @@ public final class Konstanten {
 	/** die Groessen fuer das GameFrame */
 	public static final int BREITE = 1000;
 	public static final int HOEHE = 700;
-	
+
 	/** die Groessen fuer das GameFrame */
 	public static final int XBU = 800;
 	public static final int YBU = 500;
 	public static final int BREITEBU = 100;
 	public static final int HOEHEBU = 100;
-	
+
 	/** die Position fuer das GameFrame */
 	public static final int XGF = 900;
 	public static final int YGF = 700;
@@ -172,7 +172,7 @@ public final class Konstanten {
 	public static final int YGV = 450;
 	public static final int BREITEGV = 200;
 	public static final int HOEHEGV = 45;
-	
+
 	/** Positionen für Buttons auf MenuFrame */
 	public static final int XBUTTON = 350;
 	public static final int BREITEBUTTON = 200;
@@ -188,13 +188,13 @@ public final class Konstanten {
 	public static final int YMB = 500;
 	public static final int BREITEMB = 200;
 	public static final int HOEHEMB = 40;
-	
+
 	/** Loop Angabe für Musik */
 	public static final int LOOP = 999;
-	
+
 	/** Angabe für Panelposition */
-	public static final int PANEL =10;
-	
+	public static final int PANEL = 10;
+
 	/** Raumangaben für Bossauswahl */
 	public static final int RAUM3 = 2;
 	public static final int RAUM6 = 5;

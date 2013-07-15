@@ -40,6 +40,7 @@ public class Spielfeld {
 	private NPC npc;
 	private NPC2 npc2;
 	private GameFrame gameFrame;
+	private Musik musik;
 
 	/**
 	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann für jeden
@@ -135,7 +136,7 @@ public class Spielfeld {
 		if (obj instanceof Rasen) {
 			sollBewegtWerden = true;
 		} else if (obj instanceof Grenze) {
-			sollBewegtWerden = false;
+			/* Bewegung ingorieren */
 		} else if (obj instanceof Huette) {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Carlos) {
@@ -187,6 +188,8 @@ public class Spielfeld {
 		}
 
 		if (sollBewegtWerden) {
+			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Schritt.wav");
+			
 			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
 			this.setzeObjekt(obj, aktPos);
 			this.setzeObjekt(spielfigur, neuPos);
