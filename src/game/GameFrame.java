@@ -1,7 +1,6 @@
 package game;
 
-import java.awt.BorderLayout;
-import java.awt.Panel;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -19,6 +18,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileFilter;
 
@@ -153,7 +153,8 @@ public class GameFrame extends JFrame implements KeyListener {
 	private JLabel herz3 = new JLabel(ICONHERZ3);
 
 	/** Panel für Anzeigenleiste deklariert */
-	private Panel leiste = new Panel();
+	private JPanel panelAnzeige = new JPanel();
+	private JPanel panelSpielfeld = new JPanel();
 
 	/** Button wird für Gewonnen- und Verlorenfenster deklariert */
 	private JButton gvschliessen;
@@ -190,15 +191,36 @@ public class GameFrame extends JFrame implements KeyListener {
 	 *             wirft Exception
 	 */
 	public GameFrame(String titel, int x, int y) throws Exception {
-		this.setResizable(true);
+		
+		/* Fenster-Eigenschaften setzen. */
+		this.setResizable(false);
 		this.setTitle(titel);
-		this.setLocation(x, y);
 		this.setSize(Konstanten.BREITE, Konstanten.HOEHE);
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setFocusable(true);
 		this.addKeyListener(this);
+		this.setVisible(true);
+		
+		/* Fenster-Komponenten erzeugen. */
+		Container contentPane = this.getContentPane();
+		contentPane.setLayout(null);
+		this.panelSpielfeld.setLayout(null);
 
+		this.panelSpielfeld.setBounds(contentPane.getBounds().x, contentPane.getBounds().y, 
+				contentPane.getBounds().width, 
+				contentPane.getBounds().height - (contentPane.getBounds().height / 10));
+		
+
+		this.panelAnzeige.setBounds(contentPane.getBounds().x, 
+				contentPane.getBounds().y + contentPane.getBounds().height - (contentPane.getBounds().height / 10), 
+				contentPane.getBounds().width, 
+				contentPane.getBounds().height - (contentPane.getBounds().height / 10));
+
+		getContentPane().add(panelSpielfeld);
+		getContentPane().add(panelAnzeige);
+
+		/* Spiel erzeugen. */
 		spiel = new Spiel();
 		chooseFile();
 		if (datei == null) {
@@ -207,12 +229,11 @@ public class GameFrame extends JFrame implements KeyListener {
 		spiel.init(datei);
 
 		setzeAnzeige();
-
-		getContentPane().add(leiste, BorderLayout.SOUTH);
+		
 
 		zeichnen(spiel.getAktuellesSpielfeld());
 
-		this.setVisible(true);
+
 		this.requestFocus();
 
 		musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
@@ -265,31 +286,39 @@ public class GameFrame extends JFrame implements KeyListener {
 	 *            Kommandozeilenparameter
 	 */
 	public void zeichnen(Spielfeld spielfeld) {
+		
+		this.panelSpielfeld.removeAll();
+
 		for (int i = 0; i < Konstanten.SPALTEN; i++) {
 			for (int j = 0; j < Konstanten.ZEILEN; j++) {
-				GameObject object = spielfeld
-						.gibObjekt(new java.awt.Point(i, j));
-				/* eigener Debugger ;-)*/
-				 System.out.println(object.getClass().getSimpleName() + ":" +
-				 object.getPicture());
-				 
+				
+				GameObject object = spielfeld.gibObjekt(new java.awt.Point(i, j));
 
+				/*
+				 * eigener Debugger ;-)
+				 * System.out.println(object.getClass().getSimpleName() + ":" +
+				 * object.getPicture());
+				 */
 				Icon icon = new ImageIcon(object.getPicture());
-				JLabel label = new JLabel(icon);
-				label.setBounds(i * Konstanten.SIZE, j * Konstanten.SIZE,
-						icon.getIconWidth(), icon.getIconHeight());
-				this.add(label);
+				JLabel label = new JLabel(new ImageIcon(object.getPicture()));
+				label.setBounds(i * Konstanten.SIZE, j * Konstanten.SIZE, icon.getIconWidth(), icon.getIconHeight());
+				this.panelSpielfeld.add(label);
 			}
 		}
+		
+		aktualisieren();
 	}
+	
 
 	/**
-	 * aktualisiert die Informationsleiste
-	 */
+	* aktualisiert die Informationsleiste
+	*/
 	public void aktualisieren() {
-		validate();
-		repaint();
+		
+		this.revalidate();
+		this.repaint();
 	}
+
 
 	/**
 	 * fragt die benötigten Variablen ab und setzt die Informationsleiste im
@@ -297,85 +326,82 @@ public class GameFrame extends JFrame implements KeyListener {
 	 */
 	public void setzeAnzeige() {
 
-		leiste.removeAll();
+		panelAnzeige.removeAll();
 
 		/* für die Levelanzeige */
 		int level = 0;
+//		int level = this.spiel.getSpielfeldNummer(); // So etwas sollte da eigentlich hin...
 		if (level == Konstanten.RAUMEINS) {
-			leiste.add(eins);
+			panelAnzeige.add(eins);
 		} else if (level == Konstanten.RAUMZWEI) {
-			leiste.add(eins);
+			panelAnzeige.add(eins);
 		} else if (level == Konstanten.RAUMDREI) {
-			leiste.add(eins);
+			panelAnzeige.add(eins);
 		} else if (level == Konstanten.RAUMVIER) {
-			leiste.add(zwei);
+			panelAnzeige.add(zwei);
 		} else if (level == Konstanten.RAUMFUENF) {
-			leiste.add(zwei);
+			panelAnzeige.add(zwei);
 		} else if (level == Konstanten.RAUMSECHS) {
-			leiste.add(zwei);
+			panelAnzeige.add(zwei);
 		} else if (level == Konstanten.RAUMSIEBEN) {
-			leiste.add(drei);
+			panelAnzeige.add(drei);
 		} else if (level == Konstanten.RAUMACHT) {
-			leiste.add(drei);
+			panelAnzeige.add(drei);
 		} else if (level == Konstanten.RAUMNEUN) {
-			leiste.add(drei);
+			panelAnzeige.add(drei);
 		}
-		aktualisieren();
 
 		/* für die Healthanzeige */
 		int health = spiel.getSpieler().getGesundheit();
 		if (health == Konstanten.VOLLH) {
-			leiste.add(lebenVoll);
+			panelAnzeige.add(lebenVoll);
 		} else if (health == Konstanten.DREIVIERTELH) {
-			leiste.add(lebenFast);
+			panelAnzeige.add(lebenFast);
 		} else if (health == Konstanten.HALBH) {
-			leiste.add(lebenHalb);
+			panelAnzeige.add(lebenHalb);
 		} else if (health == Konstanten.EINVIERTELH) {
-			leiste.add(lebenWenig);
+			panelAnzeige.add(lebenWenig);
 		}
-		aktualisieren();
 
 		/* für die Manaanzeige */
 		int mana = spiel.getSpieler().getMana();
 		if (mana == Konstanten.VOLLM) {
-			leiste.add(manaVoll);
+			panelAnzeige.add(manaVoll);
 		} else if (mana == Konstanten.HALBM) {
-			leiste.add(manaHalb);
+			panelAnzeige.add(manaHalb);
 		} else if (mana == Konstanten.LEERM) {
-			leiste.add(manaLeer);
+			panelAnzeige.add(manaLeer);
 		}
 
 		/* für die Rüstungsanzeige */
 		int ruestung = spiel.getSpieler().getRuestung();
 		if (ruestung == Konstanten.VOLLR) {
-			leiste.add(ruestungVoll);
+			panelAnzeige.add(ruestungVoll);
 		} else if (ruestung == Konstanten.HALBR) {
-			leiste.add(ruestungHalb);
+			panelAnzeige.add(ruestungHalb);
 		} else if (ruestung == Konstanten.LEERR) {
-			leiste.add(ruestungWeg);
+			panelAnzeige.add(ruestungWeg);
 		}
-		aktualisieren();
 
 		/* für die Goldanzeige */
 		int gold = spiel.getSpieler().getGold();
 		if (gold == Konstanten.GOLD0) {
-			leiste.add(gold0);
+			panelAnzeige.add(gold0);
 		} else if (gold == Konstanten.GOLD50) {
-			leiste.add(gold50);
+			panelAnzeige.add(gold50);
 		} else if (gold == Konstanten.GOLD100) {
-			leiste.add(gold100);
+			panelAnzeige.add(gold100);
 		} else if (gold == Konstanten.GOLD150) {
-			leiste.add(gold150);
+			panelAnzeige.add(gold150);
 		} else if (gold == Konstanten.GOLD200) {
-			leiste.add(gold200);
+			panelAnzeige.add(gold200);
 		} else if (gold == Konstanten.GOLD250) {
-			leiste.add(gold250);
+			panelAnzeige.add(gold250);
 		} else if (gold == Konstanten.GOLD300) {
-			leiste.add(gold300);
+			panelAnzeige.add(gold300);
 		} else if (gold == Konstanten.GOLD350) {
-			leiste.add(gold350);
+			panelAnzeige.add(gold350);
 		}
-		aktualisieren();
 
 		boolean bewaffnet = spiel.getSpieler().getBewaffnet();
 		boolean beschwertet = spiel.getSpieler().getBeschwertet();
@@ -383,43 +409,43 @@ public class GameFrame extends JFrame implements KeyListener {
 		if (!bewaffnet) {
 			if (!beschwertet) {
 				if (!halsband) {
-					leiste.add(keinEq);
+					panelAnzeige.add(keinEq);
 				} else if (halsband) {
-					leiste.add(hals);
+					panelAnzeige.add(hals);
 				}
 			} else if (beschwertet) {
 				if (!halsband) {
-					leiste.add(schwert);
+					panelAnzeige.add(schwert);
 				} else if (halsband) {
-					leiste.add(schwertHals);
+					panelAnzeige.add(schwertHals);
 				}
 			}
 		} else if (bewaffnet) {
 			if (!beschwertet) {
 				if (!halsband) {
-					leiste.add(brille);
+					panelAnzeige.add(brille);
 				} else if (halsband) {
-					leiste.add(brilleHals);
+					panelAnzeige.add(brilleHals);
 				}
 			} else if (beschwertet) {
 				if (!halsband) {
-					leiste.add(brilleSchwert);
+					panelAnzeige.add(brilleSchwert);
 				} else if (halsband) {
-					leiste.add(allesEq);
+					panelAnzeige.add(allesEq);
 				}
 			}
 		}
-		aktualisieren();
 
 		/* für die Lebenanzeige */
 		int leben = Konstanten.VOLLL;
 		if (leben == Konstanten.VOLLL) {
-			leiste.add(herz3);
+			panelAnzeige.add(herz3);
 		} else if (leben == Konstanten.ZWEIDRITTELL) {
-			leiste.add(herz2);
+			panelAnzeige.add(herz2);
 		} else if (leben == Konstanten.EINDRITTELL) {
-			leiste.add(herz1);
+			panelAnzeige.add(herz1);
 		}
+		
 		aktualisieren();
 
 		setzeLoadButton();
@@ -546,13 +572,14 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// nothing to do here
+		
+		this.spiel.aktion(arg0.getKeyCode());
+		this.zeichnen(this.spiel.getAktuellesSpielfeld());
+		this.setzeAnzeige();
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		this.spiel.aktion(arg0.getKeyCode());
-		this.zeichnen(this.spiel.getAktuellesSpielfeld());
 	}
 
 }

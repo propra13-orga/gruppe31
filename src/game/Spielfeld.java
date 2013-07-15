@@ -28,19 +28,19 @@ import java.awt.event.KeyEvent;
 /** ist für den jeweiligen Raum zuständig. das Spielfeld wird erstellt */
 public class Spielfeld {
 
-	/** Deklaration eines GameObject Arrays */
+	/** Speichert die Objekte auf diesem Spielfeld */
 	public final GameObject[][] feld;
 
-	/** Deklaration von Variablen für Zeilen und Spalten */
+	/** Speichert die Groesse des Spielfelds */
 	private int zeilen;
 	private int spalten;
-
+	
 	/** Deklaration von Feldern */
-	private Spieler spieler;
 	private Spiel spiel;
 	private NPC npc;
 	private NPC2 npc2;
 	private GameFrame gameFrame;
+
 
 	/**
 	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann für jeden
@@ -112,35 +112,39 @@ public class Spielfeld {
 	 */
 	public void aktion(Spieler spielfigur, int keyCode) {
 
-		/* Spielfigur Position abfragen */
-		Point position = spielfigur.getPosition();
-		Point fokus = position;
+		/* Alte und neue Position festlegen. */
+		Point aktPos = spielfigur.getPosition();
+		Point neuPos = new Point(aktPos);
 
-		System.out.print(position);
-
-		/* Abfragen für die Pfeiltasten */
 		if (keyCode == KeyEvent.VK_LEFT) {
-			fokus.x--;
+			neuPos.y--;
 		} else if (keyCode == KeyEvent.VK_RIGHT) {
-			fokus.x++;
+			neuPos.y++;
 		} else if (keyCode == KeyEvent.VK_UP) {
-			fokus.y--;
+			neuPos.x--;
 		} else if (keyCode == KeyEvent.VK_DOWN) {
-			fokus.y++;
+			neuPos.x++;
+		} else {
+			
+			/* Andere Tasten wollen wir nicht beruecksichtigen. */
+			return;
 		}
 
-		GameObject obj = this.gibObjekt(fokus);
+		GameObject obj = this.gibObjekt(neuPos);
+		boolean sollBewegtWerden = false;
 
 		/* Objekte drum herum prüfen */
 		if (obj instanceof Rasen) {
-			position = fokus;
+			
+			sollBewegtWerden = true;
 		} else if (obj instanceof Grenze) {
-			fokus = position;
+			
+			/* Bewegung ignorieren */
 		} else if (obj instanceof Huette) {
-			fokus = position;
+
+			/* Bewegung ignorieren. */
 		} else if (obj instanceof Carlos) {
-			npc = new NPC();
-			fokus = position;
+//			npc = new NPC();
 		} else if (obj instanceof Checkpoint) {
 			//Checkpoint();
 		} else if (obj instanceof Weiter) {
@@ -151,43 +155,50 @@ public class Spielfeld {
 			gameFrame.gewonnen();
 		} else if (obj instanceof Brille) {
 			spielfigur.setBewaffnet(true);
-			position = fokus;
+			sollBewegtWerden = true;
 		} else if (obj instanceof Gold) {
-			//spielfigur.setGold(+50);
-			position = fokus;
+			//spieler.setGold(+50);
+			sollBewegtWerden = true;
 		} else if (obj instanceof Health) {
 			spielfigur.setGesundheit(Konstanten.VOLLH);
-			position = fokus;
+			sollBewegtWerden = true;
 		} else if (obj instanceof Mana) {
 			spielfigur.setMana(Konstanten.VOLLM);
-			position = fokus;
+			sollBewegtWerden = true;
 		} else if (obj instanceof Ruestung) {
 			spielfigur.setHalsband(true);
-			position = fokus;
+			sollBewegtWerden = true;
 		} else if (obj instanceof Schwert) {
 			spielfigur.setBeschwertet(true);
-			position = fokus;
+			sollBewegtWerden = true;
 		} else if (obj instanceof Shophealth) {
 			spielfigur.setGesundheit(Konstanten.VOLLH);
-			//spielfigur.setGold(-50);
-			position = fokus;
+			//spieler.setGold(-50);
+			/* Bewegung ignorieren. */
 		} else if (obj instanceof Shopmana) {
 			spielfigur.setMana(Konstanten.VOLLM);
-			//spielfigur.setGold(-50);
-			position = fokus;
+			//spieler.setGold(-50);
+			/* Bewegung ignorieren. */
 		} else if (obj instanceof Shopruestung) {
 			spielfigur.setHalsband(true);
-			//spielfigur.setGold(-50);
-			position = fokus;
+			//spieler.setGold(-50);
+			/* Bewegung ignorieren. */
 		} else if (obj instanceof Luke) {
 			npc2 = new NPC2();
-			fokus = position;
+			/* Bewegung ignorieren. */
 		} else if (obj instanceof SchalterZu) {
 			//
 		}
 
-		/* Bewegung durchführen */
-		spielfigur.setPosition(position);
+
+		if (sollBewegtWerden) {
+			
+			/* Bewegung durchfuehren. */
+			this.setzeObjekt(obj, aktPos);
+			this.setzeObjekt(spielfigur, neuPos);
+
+			spielfigur.setPosition(neuPos);
+		}
 	}
 
 	/*
