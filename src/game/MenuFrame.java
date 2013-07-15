@@ -30,6 +30,7 @@ public class MenuFrame extends JFrame {
 	/** Deklaration der Buttons für MenuFrame */
 	private JButton start;
 	private JButton start2;
+	private JButton load;
 	private JButton control;
 	private JButton ende;
 
@@ -55,19 +56,23 @@ public class MenuFrame extends JFrame {
 
 		this.setResizable(false);
 		this.setTitle("Menu");
-		this.setSize(Konstanten.BREITE - 100, Konstanten.HOEHE - 100);
+		this.setSize(Konstanten.BREITEMF, Konstanten.HOEHEMF);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setLayout(null);
 
-		start = new JButton("Spiel starten");
-		start.setBounds(350, 300, 200, 40);
+		start = new JButton("Neues Spiel starten");
+		start.setBounds(350, 250, 200, 40);
 		this.add(start);
 
 		start2 = new JButton("Netzwerkmodus");
-		start2.setBounds(350, 350, 200, 40);
+		start2.setBounds(350, 300, 200, 40);
 		this.add(start2);
+		
+		load = new JButton("Spiel laden");
+		load.setBounds(350, 350, 200, 40);
+		this.add(load);
 
 		control = new JButton("Steuerung");
 		control.setBounds(350, 400, 200, 40);
@@ -102,6 +107,16 @@ public class MenuFrame extends JFrame {
 
 			}
 		};
+		
+		ActionListener alload = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					gameframe = new GameFrame("Erna's Adventure", 100,100);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		};
 
 		ActionListener alsteuerung = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -117,6 +132,7 @@ public class MenuFrame extends JFrame {
 
 		start.addActionListener(alstart);
 		start2.addActionListener(alstart2);
+		load.addActionListener(alload);
 		control.addActionListener(alsteuerung);
 		ende.addActionListener(alende);
 	}

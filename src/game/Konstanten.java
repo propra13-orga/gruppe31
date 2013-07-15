@@ -100,7 +100,11 @@ public final class Konstanten {
 	public static final int GOLD300 = 300;
 	public static final int GOLD350 = 350;
 
-	/** die Groessen fuer das Fenster */
+	/** die Groessen fuer das MenuFrame */
+	public static final int BREITEMF = 800;
+	public static final int HOEHEMF = 600;
+	
+	/** die Groessen fuer das GameFrame */
 	public static final int BREITE = 900;
 	public static final int HOEHE = 700;
 
