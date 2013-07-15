@@ -133,7 +133,6 @@ public class Spielfeld {
 
 		/* Objekte drum herum prüfen */
 		if (obj instanceof Rasen) {
-			this.setzeObjekt(obj, position);
 			position = fokus;
 		} else if (obj instanceof Grenze) {
 			fokus = position;
@@ -141,6 +140,7 @@ public class Spielfeld {
 			fokus = position;
 		} else if (obj instanceof Carlos) {
 			npc = new NPC();
+			fokus = position;
 		} else if (obj instanceof Checkpoint) {
 			//Checkpoint();
 		} else if (obj instanceof Weiter) {
@@ -150,34 +150,34 @@ public class Spielfeld {
 		} else if (obj instanceof Ziel) {
 			gameFrame.gewonnen();
 		} else if (obj instanceof Brille) {
-			spieler.setBewaffnet(true);
+			spielfigur.setBewaffnet(true);
 			position = fokus;
 		} else if (obj instanceof Gold) {
-			//spieler.setGold(+50);
+			//spielfigur.setGold(+50);
 			position = fokus;
 		} else if (obj instanceof Health) {
-			spieler.setGesundheit(Konstanten.VOLLH);
+			spielfigur.setGesundheit(Konstanten.VOLLH);
 			position = fokus;
 		} else if (obj instanceof Mana) {
-			spieler.setMana(Konstanten.VOLLM);
+			spielfigur.setMana(Konstanten.VOLLM);
 			position = fokus;
 		} else if (obj instanceof Ruestung) {
-			spieler.setHalsband(true);
+			spielfigur.setHalsband(true);
 			position = fokus;
 		} else if (obj instanceof Schwert) {
-			spieler.setBeschwertet(true);
+			spielfigur.setBeschwertet(true);
 			position = fokus;
 		} else if (obj instanceof Shophealth) {
-			spieler.setGesundheit(Konstanten.VOLLH);
-			//spieler.setGold(-50);
+			spielfigur.setGesundheit(Konstanten.VOLLH);
+			//spielfigur.setGold(-50);
 			position = fokus;
 		} else if (obj instanceof Shopmana) {
-			spieler.setMana(Konstanten.VOLLM);
-			//spieler.setGold(-50);
+			spielfigur.setMana(Konstanten.VOLLM);
+			//spielfigur.setGold(-50);
 			position = fokus;
 		} else if (obj instanceof Shopruestung) {
-			spieler.setHalsband(true);
-			//spieler.setGold(-50);
+			spielfigur.setHalsband(true);
+			//spielfigur.setGold(-50);
 			position = fokus;
 		} else if (obj instanceof Luke) {
 			npc2 = new NPC2();
@@ -187,7 +187,7 @@ public class Spielfeld {
 		}
 
 		/* Bewegung durchführen */
-		this.spieler.setPosition(position);
+		spielfigur.setPosition(position);
 	}
 
 	/*
