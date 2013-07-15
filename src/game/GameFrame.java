@@ -421,7 +421,28 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 		aktualisieren();
 
+		setzeLoadButton();
 		setzeSaveButton();
+	}
+	
+	public void setzeLoadButton() {
+		save = new JButton("Laden");
+
+		ActionListener alsave = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					new GameFrame("Erna's Adventure", 100,100);
+					dispose();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		};
+
+		save.addActionListener(alsave);
+		save.setBounds(Konstanten.XLOAD, Konstanten.YLOAD,
+				Konstanten.BREITELOAD, Konstanten.HOEHELOAD);
+		this.add(save);
 	}
 
 	public void setzeSaveButton() {

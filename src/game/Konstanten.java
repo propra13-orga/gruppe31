@@ -143,11 +143,17 @@ public final class Konstanten {
 	public static final int XCLIENT = 650;
 	public static final int YSERVERCLIENT = 100;
 	
+	/** Postionen für Loadbutton*/
+	public static final int XLOAD = 750;
+	public static final int YLOAD  = 550;
+	public static final int BREITELOAD  = 100;
+	public static final int HOEHELOAD  = 25;
+	
 	/** Postionen für Savebutton*/
 	public static final int XSAVE = 750;
-	public static final int YSAVE = 550;
+	public static final int YSAVE = 575;
 	public static final int BREITESAVE = 100;
-	public static final int HOEHESAVE = 50;
+	public static final int HOEHESAVE = 25;
 
 	/**
 	 * privater Konstruktor, der verhindert, dass von außen ein Exemplar dieser
