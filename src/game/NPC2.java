@@ -51,11 +51,11 @@ public class NPC2 {
 
 
 		weiter = new JButton("Weiter");
-		weiter.setBounds(0, 500, 200, 30);
+		weiter.setBounds(Konstanten.XWEITER, Konstanten.YWEITER, Konstanten.BREITEWEITER, Konstanten.HOEHEWEITER);
 		frame.add(weiter);
 
 		skip = new JButton("Überspringen");
-		skip.setBounds(0, 532, 200, 30);
+		skip.setBounds(Konstanten.XSKIP, Konstanten.YSKIP, Konstanten.BREITESKIP, Konstanten.HOEHESKIP);
 		frame.add(skip);
 
 		ActionListener alweiter = new ActionListener() {

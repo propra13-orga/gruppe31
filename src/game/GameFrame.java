@@ -1,7 +1,5 @@
 package game;
 
-import game.figuren.Spieler;
-
 import java.awt.BorderLayout;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
@@ -109,50 +107,50 @@ public class GameFrame extends JFrame implements KeyListener {
 			+ "/src/game/Images/Herz3.png");
 
 	/** Labels für Anzeige des aktuellen Levels deklariert */
-	private JLabel EINS = new JLabel(ICONEINS);
-	private JLabel ZWEI = new JLabel(ICONZWEI);
-	private JLabel DREI = new JLabel(ICONDREI);
+	private JLabel eins = new JLabel(ICONEINS);
+	private JLabel zwei = new JLabel(ICONZWEI);
+	private JLabel drei = new JLabel(ICONDREI);
 
 	/** Labels für Anzeige der Gesundheitslietse deklariert */
-	private JLabel LEBENVOLL = new JLabel(ICONLEBENVOLL);
-	private JLabel LEBENFAST = new JLabel(ICONLEBENFAST);
-	private JLabel LEBENHALB = new JLabel(ICONLEBENHALB);
-	private JLabel LEBENWENIG = new JLabel(ICONLEBENWENIG);
+	private JLabel lebenVoll = new JLabel(ICONLEBENVOLL);
+	private JLabel lebenFast = new JLabel(ICONLEBENFAST);
+	private JLabel lebenHalb = new JLabel(ICONLEBENHALB);
+	private JLabel lebenWenig = new JLabel(ICONLEBENWENIG);
 
 	/** Labels für die Manaanzeige deklariert */
-	private JLabel MANAVOLL = new JLabel(ICONMANAVOLL);
-	private JLabel MANAHALB = new JLabel(ICONMANAHALB);
-	private JLabel MANALEER = new JLabel(ICONMANALEER);
+	private JLabel manaVoll = new JLabel(ICONMANAVOLL);
+	private JLabel manaHalb = new JLabel(ICONMANAHALB);
+	private JLabel manaLeer = new JLabel(ICONMANALEER);
 
 	/** Labels für die Ruestungsanzeige deklariert */
-	private JLabel RUESTUNGVOLL = new JLabel(ICONRUESTUNGVOLL);
-	private JLabel RUESTUNGHALB = new JLabel(ICONRUESTUNGHALB);
-	private JLabel RUESTUNGWEG = new JLabel(ICONRUESTUNGWEG);
+	private JLabel ruestungVoll = new JLabel(ICONRUESTUNGVOLL);
+	private JLabel ruestungHalb = new JLabel(ICONRUESTUNGHALB);
+	private JLabel ruestungWeg = new JLabel(ICONRUESTUNGWEG);
 
 	/** Labels für die Goldanzeige deklariert */
-	private JLabel GOLD0 = new JLabel(ICON0GOLD);
-	private JLabel GOLD50 = new JLabel(ICON50GOLD);
-	private JLabel GOLD100 = new JLabel(ICON100GOLD);
-	private JLabel GOLD150 = new JLabel(ICON150GOLD);
-	private JLabel GOLD200 = new JLabel(ICON200GOLD);
-	private JLabel GOLD250 = new JLabel(ICON250GOLD);
-	private JLabel GOLD300 = new JLabel(ICON300GOLD);
-	private JLabel GOLD350 = new JLabel(ICON350GOLD);
+	private JLabel gold0 = new JLabel(ICON0GOLD);
+	private JLabel gold50 = new JLabel(ICON50GOLD);
+	private JLabel gold100 = new JLabel(ICON100GOLD);
+	private JLabel gold150 = new JLabel(ICON150GOLD);
+	private JLabel gold200 = new JLabel(ICON200GOLD);
+	private JLabel gold250 = new JLabel(ICON250GOLD);
+	private JLabel gold300 = new JLabel(ICON300GOLD);
+	private JLabel gold350 = new JLabel(ICON350GOLD);
 
 	/** Labels für die Anzeige der aktuellen Waffe(n)deklariert */
-	private JLabel KEINRQ = new JLabel(ICONKEINEQ);
-	private JLabel SCHWERT = new JLabel(ICONSCHWERT);
-	private JLabel BRILLE = new JLabel(ICONBRILLE);
-	private JLabel HALS = new JLabel(ICONHALS);
-	private JLabel SCHWERTHALS = new JLabel(ICONSCHWERTHALS);
-	private JLabel BRILLESCHWERT = new JLabel(ICONBRILLESCHWERT);
-	private JLabel BRILLEHALS = new JLabel(ICONBRILLEHALS);
-	private JLabel ALLESEQ = new JLabel(ICONALLESEQ);
+	private JLabel keinEq = new JLabel(ICONKEINEQ);
+	private JLabel schwert = new JLabel(ICONSCHWERT);
+	private JLabel brille = new JLabel(ICONBRILLE);
+	private JLabel hals = new JLabel(ICONHALS);
+	private JLabel schwertHals = new JLabel(ICONSCHWERTHALS);
+	private JLabel brilleSchwert = new JLabel(ICONBRILLESCHWERT);
+	private JLabel brilleHals = new JLabel(ICONBRILLEHALS);
+	private JLabel allesEq = new JLabel(ICONALLESEQ);
 
 	/** Labels für die Anzeige der Leben deklariert */
-	private JLabel HERZ1 = new JLabel(ICONHERZ1);
-	private JLabel HERZ2 = new JLabel(ICONHERZ2);
-	private JLabel HERZ3 = new JLabel(ICONHERZ3);
+	private JLabel herz1 = new JLabel(ICONHERZ1);
+	private JLabel herz2 = new JLabel(ICONHERZ2);
+	private JLabel herz3 = new JLabel(ICONHERZ3);
 
 	/** Panel für Anzeigenleiste deklariert */
 	private Panel leiste = new Panel();
@@ -162,6 +160,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/** Deklaration von Feldern */
 	private Spiel spiel;
+	private Musik musik;
 
 	/** Deklaration eines Strings Datei */
 	private String datei;
@@ -182,10 +181,13 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * Zeichner zeichnet das entsprechende Spielfeld
 	 * 
 	 * @param y
+	 *            Parameter für y-Position
 	 * @param x
+	 *            Paramter für x-Position
 	 * @param titel
-	 * 
+	 *            Parameter für Fenstertitel
 	 * @throws Exception
+	 *             wirft Exception
 	 */
 	public GameFrame(String titel, int x, int y) throws Exception {
 		this.setResizable(true);
@@ -213,7 +215,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setVisible(true);
 		this.requestFocus();
 
-		Musik.play(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
+		musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
 	}
 
 	/**
@@ -292,7 +294,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/**
 	 * fragt die benötigten Variablen ab und setzt die Informationsleiste im
-	 * unteren Bereich des Spielfensters
+	 * unteren Bereich des Spielfensters und spielt Musik ab
 	 */
 	public void setzeAnzeige() {
 
@@ -301,110 +303,110 @@ public class GameFrame extends JFrame implements KeyListener {
 		/* für die Levelanzeige */
 		int level = 0;
 		if (level == Konstanten.RAUMEINS) {
-			leiste.add(EINS);
+			leiste.add(eins);
 		} else if (level == Konstanten.RAUMZWEI) {
-			leiste.add(EINS);
+			leiste.add(eins);
 		} else if (level == Konstanten.RAUMDREI) {
-			leiste.add(EINS);
+			leiste.add(eins);
 		} else if (level == Konstanten.RAUMVIER) {
-			leiste.add(ZWEI);
+			leiste.add(zwei);
 		} else if (level == Konstanten.RAUMFUENF) {
-			leiste.add(ZWEI);
+			leiste.add(zwei);
 		} else if (level == Konstanten.RAUMSECHS) {
-			leiste.add(ZWEI);
+			leiste.add(zwei);
 		} else if (level == Konstanten.RAUMSIEBEN) {
-			leiste.add(DREI);
+			leiste.add(drei);
 		} else if (level == Konstanten.RAUMACHT) {
-			leiste.add(DREI);
+			leiste.add(drei);
 		} else if (level == Konstanten.RAUMNEUN) {
-			leiste.add(DREI);
+			leiste.add(drei);
 		}
 		aktualisieren();
 
 		/* für die Healthanzeige */
 		int health = spiel.getSpieler().getGesundheit();
 		if (health == Konstanten.VOLLH) {
-			leiste.add(LEBENVOLL);
+			leiste.add(lebenVoll);
 		} else if (health == Konstanten.DREIVIERTELH) {
-			leiste.add(LEBENFAST);
+			leiste.add(lebenFast);
 		} else if (health == Konstanten.HALBH) {
-			leiste.add(LEBENHALB);
+			leiste.add(lebenHalb);
 		} else if (health == Konstanten.EINVIERTELH) {
-			leiste.add(LEBENWENIG);
+			leiste.add(lebenWenig);
 		}
 		aktualisieren();
 
 		/* für die Manaanzeige */
 		int mana = spiel.getSpieler().getMana();
 		if (mana == Konstanten.VOLLM) {
-			leiste.add(MANAVOLL);
+			leiste.add(manaVoll);
 		} else if (mana == Konstanten.HALBM) {
-			leiste.add(MANAHALB);
+			leiste.add(manaHalb);
 		} else if (mana == Konstanten.LEERM) {
-			leiste.add(MANALEER);
+			leiste.add(manaLeer);
 		}
 
 		/* für die Rüstungsanzeige */
 		int ruestung = spiel.getSpieler().getRuestung();
 		if (ruestung == Konstanten.VOLLR) {
-			leiste.add(RUESTUNGVOLL);
+			leiste.add(ruestungVoll);
 		} else if (ruestung == Konstanten.HALBR) {
-			leiste.add(RUESTUNGHALB);
+			leiste.add(ruestungHalb);
 		} else if (ruestung == Konstanten.LEERR) {
-			leiste.add(RUESTUNGWEG);
+			leiste.add(ruestungWeg);
 		}
 		aktualisieren();
 
 		/* für die Goldanzeige */
 		int gold = spiel.getSpieler().getGold();
 		if (gold == Konstanten.GOLD0) {
-			leiste.add(GOLD0);
+			leiste.add(gold0);
 		} else if (gold == Konstanten.GOLD50) {
-			leiste.add(GOLD50);
+			leiste.add(gold50);
 		} else if (gold == Konstanten.GOLD100) {
-			leiste.add(GOLD100);
+			leiste.add(gold100);
 		} else if (gold == Konstanten.GOLD150) {
-			leiste.add(GOLD150);
+			leiste.add(gold150);
 		} else if (gold == Konstanten.GOLD200) {
-			leiste.add(GOLD200);
+			leiste.add(gold200);
 		} else if (gold == Konstanten.GOLD250) {
-			leiste.add(GOLD250);
+			leiste.add(gold250);
 		} else if (gold == Konstanten.GOLD300) {
-			leiste.add(GOLD300);
+			leiste.add(gold300);
 		} else if (gold == Konstanten.GOLD350) {
-			leiste.add(GOLD350);
+			leiste.add(gold350);
 		}
 		aktualisieren();
 
 		boolean bewaffnet = spiel.getSpieler().getBewaffnet();
 		boolean beschwertet = spiel.getSpieler().getBeschwertet();
 		boolean halsband = spiel.getSpieler().getHalsband();
-		if (bewaffnet == false) {
-			if (beschwertet == false) {
-				if (halsband == false) {
-					leiste.add(KEINRQ);
-				} else if (halsband == true) {
-					leiste.add(HALS);
+		if (!bewaffnet) {
+			if (!beschwertet) {
+				if (!halsband) {
+					leiste.add(keinEq);
+				} else if (halsband) {
+					leiste.add(hals);
 				}
-			} else if (beschwertet == true) {
-				if (halsband == false) {
-					leiste.add(SCHWERT);
-				} else if (halsband == true) {
-					leiste.add(SCHWERTHALS);
+			} else if (beschwertet) {
+				if (!halsband) {
+					leiste.add(schwert);
+				} else if (halsband) {
+					leiste.add(schwertHals);
 				}
 			}
-		} else if (bewaffnet == true) {
-			if (beschwertet == false) {
-				if (halsband == false) {
-					leiste.add(BRILLE);
-				} else if (halsband == true) {
-					leiste.add(BRILLEHALS);
+		} else if (bewaffnet) {
+			if (!beschwertet) {
+				if (!halsband) {
+					leiste.add(brille);
+				} else if (halsband) {
+					leiste.add(brilleHals);
 				}
-			} else if (beschwertet == true) {
-				if (halsband == false) {
-					leiste.add(BRILLESCHWERT);
-				} else if (halsband == true) {
-					leiste.add(ALLESEQ);
+			} else if (beschwertet) {
+				if (!halsband) {
+					leiste.add(brilleSchwert);
+				} else if (halsband) {
+					leiste.add(allesEq);
 				}
 			}
 		}
@@ -413,25 +415,27 @@ public class GameFrame extends JFrame implements KeyListener {
 		/* für die Lebenanzeige */
 		int leben = Konstanten.VOLLL;
 		if (leben == Konstanten.VOLLL) {
-			leiste.add(HERZ3);
+			leiste.add(herz3);
 		} else if (leben == Konstanten.ZWEIDRITTELL) {
-			leiste.add(HERZ2);
+			leiste.add(herz2);
 		} else if (leben == Konstanten.EINDRITTELL) {
-			leiste.add(HERZ1);
+			leiste.add(herz1);
 		}
 		aktualisieren();
 
 		setzeLoadButton();
 		setzeSaveButton();
 	}
-	
+
+	/** setzt einen Laden Button auf das GameFrame */
 	public void setzeLoadButton() {
 		save = new JButton("Laden");
 
 		ActionListener alsave = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					new GameFrame("Erna's Adventure", 100,100);
+					new GameFrame("Erna's Adventure", Konstanten.XGF,
+							Konstanten.YGF);
 					dispose();
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -445,18 +449,21 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.add(save);
 	}
 
+	/** setzt einen Speichern Button auf das GameFrame */
 	public void setzeSaveButton() {
 		save = new JButton("Speichern");
 
 		ActionListener alsave = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try{ 
-		            PrintWriter pWriter = new PrintWriter(new FileWriter(Konstanten.DIRECTION + "/src/game/Szenario/test.txt")); 
-		            pWriter.println("Ernas Adventure möchte gespeichert werden !"); 
-		            pWriter.flush(); 
-		        }catch(IOException ioe){ 
-		            ioe.printStackTrace(); 
-		        } 
+				try {
+					PrintWriter pWriter = new PrintWriter(new FileWriter(
+							Konstanten.DIRECTION
+									+ "/src/game/Szenario/test.txt"));
+					pWriter.println("Ernas Adventure möchte gespeichert werden !");
+					pWriter.flush();
+				} catch (IOException ioe) {
+					ioe.printStackTrace();
+				}
 			}
 		};
 
@@ -487,7 +494,8 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setVisible(true);
 
 		gvschliessen = new JButton(schliessen);
-		gvschliessen.setBounds(550, 450, 200, 40);
+		gvschliessen.setBounds(Konstanten.XGV, Konstanten.YGV,
+				Konstanten.BREITEGV, Konstanten.HOEHEGV);
 		this.add(gvschliessen);
 
 		ActionListener alschliessen = new ActionListener() {
@@ -520,7 +528,8 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.setVisible(true);
 
 		gvschliessen = new JButton(schliessen);
-		gvschliessen.setBounds(550, 450, 200, 40);
+		gvschliessen.setBounds(Konstanten.XGV, Konstanten.YGV,
+				Konstanten.BREITEGV, Konstanten.HOEHEGV);
 		this.add(gvschliessen);
 
 		ActionListener alschliessen = new ActionListener() {

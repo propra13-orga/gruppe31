@@ -58,4 +58,6 @@ public abstract class Spielfigur extends GameObject {
 	public void setGesundheit(int gesundheit) {
 		this.gesundheit = gesundheit;
 	}
+	
+	
 }

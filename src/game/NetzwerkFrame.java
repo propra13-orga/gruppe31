@@ -1,23 +1,18 @@
 package game;
 
-
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.PrintWriter;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileFilter;
 
 /**
  * erstellt die nötige GUI für das Netzwerk
@@ -44,15 +39,17 @@ public class NetzwerkFrame extends JFrame {
 	private TextArea ausgabe;
 
 	/** Deklaration der Felder */
-	private Spiel spiel;
-	private GameFrame gameFrame;
-	
+	private Musik musik;
+
 	/** Button im Fenster */
 	private JButton btSende;
 
+	/** Deklaration für Text für Button */
+	private String stSende = "Send";
+
 	/**
 	 * 
-	 * Konstruktor ruft die Initialisierungsmethode auf
+	 * Konstruktor ruft die Initialisierungsmethode auf und spielt Musik ab
 	 * 
 	 * @param titel
 	 *            erwartet Titel für Fenster
@@ -64,14 +61,16 @@ public class NetzwerkFrame extends JFrame {
 	 *            Angabe für x-Position
 	 * @param y
 	 *            Angabe für y-Position
-	 * @throws Exception 
+	 * @throws Exception
+	 *             wirft Exception
 	 */
-	NetzwerkFrame(String titel, PrintWriter out, BufferedReader in, int x, int y) throws Exception {
+	NetzwerkFrame(String titel, PrintWriter out, BufferedReader in, int x, int y)
+			throws Exception {
 		ausgehend = out;
 		eintreffend = in;
 		init(titel, x, y);
-		
-		Musik.play(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
+
+		musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
 	}
 
 	/**
@@ -83,7 +82,8 @@ public class NetzwerkFrame extends JFrame {
 	 *            x-Position des Fensters
 	 * @param y
 	 *            y-Position des Fensters
-	 * @throws Exception 
+	 * @throws Exception
+	 *             wirft Exception
 	 */
 	void init(String titel, int x, int y) throws Exception {
 		setLocation(x, y);
@@ -102,7 +102,7 @@ public class NetzwerkFrame extends JFrame {
 		/* ActionListener wird erzeugt */
 		sende = new Action(ausgehend, eintreffend, eingabe);
 		btSende.setText("Abschicken");
-		btSende.setActionCommand("Send");
+		btSende.setActionCommand(stSende);
 		btSende.addActionListener(sende);
 
 		this.setLayout(new BorderLayout());
@@ -139,19 +139,24 @@ public class NetzwerkFrame extends JFrame {
 }
 
 /**
+ * verarbeitet alle Aktionen auf den Netzwerkfenstern
  * 
  * @author Denise
  * 
  */
 class Action implements ActionListener {
-	/**
-	 * Deklaration von PrintWriter, BufferedReader und TextArea
-	 */
+
+	/** Deklaration von PrintWriter, BufferedReader und TextArea */
 	PrintWriter ausgehendPr;
 	BufferedReader eintreffendBr;
 	TextArea eingabeTa;
 
+	/** Deklaration für Text für Button */
+	private String stSende = "Send";
+
 	/**
+	 * weist PrintWriter, Buffered Reader und TextArea die entsprechenden
+	 * Parameter zu
 	 * 
 	 * @param out
 	 *            Kommandozeilenparamter
@@ -167,10 +172,13 @@ class Action implements ActionListener {
 	}
 
 	/**
+	 * dem PrintWriter wird der Text aus der TextArea übergeben und gesendet
 	 * 
+	 * @param f
+	 *            Paramter für ActionEvent
 	 */
-	public void actionPerformed(ActionEvent arg0) {
-		if (arg0.getActionCommand().equals("Send")) {
+	public void actionPerformed(ActionEvent f) {
+		if (f.getActionCommand().equals(stSende)) {
 			String ausgabe = eingabeTa.getText() + "\n";
 			ausgehendPr.print(ausgabe);
 			ausgehendPr.flush();

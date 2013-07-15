@@ -40,6 +40,9 @@ public class MenuFrame extends JFrame {
 
 	/** Deklaration von Feldern */
 	private GameFrame gameframe;
+	
+	/** Deklaration des Fenstertitels */
+	private String spiel = "Erna's Adventure";
 
 	/**
 	 * Konstruktor, der alle Einstellungen des Menüfensters aufruft
@@ -63,23 +66,28 @@ public class MenuFrame extends JFrame {
 		this.setLayout(null);
 
 		start = new JButton("Neues Spiel starten");
-		start.setBounds(350, 250, 200, 40);
+		start.setBounds(Konstanten.XBUTTON, Konstanten.YSTART, Konstanten.BREITEBUTTON,
+				Konstanten.HOEHEBUTTON);
 		this.add(start);
 
 		start2 = new JButton("Netzwerkmodus");
-		start2.setBounds(350, 300, 200, 40);
+		start2.setBounds(Konstanten.XBUTTON, Konstanten.YSTART2, Konstanten.BREITEBUTTON,
+				Konstanten.HOEHEBUTTON);
 		this.add(start2);
-		
+
 		load = new JButton("Spiel laden");
-		load.setBounds(350, 350, 200, 40);
+		load.setBounds(Konstanten.XBUTTON, Konstanten.YLADEN, Konstanten.BREITEBUTTON,
+				Konstanten.HOEHEBUTTON);
 		this.add(load);
 
 		control = new JButton("Steuerung");
-		control.setBounds(350, 400, 200, 40);
+		control.setBounds(Konstanten.XBUTTON, Konstanten.YSTEUERUNG, Konstanten.BREITEBUTTON,
+				Konstanten.HOEHEBUTTON);
 		this.add(control);
 
 		ende = new JButton("Beenden");
-		ende.setBounds(350, 450, 200, 40);
+		ende.setBounds(Konstanten.XBUTTON, Konstanten.YENDE, Konstanten.BREITEBUTTON,
+				Konstanten.HOEHEBUTTON);
 		this.add(ende);
 
 		JLabel label = new JLabel("Made by Pinky and the Gang");
@@ -89,7 +97,8 @@ public class MenuFrame extends JFrame {
 		ActionListener alstart = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					gameframe = new GameFrame("Erna's Adventure", 100,100);
+					gameframe = new GameFrame(spiel, Konstanten.XGF,
+							Konstanten.YGF);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -107,11 +116,11 @@ public class MenuFrame extends JFrame {
 
 			}
 		};
-		
+
 		ActionListener alload = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					gameframe = new GameFrame("Erna's Adventure", 100,100);
+					gameframe = new GameFrame(spiel, 100, 100);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

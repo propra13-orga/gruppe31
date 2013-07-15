@@ -66,31 +66,31 @@ public class Spieler extends Spielfigur {
 		setGold(0);
 		setRuestung(0);
 
-		if (getBewaffnet() == true) {
-			if (beschwertet == true) {
-				if (halsband == true) {
+		if (getBewaffnet()) {
+			if (beschwertet) {
+				if (halsband) {
 					bild = ICONTERMINATORERNA;
-				} else if (halsband == false) {
+				} else if (!halsband) {
 					bild = ICONVOLLERNA;
 				}
-			} else if (beschwertet == false) {
-				if (halsband == true) {
+			} else if (!beschwertet) {
+				if (halsband) {
 					bild = ICONPUDELBEIDES;
-				} else if (halsband == false) {
+				} else if (!halsband) {
 					bild = ICONAGGROERNA;
 				}
 			}
-		} else if (getBewaffnet() == false) {
-			if (beschwertet == true) {
-				if (halsband == true) {
+		} else if (!getBewaffnet()) {
+			if (beschwertet) {
+				if (halsband) {
 					bild = ICONPUDELSCHWERTHALSBAND;
-				} else if (halsband == false) {
+				} else if (!halsband) {
 					bild = ICONSCHWERTERNA;
 				}
-			} else if (beschwertet == false) {
-				if (halsband == true) {
+			} else if (!beschwertet) {
+				if (halsband) {
 					bild = ICONPUDELHALSBAND;
-				} else if (halsband == false) {
+				} else if (!halsband) {
 					bild = ICONPUDEL;
 				}
 			}

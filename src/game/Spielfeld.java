@@ -105,7 +105,7 @@ public class Spielfeld {
 	/**
 	 * Spielfigur wird bewegt
 	 * 
-	 * @param figur
+	 * @param spielfigur
 	 *            Spielfigur wird übergeben
 	 * @param keyCode
 	 *            KeyCode wird übergeben
@@ -142,7 +142,7 @@ public class Spielfeld {
 		} else if (obj instanceof Carlos) {
 			npc = new NPC();
 		} else if (obj instanceof Checkpoint) {
-			// Checkpoint();
+			//Checkpoint();
 		} else if (obj instanceof Weiter) {
 			spiel.levelWeiter(1);
 		} else if (obj instanceof Zurueck) {
@@ -153,7 +153,7 @@ public class Spielfeld {
 			spieler.setBewaffnet(true);
 			position = fokus;
 		} else if (obj instanceof Gold) {
-			spieler.setGold(+50);
+			//spieler.setGold(+50);
 			position = fokus;
 		} else if (obj instanceof Health) {
 			spieler.setGesundheit(Konstanten.VOLLH);
@@ -169,21 +169,21 @@ public class Spielfeld {
 			position = fokus;
 		} else if (obj instanceof Shophealth) {
 			spieler.setGesundheit(Konstanten.VOLLH);
-			spieler.setGold(-50);
+			//spieler.setGold(-50);
 			position = fokus;
 		} else if (obj instanceof Shopmana) {
 			spieler.setMana(Konstanten.VOLLM);
-			spieler.setGold(-50);
+			//spieler.setGold(-50);
 			position = fokus;
 		} else if (obj instanceof Shopruestung) {
 			spieler.setHalsband(true);
-			spieler.setGold(-50);
+			//spieler.setGold(-50);
 			position = fokus;
 		} else if (obj instanceof Luke) {
 			npc2 = new NPC2();
 			fokus = position;
 		} else if (obj instanceof SchalterZu) {
-			
+			//
 		}
 
 		/* Bewegung durchführen */

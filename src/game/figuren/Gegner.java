@@ -76,36 +76,6 @@ public class Gegner extends Spielfigur {
 	}
 
 	/**
-	 * Bewegung des Gegners wird ausgeführt
-	 * 
-	 * @param e
-	 *            registrierter Tastendruck
-	 */
-	public void bewegeGegner(KeyEvent e) {
-
-		Spielfeld aktuellesSpielfeld = spiel.getAktuellesSpielfeld();
-
-		int gegnerX = getPosition().x;
-		int gegnerY = getPosition().y;
-
-		/* Abfragen für die Pfeiltasten */
-		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			gegnerX--;
-		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			gegnerX++;
-		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
-			gegnerY--;
-		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			gegnerY++;
-		}
-		
-		/* TODO: Prüfe was da ist */
-		
-		//setzeObjekt(GameObject objekt, Point position);
-
-	}
-
-	/**
 	 * Gibt die aktuelle Position dieser Figur zurück.
 	 * 
 	 * @return Die aktuelle Position der Figur.
@@ -130,4 +100,6 @@ public class Gegner extends Spielfigur {
 	public String getPicture() {
 		return bild;
 	}
+	
+	
 }

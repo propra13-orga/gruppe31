@@ -31,7 +31,7 @@ class Server extends Thread {
 	 *             wirft Exception
 	 */
 	Server() throws IOException {
-		serverSocket = new ServerSocket(4711);
+		serverSocket = new ServerSocket(Konstanten.PORT);
 	}
 
 	/**

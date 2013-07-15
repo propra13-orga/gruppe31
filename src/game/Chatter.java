@@ -31,7 +31,8 @@ public class Chatter extends Thread {
 	 */
 	Chatter() {
 		try {
-			socket = new Socket("localhost", 4711);
+			/* Host-Adresse, Port */
+			socket = new Socket("localhost", Konstanten.PORT);
 			ausgehendPr = new PrintWriter(socket.getOutputStream(), true);
 			eintreffendBr = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
