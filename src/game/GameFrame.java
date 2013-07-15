@@ -155,6 +155,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	/** Panel für Anzeigenleiste deklariert */
 	private JPanel panelAnzeige = new JPanel();
 	private JPanel panelSpielfeld = new JPanel();
+	private JPanel panelButtons = new JPanel();
 
 	/** Button wird für Gewonnen- und Verlorenfenster deklariert */
 	private JButton gvschliessen;
@@ -193,7 +194,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	public GameFrame(String titel, int x, int y) throws Exception {
 
 		/* Fenster-Eigenschaften setzen. */
-		this.setResizable(false);
+		this.setResizable(true);
 		this.setTitle(titel);
 		this.setSize(Konstanten.BREITE, Konstanten.HOEHE);
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -218,8 +219,11 @@ public class GameFrame extends JFrame implements KeyListener {
 				contentPane.getBounds().width, contentPane.getBounds().height
 						- (contentPane.getBounds().height / Konstanten.PANEL));
 
+		this.panelButtons.setBounds(Konstanten.XBU,Konstanten.YBU,Konstanten.BREITEBU,Konstanten.HOEHEBU);
+
 		getContentPane().add(panelSpielfeld);
 		getContentPane().add(panelAnzeige);
+		getContentPane().add(panelButtons);
 
 		/* Spiel erzeugen. */
 		spiel = new Spiel();
@@ -230,6 +234,9 @@ public class GameFrame extends JFrame implements KeyListener {
 		spiel.init(datei);
 
 		setzeAnzeige();
+
+		setzeLoadButton();
+		setzeSaveButton();
 
 		zeichnen(spiel.getAktuellesSpielfeld());
 
@@ -330,7 +337,8 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		/* für die Levelanzeige */
 		int level = 0;
-		// int level = this.spiel.getSpielfeldNummer(); // das wird eingebaut, sobald der KeyListener wieder richtig läuft 
+		// int level = this.spiel.getSpielfeldNummer(); // das wird eingebaut,
+		// sobald der KeyListener wieder richtig läuft
 		if (level == Konstanten.RAUMEINS) {
 			panelAnzeige.add(eins);
 		} else if (level == Konstanten.RAUMZWEI) {
@@ -447,9 +455,6 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 
 		aktualisieren();
-
-		setzeLoadButton();
-		setzeSaveButton();
 	}
 
 	/** setzt einen Laden Button auf das GameFrame */
@@ -469,9 +474,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		};
 
 		save.addActionListener(alsave);
-		save.setBounds(Konstanten.XLOAD, Konstanten.YLOAD,
-				Konstanten.BREITELOAD, Konstanten.HOEHELOAD);
-		this.add(save);
+		panelButtons.add(save);
 	}
 
 	/** setzt einen Speichern Button auf das GameFrame */
@@ -495,7 +498,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		save.addActionListener(alsave);
 		save.setBounds(Konstanten.XSAVE, Konstanten.YSAVE,
 				Konstanten.BREITESAVE, Konstanten.HOEHESAVE);
-		this.add(save);
+		panelButtons.add(save);
 	}
 
 	/**

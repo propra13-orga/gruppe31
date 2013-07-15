@@ -104,9 +104,15 @@ public final class Konstanten {
 	public static final int HOEHEMF = 600;
 
 	/** die Groessen fuer das GameFrame */
-	public static final int BREITE = 900;
+	public static final int BREITE = 1000;
 	public static final int HOEHE = 700;
-
+	
+	/** die Groessen fuer das GameFrame */
+	public static final int XBU = 800;
+	public static final int YBU = 500;
+	public static final int BREITEBU = 100;
+	public static final int HOEHEBU = 100;
+	
 	/** die Position fuer das GameFrame */
 	public static final int XGF = 900;
 	public static final int YGF = 700;
