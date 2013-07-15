@@ -1,5 +1,11 @@
 package game;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import java.io.File;
+import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -8,11 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * MenuFrame erzeugt das Menufenster. Ein Hintergrundbild wird gesetzt, es
@@ -34,13 +35,9 @@ public class MenuFrame extends JFrame {
 	private JButton control;
 	private JButton ende;
 
-	/** Deklaration der Buttons für NetzwerkFrame */
-	private JButton server;
-	private JButton client;
-
 	/** Deklaration von Feldern */
 	private GameFrame gameframe;
-	
+
 	/** Deklaration des Fenstertitels */
 	private String spiel = "Erna's Adventure";
 
@@ -66,28 +63,28 @@ public class MenuFrame extends JFrame {
 		this.setLayout(null);
 
 		start = new JButton("Neues Spiel starten");
-		start.setBounds(Konstanten.XBUTTON, Konstanten.YSTART, Konstanten.BREITEBUTTON,
-				Konstanten.HOEHEBUTTON);
+		start.setBounds(Konstanten.XBUTTON, Konstanten.YSTART,
+				Konstanten.BREITEBUTTON, Konstanten.HOEHEBUTTON);
 		this.add(start);
 
 		start2 = new JButton("Netzwerkmodus");
-		start2.setBounds(Konstanten.XBUTTON, Konstanten.YSTART2, Konstanten.BREITEBUTTON,
-				Konstanten.HOEHEBUTTON);
+		start2.setBounds(Konstanten.XBUTTON, Konstanten.YSTART2,
+				Konstanten.BREITEBUTTON, Konstanten.HOEHEBUTTON);
 		this.add(start2);
 
 		load = new JButton("Spiel laden");
-		load.setBounds(Konstanten.XBUTTON, Konstanten.YLADEN, Konstanten.BREITEBUTTON,
-				Konstanten.HOEHEBUTTON);
+		load.setBounds(Konstanten.XBUTTON, Konstanten.YLADEN,
+				Konstanten.BREITEBUTTON, Konstanten.HOEHEBUTTON);
 		this.add(load);
 
 		control = new JButton("Steuerung");
-		control.setBounds(Konstanten.XBUTTON, Konstanten.YSTEUERUNG, Konstanten.BREITEBUTTON,
-				Konstanten.HOEHEBUTTON);
+		control.setBounds(Konstanten.XBUTTON, Konstanten.YSTEUERUNG,
+				Konstanten.BREITEBUTTON, Konstanten.HOEHEBUTTON);
 		this.add(control);
 
 		ende = new JButton("Beenden");
-		ende.setBounds(Konstanten.XBUTTON, Konstanten.YENDE, Konstanten.BREITEBUTTON,
-				Konstanten.HOEHEBUTTON);
+		ende.setBounds(Konstanten.XBUTTON, Konstanten.YENDE,
+				Konstanten.BREITEBUTTON, Konstanten.HOEHEBUTTON);
 		this.add(ende);
 
 		JLabel label = new JLabel("Made by Pinky and the Gang");
@@ -121,7 +118,8 @@ public class MenuFrame extends JFrame {
 		ActionListener alload = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					gameframe = new GameFrame(spiel, Konstanten.XGF, Konstanten.YGF);
+					gameframe = new GameFrame(spiel, Konstanten.XGF,
+							Konstanten.YGF);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

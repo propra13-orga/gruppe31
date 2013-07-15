@@ -210,13 +210,13 @@ public class GameFrame extends JFrame implements KeyListener {
 		this.panelSpielfeld.setBounds(contentPane.getBounds().x,
 				contentPane.getBounds().y, contentPane.getBounds().width,
 				contentPane.getBounds().height
-						- (contentPane.getBounds().height / 10));
+						- (contentPane.getBounds().height / Konstanten.PANEL));
 
 		this.panelAnzeige.setBounds(contentPane.getBounds().x,
 				contentPane.getBounds().y + contentPane.getBounds().height
-						- (contentPane.getBounds().height / 10),
+						- (contentPane.getBounds().height / Konstanten.PANEL),
 				contentPane.getBounds().width, contentPane.getBounds().height
-						- (contentPane.getBounds().height / 10));
+						- (contentPane.getBounds().height / Konstanten.PANEL));
 
 		getContentPane().add(panelSpielfeld);
 		getContentPane().add(panelAnzeige);
@@ -274,6 +274,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		} else if (state == JFileChooser.CANCEL_OPTION) {
 			JOptionPane.showMessageDialog(null, "Auswahl abgebrochen",
 					"Dateiselektion", JOptionPane.INFORMATION_MESSAGE);
+			dispose();
 		}
 		return datei;
 	}
@@ -329,8 +330,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		/* für die Levelanzeige */
 		int level = 0;
-		// int level = this.spiel.getSpielfeldNummer(); // So etwas sollte da
-		// eigentlich hin...
+		// int level = this.spiel.getSpielfeldNummer(); // das wird eingebaut, sobald der KeyListener wieder richtig läuft 
 		if (level == Konstanten.RAUMEINS) {
 			panelAnzeige.add(eins);
 		} else if (level == Konstanten.RAUMZWEI) {

@@ -29,7 +29,8 @@ public class Spieler extends Spielfigur {
 			+ "/src/game/Images/PudelHalsband.png";
 	private static final String ICONPUDELSCHWERTHALSBAND = Konstanten.DIRECTION
 			+ "/src/game/Images/Pudelschwerthals.png";
-	
+
+	/** Icon für den zweiten Spieler werden deklariert */
 	private static final String ICONLUKE = Konstanten.DIRECTION
 			+ "/src/game/Images/Luke.png";
 
@@ -60,6 +61,7 @@ public class Spieler extends Spielfigur {
 	 * Konstruktor weist Icon das richtige Icon zu
 	 * 
 	 * @param art
+	 *            erwartet String, um richtiges Bild auszuwählen
 	 */
 	public Spieler(String art) {
 
@@ -71,7 +73,7 @@ public class Spieler extends Spielfigur {
 		setGold(0);
 		setRuestung(0);
 
-		if (art == "Erna") {
+		if ("Erna".equals(art)) {
 			if (getBewaffnet()) {
 				if (beschwertet) {
 					if (halsband) {
@@ -101,7 +103,7 @@ public class Spieler extends Spielfigur {
 					}
 				}
 			}
-		} else if (art == "Luke") {
+		} else if ("Luke".equals(art)) {
 			bild = ICONLUKE;
 		}
 	}

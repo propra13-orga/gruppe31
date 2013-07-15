@@ -130,8 +130,12 @@ public class Spiel {
 							gameObject = new Falle();
 						} else if (pruefe == Konstanten.WEITER) {
 							gameObject = new Weiter();
-						} else if (pruefe == Konstanten.BOSS) {
-							gameObject = new Bossgegner();
+						} else if (pruefe == Konstanten.BOSS1V) {
+							gameObject = new Bossgegner(Konstanten.RAUM3);
+						} else if (pruefe == Konstanten.BOSS2V) {
+							gameObject = new Bossgegner(Konstanten.RAUM6);
+						} else if (pruefe == Konstanten.BOSS3V) {
+							gameObject = new Bossgegner(Konstanten.RAUM9);
 						} else if (pruefe == Konstanten.ZURUECK) {
 							gameObject = new Zurueck();
 						} else if (pruefe == Konstanten.CARLOS) {
@@ -224,9 +228,6 @@ public class Spiel {
 
 	/**
 	 * set aktuelles Spielfeld einen hoch
-	 * 
-	 * @param i
-	 *            Kommandozeilenparameter
 	 */
 	public void levelWeiter() {
 		this.aktSpielfeld = aktSpielfeld + 1;
@@ -235,9 +236,6 @@ public class Spiel {
 
 	/**
 	 * set aktuelles Spielfeld einen runter
-	 * 
-	 * @param i
-	 *            Kommandozeilenparameter
 	 */
 	public void levelZurueck() {
 		this.aktSpielfeld = aktSpielfeld - 1;

@@ -31,16 +31,20 @@ public class Bossgegner extends Spielfigur {
 	/** bild vom Typ String wird deklariert */
 	private String bild;
 
-	/** Konstruktor initialisiert icon */
-	public Bossgegner() {
-		
-		/* TODO if (raum == 2) {
+	/**
+	 * Konstruktor initialisiert icon
+	 * 
+	 * @param raum
+	 *            erwartet Raumangabe
+	 */
+	public Bossgegner(int raum) {
+		if (raum == Konstanten.RAUM3) {
 			bild = ICONBOSS1V;
-		} else if (raum == 5) {
+		} else if (raum == Konstanten.RAUM6) {
 			bild = ICONBOSS2V;
-		} else if (raum == 8) {
+		} else if (raum == Konstanten.RAUM9) {
 			bild = ICONBOSS3V;
-		}*/
+		}
 	}
 
 	@Override

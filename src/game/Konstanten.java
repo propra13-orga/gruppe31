@@ -18,7 +18,6 @@ public final class Konstanten {
 	public static final int GEGNER2 = (int) 'J';
 	public static final int FALLE = (int) 'U';
 	public static final int WEITER = (int) 'W';
-	public static final int BOSS = (int) 'B';
 	public static final int ZURUECK = (int) 'Z';
 	public static final int CARLOS = (int) 'C';
 	public static final int CUPCAKE = (int) 'F';
@@ -37,7 +36,7 @@ public final class Konstanten {
 	public static final int SHOPMANA = (int) 'A';
 	public static final int SHOPHEALTH = (int) 'Q';
 	public static final int SHOPRUESTUNG = (int) 'Ü';
-	public static final int BOSS1V = (int) '1';
+	public static final int BOSS1V = (int) 'B';
 	public static final int BOSS1M = (int) '(';
 	public static final int BOSS1W = (int) ')';
 	public static final int BOSS2V = (int) 'V';
@@ -186,6 +185,14 @@ public final class Konstanten {
 	
 	/** Loop Angabe für Musik */
 	public static final int LOOP = 999;
+	
+	/** Angabe für Panelposition */
+	public static final int PANEL =10;
+	
+	/** Raumangaben für Bossauswahl */
+	public static final int RAUM3 = 2;
+	public static final int RAUM6 = 5;
+	public static final int RAUM9 = 8;
 
 	/**
 	 * privater Konstruktor, der verhindert, dass von außen ein Exemplar dieser
