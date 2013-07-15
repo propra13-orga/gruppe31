@@ -91,7 +91,8 @@ public class MenuFrame extends JFrame {
 		this.add(ende);
 
 		JLabel label = new JLabel("Made by Pinky and the Gang");
-		label.setBounds(600, 500, 200, 40);
+		label.setBounds(Konstanten.XMB, Konstanten.YMB, Konstanten.BREITEMB,
+				Konstanten.HOEHEMB);
 		this.add(label);
 
 		ActionListener alstart = new ActionListener() {
@@ -120,7 +121,7 @@ public class MenuFrame extends JFrame {
 		ActionListener alload = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					gameframe = new GameFrame(spiel, 100, 100);
+					gameframe = new GameFrame(spiel, Konstanten.XGF, Konstanten.YGF);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

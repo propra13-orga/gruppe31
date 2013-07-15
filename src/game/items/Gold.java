@@ -23,26 +23,6 @@ public class Gold extends Item {
 		bild = ICONGOLD;
 	}
 
-	/**
-	 * Gibt die Anzahl an Gold zurück, die der Spieler aktuell besitzt.
-	 * 
-	 * @return gold Die aktuelle Anzahl an Goldmünzen, -1 wenn der Spieler
-	 *         überschuldet ist.
-	 */
-	public int getGold() {
-		return gold;
-	}
-
-	/**
-	 * Setter für gold
-	 * 
-	 * @param gold
-	 *            Kommandozeilenparameter
-	 */
-	public void setGold(int gold) {
-		this.gold = gold;
-	}
-
 	@Override
 	public String getPicture() {
 		return bild;
