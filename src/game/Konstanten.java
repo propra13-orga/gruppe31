@@ -45,6 +45,9 @@ public final class Konstanten {
 	public static final int BOSS3v = (int) 'X';
 	public static final int BOSS3m = (int) '{';
 	public static final int BOSS3w = (int) '}';
+	public static final int LUKE = (int) 'L';
+	public static final int SCHALTERZU = (int) '&';
+	public static final int SCHALTERAUF = (int) '%';
 
 	/** die Größe eines Feldes wird deklariert */
 	public static final int SIZE = 50;
@@ -52,6 +55,17 @@ public final class Konstanten {
 	public static final int SPALTEN = 16;
 	/** die Zeilen werden deklariert */
 	public static final int ZEILEN = 12;
+	
+	/** die Level-Staffelungen werden deklariert */
+	public static final int RAUMEINS = 1;
+	public static final int RAUMZWEI = 2;
+	public static final int RAUMDREI = 3;
+	public static final int RAUMVIER = 4;
+	public static final int RAUMFUENF = 5;
+	public static final int RAUMSECHS = 6;
+	public static final int RAUMSIEBEN = 7;
+	public static final int RAUMACHT = 8;
+	public static final int RAUMNEUN = 9;
 
 	/** die Health Staffelungen werden deklariert */
 	public static final int VOLLH = 100;
@@ -97,6 +111,28 @@ public final class Konstanten {
 	/** die Groessen für das Netzwerkfenster */
 	public static final int BREITECHAT = 700;
 	public static final int HOEHECHAT = 600;
+	
+	/** die Groessen für das NPCfenster */
+	public static final int BREITENPC = 205;
+	public static final int HOEHENPC = 600;
+	
+	/** Positionen fuer Hintergrund NPCfenster */
+	public static final int POSXNPC = 0;
+	public static final int POYNPC = -50;
+	public static final int BREITENPCF = 200;
+	public static final int HOEHENPCF = 600;
+	
+	/** Positionen für Button Weiter NPCfenster */
+	public static final int XWEITER = 0;
+	public static final int YWEITER = 500;
+	public static final int BREITEWEITER = 200;
+	public static final int HOEHEWEITER = 30;
+	
+	/** Positionen für Button Skip NPCfenster */
+	public static final int XSKIP = 0;
+	public static final int YSKIP = 532;
+	public static final int BREITESKIP = 200;
+	public static final int HOEHESKIP = 30;
 	
 	/** Postionen für Netzwerkfenster*/
 	public static final int XSERVER = 30;

@@ -45,6 +45,7 @@ public class NetzwerkFrame extends JFrame {
 
 	/** Deklaration der Felder */
 	private Spiel spiel;
+	private GameFrame gameFrame;
 	
 	/** Button im Fenster */
 	private JButton btSende;
@@ -63,8 +64,9 @@ public class NetzwerkFrame extends JFrame {
 	 *            Angabe für x-Position
 	 * @param y
 	 *            Angabe für y-Position
+	 * @throws Exception 
 	 */
-	NetzwerkFrame(String titel, PrintWriter out, BufferedReader in, int x, int y) {
+	NetzwerkFrame(String titel, PrintWriter out, BufferedReader in, int x, int y) throws Exception {
 		ausgehend = out;
 		eintreffend = in;
 		init(titel, x, y);
@@ -79,8 +81,9 @@ public class NetzwerkFrame extends JFrame {
 	 *            x-Position des Fensters
 	 * @param y
 	 *            y-Position des Fensters
+	 * @throws Exception 
 	 */
-	void init(String titel, int x, int y) {
+	void init(String titel, int x, int y) throws Exception {
 		setLocation(x, y);
 		setSize(Konstanten.BREITECHAT, Konstanten.HOEHECHAT);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);

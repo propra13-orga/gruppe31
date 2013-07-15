@@ -67,62 +67,62 @@ public class NPC {
 		final JFrame frame = new JFrame();
 
 		frame.setResizable(false);
-		frame.setSize(205, 590);
+		frame.setSize(Konstanten.BREITENPC, Konstanten.HOEHENPC);
 		frame.setLayout(null);
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
-		NPC1.setBounds(0, -50, 200, 600);
+		NPC1.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC1.setVisible(true);
 		frame.add(NPC1);
 
-		NPC2.setBounds(0, -50, 200, 600);
+		NPC2.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC2.setVisible(false);
 		frame.add(NPC2);
 
-		NPC3.setBounds(0, -50, 200, 600);
+		NPC3.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC3.setVisible(false);
 		frame.add(NPC3);
 
-		NPC4.setBounds(0, -50, 200, 600);
+		NPC4.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC4.setVisible(false);
 		frame.add(NPC4);
 
-		NPC5.setBounds(0, -50, 200, 600);
+		NPC5.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC5.setVisible(false);
 		frame.add(NPC5);
 
-		NPC6.setBounds(0, -50, 200, 600);
+		NPC6.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC6.setVisible(false);
 		frame.add(NPC6);
 
-		NPC7.setBounds(0, -50, 200, 600);
+		NPC7.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC7.setVisible(false);
 		frame.add(NPC7);
 
-		NPC8.setBounds(0, -50, 200, 600);
+		NPC8.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC8.setVisible(false);
 		frame.add(NPC8);
 
-		NPC9.setBounds(0, -50, 200, 600);
+		NPC9.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC9.setVisible(false);
 		frame.add(NPC9);
 
-		NPC10.setBounds(0, -50, 200, 600);
+		NPC10.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC10.setVisible(false);
 		frame.add(NPC10);
 
-		NPC11.setBounds(0, -50, 200, 600);
+		NPC11.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC11.setVisible(false);
 		frame.add(NPC11);
 
 		weiter = new JButton("Weiter");
-		weiter.setBounds(0, 500, 200, 30);
+		weiter.setBounds(Konstanten.XWEITER, Konstanten.YWEITER, Konstanten.BREITEWEITER, Konstanten.HOEHEWEITER);
 		frame.add(weiter);
 
 		skip = new JButton("Überspringen");
-		skip.setBounds(0, 532, 200, 30);
+		skip.setBounds(Konstanten.XSKIP, Konstanten.YSKIP, Konstanten.BREITESKIP, Konstanten.HOEHESKIP);
 		frame.add(skip);
 
 		ActionListener alweiter = new ActionListener() {

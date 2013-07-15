@@ -8,7 +8,10 @@ import game.icons.Carlos;
 import game.icons.Checkpoint;
 import game.icons.Grenze;
 import game.icons.Huette;
+import game.icons.Luke;
 import game.icons.Rasen;
+import game.icons.SchalterAuf;
+import game.icons.SchalterZu;
 import game.icons.Weiter;
 import game.icons.Ziel;
 import game.icons.Zurueck;
@@ -70,7 +73,7 @@ public class Spiel {
 
 		/* öffnet FileReader mit Textdatei */
 		FileReader fr = new FileReader(Konstanten.DIRECTION
-				+ "/src/game/Einzelspieler-Szenario/" + datei);
+				+ "/src/game/Szenario/" + datei);
 		/* öffnet BufferedReader und liest .txt hinein */
 		BufferedReader br = new BufferedReader(fr);
 
@@ -100,7 +103,7 @@ public class Spiel {
 					 */
 					for (int i = 0; i < Konstanten.ZEILEN; i++) {
 						int pruefe;
-						GameObject gameObject;
+						GameObject gameObject = null;
 						pruefe = (int) line.charAt(i);
 
 						if (pruefe == Konstanten.RASEN) {
@@ -149,9 +152,13 @@ public class Spiel {
 							gameObject = new Shophealth();
 						} else if (pruefe == Konstanten.SHOPRUESTUNG) {
 							gameObject = new Shopruestung();
-						} else {
-							gameObject = new Spieler();
-						}
+						} else if (pruefe == Konstanten.LUKE) {
+								gameObject = new Luke();
+						} else if (pruefe == Konstanten.SCHALTERZU) {
+							gameObject = new SchalterZu();
+						} else if (pruefe == Konstanten.SCHALTERAUF) {
+							gameObject = new SchalterAuf();
+						} 
 
 						spielfeld.setzeObjekt(gameObject, new Point(i, j));
 						levels.add(spielfeld);

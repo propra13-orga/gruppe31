@@ -160,7 +160,6 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/** Deklaration von Feldern */
 	private Spiel spiel;
-//	private Spielfigur spielfigur;
 
 	/** Deklaration eines Strings Datei */
 	private String datei;
@@ -172,30 +171,20 @@ public class GameFrame extends JFrame implements KeyListener {
 	private String schliessen = "Dieses Fenster schließen";
 
 	/**
-	 * Deklaration von int-Variablen, werden später durch Variablen aus
-	 * GameObject Klassen ersetzt
-	 */
-	private int level;
-	private int health;
-	private int mana;
-	private int ruestung;
-	private int gold;
-	private int bewaffnet;
-	private int beschwertet;
-	private int halsband;
-	private int leben;
-
-	/**
 	 * Konstruktor, der die Eigenschaften des Spielfensters festsetzt. der
 	 * Zeichner wird auf das Spielfenster gesetzt und der LevelManager wird
 	 * aufgerufen. Das nächste (hier: erste) Level wird aufgerufen und der
 	 * Zeichner zeichnet das entsprechende Spielfeld
+	 * @param y 
+	 * @param x 
+	 * @param titel 
 	 * 
 	 * @throws Exception
 	 */
-	public GameFrame() throws Exception {
+	public GameFrame(String titel, int x, int y) throws Exception {
 		this.setResizable(true);
-		this.setTitle("Erna's Adventure");
+		this.setTitle(titel);
+		this.setLocation(x, y);
 		this.setSize(Konstanten.BREITE, Konstanten.HOEHE);
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -227,7 +216,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	public String chooseFile() {
 		/* erzeugt neuen FileChooser */
 		JFileChooser fc = new JFileChooser(Konstanten.DIRECTION
-				+ "/src/game/Einzelspieler-Szenario");
+				+ "/src/game/Szenario");
 		/* FileChooser kann nur eine Datei auswählen */
 		fc.setMultiSelectionEnabled(false);
 		/* fügt einen FileFilter hinzu */
@@ -296,35 +285,36 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * unteren Bereich des Spielfensters
 	 */
 	public void setzeAnzeige() {
-
-		Spieler spieler = this.spiel.getSpieler();
+		
+		
 
 		leiste.removeAll();
 
 		/* für die Levelanzeige */
-		if (level == 0) {
+		int level = 0;
+		if (level == Konstanten.RAUMEINS) {
 			leiste.add(EINS);
-		} else if (level == 1) {
+		} else if (level == Konstanten.RAUMZWEI) {
 			leiste.add(EINS);
-		} else if (level == 2) {
+		} else if (level == Konstanten.RAUMDREI) {
 			leiste.add(EINS);
-		} else if (level == 3) {
+		} else if (level == Konstanten.RAUMVIER) {
 			leiste.add(ZWEI);
-		} else if (level == 4) {
+		} else if (level == Konstanten.RAUMFUENF) {
 			leiste.add(ZWEI);
-		} else if (level == 5) {
+		} else if (level == Konstanten.RAUMSECHS) {
 			leiste.add(ZWEI);
-		} else if (level == 6) {
+		} else if (level == Konstanten.RAUMSIEBEN) {
 			leiste.add(DREI);
-		} else if (level == 7) {
+		} else if (level == Konstanten.RAUMACHT) {
 			leiste.add(DREI);
-		} else if (level == 8) {
+		} else if (level == Konstanten.RAUMNEUN) {
 			leiste.add(DREI);
 		}
 		aktualisieren();
 
 		/* für die Healthanzeige */
-		// spieler.getGesundheit();
+			int health = spiel.getSpieler().getGesundheit();
 		if (health == Konstanten.VOLLH) {
 			leiste.add(LEBENVOLL);
 		} else if (health == Konstanten.DREIVIERTELH) {
@@ -337,6 +327,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		aktualisieren();
 
 		/* für die Manaanzeige */
+		int mana = spiel.getSpieler().getMana();
 		if (mana == Konstanten.VOLLM) {
 			leiste.add(MANAVOLL);
 		} else if (mana == Konstanten.HALBM) {
@@ -345,6 +336,8 @@ public class GameFrame extends JFrame implements KeyListener {
 			leiste.add(MANALEER);
 		}
 
+		/* für die Rüstungsanzeige */
+		int ruestung = spiel.getSpieler().getRuestung();
 		if (ruestung == Konstanten.VOLLR) {
 			leiste.add(RUESTUNGVOLL);
 		} else if (ruestung == Konstanten.HALBR) {
@@ -355,6 +348,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		aktualisieren();
 
 		/* für die Goldanzeige */
+		int gold = spiel.getSpieler().getGold();
 		if (gold == Konstanten.GOLD0) {
 			leiste.add(GOLD0);
 		} else if (gold == Konstanten.GOLD50) {
@@ -374,31 +368,34 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 		aktualisieren();
 
-		if (bewaffnet == 0) {
-			if (beschwertet == 0) {
-				if (halsband == 0) {
+		boolean bewaffnet = spiel.getSpieler().getBewaffnet();
+		boolean beschwertet = spiel.getSpieler().getBeschwertet();
+		boolean halsband = spiel.getSpieler().getHalsband();
+		if (bewaffnet == false) {
+			if (beschwertet == false) {
+				if (halsband == false) {
 					leiste.add(KEINRQ);
-				} else if (halsband == 1) {
+				} else if (halsband == true) {
 					leiste.add(HALS);
 				}
-			} else if (beschwertet == 1) {
-				if (halsband == 0) {
+			} else if (beschwertet == true) {
+				if (halsband == false) {
 					leiste.add(SCHWERT);
-				} else if (halsband == 1) {
+				} else if (halsband == true) {
 					leiste.add(SCHWERTHALS);
 				}
 			}
-		} else if (bewaffnet == 1) {
-			if (beschwertet == 0) {
-				if (halsband == 0) {
+		} else if (bewaffnet == true) {
+			if (beschwertet == false) {
+				if (halsband == false) {
 					leiste.add(BRILLE);
-				} else if (halsband == 1) {
+				} else if (halsband == true) {
 					leiste.add(BRILLEHALS);
 				}
-			} else if (beschwertet == 1) {
-				if (halsband == 0) {
+			} else if (beschwertet == true) {
+				if (halsband == false) {
 					leiste.add(BRILLESCHWERT);
-				} else if (halsband == 1) {
+				} else if (halsband == true) {
 					leiste.add(ALLESEQ);
 				}
 			}
@@ -406,6 +403,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		aktualisieren();
 
 		/* für die Lebenanzeige */
+		int leben = Konstanten.VOLLL;
 		if (leben == Konstanten.VOLLL) {
 			leiste.add(HERZ3);
 		} else if (leben == Konstanten.ZWEIDRITTELL) {

@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -85,7 +84,7 @@ public class MenuFrame extends JFrame {
 		ActionListener alstart = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					gameframe = new GameFrame();
+					gameframe = new GameFrame("Erna's Adventure", 100,100);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -120,6 +119,8 @@ public class MenuFrame extends JFrame {
 		start2.addActionListener(alstart2);
 		control.addActionListener(alsteuerung);
 		ende.addActionListener(alende);
+		
+		Musik.play(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
 	}
 
 	/**

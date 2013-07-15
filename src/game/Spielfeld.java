@@ -5,7 +5,10 @@ import game.icons.Carlos;
 import game.icons.Checkpoint;
 import game.icons.Grenze;
 import game.icons.Huette;
+import game.icons.Luke;
 import game.icons.Rasen;
+import game.icons.SchalterZu;
+import game.icons.SchalterAuf;
 import game.icons.Weiter;
 import game.icons.Ziel;
 import game.icons.Zurueck;
@@ -36,6 +39,7 @@ public class Spielfeld {
 	private Spieler spieler;
 	private Spiel spiel;
 	private NPC npc;
+	private NPC2 npc2;
 	private GameFrame gameFrame;
 
 	/**
@@ -129,6 +133,7 @@ public class Spielfeld {
 
 		/* Objekte drum herum prüfen */
 		if (obj instanceof Rasen) {
+			this.setzeObjekt(obj, position);
 			position = fokus;
 		} else if (obj instanceof Grenze) {
 			fokus = position;
@@ -174,11 +179,15 @@ public class Spielfeld {
 			spieler.setHalsband(true);
 			spieler.setGold(-50);
 			position = fokus;
+		} else if (obj instanceof Luke) {
+			npc2 = new NPC2();
+			fokus = position;
+		} else if (obj instanceof SchalterZu) {
+			
 		}
 
 		/* Bewegung durchführen */
-		this.setzeObjekt(spielfigur, position);
-
+		this.spieler.setPosition(position);
 	}
 
 	/*
