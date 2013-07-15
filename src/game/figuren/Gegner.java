@@ -37,9 +37,9 @@ public class Gegner extends Spielfigur {
 		setKo(0);
 		setGesundheit(Konstanten.VOLLH);
 
-		if (object == "Pilz") {
+		if ("Pilz".equals(object)) {
 			bild = ICONGEGNER1;
-		} else if (object == "Biene") {
+		} else if ("Biene".equals(object)) {
 			bild = ICONGEGNER2;
 		}
 	}
