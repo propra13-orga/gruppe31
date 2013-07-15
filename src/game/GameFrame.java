@@ -206,6 +206,8 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		this.setVisible(true);
 		this.requestFocus();
+		
+		Musik.play(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
 	}
 
 	/**

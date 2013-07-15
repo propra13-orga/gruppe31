@@ -119,8 +119,6 @@ public class MenuFrame extends JFrame {
 		start2.addActionListener(alstart2);
 		control.addActionListener(alsteuerung);
 		ende.addActionListener(alende);
-		
-		Musik.play(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
 	}
 
 	/**

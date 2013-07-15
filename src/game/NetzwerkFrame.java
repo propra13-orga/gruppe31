@@ -70,6 +70,8 @@ public class NetzwerkFrame extends JFrame {
 		ausgehend = out;
 		eintreffend = in;
 		init(titel, x, y);
+		
+		Musik.play(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
 	}
 
 	/**
