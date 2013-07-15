@@ -9,7 +9,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
@@ -170,14 +172,18 @@ public class GameFrame extends JFrame implements KeyListener {
 	/** Deklaration eines Strings für das Schließen */
 	private String schliessen = "Dieses Fenster schließen";
 
+	/** Deklaration eines Buttons zum Speichern */
+	private JButton save;
+
 	/**
 	 * Konstruktor, der die Eigenschaften des Spielfensters festsetzt. der
 	 * Zeichner wird auf das Spielfenster gesetzt und der LevelManager wird
 	 * aufgerufen. Das nächste (hier: erste) Level wird aufgerufen und der
 	 * Zeichner zeichnet das entsprechende Spielfeld
-	 * @param y 
-	 * @param x 
-	 * @param titel 
+	 * 
+	 * @param y
+	 * @param x
+	 * @param titel
 	 * 
 	 * @throws Exception
 	 */
@@ -206,7 +212,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		this.setVisible(true);
 		this.requestFocus();
-		
+
 		Musik.play(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
 	}
 
@@ -261,10 +267,12 @@ public class GameFrame extends JFrame implements KeyListener {
 			for (int j = 0; j < Konstanten.ZEILEN; j++) {
 				GameObject object = spielfeld
 						.gibObjekt(new java.awt.Point(i, j));
-				/* eigener Debugger ;-) 
-				System.out.println(object.getClass().getSimpleName() + ":"
-						+ object.getPicture());*/
-				
+				/*
+				 * eigener Debugger ;-)
+				 * System.out.println(object.getClass().getSimpleName() + ":" +
+				 * object.getPicture());
+				 */
+
 				Icon icon = new ImageIcon(object.getPicture());
 				JLabel label = new JLabel(icon);
 				label.setBounds(i * Konstanten.SIZE, j * Konstanten.SIZE,
@@ -287,8 +295,6 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * unteren Bereich des Spielfensters
 	 */
 	public void setzeAnzeige() {
-		
-		
 
 		leiste.removeAll();
 
@@ -316,7 +322,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		aktualisieren();
 
 		/* für die Healthanzeige */
-			int health = spiel.getSpieler().getGesundheit();
+		int health = spiel.getSpieler().getGesundheit();
 		if (health == Konstanten.VOLLH) {
 			leiste.add(LEBENVOLL);
 		} else if (health == Konstanten.DREIVIERTELH) {
@@ -414,6 +420,29 @@ public class GameFrame extends JFrame implements KeyListener {
 			leiste.add(HERZ1);
 		}
 		aktualisieren();
+
+		setzeSaveButton();
+	}
+
+	public void setzeSaveButton() {
+		save = new JButton("Speichern");
+
+		ActionListener alsave = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{ 
+		            PrintWriter pWriter = new PrintWriter(new FileWriter(Konstanten.DIRECTION + "/src/game/Szenario/test.txt")); 
+		            pWriter.println("Ernas Adventure möchte gespeichert werden !"); 
+		            pWriter.flush(); 
+		        }catch(IOException ioe){ 
+		            ioe.printStackTrace(); 
+		        } 
+			}
+		};
+
+		save.addActionListener(alsave);
+		save.setBounds(Konstanten.XSAVE, Konstanten.YSAVE,
+				Konstanten.BREITESAVE, Konstanten.HOEHESAVE);
+		this.add(save);
 	}
 
 	/**
