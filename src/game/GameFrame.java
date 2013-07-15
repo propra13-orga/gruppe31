@@ -269,11 +269,10 @@ public class GameFrame extends JFrame implements KeyListener {
 			for (int j = 0; j < Konstanten.ZEILEN; j++) {
 				GameObject object = spielfeld
 						.gibObjekt(new java.awt.Point(i, j));
-				/*
-				 * eigener Debugger ;-)
-				 * System.out.println(object.getClass().getSimpleName() + ":" +
-				 * object.getPicture());
-				 */
+				/* eigener Debugger ;-)*/
+				 System.out.println(object.getClass().getSimpleName() + ":" +
+				 object.getPicture());
+				 
 
 				Icon icon = new ImageIcon(object.getPicture());
 				JLabel label = new JLabel(icon);

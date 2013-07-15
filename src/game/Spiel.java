@@ -115,7 +115,11 @@ public class Spiel {
 							this.spieler.setPosition(new Point(i, j));
 							gameObject = this.spieler;
 						} else if (pruefe == Konstanten.GEGNER) {
-							this.gegner = new Gegner();
+							this.gegner = new Gegner("Pilz");
+							gegner.setPosition(new Point(i, j));
+							gameObject = this.gegner;
+						} else if (pruefe == Konstanten.GEGNER2) {
+							this.gegner = new Gegner("Biene");
 							gegner.setPosition(new Point(i, j));
 							gameObject = this.gegner;
 						} else if (pruefe == Konstanten.FALLE) {
@@ -212,9 +216,10 @@ public class Spiel {
 	 */
 	public void aktion(int keyCode) {
 		/* aktuelles Spielfeld übergeben lassen */
-		Spielfeld aktSpielfeld = this.getAktuellesSpielfeld();
+		//Spielfeld aktSpielfeld = this.getAktuellesSpielfeld();
 		/* Spieler und KeyCode übergeben, Bewegung durchführen lassen */
-		aktSpielfeld.aktion(this.spieler, keyCode);
+		//aktSpielfeld.aktion(this.spieler, keyCode);
+		levels.get(aktSpielfeld).aktion(this.spieler, keyCode);
 	}
 
 	/**

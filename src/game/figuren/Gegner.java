@@ -31,13 +31,17 @@ public class Gegner extends Spielfigur {
 	/** Die Position dieser Figur in der xy-Ebene. */
 	private Point position;
 
-	/** Koonstrauktor initialisiert icon */
-	public Gegner() {
+	/** Koonstrauktor initialisiert icon 
+	 * @param object */
+	public Gegner(String object) {
 		setKo(0);
 		setGesundheit(Konstanten.VOLLH);
 
-		bild = ICONGEGNER1;
-		/* TODO ICONGEGNER2 ebenfalls setzen */
+		if (object == "Pilz") {
+			bild = ICONGEGNER1;
+		} else if (object == "Biene") {
+			bild = ICONGEGNER2;
+		}
 	}
 
 	/**
