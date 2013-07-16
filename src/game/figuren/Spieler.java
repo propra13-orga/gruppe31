@@ -47,6 +47,7 @@ public class Spieler extends Spielfigur {
 	private int leben;
 	private boolean beschwertet;
 	private boolean halsband;
+	private boolean bewaffnet;
 	private int mana;
 	private int gold;
 	private int ruestung;
@@ -70,11 +71,11 @@ public class Spieler extends Spielfigur {
 		setBeschwertet(false);
 		setHalsband(false);
 		setMana(0);
-		setGold(0);
+		setGoldPlus(0);
 		setRuestung(0);
 
 		if ("Erna".equals(art)) {
-			if (getBewaffnet()) {
+			if (bewaffnet) {
 				if (beschwertet) {
 					if (halsband) {
 						bild = ICONTERMINATORERNA;
@@ -88,7 +89,7 @@ public class Spieler extends Spielfigur {
 						bild = ICONAGGROERNA;
 					}
 				}
-			} else if (!getBewaffnet()) {
+			} else if (!bewaffnet) {
 				if (beschwertet) {
 					if (halsband) {
 						bild = ICONPUDELSCHWERTHALSBAND;
@@ -212,16 +213,6 @@ public class Spieler extends Spielfigur {
 		return gold;
 	}
 
-	/**
-	 * Setter für gold
-	 * 
-	 * @param gold
-	 *            Kommandozeilenparameter
-	 */
-	public void setGold(int gold) {
-		this.gold = gold;
-	}
-
 	@Override
 	public String getPicture() {
 		return bild;
@@ -245,5 +236,19 @@ public class Spieler extends Spielfigur {
 	 */
 	public void setPosition(Point neuePosition) {
 		this.position = neuePosition;
+	}
+
+	public void setGoldPlus(int gold) {
+		this.gold = getGold() + gold;
+		
+	}
+	/**
+	 * Setter für gold
+	 * 
+	 * @param gold
+	 *            Kommandozeilenparameter
+	 */
+	public void setGoldMinus(int gold) {
+		this.gold = getGold() - gold;
 	}
 }

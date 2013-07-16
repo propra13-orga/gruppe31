@@ -460,6 +460,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	/** setzt einen Laden Button auf das GameFrame */
 	public void setzeLoadButton() {
 		save = new JButton("Laden");
+		save.setVisible(true);
 
 		ActionListener alsave = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -480,6 +481,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	/** setzt einen Speichern Button auf das GameFrame */
 	public void setzeSaveButton() {
 		save = new JButton("Speichern");
+		save.setVisible(true);
 
 		ActionListener alsave = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

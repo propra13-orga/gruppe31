@@ -47,6 +47,7 @@ public class Spiel {
 	private Spieler spieler;
 	private Gegner gegner;
 	private Spielfeld spielfeld;
+	private GameFrame gameFrame;
 
 	/**
 	 * Konstruktor erzeugt ArrayList, welche Spielfelder beinhaltet
@@ -230,15 +231,13 @@ public class Spiel {
 	 * set aktuelles Spielfeld einen hoch
 	 */
 	public void levelWeiter() {
-		this.aktSpielfeld = aktSpielfeld + 1;
-
+		//
 	}
 
 	/**
 	 * set aktuelles Spielfeld einen runter
 	 */
 	public void levelZurueck() {
-		this.aktSpielfeld = aktSpielfeld - 1;
-
+		//
 	}
 }

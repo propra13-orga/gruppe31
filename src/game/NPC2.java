@@ -27,8 +27,7 @@ public class NPC2 {
 	private static final JLabel NPC12 = new JLabel(ICONLUKE1);
 
 	/** Buttons für NPC Anzeige werden deklariert */
-	private JButton weiter;
-	private JButton skip;
+	private JButton ok;
 
 	/**
 	 * Konstruktor erstellt ein neues Fenster, in dem der Nutzer mit dem NPC
@@ -50,29 +49,16 @@ public class NPC2 {
 		frame.add(NPC12);
 
 
-		weiter = new JButton("Weiter");
-		weiter.setBounds(Konstanten.XWEITER, Konstanten.YWEITER, Konstanten.BREITEWEITER, Konstanten.HOEHEWEITER);
-		frame.add(weiter);
-
-		skip = new JButton("Überspringen");
-		skip.setBounds(Konstanten.XSKIP, Konstanten.YSKIP, Konstanten.BREITESKIP, Konstanten.HOEHESKIP);
-		frame.add(skip);
-
-		ActionListener alweiter = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (NPC12.isVisible()) {
-					NPC12.setVisible(false);
-					
-				}
-			}
-		};
-
-		ActionListener alskip = new ActionListener() {
+		ok = new JButton("Okay, danke!");
+		ok.setBounds(Konstanten.XOK, Konstanten.YOK, Konstanten.BREITEOK, Konstanten.HOEHEOK);
+		frame.add(ok);
+		
+		ActionListener alok= new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 			}
 		};
-		weiter.addActionListener(alweiter);
-		skip.addActionListener(alskip);
+
+		ok.addActionListener(alok);
 	}
 }

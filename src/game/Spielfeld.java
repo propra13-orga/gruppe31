@@ -131,6 +131,8 @@ public class Spielfeld {
 
 		GameObject obj = this.gibObjekt(neuPos);
 		boolean sollBewegtWerden = false;
+		boolean einsammeln = false;
+		boolean umlegen = false;
 
 		/* Objekte drum herum prüfen */
 		if (obj instanceof Rasen) {
@@ -152,47 +154,82 @@ public class Spielfeld {
 			gameFrame.gewonnen();
 		} else if (obj instanceof Brille) {
 			spielfigur.setBewaffnet(true);
-			sollBewegtWerden = true;
+			einsammeln = true;
 		} else if (obj instanceof Gold) {
-			// spieler.setGold(+50);
-			sollBewegtWerden = true;
+			spielfigur.setGoldPlus(50);
+			einsammeln = true;
 		} else if (obj instanceof Health) {
 			spielfigur.setGesundheit(Konstanten.VOLLH);
-			sollBewegtWerden = true;
+			einsammeln = true;
 		} else if (obj instanceof Mana) {
 			spielfigur.setMana(Konstanten.VOLLM);
-			sollBewegtWerden = true;
+			einsammeln = true;
 		} else if (obj instanceof Ruestung) {
 			spielfigur.setHalsband(true);
-			sollBewegtWerden = true;
+			einsammeln = true;
 		} else if (obj instanceof Schwert) {
 			spielfigur.setBeschwertet(true);
-			sollBewegtWerden = true;
+			einsammeln = true;
 		} else if (obj instanceof Shophealth) {
-			spielfigur.setGesundheit(Konstanten.VOLLH);
-			// spieler.setGold(-50);
+			if (spielfigur.getGold() >= 50) {
+				spielfigur.setGoldMinus(50);
+				spielfigur.setGesundheit(Konstanten.VOLLH);
+			} else {
+				// nothing to do here
+			}
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Shopmana) {
-			spielfigur.setMana(Konstanten.VOLLM);
-			// spieler.setGold(-50);
+			if (spielfigur.getGold() >= 50) {
+				spielfigur.setGoldMinus(50);
+				spielfigur.setMana(Konstanten.VOLLM);
+			} else {
+				// nothing to do here
+			}
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Shopruestung) {
-			spielfigur.setHalsband(true);
-			// spieler.setGold(-50);
+			if (spielfigur.getGold() >= Konstanten.GOLD50) {
+				spielfigur.setGoldMinus(Konstanten.GOLD50);
+				spielfigur.setHalsband(true);
+			} else {
+				// nothing to do here
+			}
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Luke) {
 			npc2 = new NPC2();
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof SchalterZu) {
-			//
+			umlegen = true;
 		}
 
 		if (sollBewegtWerden) {
-			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Schritt.wav");
-			
+			musik = new Musik(Konstanten.DIRECTION
+					+ "/src/game/Sound/Schritt.wav");
+
 			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
 			this.setzeObjekt(obj, aktPos);
 			this.setzeObjekt(spielfigur, neuPos);
+
+			/* setzt die neue Position */
+			spielfigur.setPosition(neuPos);
+		}
+
+		if (einsammeln) {
+			musik = new Musik(Konstanten.DIRECTION
+					+ "/src/game/Sound/Schritt.wav");
+
+			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
+			this.setzeObjekt(new Rasen(), aktPos);
+			this.setzeObjekt(spielfigur, neuPos);
+
+			/* setzt die neue Position */
+			spielfigur.setPosition(neuPos);
+		}
+
+		if (umlegen) {
+
+			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
+			this.setzeObjekt(spielfigur, aktPos);
+			this.setzeObjekt(new SchalterAuf(), neuPos);
 
 			/* setzt die neue Position */
 			spielfigur.setPosition(neuPos);

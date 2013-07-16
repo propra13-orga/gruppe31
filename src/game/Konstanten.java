@@ -146,6 +146,12 @@ public final class Konstanten {
 	public static final int YSKIP = 532;
 	public static final int BREITESKIP = 200;
 	public static final int HOEHESKIP = 30;
+	
+	/** Positionen für Button Weiter NPCfenster */
+	public static final int XOK = 0;
+	public static final int YOK = 500;
+	public static final int BREITEOK = 200;
+	public static final int HOEHEOK= 70;
 
 	/** Postionen für Netzwerkfenster */
 	public static final int XSERVER = 30;

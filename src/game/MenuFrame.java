@@ -65,26 +65,31 @@ public class MenuFrame extends JFrame {
 		start = new JButton("Neues Spiel starten");
 		start.setBounds(Konstanten.XBUTTON, Konstanten.YSTART,
 				Konstanten.BREITEBUTTON, Konstanten.HOEHEBUTTON);
+		start.setVisible(true);
 		this.add(start);
 
 		start2 = new JButton("Netzwerkmodus");
 		start2.setBounds(Konstanten.XBUTTON, Konstanten.YSTART2,
 				Konstanten.BREITEBUTTON, Konstanten.HOEHEBUTTON);
+		start2.setVisible(true);
 		this.add(start2);
 
 		load = new JButton("Spiel laden");
 		load.setBounds(Konstanten.XBUTTON, Konstanten.YLADEN,
 				Konstanten.BREITEBUTTON, Konstanten.HOEHEBUTTON);
+		load.setVisible(true);
 		this.add(load);
 
 		control = new JButton("Steuerung");
 		control.setBounds(Konstanten.XBUTTON, Konstanten.YSTEUERUNG,
 				Konstanten.BREITEBUTTON, Konstanten.HOEHEBUTTON);
+		control.setVisible(true);
 		this.add(control);
 
 		ende = new JButton("Beenden");
 		ende.setBounds(Konstanten.XBUTTON, Konstanten.YENDE,
 				Konstanten.BREITEBUTTON, Konstanten.HOEHEBUTTON);
+		ende.setVisible(true);
 		this.add(ende);
 
 		JLabel label = new JLabel("Made by Pinky and the Gang");
