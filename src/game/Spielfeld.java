@@ -114,40 +114,32 @@ public class Spielfeld {
 	 *            KeyCode wird übergeben
 	 */
 	public void aktion(Spieler spielfigur, Gegner gegner, int keyCode) {
+		bewegeSpieler(spielfigur, keyCode);
+	}
 
+	private void bewegeSpieler(Spieler spielfigur, int keyCode) {
 		/* Alte und neue Position für Spieler festlegen. */
 		Point aktPos = spielfigur.getPosition();
 		Point neuPos = new Point(aktPos);
-		
-		/* Alte und neue Position für Gegner festlegen. */
-		Point gegAktPos = gegner.getPosition();
-		Point gegNeuPos = new Point(gegAktPos);
 
 		if (keyCode == KeyEvent.VK_LEFT) {
 			neuPos.x--;
-			gegNeuPos.x++;
 		} else if (keyCode == KeyEvent.VK_RIGHT) {
 			neuPos.x++;
-			gegNeuPos.x--;
 		} else if (keyCode == KeyEvent.VK_UP) {
 			neuPos.y--;
-			gegNeuPos.y++;
 		} else if (keyCode == KeyEvent.VK_DOWN) {
 			neuPos.y++;
-			gegNeuPos.y--;
 		} else {
 			/* Andere Tasten wollen wir nicht beruecksichtigen. */
 			return;
 		}
 
 		GameObject obj = this.gibObjekt(neuPos);
-		GameObject obj2 = this.gibObjekt(gegNeuPos);
 		
 		boolean sollBewegtWerden = false;
 		boolean einsammeln = false;
 		boolean umlegen = false;
-		
-		boolean GegSollBewegtWerden = false;
 
 		/* Spielfigur: Objekte drum herum prüfen */
 		if (obj instanceof Rasen) {
@@ -229,13 +221,6 @@ public class Spielfeld {
 		} else if (obj instanceof SchalterAuf) {
 			/* Bewegung ignorieren */
 		}
-		
-		/* Gegner: Objekte drum herum prüfen */
-		if (obj2 instanceof Rasen) {
-			GegSollBewegtWerden = true;
-		} else {
-			gegNeuPos = gegAktPos;
-		}
 
 		if (sollBewegtWerden) {
 			musik = new Musik(Konstanten.DIRECTION
@@ -276,15 +261,8 @@ public class Spielfeld {
 
 			/* setzt die neue Position */
 			spielfigur.setPosition(aktPos);
-		}
-		
-		if (GegSollBewegtWerden) {
-			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
-			this.setzeObjekt(obj, gegAktPos);
-			this.setzeObjekt(gegner, gegNeuPos);
-
-			/* setzt die neue Position */
-			gegner.setPosition(gegNeuPos);
+			
+			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Schalter.wav");
 		}
 	}
 

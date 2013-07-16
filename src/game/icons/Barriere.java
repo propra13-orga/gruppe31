@@ -13,7 +13,7 @@ public class Barriere extends GameObject {
 
 	/** Icon für Baum wird deklariert */
 	private static final String ICONBARRIERE = Konstanten.DIRECTION
-			+ "/src/game/Images/Barriere.jpg";
+			+ "/src/game/Images/Barriere.png";
 
 	/** bild vom Typ String wird deklariert */
 	private String bild;
