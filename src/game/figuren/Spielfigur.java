@@ -55,8 +55,17 @@ public abstract class Spielfigur extends GameObject {
 	 * @param gesundheit
 	 *            Kommandozeilenparameter
 	 */
-	public void setGesundheit(int gesundheit) {
-		this.gesundheit = gesundheit;
+	public void setGesundheitPlus(int gesundheit) {
+		this.gesundheit = getGesundheit() + gesundheit;
+	}
+	
+	/** Getter
+	 * 
+	 * @param gesundheit
+	 * Kommandozeilenparameter
+	 */
+	public void setGesundheitMinus(int gesundheit) {
+		this.gesundheit = getGesundheit() - gesundheit;		
 	}
 	
 	

@@ -48,6 +48,7 @@ public final class Konstanten {
 	public static final int LUKE = (int) 'L';
 	public static final int SCHALTERZU = (int) '&';
 	public static final int SCHALTERAUF = (int) '%';
+	public static final int BARRIERE = (int) 'I';
 
 	/** die Größe eines Feldes wird deklariert */
 	public static final int SIZE = 50;

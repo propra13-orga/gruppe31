@@ -67,9 +67,10 @@ public class Spieler extends Spielfigur {
 	public Spieler(String art) {
 
 		setBewaffnet(false);
-		setGesundheit(Konstanten.VOLLH);
+		setGesundheitPlus(Konstanten.VOLLH);
 		setBeschwertet(false);
 		setHalsband(false);
+		setLebenPlus(3);
 		setMana(0);
 		setGoldPlus(0);
 		setRuestung(0);
@@ -181,8 +182,18 @@ public class Spieler extends Spielfigur {
 	 * @param leben
 	 *            Kommandozeilenparameter
 	 */
-	public void setLeben(int leben) {
-		this.leben = leben;
+	public void setLebenMinus(int leben) {
+		this.leben = getLeben() - leben;
+	}
+	
+	/**
+	 * Setter für leben
+	 * 
+	 * @param leben
+	 *            Kommandozeilenparameter
+	 */
+	public void setLebenPlus(int leben) {
+		this.leben = getLeben() + leben;
 	}
 
 	/**

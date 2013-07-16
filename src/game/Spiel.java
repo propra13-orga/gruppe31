@@ -4,6 +4,7 @@ import game.figuren.Bossgegner;
 import game.figuren.Falle;
 import game.figuren.Gegner;
 import game.figuren.Spieler;
+import game.icons.Barriere;
 import game.icons.Carlos;
 import game.icons.Checkpoint;
 import game.icons.Grenze;
@@ -46,6 +47,7 @@ public class Spiel {
 	/** Deklarierung des Feldes */
 	private Spieler spieler;
 	private Gegner gegner;
+	private Barriere barriere;
 	private Spielfeld spielfeld;
 	private GameFrame gameFrame;
 
@@ -171,6 +173,10 @@ public class Spiel {
 							gameObject = new SchalterZu();
 						} else if (pruefe == Konstanten.SCHALTERAUF) {
 							gameObject = new SchalterAuf();
+						} else if (pruefe == Konstanten.BARRIERE) {
+							this.barriere = new Barriere();
+							barriere.setPosition(new Point(i, j));
+							gameObject = new Barriere();
 						}
 
 						spielfeld.setzeObjekt(gameObject, new Point(i, j));

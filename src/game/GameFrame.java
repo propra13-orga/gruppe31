@@ -337,8 +337,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		/* für die Levelanzeige */
 		int level = 0;
-		// int level = this.spiel.getSpielfeldNummer(); // das wird eingebaut,
-		// sobald der KeyListener wieder richtig läuft
+		/* TODO int level = this.spiel.getSpielfeldNummer();*/
 		if (level == Konstanten.RAUMEINS) {
 			panelAnzeige.add(eins);
 		} else if (level == Konstanten.RAUMZWEI) {
@@ -445,7 +444,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 
 		/* für die Lebenanzeige */
-		int leben = Konstanten.VOLLL;
+		int leben = spiel.getSpieler().getLeben();
 		if (leben == Konstanten.VOLLL) {
 			panelAnzeige.add(herz3);
 		} else if (leben == Konstanten.ZWEIDRITTELL) {

@@ -35,7 +35,7 @@ public class Gegner extends Spielfigur {
 	 * @param object */
 	public Gegner(String object) {
 		setKo(0);
-		setGesundheit(Konstanten.VOLLH);
+		setGesundheitPlus(Konstanten.VOLLH);
 
 		if ("Pilz".equals(object)) {
 			bild = ICONGEGNER1;

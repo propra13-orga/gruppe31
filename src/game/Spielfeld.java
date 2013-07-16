@@ -3,6 +3,8 @@ package game;
 import game.figuren.Spieler;
 import game.icons.Carlos;
 import game.icons.Checkpoint;
+import game.figuren.Gegner;
+import game.icons.Barriere;
 import game.icons.Grenze;
 import game.icons.Huette;
 import game.icons.Luke;
@@ -41,6 +43,7 @@ public class Spielfeld {
 	private NPC2 npc2;
 	private GameFrame gameFrame;
 	private Musik musik;
+	private Barriere barriere;
 
 	/**
 	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann für jeden
@@ -139,27 +142,38 @@ public class Spielfeld {
 			sollBewegtWerden = true;
 		} else if (obj instanceof Grenze) {
 			/* Bewegung ingorieren */
+			/* TODO Health Anzeige verschwindet, wenn tot, das soll nicht */
+		} else if (obj instanceof Gegner) {
+			if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
+				spielfigur.setGesundheitMinus(Konstanten.EINVIERTELH);
+			} else if (spielfigur.getGesundheit() >= Konstanten.EINVIERTELH) {
+				spielfigur.setLebenMinus(1);
+				spielfigur.setGesundheitPlus(Konstanten.VOLLH);
+			}
 		} else if (obj instanceof Huette) {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Carlos) {
 			npc = new NPC();
 			/* Bewegung igorieren */
 		} else if (obj instanceof Checkpoint) {
-			// Checkpoint();
+			/* TODO Checkpoint(); */
 		} else if (obj instanceof Weiter) {
+			/* TODO */
 			spiel.levelWeiter();
 		} else if (obj instanceof Zurueck) {
+			/* TODO */
 			spiel.levelZurueck();
 		} else if (obj instanceof Ziel) {
+			/* TODO */
 			gameFrame.gewonnen();
 		} else if (obj instanceof Brille) {
 			spielfigur.setBewaffnet(true);
 			einsammeln = true;
 		} else if (obj instanceof Gold) {
-			spielfigur.setGoldPlus(50);
+			spielfigur.setGoldPlus(Konstanten.GOLD50);
 			einsammeln = true;
 		} else if (obj instanceof Health) {
-			spielfigur.setGesundheit(Konstanten.VOLLH);
+			spielfigur.setGesundheitPlus(Konstanten.VOLLH);
 			einsammeln = true;
 		} else if (obj instanceof Mana) {
 			spielfigur.setMana(Konstanten.VOLLM);
@@ -171,16 +185,16 @@ public class Spielfeld {
 			spielfigur.setBeschwertet(true);
 			einsammeln = true;
 		} else if (obj instanceof Shophealth) {
-			if (spielfigur.getGold() >= 50) {
-				spielfigur.setGoldMinus(50);
-				spielfigur.setGesundheit(Konstanten.VOLLH);
+			if (spielfigur.getGold() >= Konstanten.GOLD50) {
+				spielfigur.setGoldMinus(Konstanten.GOLD50);
+				spielfigur.setGesundheitPlus(Konstanten.VOLLH);
 			} else {
 				// nothing to do here
 			}
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Shopmana) {
-			if (spielfigur.getGold() >= 50) {
-				spielfigur.setGoldMinus(50);
+			if (spielfigur.getGold() >= Konstanten.GOLD50) {
+				spielfigur.setGoldMinus(Konstanten.GOLD50);
 				spielfigur.setMana(Konstanten.VOLLM);
 			} else {
 				// nothing to do here
@@ -199,6 +213,9 @@ public class Spielfeld {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof SchalterZu) {
 			umlegen = true;
+			/* Bewegung ignorieren */
+		} else if (obj instanceof SchalterAuf) {
+			/* Bewegung ignorieren */
 		}
 
 		if (sollBewegtWerden) {
@@ -231,13 +248,20 @@ public class Spielfeld {
 			this.setzeObjekt(spielfigur, aktPos);
 			this.setzeObjekt(new SchalterAuf(), neuPos);
 
+			/*
+			 * TODO hier muss die Poistion der Barriere ausgemacht werden und
+			 * dorthin Rasen gesetzt werden Point barrierePosition =
+			 * this.barriere.getPosition(); this.setzeObjekt(new Rasen(),
+			 * barrierePosition); funktioniert so nicht
+			 */
+
 			/* setzt die neue Position */
-			spielfigur.setPosition(neuPos);
+			spielfigur.setPosition(aktPos);
 		}
 	}
 
 	/*
-	 * Prüfung ob Checkpoint besucht wurde und Zurücksetzen des Spiels oder
+	 * TODO Prüfung ob Checkpoint besucht wurde und Zurücksetzen des Spiels oder
 	 * Ausgang Verloren
 	 * 
 	 * public void Checkpoint() { if (save == 1) { if (leben > 0) { health =
