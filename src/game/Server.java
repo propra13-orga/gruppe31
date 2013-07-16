@@ -4,14 +4,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import java.util.Enumeration;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
 
 /** Server erzeugt ServerSocket und verbindet mit Client, wenn dieser 'anklopft' */
 class Server extends Thread {
-	
+
 	/** Deklaration des Feldes */
 	NetzwerkFrame frame;
 	/** Deklaration von ServerSocket */
@@ -27,11 +33,13 @@ class Server extends Thread {
 
 	/**
 	 * erstellt neuen Socket
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 *             wirft Exception
 	 */
 	Server() throws IOException {
 		serverSocket = new ServerSocket(Konstanten.PORT);
+		ipErmitteln();
 	}
 
 	/**
@@ -43,11 +51,13 @@ class Server extends Thread {
 				/* Wartet auf Verbindung */
 				clientSocket = serverSocket.accept();
 				/* Ausgabestrom */
-				ausgehendPr = new PrintWriter(clientSocket.getOutputStream(), true);
+				ausgehendPr = new PrintWriter(clientSocket.getOutputStream(),
+						true);
 				eintreffendBr = new BufferedReader(new InputStreamReader(
 				/* Eingabestrom */
 				clientSocket.getInputStream()));
-				frame = new NetzwerkFrame("Server", ausgehendPr, eintreffendBr, Konstanten.XSERVER, Konstanten.YSERVERCLIENT);
+				frame = new NetzwerkFrame("Server", ausgehendPr, eintreffendBr,
+						Konstanten.XSERVER, Konstanten.YSERVERCLIENT);
 				while (true) {
 					String incoming = eintreffendBr.readLine();
 					frame.addAusgabe(incoming);
@@ -57,4 +67,17 @@ class Server extends Thread {
 			}
 		}
 	}
+
+	/**
+	 * ermittelt die IP des Servers
+	 * 
+	 * @throws UnknownHostException
+	 *             wirft Exception
+	 */
+	public void ipErmitteln() throws UnknownHostException {
+		String ip = "Host Name/ Adresse: " + InetAddress.getLocalHost();
+		JOptionPane.showMessageDialog(null, ip, "IP-Adresse des Servers",
+				JOptionPane.INFORMATION_MESSAGE);
+	}
+
 }

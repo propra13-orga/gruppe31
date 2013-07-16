@@ -170,7 +170,10 @@ public class MenuFrame extends JFrame {
 			new game.Server().start();
 			/* wenn Client gewählt wurde, wird Client-Thread gestartet */
 		} else if (selected == 1) {
-			new Chatter().start();
+			String ip = JOptionPane.showInputDialog(null,
+					"Geben Sie die IP-Adresse ein", "Eine Eingabeaufforderung",
+					JOptionPane.PLAIN_MESSAGE);
+			new Chatter(ip).start();
 		}
 	}
 

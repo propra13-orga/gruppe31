@@ -24,15 +24,15 @@ public class Chatter extends Thread {
 	BufferedReader eintreffendBr = null;
 	/** Deklaration von Scanner */
 	Scanner tasten = new Scanner(System.in);
-
+     
 	/**
 	 * Konstruktor initialisiert Socket, PrintWriterm BufferedReader und ein
 	 * Frame fuer den Client
 	 */
-	Chatter() {
+	Chatter(String ip) {
 		try {
 			/* Host-Adresse, Port */
-			socket = new Socket("localhost", Konstanten.PORT);
+			socket = new Socket(ip, Konstanten.PORT);
 			ausgehendPr = new PrintWriter(socket.getOutputStream(), true);
 			eintreffendBr = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
