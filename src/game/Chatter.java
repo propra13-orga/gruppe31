@@ -7,9 +7,11 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
 
 /**
  * öffnet den Client-Thread
+ * 
  * @author Denise
  * 
  */
@@ -24,10 +26,13 @@ public class Chatter extends Thread {
 	BufferedReader eintreffendBr = null;
 	/** Deklaration von Scanner */
 	Scanner tasten = new Scanner(System.in);
-     
+
 	/**
 	 * Konstruktor initialisiert Socket, PrintWriterm BufferedReader und ein
 	 * Frame fuer den Client
+	 * 
+	 * @param ip
+	 *            erwartet ip Parameter
 	 */
 	Chatter(String ip) {
 		try {
@@ -36,9 +41,12 @@ public class Chatter extends Thread {
 			ausgehendPr = new PrintWriter(socket.getOutputStream(), true);
 			eintreffendBr = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
-			frame = new NetzwerkFrame("Client", ausgehendPr, eintreffendBr, Konstanten.XCLIENT, Konstanten.YSERVERCLIENT);
+			frame = new NetzwerkFrame("Client", ausgehendPr, eintreffendBr,
+					Konstanten.XCLIENT, Konstanten.YSERVERCLIENT);
 		} catch (Exception e) {
-			frame.dispose();
+			JOptionPane.showMessageDialog(null,
+					"Sie müssen zunächst einen Server auswählen !", "Achtung!",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
