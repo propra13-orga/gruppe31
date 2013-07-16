@@ -57,7 +57,7 @@ public class Spielfeld {
 	public Spielfeld(int hoehe, int breite) throws SpielfeldException {
 		this.spalten = hoehe;
 		this.zeilen = breite;
-		this.feld = new GameObject[hoehe][breite];
+		this.feld = new GameObject[breite][hoehe];
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class Spielfeld {
 	 * @return position
 	 */
 	public GameObject gibObjekt(Point position) {
-		return this.feld[position.y][position.x];
+		return this.feld[position.x][position.y];
 	}
 
 	/**
@@ -117,13 +117,13 @@ public class Spielfeld {
 		Point neuPos = new Point(aktPos);
 
 		if (keyCode == KeyEvent.VK_LEFT) {
-			neuPos.y--;
-		} else if (keyCode == KeyEvent.VK_RIGHT) {
-			neuPos.y++;
-		} else if (keyCode == KeyEvent.VK_UP) {
 			neuPos.x--;
-		} else if (keyCode == KeyEvent.VK_DOWN) {
+		} else if (keyCode == KeyEvent.VK_RIGHT) {
 			neuPos.x++;
+		} else if (keyCode == KeyEvent.VK_UP) {
+			neuPos.y--;
+		} else if (keyCode == KeyEvent.VK_DOWN) {
+			neuPos.y++;
 		} else {
 			/* Andere Tasten wollen wir nicht beruecksichtigen. */
 			return;

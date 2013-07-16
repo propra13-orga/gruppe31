@@ -87,7 +87,7 @@ public class Spiel {
 			spielfeld = new Spielfeld(Konstanten.ZEILEN, Konstanten.SPALTEN);
 
 			/* die Zeilen werden gelesen, bis man bei der 16. angekommen ist */
-			for (int j = 0; j < Konstanten.SPALTEN; j++, line = br.readLine()) {
+			for (int i = 0; i < Konstanten.SPALTEN; i++, line = br.readLine()) {
 				/* wenn mehr als 12 Zeichen gelesen werden, Fehlermeldung */
 				if (line.length() != Konstanten.ZEILEN) {
 					JOptionPane
@@ -101,10 +101,10 @@ public class Spiel {
 					 * die Zeichen einer Zeile werden gelesen und in das Array
 					 * geparst
 					 */
-					for (int i = 0; i < Konstanten.ZEILEN; i++) {
+					for (int j = 0; j < Konstanten.ZEILEN; j++) {
 						int pruefe;
 						GameObject gameObject = null;
-						pruefe = (int) line.charAt(i);
+						pruefe = (int) line.charAt(j);
 
 						if (pruefe == Konstanten.RASEN) {
 							gameObject = new Rasen();
