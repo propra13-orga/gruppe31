@@ -490,6 +490,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/** setzt einen Laden Button auf das GameFrame */
 	public void setzeLoadButton() {
+		
 		load = new JButton("Laden");
 		load.setVisible(true);
 
@@ -537,6 +538,11 @@ public class GameFrame extends JFrame implements KeyListener {
 		panelButtons.add(save);
 	}
 
+	/**
+	 * übergibt String mit Buchstaben des aktuellen Spielfelds
+	 * 
+	 * @return saveSpielfeld
+	 */
 	public String getSave() {
 		Spielfeld spielfeld = spiel.getAktuellesSpielfeld();
 		for (int i = 0; i < Konstanten.SPALTEN; i++) {
