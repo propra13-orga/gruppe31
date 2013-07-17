@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Container;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -11,6 +12,33 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.imageio.ImageIO;
+
+import game.figuren.Bossgegner;
+import game.figuren.Falle;
+import game.figuren.Gegner;
+import game.figuren.Spieler;
+import game.icons.Barriere;
+import game.icons.Carlos;
+import game.icons.Checkpoint;
+import game.icons.Grenze;
+import game.icons.Huette;
+import game.icons.Luke;
+import game.icons.Rasen;
+import game.icons.SchalterAuf;
+import game.icons.SchalterZu;
+import game.icons.Weiter;
+import game.icons.Ziel;
+import game.icons.Zurueck;
+import game.items.Brille;
+import game.items.Gold;
+import game.items.Health;
+import game.items.Mana;
+import game.items.Ruestung;
+import game.items.Schwert;
+import game.items.Shophealth;
+import game.items.Shopmana;
+import game.items.Shopruestung;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -175,6 +203,9 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/** Deklaration eines Buttons zum Speichern */
 	private JButton save;
+	private JButton load;
+
+	String saveSpielfeld;
 
 	/**
 	 * Konstruktor, der die Eigenschaften des Spielfensters festsetzt. der
@@ -219,7 +250,8 @@ public class GameFrame extends JFrame implements KeyListener {
 				contentPane.getBounds().width, contentPane.getBounds().height
 						- (contentPane.getBounds().height / Konstanten.PANEL));
 
-		this.panelButtons.setBounds(Konstanten.XBU,Konstanten.YBU,Konstanten.BREITEBU,Konstanten.HOEHEBU);
+		this.panelButtons.setBounds(Konstanten.XBU, Konstanten.YBU,
+				Konstanten.BREITEBU, Konstanten.HOEHEBU);
 
 		getContentPane().add(panelSpielfeld);
 		getContentPane().add(panelAnzeige);
@@ -337,7 +369,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		/* für die Levelanzeige */
 		int level = 0;
-		/* TODO int level = this.spiel.getSpielfeldNummer();*/
+		/* TODO int level = this.spiel.getSpielfeldNummer(); */
 		if (level == Konstanten.RAUMEINS) {
 			panelAnzeige.add(eins);
 		} else if (level == Konstanten.RAUMZWEI) {
@@ -458,8 +490,8 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/** setzt einen Laden Button auf das GameFrame */
 	public void setzeLoadButton() {
-		save = new JButton("Laden");
-		save.setVisible(true);
+		load = new JButton("Laden");
+		load.setVisible(true);
 
 		ActionListener alsave = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -473,8 +505,8 @@ public class GameFrame extends JFrame implements KeyListener {
 			}
 		};
 
-		save.addActionListener(alsave);
-		panelButtons.add(save);
+		load.addActionListener(alsave);
+		panelButtons.add(load);
 	}
 
 	/** setzt einen Speichern Button auf das GameFrame */
@@ -484,15 +516,18 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		ActionListener alsave = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				getSave();
 				try {
 					PrintWriter pWriter = new PrintWriter(new FileWriter(
 							Konstanten.DIRECTION
 									+ "/src/game/Szenario/test.txt"));
-					pWriter.println("Ernas Adventure möchte gespeichert werden !");
+
+					pWriter.println(saveSpielfeld);
 					pWriter.flush();
 				} catch (IOException ioe) {
 					ioe.printStackTrace();
 				}
+
 			}
 		};
 
@@ -500,6 +535,70 @@ public class GameFrame extends JFrame implements KeyListener {
 		save.setBounds(Konstanten.XSAVE, Konstanten.YSAVE,
 				Konstanten.BREITESAVE, Konstanten.HOEHESAVE);
 		panelButtons.add(save);
+	}
+
+	public String getSave() {
+		Spielfeld spielfeld = spiel.getAktuellesSpielfeld();
+		for (int i = 0; i < Konstanten.SPALTEN; i++) {
+			for (int j = 0; j < Konstanten.ZEILEN; j++) {
+				Point position = new Point(i, j);
+				GameObject teste = spielfeld.gibObjekt(position);
+
+				if (teste instanceof Rasen) {
+					saveSpielfeld = saveSpielfeld + " ";
+				} else if (teste instanceof Grenze) {
+					saveSpielfeld = saveSpielfeld + "#";
+				} else if (teste instanceof Spieler) {
+					saveSpielfeld = saveSpielfeld + "P";
+				} else if (teste instanceof Gegner) {
+					saveSpielfeld = saveSpielfeld + "G";
+				} else if (teste instanceof Falle) {
+					saveSpielfeld = saveSpielfeld + "U";
+				} else if (teste instanceof Weiter) {
+					saveSpielfeld = saveSpielfeld + "W";
+				} else if (teste instanceof Zurueck) {
+					saveSpielfeld = saveSpielfeld + "Z";
+				} else if (teste instanceof Carlos) {
+					saveSpielfeld = saveSpielfeld + "C";
+				} else if (teste instanceof Ziel) {
+					saveSpielfeld = saveSpielfeld + "F";
+				} else if (teste instanceof Huette) {
+					saveSpielfeld = saveSpielfeld + "E";
+				} else if (teste instanceof Brille) {
+					saveSpielfeld = saveSpielfeld + "S";
+				} else if (teste instanceof Gold) {
+					saveSpielfeld = saveSpielfeld + "O";
+				} else if (teste instanceof Mana) {
+					saveSpielfeld = saveSpielfeld + "M";
+				} else if (teste instanceof Health) {
+					saveSpielfeld = saveSpielfeld + "H";
+				} else if (teste instanceof Ruestung) {
+					saveSpielfeld = saveSpielfeld + "R";
+				} else if (teste instanceof Checkpoint) {
+					saveSpielfeld = saveSpielfeld + "C";
+				} else if (teste instanceof Schwert) {
+					saveSpielfeld = saveSpielfeld + "ß";
+				} else if (teste instanceof Shopmana) {
+					saveSpielfeld = saveSpielfeld + "A";
+				} else if (teste instanceof Shophealth) {
+					saveSpielfeld = saveSpielfeld + "Q";
+				} else if (teste instanceof Shopruestung) {
+					saveSpielfeld = saveSpielfeld + "Ü";
+				} else if (teste instanceof Bossgegner) {
+					saveSpielfeld = saveSpielfeld + "B";
+				} else if (teste instanceof Luke) {
+					saveSpielfeld = saveSpielfeld + "L";
+				} else if (teste instanceof SchalterZu) {
+					saveSpielfeld = saveSpielfeld + "&";
+				} else if (teste instanceof SchalterAuf) {
+					saveSpielfeld = saveSpielfeld + "#";
+				} else if (teste instanceof Barriere) {
+					saveSpielfeld = saveSpielfeld + "I";
+				}
+			}
+		}
+		System.out.println(saveSpielfeld);
+		return saveSpielfeld;
 	}
 
 	/**
