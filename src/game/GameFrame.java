@@ -576,7 +576,6 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-
 		this.spiel.aktion(arg0.getKeyCode());
 		this.zeichnen(this.spiel.getAktuellesSpielfeld());
 		this.setzeAnzeige();

@@ -148,12 +148,17 @@ public class Spielfeld {
 			/* Bewegung ingorieren */
 			/* TODO Health Anzeige verschwindet, wenn tot, das soll nicht */
 		} else if (obj instanceof Gegner) {
-			if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
-				spielfigur.setGesundheitMinus(Konstanten.EINVIERTELH);
-			} else if (spielfigur.getGesundheit() >= Konstanten.EINVIERTELH) {
-				spielfigur.setLebenMinus(1);
-				spielfigur.setGesundheitPlus(Konstanten.VOLLH);
+			if (spielfigur.getLeben() >= Konstanten.EINDRITTELL) {
+				if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
+					spielfigur.setGesundheitMinus(Konstanten.EINVIERTELH);
+				} else if (spielfigur.getGesundheit() >= Konstanten.EINVIERTELH) {
+					spielfigur.setLebenMinus(1);
+					spielfigur.setGesundheitPlus(Konstanten.VOLLH);
+				}
 			}
+			else
+				gameFrame.verloren();
+			
 		} else if (obj instanceof Huette) {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Carlos) {

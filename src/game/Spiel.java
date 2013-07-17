@@ -198,6 +198,7 @@ public class Spiel {
 			 */
 		} while (line != null);
 		fr.close();
+
 		/*
 		 * setzt das aktuelleSpielfeld wieder an den Anfang, damit der erste
 		 * Raum angezeigt wird
@@ -212,6 +213,24 @@ public class Spiel {
 	 */
 	public Spielfeld getAktuellesSpielfeld() {
 		return levels.get(aktSpielfeld);
+	}
+
+	public int getAktSpielfeld() {
+		return aktSpielfeld;
+	}
+
+	/**
+	 * set aktuelles Spielfeld einen hoch
+	 */
+	public void levelWeiter() {
+		aktSpielfeld = getAktSpielfeld() + 1;
+	}
+
+	/**
+	 * set aktuelles Spielfeld einen runter
+	 */
+	public void levelZurueck() {
+		aktSpielfeld = getAktSpielfeld() - 1;
 	}
 
 	/**
@@ -231,19 +250,5 @@ public class Spiel {
 	 */
 	public void aktion(int keyCode) {
 		levels.get(aktSpielfeld).aktion(this.spieler, this.gegner, keyCode);
-	}
-
-	/**
-	 * set aktuelles Spielfeld einen hoch
-	 */
-	public void levelWeiter() {
-		//
-	}
-
-	/**
-	 * set aktuelles Spielfeld einen runter
-	 */
-	public void levelZurueck() {
-		//
 	}
 }
