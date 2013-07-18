@@ -37,7 +37,7 @@ public class Jauch extends GameObject {
 	 * @param spielfigur
 	 *            Kommandozeilenparameter
 	 */
-	public void r‰tsel1(Spieler spielfigur) {
+	public void raetsel1(Spieler spielfigur) {
 		Object[] options = { "Weiﬂ ich nicht", "Fliegenpilze", "Steinpilze",
 				"Pfifferling", };
 

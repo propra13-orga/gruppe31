@@ -284,7 +284,7 @@ public class Spielfeld {
 			/* Bewegung ignorieren */
 		} else if (obj instanceof Jauch) {
 			jauch = new Jauch();
-			jauch.rätsel1(spielfigur);
+			jauch.raetsel1(spielfigur);
 			einsammeln = true;
 			/* Bewegung ignorieren */
 		}
