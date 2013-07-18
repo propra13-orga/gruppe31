@@ -86,9 +86,9 @@ public final class Konstanten {
 	public static final int LEERM = 0;
 
 	/** die Leben Staffelungen werden deklariert */
-	public static final int VOLLL = 3;
-	public static final int ZWEIDRITTELL = 2;
-	public static final int EINDRITTELL = 1;
+	public static final int DREILEBEN = 3;
+	public static final int ZWEILEBEN = 2;
+	public static final int EINLEBEN = 1;
 
 	/** die Gold Staffelungen werden angezeigt */
 	public static final int GOLD0 = 0;
@@ -174,11 +174,15 @@ public final class Konstanten {
 	/** Port für Netzwerk */
 	public static final int PORT = 4711;
 
-	/** Poistionen für gvschliessen */
-	public static final int XGV = 550;
-	public static final int YGV = 450;
-	public static final int BREITEGV = 200;
-	public static final int HOEHEGV = 45;
+	/** Angaben für GewonnenVerloren */ 
+	public static final int BREITEGV = 800;
+	public static final int HOEHEGV = 600;
+	
+	/** Positionen für gvschliessen */
+	public static final int XGVB = 550;
+	public static final int YGVB = 450;
+	public static final int BREITEGVB = 200;
+	public static final int HOEHEGVB = 45;
 
 	/** Positionen für Buttons auf MenuFrame */
 	public static final int XBUTTON = 350;

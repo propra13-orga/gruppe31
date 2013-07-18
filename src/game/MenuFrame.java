@@ -39,7 +39,7 @@ public class MenuFrame extends JFrame {
 	private GameFrame gameframe;
 
 	/** Deklaration des Fenstertitels */
-	private String spiel = "Erna's Adventure";
+	private String name = "Erna's Adventure";
 
 	/**
 	 * Konstruktor, der alle Einstellungen des Menüfensters aufruft
@@ -100,7 +100,7 @@ public class MenuFrame extends JFrame {
 		ActionListener alstart = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					gameframe = new GameFrame(spiel, Konstanten.XGF,
+					gameframe = new GameFrame(name, Konstanten.XGF,
 							Konstanten.YGF);
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -123,7 +123,7 @@ public class MenuFrame extends JFrame {
 		ActionListener alload = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					gameframe = new GameFrame(spiel, Konstanten.XGF,
+					gameframe = new GameFrame(name, Konstanten.XGF,
 							Konstanten.YGF);
 				} catch (Exception e1) {
 					e1.printStackTrace();

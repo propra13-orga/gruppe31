@@ -223,14 +223,14 @@ public class Spiel {
 	 * set aktuelles Spielfeld einen hoch
 	 */
 	public void levelWeiter() {
-		aktSpielfeld = getAktSpielfeld() + 1;
+		aktSpielfeld = aktSpielfeld + 1;
 	}
 
 	/**
 	 * set aktuelles Spielfeld einen runter
 	 */
 	public void levelZurueck() {
-		aktSpielfeld = getAktSpielfeld() - 1;
+		aktSpielfeld = aktSpielfeld - 1;
 	}
 
 	/**

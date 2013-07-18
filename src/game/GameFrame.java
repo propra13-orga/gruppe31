@@ -185,21 +185,12 @@ public class GameFrame extends JFrame implements KeyListener {
 	private JPanel panelSpielfeld = new JPanel();
 	private JPanel panelButtons = new JPanel();
 
-	/** Button wird für Gewonnen- und Verlorenfenster deklariert */
-	private JButton gvschliessen;
-
 	/** Deklaration von Feldern */
 	private Spiel spiel;
 	private Musik musik;
 
 	/** Deklaration eines Strings Datei */
 	private String datei;
-
-	/** Deklaration eines Strings für Exception im Gewonnen- und Verlorenfenster */
-	private String exception = "Das Bild kann nicht gefunden werden ";
-
-	/** Deklaration eines Strings für das Schließen */
-	private String schliessen = "Dieses Fenster schließen";
 
 	/** Deklaration eines Buttons zum Speichern */
 	private JButton save;
@@ -477,11 +468,11 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		/* für die Lebenanzeige */
 		int leben = spiel.getSpieler().getLeben();
-		if (leben == Konstanten.VOLLL) {
+		if (leben == Konstanten.DREILEBEN) {
 			panelAnzeige.add(herz3);
-		} else if (leben == Konstanten.ZWEIDRITTELL) {
+		} else if (leben == Konstanten.ZWEILEBEN) {
 			panelAnzeige.add(herz2);
-		} else if (leben == Konstanten.EINDRITTELL) {
+		} else if (leben == Konstanten.EINLEBEN) {
 			panelAnzeige.add(herz1);
 		}
 
@@ -521,7 +512,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				try {
 					PrintWriter pWriter = new PrintWriter(new FileWriter(
 							Konstanten.DIRECTION
-									+ "/src/game/Szenario/test.txt"));
+									+ "/src/game/Szenario/gespeichert.txt"));
 
 					pWriter.println(saveSpielfeld);
 					pWriter.flush();
@@ -607,73 +598,6 @@ public class GameFrame extends JFrame implements KeyListener {
 		return saveSpielfeld;
 	}
 
-	/**
-	 * es wird ein neues Fenster mit dem Spielausgang Gewonnen aufgerufen
-	 */
-	public void gewonnen() {
-		getContentPane().removeAll();
-
-		try {
-			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
-					Konstanten.DIRECTION + "/src/game/Images/Gewonnen.jpg")))));
-		} catch (IOException a) {
-			System.out.println(exception);
-		}
-
-		this.setResizable(false);
-		this.setSize(Konstanten.BREITE, Konstanten.HOEHE);
-		this.setLayout(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-
-		gvschliessen = new JButton(schliessen);
-		gvschliessen.setBounds(Konstanten.XGV, Konstanten.YGV,
-				Konstanten.BREITEGV, Konstanten.HOEHEGV);
-		this.add(gvschliessen);
-
-		ActionListener alschliessen = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		};
-		gvschliessen.addActionListener(alschliessen);
-	}
-
-	/**
-	 * es wird ein neues Fenster mit dem Spielausgang Verloren aufgerufen
-	 */
-	public void verloren() {
-
-		getContentPane().removeAll();
-
-		try {
-			this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(
-					Konstanten.DIRECTION + "/src/game/Images/GameOver.jpg")))));
-		} catch (IOException a) {
-			System.out.println(exception);
-		}
-
-		this.setResizable(false);
-		this.setSize(Konstanten.BREITE, Konstanten.HOEHE);
-		this.setLayout(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-
-		gvschliessen = new JButton(schliessen);
-		gvschliessen.setBounds(Konstanten.XGV, Konstanten.YGV,
-				Konstanten.BREITEGV, Konstanten.HOEHEGV);
-		this.add(gvschliessen);
-
-		ActionListener alschliessen = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		};
-		gvschliessen.addActionListener(alschliessen);
-	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// nothing to do here
@@ -682,6 +606,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		this.spiel.aktion(arg0.getKeyCode());
+		aktualisieren();
 		this.zeichnen(this.spiel.getAktuellesSpielfeld());
 		this.setzeAnzeige();
 	}

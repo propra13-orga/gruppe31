@@ -41,9 +41,13 @@ public class Spielfeld {
 	private Spiel spiel;
 	private NPC npc;
 	private NPC2 npc2;
-	private GameFrame gameFrame;
+
 	private Musik musik;
 	private Barriere barriere;
+	private GewonnenVerloren gewonnenVerloren;
+
+	/** Deklaration des Fenstertitels */
+	private String name = "Erna's Adventure";
 
 	/**
 	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann für jeden
@@ -106,18 +110,36 @@ public class Spielfeld {
 	}
 
 	/**
-	 * Spielfigur wird bewegt
+	 * Figuren werden bewegt
 	 * 
 	 * @param spielfigur
 	 *            Spielfigur wird übergeben
+	 * @param gegner
+	 *            Gegner wird übergeben
 	 * @param keyCode
 	 *            KeyCode wird übergeben
 	 */
 	public void aktion(Spieler spielfigur, Gegner gegner, int keyCode) {
-		bewegeSpieler(spielfigur, keyCode);
+		try {
+			bewegeSpieler(spielfigur, keyCode);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	private void bewegeSpieler(Spieler spielfigur, int keyCode) {
+	/**
+	 * Spielfigur wird bewegt
+	 * 
+	 * @param spielfigur
+	 *            Kommandozeilenparameter
+	 * @param keyCode
+	 *            Kommandozeilenparameter
+	 * @throws Exception
+	 *             wirft Exception
+	 */
+	private void bewegeSpieler(Spieler spielfigur, int keyCode)
+			throws Exception {
 		/* Alte und neue Position für Spieler festlegen. */
 		Point aktPos = spielfigur.getPosition();
 		Point neuPos = new Point(aktPos);
@@ -136,7 +158,7 @@ public class Spielfeld {
 		}
 
 		GameObject obj = this.gibObjekt(neuPos);
-		
+
 		boolean sollBewegtWerden = false;
 		boolean einsammeln = false;
 		boolean umlegen = false;
@@ -148,17 +170,17 @@ public class Spielfeld {
 			/* Bewegung ingorieren */
 			/* TODO Health Anzeige verschwindet, wenn tot, das soll nicht */
 		} else if (obj instanceof Gegner) {
-			if (spielfigur.getLeben() >= Konstanten.EINDRITTELL) {
+			if (spielfigur.getLeben() >= Konstanten.EINLEBEN) {
 				if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
 					spielfigur.setGesundheitMinus(Konstanten.EINVIERTELH);
 				} else if (spielfigur.getGesundheit() >= Konstanten.EINVIERTELH) {
 					spielfigur.setLebenMinus(1);
 					spielfigur.setGesundheitPlus(Konstanten.VOLLH);
 				}
-			}
-			else
-				gameFrame.verloren();
-			
+			} 
+			if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
+				gewonnenVerloren = new GewonnenVerloren("verloren");
+			}	
 		} else if (obj instanceof Huette) {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Carlos) {
@@ -168,13 +190,13 @@ public class Spielfeld {
 			/* TODO Checkpoint(); */
 		} else if (obj instanceof Weiter) {
 			/* TODO */
+			spiel = new Spiel();
 			spiel.levelWeiter();
 		} else if (obj instanceof Zurueck) {
 			/* TODO */
 			spiel.levelZurueck();
 		} else if (obj instanceof Ziel) {
-			/* TODO */
-			gameFrame.gewonnen();
+			gewonnenVerloren = new GewonnenVerloren("gewonnen");
 		} else if (obj instanceof Brille) {
 			spielfigur.setBewaffnet(true);
 			einsammeln = true;
@@ -266,8 +288,9 @@ public class Spielfeld {
 
 			/* setzt die neue Position */
 			spielfigur.setPosition(aktPos);
-			
-			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Schalter.wav");
+
+			musik = new Musik(Konstanten.DIRECTION
+					+ "/src/game/Sound/Schalter.wav");
 		}
 	}
 
