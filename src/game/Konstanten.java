@@ -63,6 +63,13 @@ public final class Konstanten {
 	
 	/** Deklaration Zeilenumbruch*/
 	public static final String ZEILENUMBRUCH = "\n";
+	
+	/**Auswahlmöglichkeiten selected */
+	public static final int SELECTEDNULL = 0;
+	public static final int SELECTEDEINS = 1;
+	public static final int SELECTEDZWEI = 2;
+	public static final int SELECTEDDREI = 3;
+
 
 	/** die Level-Staffelungen werden deklariert */
 	public static final int RAUMEINS = 0;
