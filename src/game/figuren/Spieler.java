@@ -70,12 +70,22 @@ public class Spieler extends Spielfigur {
 		setGesundheitPlus(Konstanten.VOLLH);
 		setBeschwertet(false);
 		setHalsband(false);
-		setLebenPlus(3);
-		setMana(0);
+		setLebenPlus(Konstanten.DREILEBEN);
+		setManaPlus(0);
 		setGoldPlus(0);
 		setRuestung(0);
 
 		if ("Erna".equals(art)) {
+			setzeBildErna();
+		} else if ("Luke".equals(art)) {
+			// setzeBildLuke
+		}
+	}
+
+	/**
+	 * wählt das Icon des Spielers
+	 */
+	public void setzeBildErna() {
 			if (bewaffnet) {
 				if (beschwertet) {
 					if (halsband) {
@@ -105,9 +115,6 @@ public class Spieler extends Spielfigur {
 					}
 				}
 			}
-		} else if ("Luke".equals(art)) {
-			bild = ICONLUKE;
-		}
 	}
 
 	/**
@@ -163,8 +170,18 @@ public class Spieler extends Spielfigur {
 	 * @param mana
 	 *            Kommandozeilenparameter
 	 */
-	public void setMana(int mana) {
-		this.mana = mana;
+	public void setManaPlus(int mana) {
+		this.mana = getMana() + mana;
+	}
+
+	/**
+	 * Setter für mana
+	 * 
+	 * @param mana
+	 *            Kommandozeilenparameter
+	 */
+	public void setManaMinus(int mana) {
+		this.mana = getMana() - mana;
 	}
 
 	/**
@@ -185,7 +202,7 @@ public class Spieler extends Spielfigur {
 	public void setLebenMinus(int leben) {
 		this.leben = getLeben() - leben;
 	}
-	
+
 	/**
 	 * Setter für leben
 	 * 
@@ -251,8 +268,9 @@ public class Spieler extends Spielfigur {
 
 	public void setGoldPlus(int gold) {
 		this.gold = getGold() + gold;
-		
+
 	}
+
 	/**
 	 * Setter für gold
 	 * 

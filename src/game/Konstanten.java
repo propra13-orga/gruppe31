@@ -56,6 +56,12 @@ public final class Konstanten {
 	public static final int SPALTEN = 16;
 	/** die Zeilen werden deklariert */
 	public static final int ZEILEN = 12;
+	
+	/** Eigenschaftenanzahl wird deklariert*/
+	public static final int EIGENSCHAFTEN = 8;
+	
+	/** Deklaration Zeilenumbruch*/
+	public static final String ZEILENUMBRUCH = "\n";
 
 	/** die Level-Staffelungen werden deklariert */
 	public static final int RAUMEINS = 0;

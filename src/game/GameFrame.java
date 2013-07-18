@@ -17,6 +17,7 @@ import game.figuren.Bossgegner;
 import game.figuren.Falle;
 import game.figuren.Gegner;
 import game.figuren.Spieler;
+import game.figuren.Spielfigur;
 import game.icons.Barriere;
 import game.icons.Carlos;
 import game.icons.Checkpoint;
@@ -481,7 +482,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/** setzt einen Laden Button auf das GameFrame */
 	public void setzeLoadButton() {
-		
+
 		load = new JButton("Laden");
 		load.setVisible(true);
 
@@ -536,6 +537,22 @@ public class GameFrame extends JFrame implements KeyListener {
 	 */
 	public String getSave() {
 		Spielfeld spielfeld = spiel.getAktuellesSpielfeld();
+
+		int health = spiel.getSpieler().getGesundheit();
+		int gold = spiel.getSpieler().getGold();
+		int mana = spiel.getSpieler().getMana();
+		boolean brille = spiel.getSpieler().getBewaffnet();
+		boolean schwert = spiel.getSpieler().getBeschwertet();
+		boolean halsband = spiel.getSpieler().getHalsband();
+		int leben = spiel.getSpieler().getLeben();
+
+		saveSpielfeld = saveSpielfeld + Konstanten.ZEILENUMBRUCH + health
+				+ Konstanten.ZEILENUMBRUCH + gold + Konstanten.ZEILENUMBRUCH
+				+ mana + Konstanten.ZEILENUMBRUCH + leben
+				+ Konstanten.ZEILENUMBRUCH + brille + Konstanten.ZEILENUMBRUCH
+				+ schwert + Konstanten.ZEILENUMBRUCH + halsband
+				+ Konstanten.ZEILENUMBRUCH;
+
 		for (int i = 0; i < Konstanten.SPALTEN; i++) {
 			for (int j = 0; j < Konstanten.ZEILEN; j++) {
 				Point position = new Point(i, j);
@@ -593,6 +610,7 @@ public class GameFrame extends JFrame implements KeyListener {
 					saveSpielfeld = saveSpielfeld + "I";
 				}
 			}
+			saveSpielfeld = saveSpielfeld + "\n";
 		}
 		System.out.println(saveSpielfeld);
 		return saveSpielfeld;

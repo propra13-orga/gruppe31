@@ -80,6 +80,12 @@ public class Spiel {
 		/* öffnet BufferedReader und liest .txt hinein */
 		BufferedReader br = new BufferedReader(fr);
 
+		/*for (int a = 0; a > Konstanten.EIGENSCHAFTEN; a++) {
+			String eigenschaften = br.readLine();
+			System.out.println(eigenschaften);
+		}*/
+
+
 		/* in line wird eine Zeile gespeichert */
 		String line = br.readLine();
 		do {
@@ -87,7 +93,8 @@ public class Spiel {
 			int breite = line.charAt(1);
 
 			/* ein neues Spielfeld wird initialisiert */
-			spielfeld = new Spielfeld(Konstanten.ZEILEN, Konstanten.SPALTEN);
+			spielfeld = new Spielfeld(this, Konstanten.ZEILEN,
+					Konstanten.SPALTEN);
 
 			/* die Zeilen werden gelesen, bis man bei der 16. angekommen ist */
 			for (int i = 0; i < Konstanten.SPALTEN; i++, line = br.readLine()) {

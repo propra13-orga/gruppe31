@@ -27,6 +27,8 @@ import game.items.Shopruestung;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JOptionPane;
+
 /** ist für den jeweiligen Raum zuständig. das Spielfeld wird erstellt */
 public class Spielfeld {
 
@@ -54,6 +56,8 @@ public class Spielfeld {
 	 * case wird ein Objekt der jeweiligen Klasse erstellt, welches den case
 	 * überschreibt
 	 * 
+	 * @param spiel
+	 *            Kommandozeilenparameter
 	 * @param hoehe
 	 *            hoehe des Spielfeldes
 	 * @param breite
@@ -61,7 +65,9 @@ public class Spielfeld {
 	 * @throws SpielfeldException
 	 *             wirft eine Exception
 	 */
-	public Spielfeld(int hoehe, int breite) throws SpielfeldException {
+	public Spielfeld(Spiel spiel, int hoehe, int breite)
+			throws SpielfeldException {
+		// spiel = new Spiel();
 		this.spalten = hoehe;
 		this.zeilen = breite;
 		this.feld = new GameObject[breite][hoehe];
@@ -121,11 +127,27 @@ public class Spielfeld {
 	 */
 	public void aktion(Spieler spielfigur, Gegner gegner, int keyCode) {
 		try {
-			bewegeSpieler(spielfigur, keyCode);
+			aktionSpieler(spielfigur, keyCode);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Spieler wird Mana abgezogen, beschwertet und geheilt
+	 * 
+	 * @param spielfigur
+	 *            Kommandozeilenparamter
+	 */
+	public void zaubere(Spieler spielfigur) {
+		if (spielfigur.getMana() > Konstanten.LEERM) {
+			spielfigur.setManaMinus(Konstanten.HALBM);
+			spielfigur.setBeschwertet(true);
+			spielfigur.setGesundheit(Konstanten.VOLLH);
+		} else
+			JOptionPane.showMessageDialog(null, "Sie haben kein Mana!",
+					"Achtung", JOptionPane.WARNING_MESSAGE);
 	}
 
 	/**
@@ -138,7 +160,7 @@ public class Spielfeld {
 	 * @throws Exception
 	 *             wirft Exception
 	 */
-	private void bewegeSpieler(Spieler spielfigur, int keyCode)
+	private void aktionSpieler(Spieler spielfigur, int keyCode)
 			throws Exception {
 		/* Alte und neue Position für Spieler festlegen. */
 		Point aktPos = spielfigur.getPosition();
@@ -152,6 +174,10 @@ public class Spielfeld {
 			neuPos.y--;
 		} else if (keyCode == KeyEvent.VK_DOWN) {
 			neuPos.y++;
+		} else if (keyCode == KeyEvent.VK_X) {
+			/* TODO */
+		} else if (keyCode == KeyEvent.VK_CONTROL) {
+			zaubere(spielfigur);
 		} else {
 			/* Andere Tasten wollen wir nicht beruecksichtigen. */
 			return;
@@ -177,10 +203,10 @@ public class Spielfeld {
 					spielfigur.setLebenMinus(1);
 					spielfigur.setGesundheitPlus(Konstanten.VOLLH);
 				}
-			} 
+			}
 			if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
 				gewonnenVerloren = new GewonnenVerloren("verloren");
-			}	
+			}
 		} else if (obj instanceof Huette) {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Carlos) {
@@ -190,7 +216,6 @@ public class Spielfeld {
 			/* TODO Checkpoint(); */
 		} else if (obj instanceof Weiter) {
 			/* TODO */
-			spiel = new Spiel();
 			spiel.levelWeiter();
 		} else if (obj instanceof Zurueck) {
 			/* TODO */
@@ -207,7 +232,7 @@ public class Spielfeld {
 			spielfigur.setGesundheitPlus(Konstanten.VOLLH);
 			einsammeln = true;
 		} else if (obj instanceof Mana) {
-			spielfigur.setMana(Konstanten.VOLLM);
+			spielfigur.setManaPlus(Konstanten.VOLLM);
 			einsammeln = true;
 		} else if (obj instanceof Ruestung) {
 			spielfigur.setHalsband(true);
@@ -226,7 +251,7 @@ public class Spielfeld {
 		} else if (obj instanceof Shopmana) {
 			if (spielfigur.getGold() >= Konstanten.GOLD50) {
 				spielfigur.setGoldMinus(Konstanten.GOLD50);
-				spielfigur.setMana(Konstanten.VOLLM);
+				spielfigur.setManaPlus(Konstanten.VOLLM);
 			} else {
 				// nothing to do here
 			}
@@ -292,6 +317,8 @@ public class Spielfeld {
 			musik = new Musik(Konstanten.DIRECTION
 					+ "/src/game/Sound/Schalter.wav");
 		}
+		spielfigur.setzeBildErna();
+		spielfigur.getPicture();
 	}
 
 	/*
