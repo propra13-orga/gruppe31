@@ -128,10 +128,16 @@ public class Spielfeld {
 	public void aktion(Spieler spielfigur, Gegner gegner, int keyCode) {
 		try {
 			aktionSpieler(spielfigur, keyCode);
+			aktionGegner(gegner, keyCode);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	private void aktionGegner(Gegner gegner, int keyCode) {
+		gegner.setzeBildPilz();
+		gegner.getPicture();	
 	}
 
 	/**
@@ -174,6 +180,8 @@ public class Spielfeld {
 			neuPos.y--;
 		} else if (keyCode == KeyEvent.VK_DOWN) {
 			neuPos.y++;
+		} else if (keyCode == KeyEvent.VK_SPACE) {
+			/* TODO */
 		} else if (keyCode == KeyEvent.VK_X) {
 			/* TODO */
 		} else if (keyCode == KeyEvent.VK_CONTROL) {

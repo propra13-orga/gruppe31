@@ -16,6 +16,8 @@ public class Gegner extends Spielfigur {
 	/** verschiedene Icons für verschiedene Gegner werden deklariert */
 	private static final String ICONGEGNER1 = Konstanten.DIRECTION
 			+ "/src/game/Images/Gegner1.png";
+	private static final String ICONGEGNER1TOT = Konstanten.DIRECTION
+			+ "/src/game/Images/Gegnertot1.png";
 	private static final String ICONGEGNER2 = Konstanten.DIRECTION
 			+ "/src/game/Images/Gegner2.png";
 
@@ -31,16 +33,31 @@ public class Gegner extends Spielfigur {
 	/** Die Position dieser Figur in der xy-Ebene. */
 	private Point position;
 
-	/** Koonstrauktor initialisiert icon 
-	 * @param object */
+	/**
+	 * Koonstrauktor initialisiert icon
+	 * 
+	 * @param object
+	 *            Kommandozeilenparameter
+	 */
 	public Gegner(String object) {
 		setKo(0);
 		setGesundheitPlus(Konstanten.VOLLH);
 
 		if ("Pilz".equals(object)) {
-			bild = ICONGEGNER1;
+			setzeBildPilz();
 		} else if ("Biene".equals(object)) {
 			bild = ICONGEGNER2;
+		}
+	}
+
+	/**
+	 * setzt das Bild des Pilzes
+	 */
+	public void setzeBildPilz() {
+		if (getGesundheit() == Konstanten.VOLLH) {
+			bild = ICONGEGNER1;
+		} else if (getGesundheit() == Konstanten.LEERH) {
+			bild = ICONGEGNER1TOT;
 		}
 	}
 
@@ -104,6 +121,5 @@ public class Gegner extends Spielfigur {
 	public String getPicture() {
 		return bild;
 	}
-	
-	
+
 }
