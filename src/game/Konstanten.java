@@ -49,6 +49,7 @@ public final class Konstanten {
 	public static final int SCHALTERZU = (int) '&';
 	public static final int SCHALTERAUF = (int) '%';
 	public static final int BARRIERE = (int) 'I';
+	public static final int GUENTHERJAUCH = (int) '^';
 
 	/** die Größe eines Feldes wird deklariert */
 	public static final int SIZE = 50;

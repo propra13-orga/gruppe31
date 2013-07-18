@@ -9,6 +9,7 @@ import game.icons.Carlos;
 import game.icons.Checkpoint;
 import game.icons.Grenze;
 import game.icons.Huette;
+import game.icons.Jauch;
 import game.icons.Luke;
 import game.icons.Rasen;
 import game.icons.SchalterAuf;
@@ -180,6 +181,8 @@ public class Spiel {
 							gameObject = new SchalterZu();
 						} else if (pruefe == Konstanten.SCHALTERAUF) {
 							gameObject = new SchalterAuf();
+						} else if (pruefe == Konstanten.GUENTHERJAUCH) {
+							gameObject = new Jauch();
 						} else if (pruefe == Konstanten.BARRIERE) {
 							this.barriere = new Barriere();
 							barriere.setPosition(new Point(i, j));

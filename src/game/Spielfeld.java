@@ -1,12 +1,13 @@
 package game;
 
+import game.figuren.Gegner;
 import game.figuren.Spieler;
+import game.icons.Barriere;
 import game.icons.Carlos;
 import game.icons.Checkpoint;
-import game.figuren.Gegner;
-import game.icons.Barriere;
 import game.icons.Grenze;
 import game.icons.Huette;
+import game.icons.Jauch;
 import game.icons.Luke;
 import game.icons.Rasen;
 import game.icons.SchalterAuf;
@@ -128,7 +129,7 @@ public class Spielfeld {
 	public void aktion(Spieler spielfigur, Gegner gegner, int keyCode) {
 		try {
 			aktionSpieler(spielfigur, keyCode);
-			aktionGegner(gegner, keyCode);
+			// aktionGegner(gegner, keyCode);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -137,7 +138,7 @@ public class Spielfeld {
 
 	private void aktionGegner(Gegner gegner, int keyCode) {
 		gegner.setzeBildPilz();
-		gegner.getPicture();	
+		gegner.getPicture();
 	}
 
 	/**
@@ -279,6 +280,35 @@ public class Spielfeld {
 			umlegen = true;
 			/* Bewegung ignorieren */
 		} else if (obj instanceof SchalterAuf) {
+			/* Bewegung ignorieren */
+		} else if (obj instanceof Jauch) {
+			Object[] options = { "Fliegenpilze", "Steinpilze", "Pfifferling" };
+
+			int selected = JOptionPane.showOptionDialog(null,
+					"Vor welchen von diesen Pilzen hast du am meisten Angst?",
+					"50 Taler Frage", JOptionPane.DEFAULT_OPTION,
+					JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+			if (selected == 0) {
+				JOptionPane
+						.showMessageDialog(
+								null,
+								"Gut gemacht, Erna! Die Fliegenpilze sind giftig und rauben dir wertvolle Energie! "
+										+ "Zur Belohnung bekommst du 50 Taler.",
+								"Richtig", JOptionPane.PLAIN_MESSAGE);
+				spielfigur.setGoldPlus(Konstanten.GOLD50);
+			} else if (selected == 1) {
+				JOptionPane
+						.showMessageDialog(
+								null,
+								"So ein Quatsch! Steinpilze sind super lecker, die tun doch keinem Pudel was !",
+								"Das ist leider nicht richtig !", JOptionPane.PLAIN_MESSAGE);
+			} else if (selected == 2) {
+				JOptionPane
+						.showMessageDialog(
+								null,
+								"Hat deine Mama denn nie mit dir Pilze gesammelt? Pfifferlinge schmecken toll zu Trockenfutter! ",
+								"Leider falsch", JOptionPane.PLAIN_MESSAGE);
+			}
 			/* Bewegung ignorieren */
 		}
 
