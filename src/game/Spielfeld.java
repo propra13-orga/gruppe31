@@ -282,33 +282,8 @@ public class Spielfeld {
 		} else if (obj instanceof SchalterAuf) {
 			/* Bewegung ignorieren */
 		} else if (obj instanceof Jauch) {
-			Object[] options = { "Fliegenpilze", "Steinpilze", "Pfifferling" };
-
-			int selected = JOptionPane.showOptionDialog(null,
-					"Vor welchen von diesen Pilzen hast du am meisten Angst?",
-					"50 Taler Frage", JOptionPane.DEFAULT_OPTION,
-					JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-			if (selected == 0) {
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"Gut gemacht, Erna! Die Fliegenpilze sind giftig und rauben dir wertvolle Energie! "
-										+ "Zur Belohnung bekommst du 50 Taler.",
-								"Richtig", JOptionPane.PLAIN_MESSAGE);
-				spielfigur.setGoldPlus(Konstanten.GOLD50);
-			} else if (selected == 1) {
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"So ein Quatsch! Steinpilze sind super lecker, die tun doch keinem Pudel was !",
-								"Das ist leider nicht richtig !", JOptionPane.PLAIN_MESSAGE);
-			} else if (selected == 2) {
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"Hat deine Mama denn nie mit dir Pilze gesammelt? Pfifferlinge schmecken toll zu Trockenfutter! ",
-								"Leider falsch", JOptionPane.PLAIN_MESSAGE);
-			}
+			jauchi(spielfigur);
+			einsammeln = true;
 			/* Bewegung ignorieren */
 		}
 
@@ -357,6 +332,55 @@ public class Spielfeld {
 		}
 		spielfigur.setzeBildErna();
 		spielfigur.getPicture();
+	}
+
+	/**
+	 * ruft den Dialog mit Jauch auf
+	 * 
+	 * @param spielfigur
+	 *            Kommandozeilenparameter
+	 */
+	private void jauchi(Spieler spielfigur) {
+		Object[] options = { "Weiß ich nicht", "Fliegenpilze", "Steinpilze",
+				"Pfifferling",};
+
+		int selected = JOptionPane.showOptionDialog(null,
+				"Vor welchen von diesen Pilzen hast du am meisten Angst?",
+				"50 Taler Frage", JOptionPane.DEFAULT_OPTION,
+				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+		if (selected == 0) {
+			JOptionPane
+					.showMessageDialog(
+							null,
+							"Oh, das ist aber schade! Pass das nächste Mal in der Hundeschule besser auf !",
+							"Ach Gottchen", JOptionPane.PLAIN_MESSAGE);
+		}
+		if (selected == 1) {
+			JOptionPane
+					.showMessageDialog(
+							null,
+							"Gut gemacht, Erna! Die Fliegenpilze sind giftig und rauben dir wertvolle Energie! "
+									+ "Zur Belohnung bekommst du 50 Taler.",
+							"Richtig", JOptionPane.PLAIN_MESSAGE);
+			spielfigur.setGoldPlus(Konstanten.GOLD50);
+		} else if (selected == 2) {
+			JOptionPane
+					.showMessageDialog(
+							null,
+							"So ein Quatsch! Steinpilze sind super lecker, die tun doch keinem Pudel was !",
+							"Das ist leider nicht richtig !",
+							JOptionPane.PLAIN_MESSAGE);
+		} else if (selected == 3) {
+			JOptionPane
+					.showMessageDialog(
+							null,
+							"Hat deine Mama denn nie mit dir Pilze gesammelt? Pfifferlinge schmecken toll zu Trockenfutter! ",
+							"Leider falsch", JOptionPane.PLAIN_MESSAGE);
+		}
+		JOptionPane.showMessageDialog(null,
+				"Na gut, ich bin dann mal wieder in meinem Baumhaus.",
+				"Tschüßchen", JOptionPane.PLAIN_MESSAGE);
+
 	}
 
 	/*
