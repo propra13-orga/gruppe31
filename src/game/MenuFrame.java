@@ -173,7 +173,16 @@ public class MenuFrame extends JFrame {
 			String ip = JOptionPane.showInputDialog(null,
 					"Geben Sie die IP-Adresse ein", "Eine Eingabeaufforderung",
 					JOptionPane.PLAIN_MESSAGE);
-			new Chatter(ip).start();
+			if (ip == null) {
+				JOptionPane.showMessageDialog(null,
+						"Die Eingabe wurde abgebrochen!", "Abbruch",
+						JOptionPane.ERROR_MESSAGE);
+			} else if ("".equals(ip)) {
+				JOptionPane.showMessageDialog(null,
+						"BItte geben Sie eine gültige IP-Adresse ein!",
+						"Achtung", JOptionPane.ERROR_MESSAGE);
+			} else
+				new Chatter(ip).start();
 		}
 	}
 

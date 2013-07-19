@@ -546,7 +546,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		boolean halsband = spiel.getSpieler().getHalsband();
 		int leben = spiel.getSpieler().getLeben();
 
-		saveSpielfeld = saveSpielfeld + Konstanten.ZEILENUMBRUCH + health
+		saveSpielfeld = Konstanten.ZEILENUMBRUCH + health
 				+ Konstanten.ZEILENUMBRUCH + gold + Konstanten.ZEILENUMBRUCH
 				+ mana + Konstanten.ZEILENUMBRUCH + leben
 				+ Konstanten.ZEILENUMBRUCH + brille + Konstanten.ZEILENUMBRUCH

@@ -31,6 +31,8 @@ import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+
+import javax.script.ScriptEngineManager;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,6 +53,7 @@ public class Spiel {
 	private Barriere barriere;
 	private Spielfeld spielfeld;
 	private GameFrame gameFrame;
+	private Spiel spiel;
 
 	/**
 	 * Konstruktor erzeugt ArrayList, welche Spielfelder beinhaltet
@@ -81,10 +84,22 @@ public class Spiel {
 		/* öffnet BufferedReader und liest .txt hinein */
 		BufferedReader br = new BufferedReader(fr);
 
-		/*
-		 * for (int a = 0; a > Konstanten.EIGENSCHAFTEN; a++) { String
-		 * eigenschaften = br.readLine(); System.out.println(eigenschaften); }
-		 */
+		/* setzt die Eigenschaften des Spielers */
+		spiel.getSpieler().setGesundheit(Integer.parseInt(br.readLine()));
+		spiel.getSpieler().setManaPlus(Integer.parseInt(br.readLine()));
+		spiel.getSpieler().setLebenPlus(Integer.parseInt(br.readLine()));
+		spiel.getSpieler().setBewaffnet(
+				Boolean.parseBoolean(new ScriptEngineManager()
+						.getEngineByName("javascript").eval(br.readLine())
+						.toString()));
+		spiel.getSpieler().setBeschwertet(
+				Boolean.parseBoolean(new ScriptEngineManager()
+						.getEngineByName("javascript").eval(br.readLine())
+						.toString()));
+		spiel.getSpieler().setHalsband(
+				Boolean.parseBoolean(new ScriptEngineManager()
+						.getEngineByName("javascript").eval(br.readLine())
+						.toString()));
 
 		/* in line wird eine Zeile gespeichert */
 		String line = br.readLine();
