@@ -50,6 +50,10 @@ public class Spielfeld {
 	private GewonnenVerloren gewonnenVerloren;
 	private Jauch jauch;
 
+	/** Deklaration der Punkte für Weiter- und Zuruckfelder */
+	private Point weiter;
+	private Point zurueck;
+
 	/** Deklaration des Fenstertitels */
 	private String name = "Erna's Adventure";
 
@@ -69,7 +73,7 @@ public class Spielfeld {
 	 */
 	public Spielfeld(Spiel spiel, int hoehe, int breite)
 			throws SpielfeldException {
-		// spiel = new Spiel();
+		this.spiel = spiel;
 		this.spalten = hoehe;
 		this.zeilen = breite;
 		this.feld = new GameObject[breite][hoehe];
@@ -226,10 +230,10 @@ public class Spielfeld {
 			/* TODO Checkpoint(); */
 		} else if (obj instanceof Weiter) {
 			/* TODO */
-			spiel.levelWeiter();
+			spiel.levelWeiter(spielfigur);
 		} else if (obj instanceof Zurueck) {
 			/* TODO */
-			spiel.levelZurueck();
+			spiel.levelZurueck(spielfigur);
 		} else if (obj instanceof Ziel) {
 			gewonnenVerloren = new GewonnenVerloren("gewonnen");
 		} else if (obj instanceof Brille) {
@@ -334,6 +338,36 @@ public class Spielfeld {
 		}
 		spielfigur.setzeBildErna();
 		spielfigur.getPicture();
+	}
+
+	/**
+	 * @return weiter Position
+	 */
+	public Point getWeiter() {
+		return weiter;
+	}
+
+	/**
+	 * @param weiter
+	 *            Kommandozeilenparameter
+	 */
+	public void setWeiter(Point weiter) {
+		this.weiter = weiter;
+	}
+
+	/**
+	 * @return zurueck
+	 */
+	public Point getZurueck() {
+		return zurueck;
+	}
+
+	/**
+	 * @param zurueck
+	 *            Kommandozeilenparameter
+	 */
+	public void setZurueck(Point zurueck) {
+		this.zurueck = zurueck;
 	}
 
 	/*

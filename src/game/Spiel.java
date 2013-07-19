@@ -81,11 +81,10 @@ public class Spiel {
 		/* öffnet BufferedReader und liest .txt hinein */
 		BufferedReader br = new BufferedReader(fr);
 
-		/*for (int a = 0; a > Konstanten.EIGENSCHAFTEN; a++) {
-			String eigenschaften = br.readLine();
-			System.out.println(eigenschaften);
-		}*/
-
+		/*
+		 * for (int a = 0; a > Konstanten.EIGENSCHAFTEN; a++) { String
+		 * eigenschaften = br.readLine(); System.out.println(eigenschaften); }
+		 */
 
 		/* in line wird eine Zeile gespeichert */
 		String line = br.readLine();
@@ -141,14 +140,16 @@ public class Spiel {
 							gameObject = new Falle();
 						} else if (pruefe == Konstanten.WEITER) {
 							gameObject = new Weiter();
+							spielfeld.setWeiter(new Point(i, j));
+						} else if (pruefe == Konstanten.ZURUECK) {
+							gameObject = new Zurueck();
+							spielfeld.setZurueck(new Point(i, j));
 						} else if (pruefe == Konstanten.BOSS1V) {
 							gameObject = new Bossgegner(Konstanten.RAUM3);
 						} else if (pruefe == Konstanten.BOSS2V) {
 							gameObject = new Bossgegner(Konstanten.RAUM6);
 						} else if (pruefe == Konstanten.BOSS3V) {
 							gameObject = new Bossgegner(Konstanten.RAUM9);
-						} else if (pruefe == Konstanten.ZURUECK) {
-							gameObject = new Zurueck();
 						} else if (pruefe == Konstanten.CARLOS) {
 							gameObject = new Carlos();
 						} else if (pruefe == Konstanten.CUPCAKE) {
@@ -222,25 +223,44 @@ public class Spiel {
 	 * @return array gibt das array dieser Klasse zurück
 	 */
 	public Spielfeld getAktuellesSpielfeld() {
-		return levels.get(aktSpielfeld);
+		return this.levels.get(aktSpielfeld);
 	}
 
+	/**
+	 * Getter für Zahl aktSpielfeld
+	 * 
+	 * @return aktSpielfeld
+	 */
 	public int getAktSpielfeld() {
 		return aktSpielfeld;
 	}
 
 	/**
 	 * set aktuelles Spielfeld einen hoch
+	 * 
+	 * @param spielfigur
+	 *            Kommandozeilenparameter
 	 */
-	public void levelWeiter() {
+	public void levelWeiter(Spieler spielfigur) {
 		aktSpielfeld = aktSpielfeld + 1;
+		Spielfeld neuesSpielfeld = this.levels.get(aktSpielfeld);
+		Point weiterPosition = neuesSpielfeld.getZurueck();
+		neuesSpielfeld.setzeObjekt(spielfigur, weiterPosition);
+		spielfigur.setPosition(weiterPosition);
 	}
 
 	/**
 	 * set aktuelles Spielfeld einen runter
+	 * 
+	 * @param spielfigur
+	 *            Kommandozeilenparameter
 	 */
-	public void levelZurueck() {
+	public void levelZurueck(Spieler spielfigur) {
 		aktSpielfeld = aktSpielfeld - 1;
+		Spielfeld neuesSpielfeld = this.levels.get(aktSpielfeld);
+		Point zurueckPosition = neuesSpielfeld.getWeiter();
+		neuesSpielfeld.setzeObjekt(spielfigur, zurueckPosition);
+		spielfigur.setPosition(zurueckPosition);
 	}
 
 	/**

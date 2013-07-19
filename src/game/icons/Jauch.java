@@ -2,6 +2,7 @@ package game.icons;
 
 import game.GameObject;
 import game.Konstanten;
+import game.Musik;
 import game.figuren.Spieler;
 
 import javax.swing.JOptionPane;
@@ -16,10 +17,13 @@ public class Jauch extends GameObject {
 
 	/** Icon für Checkpoint wird deklariert */
 	private static final String ICONJAUCH = Konstanten.DIRECTION
-			+ "/src/game/Images/Jauch.jpg";
+			+ "/src/game/Images/Jauch.png";
 
 	/** bild vom Typ String wird deklariert */
 	private String bild;
+	
+	/** Deklaration von Feldern */
+	private Musik musik;
 
 	/** Konstruktor initialisiert icon */
 	public Jauch() {
@@ -38,6 +42,9 @@ public class Jauch extends GameObject {
 	 *            Kommandozeilenparameter
 	 */
 	public void raetsel1(Spieler spielfigur) {
+		
+		musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/WWM.wav");
+		
 		Object[] options = { "Weiß ich nicht", "Fliegenpilze", "Steinpilze",
 				"Pfifferling", };
 

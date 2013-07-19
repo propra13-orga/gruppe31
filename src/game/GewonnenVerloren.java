@@ -12,6 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 
+/**
+ * die Objekte dieser Klasse sind je nach übergebenen Parameter das Gewonnen
+ * oder Verlorenfenster
+ * 
+ * @author Denise
+ * 
+ */
 public class GewonnenVerloren {
 
 	/** Deklaration eines Strings für das Schließen */
@@ -23,6 +30,17 @@ public class GewonnenVerloren {
 	/** Button wird für Gewonnen- und Verlorenfenster deklariert */
 	private JButton gvschliessen;
 
+	/** Deklaration von Feldern */
+	private Musik musik;
+
+	/**
+	 * * dem Konstruktor wird ein String mit übergeben, welcher darüber
+	 * entscheidet, welches Hintergrundbild gesetzt wird und welche
+	 * Hintergrundmusik gespielt wird
+	 * 
+	 * @param zustand
+	 *            Kommandozeilenparameter
+	 */
 	public GewonnenVerloren(String zustand) {
 
 		final JFrame gvFrame = new JFrame();
@@ -34,7 +52,8 @@ public class GewonnenVerloren {
 		gvFrame.setLocationRelativeTo(null);
 		gvFrame.setVisible(true);
 
-		if (zustand == "gewonnen") {
+		if ("gewonnen".equals(zustand)) {
+			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Sieg.wav");
 			try {
 				gvFrame.setContentPane(new JLabel(new ImageIcon(ImageIO
 						.read(new File(Konstanten.DIRECTION
@@ -42,7 +61,8 @@ public class GewonnenVerloren {
 			} catch (IOException a) {
 				System.out.println(exception);
 			}
-		} else if (zustand == "verloren") {
+		} else if ("verloren".equals(zustand)) {
+			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Verloren.wav");
 			try {
 				gvFrame.setContentPane(new JLabel(new ImageIcon(ImageIO
 						.read(new File(Konstanten.DIRECTION
