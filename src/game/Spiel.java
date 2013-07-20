@@ -52,7 +52,6 @@ public class Spiel {
 	private Gegner gegner;
 	private Barriere barriere;
 	private Spielfeld spielfeld;
-	private GameFrame gameFrame;
 	private Spiel spiel;
 	
 	private String invalid = "Ungültig";
@@ -323,8 +322,9 @@ public class Spiel {
 	 * 
 	 * @param keyCode
 	 *            Kommandozeilenparameter
+	 * @param gameFrame 
 	 */
-	public void aktion(int keyCode) {
-		levels.get(aktSpielfeld).aktion(this.spieler, this.gegner, keyCode, this.barriere);
+	public void aktion(int keyCode, GameFrame gameFrame) {
+		levels.get(aktSpielfeld).aktion(this.spieler, this.gegner, keyCode, barriere, gameFrame);
 	}
 }

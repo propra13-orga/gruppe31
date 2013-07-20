@@ -132,11 +132,12 @@ public class Spielfeld {
 	 *            KeyCode wird übergeben
 	 * @param barriere
 	 *            barriere wird übergeben
+	 * @param gameFrame 
 	 */
 	public void aktion(Spieler spielfigur, Gegner gegner, int keyCode,
-			Barriere barriere) {
+			Barriere barriere, GameFrame gameFrame) {
 		try {
-			aktionSpieler(spielfigur, barriere, keyCode);
+			aktionSpieler(spielfigur, barriere, keyCode, gameFrame);
 			// aktionGegner(gegner, keyCode);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -172,11 +173,12 @@ public class Spielfeld {
 	 *            Kommandozeilenparameter
 	 * @param keyCode
 	 *            Kommandozeilenparameter
+	 * @param gameFrame 
 	 * @throws Exception
 	 *             wirft Exception
 	 */
 	private void aktionSpieler(Spieler spielfigur, Barriere barriere,
-			int keyCode) throws Exception {
+			int keyCode, GameFrame gameFrame) throws Exception {
 		/* Alte und neue Position für Spieler festlegen. */
 		Point aktPos = spielfigur.getPosition();
 		Point neuPos = new Point(aktPos);
@@ -223,6 +225,7 @@ public class Spielfeld {
 			}
 			if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
 				gewonnenVerloren = new GewonnenVerloren("verloren");
+				gameFrame.dispose();
 			}
 		} else if (obj instanceof Huette) {
 			/* Bewegung ignorieren. */
@@ -239,6 +242,7 @@ public class Spielfeld {
 			spiel.levelZurueck(spielfigur);
 		} else if (obj instanceof Ziel) {
 			gewonnenVerloren = new GewonnenVerloren("gewonnen");
+			gameFrame.dispose();
 		} else if (obj instanceof Brille) {
 			spielfigur.setBewaffnet(true);
 			einsammeln = true;
