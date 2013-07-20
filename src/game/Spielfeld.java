@@ -55,7 +55,9 @@ public class Spielfeld {
 	/** Deklaration des Fenstertitels */
 	private String name = "Erna's Adventure";
 
+	/** Deklaration von int zum Zählen */
 	private int jauchBesucht = 0;
+	private int raum = 0;
 
 	/**
 	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann für jeden
@@ -132,7 +134,7 @@ public class Spielfeld {
 	 *            KeyCode wird übergeben
 	 * @param barriere
 	 *            barriere wird übergeben
-	 * @param gameFrame 
+	 * @param gameFrame
 	 */
 	public void aktion(Spieler spielfigur, Gegner gegner, int keyCode,
 			Barriere barriere, GameFrame gameFrame) {
@@ -173,7 +175,7 @@ public class Spielfeld {
 	 *            Kommandozeilenparameter
 	 * @param keyCode
 	 *            Kommandozeilenparameter
-	 * @param gameFrame 
+	 * @param gameFrame
 	 * @throws Exception
 	 *             wirft Exception
 	 */
@@ -233,17 +235,18 @@ public class Spielfeld {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Carlos) {
 			npc = new NPC();
-			musik = new Musik(Konstanten.DIRECTION
-					+ "/src/game/Sound/Wuff.wav");
+			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wuff.wav");
 			/* Bewegung igorieren */
 		} else if (obj instanceof Checkpoint) {
 			/* TODO Checkpoint(); */
 		} else if (obj instanceof Weiter) {
 			/* TODO */
 			spiel.levelWeiter(spielfigur);
+			setRaumPlus(1);
 		} else if (obj instanceof Zurueck) {
 			/* TODO */
 			spiel.levelZurueck(spielfigur);
+			setRaumMinus(1);
 		} else if (obj instanceof Ziel) {
 			gewonnenVerloren = new GewonnenVerloren("gewonnen");
 			gameFrame.dispose();
@@ -291,8 +294,7 @@ public class Spielfeld {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Luke) {
 			npc2 = new NPC2();
-			musik = new Musik(Konstanten.DIRECTION
-					+ "/src/game/Sound/Wuff.wav");
+			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wuff.wav");
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof SchalterZu) {
 			umlegen = true;
@@ -320,8 +322,7 @@ public class Spielfeld {
 		}
 
 		if (einsammeln) {
-			musik = new Musik(Konstanten.DIRECTION
-					+ "/src/game/Sound/Item.wav");
+			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Item.wav");
 
 			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
 			this.setzeObjekt(new Rasen(), aktPos);
@@ -384,6 +385,28 @@ public class Spielfeld {
 	public void setZurueck(Point zurueck) {
 		this.zurueck = zurueck;
 	}
+
+	/**
+	 * @return the raum
+	 */
+	public int getRaum() {
+		return raum;
+	}
+
+	/**
+	 * @param raum the raum to set
+	 */
+	public void setRaumPlus(int raum) {
+		this.raum = getRaum() + raum;
+	}
+	
+	/**
+	 * @param raum the raum to set
+	 */
+	public void setRaumMinus(int raum) {
+		this.raum = getRaum() + raum;
+	}
+
 
 	/*
 	 * TODO Prüfung ob Checkpoint besucht wurde und Zurücksetzen des Spiels oder

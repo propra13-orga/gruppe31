@@ -1,23 +1,9 @@
 package game;
 
-import java.awt.Container;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.imageio.ImageIO;
-
 import game.figuren.Bossgegner;
 import game.figuren.Falle;
 import game.figuren.Gegner;
 import game.figuren.Spieler;
-import game.figuren.Spielfigur;
 import game.icons.Barriere;
 import game.icons.Carlos;
 import game.icons.Checkpoint;
@@ -39,6 +25,17 @@ import game.items.Schwert;
 import game.items.Shophealth;
 import game.items.Shopmana;
 import game.items.Shopruestung;
+
+import java.awt.Container;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -361,8 +358,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		panelAnzeige.removeAll();
 
 		/* für die Levelanzeige */
-		int level = 0;
-		/* TODO int level = this.spiel.getSpielfeldNummer(); */
+		int level = this.spiel.getAktuellesSpielfeld().getRaum();
 		if (level == Konstanten.RAUMEINS) {
 			panelAnzeige.add(eins);
 		} else if (level == Konstanten.RAUMZWEI) {
