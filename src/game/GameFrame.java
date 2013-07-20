@@ -247,6 +247,23 @@ public class GameFrame extends JFrame implements KeyListener {
 		getContentPane().add(panelAnzeige);
 		getContentPane().add(panelButtons);
 
+		erzeugeSpiel();
+
+		setzeLoadButton();
+		setzeSaveButton();
+		
+		this.requestFocus();
+
+		musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
+	}
+
+	/**
+	 * erzeugt das Spiel und die Anzeige
+	 * 
+	 * @throws Exception
+	 *             wirft Exception
+	 */
+	public void erzeugeSpiel() throws Exception {
 		/* Spiel erzeugen. */
 		spiel = new Spiel();
 		chooseFile();
@@ -254,17 +271,11 @@ public class GameFrame extends JFrame implements KeyListener {
 			return;
 		}
 		spiel.init(datei);
+		System.out.print(datei);
 
 		setzeAnzeige();
 
-		setzeLoadButton();
-		setzeSaveButton();
-
 		zeichnen(spiel.getAktuellesSpielfeld());
-
-		this.requestFocus();
-
-		musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
 	}
 
 	/**

@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
@@ -20,7 +21,7 @@ import javax.swing.JLabel;
  * @author Denise
  * 
  */
-public class NetzwerkFrame extends JFrame {
+public class NetzwerkFrame extends JFrame{
 
 	/** Platzhalter für Spieldeld */
 	private static final Icon SPIELFELD = new ImageIcon(Konstanten.DIRECTION
@@ -28,7 +29,7 @@ public class NetzwerkFrame extends JFrame {
 
 	/** Labelfür Platzhalter */
 	private JLabel feld = new JLabel(SPIELFELD);
-
+	
 	/** deklariert PrintWriter, BufferedReader und ActionListener */
 	private PrintWriter ausgehend;
 	private BufferedReader eintreffend;
