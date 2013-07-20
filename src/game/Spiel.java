@@ -84,22 +84,19 @@ public class Spiel {
 		/* öffnet BufferedReader und liest .txt hinein */
 		BufferedReader br = new BufferedReader(fr);
 
-		/* setzt die Eigenschaften des Spielers */
-		spiel.getSpieler().setGesundheit(Integer.parseInt(br.readLine()));
-		spiel.getSpieler().setManaPlus(Integer.parseInt(br.readLine()));
-		spiel.getSpieler().setLebenPlus(Integer.parseInt(br.readLine()));
-		spiel.getSpieler().setBewaffnet(
-				Boolean.parseBoolean(new ScriptEngineManager()
+		/* speichert die Eigenschaften, bis Spieler gelesen wurde */
+		int saveGesundheit = Integer.parseInt(br.readLine());
+		int saveMana = Integer.parseInt(br.readLine());
+		int saveRuestung = Integer.parseInt(br.readLine());
+		int saveLeben = Integer.parseInt(br.readLine());
+		boolean saveBewaffnet = Boolean.parseBoolean(new ScriptEngineManager()
+				.getEngineByName("javascript").eval(br.readLine()).toString());
+		boolean saveBeschwertet = Boolean
+				.parseBoolean(new ScriptEngineManager()
 						.getEngineByName("javascript").eval(br.readLine())
-						.toString()));
-		spiel.getSpieler().setBeschwertet(
-				Boolean.parseBoolean(new ScriptEngineManager()
-						.getEngineByName("javascript").eval(br.readLine())
-						.toString()));
-		spiel.getSpieler().setHalsband(
-				Boolean.parseBoolean(new ScriptEngineManager()
-						.getEngineByName("javascript").eval(br.readLine())
-						.toString()));
+						.toString());
+		boolean saveHalsband = Boolean.parseBoolean(new ScriptEngineManager()
+				.getEngineByName("javascript").eval(br.readLine()).toString());
 
 		/* in line wird eine Zeile gespeichert */
 		String line = br.readLine();
@@ -139,6 +136,14 @@ public class Spiel {
 							this.spieler = new Spieler("Erna");
 							this.spieler.setPosition(new Point(i, j));
 							gameObject = this.spieler;
+							/* setzt die Eigenschaften des Spielers */
+							this.spieler.setGesundheit(saveGesundheit);
+							this.spieler.setManaPlus(saveMana);
+							this.spieler.setRuestung(saveRuestung);
+							this.spieler.setLebenPlus(saveLeben);
+							this.spieler.setBewaffnet(saveBewaffnet);
+							this.spieler.setBeschwertet(saveBeschwertet);
+							this.spieler.setHalsband(saveHalsband);
 						} else if (pruefe == Konstanten.PUDEL2) {
 							this.spieler = new Spieler("Luke");
 							this.spieler.setPosition(new Point(i, j));
@@ -224,7 +229,7 @@ public class Spiel {
 			 */
 		} while (line != null);
 		fr.close();
-
+		
 		/*
 		 * setzt das aktuelleSpielfeld wieder an den Anfang, damit der erste
 		 * Raum angezeigt wird
