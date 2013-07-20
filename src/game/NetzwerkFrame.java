@@ -1,7 +1,6 @@
 package game;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
@@ -180,7 +179,7 @@ class Action implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent f) {
 		if (f.getActionCommand().equals(stSende)) {
-			String ausgabe = eingabeTa.getText();
+			String ausgabe = eingabeTa.getText() + "\n";
 			ausgehendPr.print(ausgabe);
 			ausgehendPr.flush();
 			eingabeTa.setText(" ");
