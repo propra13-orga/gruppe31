@@ -122,22 +122,6 @@ public class Spielfeld {
 	public GameObject gibObjekt(Point position) {
 		return this.feld[position.x][position.y];
 	}
-	
-	/**
-	 * Spieler wird Mana abgezogen, beschwertet und geheilt
-	 * 
-	 * @param spielfigur
-	 *            Kommandozeilenparamter
-	 */
-	public void zaubere(Spieler spielfigur) {
-		if (spielfigur.getMana() > Konstanten.LEERM) {
-			spielfigur.setManaMinus(Konstanten.HALBM);
-			spielfigur.setBeschwertet(true);
-			spielfigur.setGesundheit(Konstanten.VOLLH);
-		} else
-			JOptionPane.showMessageDialog(null, "Sie haben kein Mana!",
-					"Achtung", JOptionPane.WARNING_MESSAGE);
-	}
 
 	/**
 	 * Figuren werden bewegt
@@ -357,6 +341,22 @@ public class Spielfeld {
 	}
 
 	/**
+	 * Spieler wird Mana abgezogen, beschwertet und geheilt
+	 * 
+	 * @param spielfigur
+	 *            Kommandozeilenparamter
+	 */
+	public void zaubere(Spieler spielfigur) {
+		if (spielfigur.getMana() > Konstanten.LEERM) {
+			spielfigur.setManaMinus(Konstanten.HALBM);
+			spielfigur.setBeschwertet(true);
+			spielfigur.setGesundheit(Konstanten.VOLLH);
+		} else
+			JOptionPane.showMessageDialog(null, "Sie haben kein Mana!",
+					"Achtung", JOptionPane.WARNING_MESSAGE);
+	}
+
+	/**
 	 * @return weiter Position
 	 */
 	public Point getWeiter() {
@@ -394,19 +394,20 @@ public class Spielfeld {
 	}
 
 	/**
-	 * @param raum the raum to set
+	 * @param raum
+	 *            the raum to set
 	 */
 	public void setRaumPlus(int raum) {
 		this.raum = getRaum() + raum;
 	}
-	
+
 	/**
-	 * @param raum the raum to set
+	 * @param raum
+	 *            the raum to set
 	 */
 	public void setRaumMinus(int raum) {
 		this.raum = getRaum() + raum;
 	}
-
 
 	/*
 	 * TODO Prüfung ob Checkpoint besucht wurde und Zurücksetzen des Spiels oder

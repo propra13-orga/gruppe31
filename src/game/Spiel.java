@@ -44,6 +44,7 @@ public class Spiel {
 	/** Liste von Spielfeldern wird deklariert */
 	private ArrayList<Spielfeld> levels;
 
+
 	/** Zeiger auf das aktuelle Spielfeld */
 	private int aktSpielfeld;
 
