@@ -216,6 +216,8 @@ public class Spielfeld {
 			/* TODO Health Anzeige verschwindet, wenn tot, das soll nicht */
 		} else if (obj instanceof Gegner) {
 			if (spielfigur.getLeben() >= Konstanten.EINLEBEN) {
+				musik = new Musik(Konstanten.DIRECTION
+						+ "/src/game/Sound/Hit.wav");
 				if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
 					spielfigur.setGesundheitMinus(Konstanten.EINVIERTELH);
 				} else if (spielfigur.getGesundheit() >= Konstanten.EINVIERTELH) {
@@ -231,6 +233,8 @@ public class Spielfeld {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Carlos) {
 			npc = new NPC();
+			musik = new Musik(Konstanten.DIRECTION
+					+ "/src/game/Sound/Wuff.wav");
 			/* Bewegung igorieren */
 		} else if (obj instanceof Checkpoint) {
 			/* TODO Checkpoint(); */
@@ -287,6 +291,8 @@ public class Spielfeld {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Luke) {
 			npc2 = new NPC2();
+			musik = new Musik(Konstanten.DIRECTION
+					+ "/src/game/Sound/Wuff.wav");
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof SchalterZu) {
 			umlegen = true;
@@ -297,7 +303,7 @@ public class Spielfeld {
 			jauch = new Jauch();
 			jauchBesucht++;
 			jauch.raetsel(spielfigur, jauchBesucht);
-			einsammeln = true;
+			this.setzeObjekt(new Rasen(), neuPos);
 			/* Bewegung ignorieren */
 		}
 
@@ -315,7 +321,7 @@ public class Spielfeld {
 
 		if (einsammeln) {
 			musik = new Musik(Konstanten.DIRECTION
-					+ "/src/game/Sound/Schritt.wav");
+					+ "/src/game/Sound/Item.wav");
 
 			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
 			this.setzeObjekt(new Rasen(), aktPos);
