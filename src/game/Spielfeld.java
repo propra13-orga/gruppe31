@@ -122,6 +122,22 @@ public class Spielfeld {
 	public GameObject gibObjekt(Point position) {
 		return this.feld[position.x][position.y];
 	}
+	
+	/**
+	 * Spieler wird Mana abgezogen, beschwertet und geheilt
+	 * 
+	 * @param spielfigur
+	 *            Kommandozeilenparamter
+	 */
+	public void zaubere(Spieler spielfigur) {
+		if (spielfigur.getMana() > Konstanten.LEERM) {
+			spielfigur.setManaMinus(Konstanten.HALBM);
+			spielfigur.setBeschwertet(true);
+			spielfigur.setGesundheit(Konstanten.VOLLH);
+		} else
+			JOptionPane.showMessageDialog(null, "Sie haben kein Mana!",
+					"Achtung", JOptionPane.WARNING_MESSAGE);
+	}
 
 	/**
 	 * Figuren werden bewegt
@@ -150,22 +166,6 @@ public class Spielfeld {
 	private void aktionGegner(Gegner gegner, int keyCode) {
 		gegner.setzeBildPilz();
 		gegner.getPicture();
-	}
-
-	/**
-	 * Spieler wird Mana abgezogen, beschwertet und geheilt
-	 * 
-	 * @param spielfigur
-	 *            Kommandozeilenparamter
-	 */
-	public void zaubere(Spieler spielfigur) {
-		if (spielfigur.getMana() > Konstanten.LEERM) {
-			spielfigur.setManaMinus(Konstanten.HALBM);
-			spielfigur.setBeschwertet(true);
-			spielfigur.setGesundheit(Konstanten.VOLLH);
-		} else
-			JOptionPane.showMessageDialog(null, "Sie haben kein Mana!",
-					"Achtung", JOptionPane.WARNING_MESSAGE);
 	}
 
 	/**
