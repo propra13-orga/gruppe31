@@ -56,6 +56,8 @@ public class Spielfeld {
 
 	/** Deklaration des Fenstertitels */
 	private String name = "Erna's Adventure";
+	
+	private int jauchBesucht = 0;
 
 	/**
 	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann für jeden
@@ -288,7 +290,8 @@ public class Spielfeld {
 			/* Bewegung ignorieren */
 		} else if (obj instanceof Jauch) {
 			jauch = new Jauch();
-			jauch.raetsel1(spielfigur);
+			jauchBesucht++;
+			jauch.raetsel(spielfigur, jauchBesucht);
 			einsammeln = true;
 			/* Bewegung ignorieren */
 		}
