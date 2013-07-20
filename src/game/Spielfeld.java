@@ -44,9 +44,7 @@ public class Spielfeld {
 	private Spiel spiel;
 	private NPC npc;
 	private NPC2 npc2;
-
 	private Musik musik;
-	private Barriere barriere;
 	private GewonnenVerloren gewonnenVerloren;
 	private Jauch jauch;
 
@@ -56,7 +54,7 @@ public class Spielfeld {
 
 	/** Deklaration des Fenstertitels */
 	private String name = "Erna's Adventure";
-	
+
 	private int jauchBesucht = 0;
 
 	/**
@@ -132,10 +130,13 @@ public class Spielfeld {
 	 *            Gegner wird übergeben
 	 * @param keyCode
 	 *            KeyCode wird übergeben
+	 * @param barriere
+	 *            barriere wird übergeben
 	 */
-	public void aktion(Spieler spielfigur, Gegner gegner, int keyCode) {
+	public void aktion(Spieler spielfigur, Gegner gegner, int keyCode,
+			Barriere barriere) {
 		try {
-			aktionSpieler(spielfigur, keyCode);
+			aktionSpieler(spielfigur, barriere, keyCode);
 			// aktionGegner(gegner, keyCode);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -174,8 +175,8 @@ public class Spielfeld {
 	 * @throws Exception
 	 *             wirft Exception
 	 */
-	private void aktionSpieler(Spieler spielfigur, int keyCode)
-			throws Exception {
+	private void aktionSpieler(Spieler spielfigur, Barriere barriere,
+			int keyCode) throws Exception {
 		/* Alte und neue Position für Spieler festlegen. */
 		Point aktPos = spielfigur.getPosition();
 		Point neuPos = new Point(aktPos);
@@ -325,6 +326,7 @@ public class Spielfeld {
 			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
 			this.setzeObjekt(spielfigur, aktPos);
 			this.setzeObjekt(new SchalterAuf(), neuPos);
+			this.setzeObjekt(new Rasen(), barriere.getPosition());
 
 			/*
 			 * TODO hier muss die Position der Barriere ausgemacht werden und

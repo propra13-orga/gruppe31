@@ -17,7 +17,7 @@ public class Barriere extends GameObject {
 
 	/** bild vom Typ String wird deklariert */
 	private String bild;
-	
+
 	/** Die Position dieser Figur in der xy-Ebene. */
 	private Point position;
 
@@ -37,7 +37,6 @@ public class Barriere extends GameObject {
 	 * @return Die aktuelle Position der Barriere
 	 */
 	public Point getPosition() {
-
 		return position;
 	}
 
@@ -48,7 +47,6 @@ public class Barriere extends GameObject {
 	 *            Die neue Position der Figur.
 	 */
 	public void setPosition(Point neuePosition) {
-
 		this.position = neuePosition;
 	}
 

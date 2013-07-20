@@ -325,6 +325,6 @@ public class Spiel {
 	 *            Kommandozeilenparameter
 	 */
 	public void aktion(int keyCode) {
-		levels.get(aktSpielfeld).aktion(this.spieler, this.gegner, keyCode);
+		levels.get(aktSpielfeld).aktion(this.spieler, this.gegner, keyCode, this.barriere);
 	}
 }
