@@ -133,7 +133,7 @@ public class NetzwerkFrame extends JFrame {
 	 */
 	public void addAusgabe(String neu) {
 		String text = ausgabe.getText();
-		text = text + neu;
+		text = text + neu + Konstanten.ZEILENUMBRUCH;
 		ausgabe.setText(text);
 	}
 }
@@ -179,7 +179,7 @@ class Action implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent f) {
 		if (f.getActionCommand().equals(stSende)) {
-			String ausgabe = eingabeTa.getText() + "\n";
+			String ausgabe = eingabeTa.getText();
 			ausgehendPr.print(ausgabe);
 			ausgehendPr.flush();
 			eingabeTa.setText(" ");

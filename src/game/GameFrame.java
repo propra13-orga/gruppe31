@@ -197,7 +197,8 @@ public class GameFrame extends JFrame implements KeyListener {
 	private JButton save;
 	private JButton load;
 
-	String saveSpielfeld;
+	/** String zum Speichern eines Spielfeldes */
+	private String saveSpielfeld;
 
 	/**
 	 * Konstruktor, der die Eigenschaften des Spielfensters festsetzt. der

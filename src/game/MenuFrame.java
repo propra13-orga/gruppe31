@@ -40,6 +40,8 @@ public class MenuFrame extends JFrame {
 
 	/** Deklaration des Fenstertitels */
 	private String name = "Erna's Adventure";
+	
+	private boolean serverAktiv = false;
 
 	/**
 	 * Konstruktor, der alle Einstellungen des Menüfensters aufruft
@@ -167,7 +169,14 @@ public class MenuFrame extends JFrame {
 
 		/* wenn Server gewählt wurde, wird Server-Thread gestartet */
 		if (selected == 0) {
-			new game.Server().start();
+			if (!serverAktiv) {
+				new game.Server().start();
+				serverAktiv = true;
+			} else if (serverAktiv) {
+				JOptionPane.showMessageDialog(null,
+						"Es wurde bereits ein Server gestartet!",
+						"Vorsicht", JOptionPane.ERROR_MESSAGE);
+			}
 			/* wenn Client gewählt wurde, wird Client-Thread gestartet */
 		} else if (selected == 1) {
 			String ip = JOptionPane.showInputDialog(null,
@@ -180,7 +189,7 @@ public class MenuFrame extends JFrame {
 			} else if ("".equals(ip)) {
 				JOptionPane.showMessageDialog(null,
 						"BItte geben Sie eine gültige IP-Adresse ein!",
-						"Achtung", JOptionPane.ERROR_MESSAGE);
+						"Ungültig", JOptionPane.ERROR_MESSAGE);
 			} else
 				new Chatter(ip).start();
 		}
