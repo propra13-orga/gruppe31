@@ -224,7 +224,6 @@ public class Spielfeld {
 		} else if (obj instanceof Checkpoint) {
 			/* TODO Checkpoint(); */
 		} else if (obj instanceof Weiter) {
-			/* TODO */
 			spiel.levelWeiter(spielfigur);
 			setRaumPlus(1);
 		} else if (obj instanceof Zurueck) {

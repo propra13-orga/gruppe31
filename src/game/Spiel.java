@@ -44,7 +44,6 @@ public class Spiel {
 	/** Liste von Spielfeldern wird deklariert */
 	private ArrayList<Spielfeld> levels;
 
-
 	/** Zeiger auf das aktuelle Spielfeld */
 	private int aktSpielfeld;
 
@@ -54,7 +53,7 @@ public class Spiel {
 	private Barriere barriere;
 	private Spielfeld spielfeld;
 	private Spiel spiel;
-	
+
 	private String invalid = "Ungültig";
 
 	/**
@@ -97,8 +96,8 @@ public class Spiel {
 		int saveMana = Integer.parseInt(br.readLine());
 		if (saveMana > Konstanten.VOLLM) {
 			JOptionPane.showMessageDialog(null,
-					"In der Datei gibt es eine ungültige Manaanzahl",
-					invalid, JOptionPane.ERROR_MESSAGE);
+					"In der Datei gibt es eine ungültige Manaanzahl", invalid,
+					JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		}
 		int saveRuestung = Integer.parseInt(br.readLine());
@@ -111,8 +110,8 @@ public class Spiel {
 		int saveLeben = Integer.parseInt(br.readLine());
 		if (saveLeben > Konstanten.DREILEBEN) {
 			JOptionPane.showMessageDialog(null,
-					"In der Datei gibt es eine ungültige Lebenanzahl",
-					invalid, JOptionPane.ERROR_MESSAGE);
+					"In der Datei gibt es eine ungültige Lebenanzahl", invalid,
+					JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		}
 		boolean saveBewaffnet = Boolean.parseBoolean(new ScriptEngineManager()
@@ -255,7 +254,7 @@ public class Spiel {
 			 */
 		} while (line != null);
 		fr.close();
-		
+
 		/*
 		 * setzt das aktuelleSpielfeld wieder an den Anfang, damit der erste
 		 * Raum angezeigt wird
@@ -288,10 +287,15 @@ public class Spiel {
 	 *            Kommandozeilenparameter
 	 */
 	public void levelWeiter(Spieler spielfigur) {
+		/* zählt einen hoch */
 		aktSpielfeld = aktSpielfeld + 1;
+		/* nächstes Spielfeld aus ArrayList levels */
 		Spielfeld neuesSpielfeld = this.levels.get(aktSpielfeld);
+		/* Position von Zurueckfeld auf neuem Spielfeld wird abgerufen */
 		Point weiterPosition = neuesSpielfeld.getZurueck();
+		/*auf dem neuen Spielfeld wird die Spielfigur auf die entsprechende Stelle gesetzt*/ 
 		neuesSpielfeld.setzeObjekt(spielfigur, weiterPosition);
+		/* Position der Spielfgur wird gesetzt */
 		spielfigur.setPosition(weiterPosition);
 	}
 
@@ -323,9 +327,10 @@ public class Spiel {
 	 * 
 	 * @param keyCode
 	 *            Kommandozeilenparameter
-	 * @param gameFrame 
+	 * @param gameFrame
 	 */
 	public void aktion(int keyCode, GameFrame gameFrame) {
-		levels.get(aktSpielfeld).aktion(this.spieler, this.gegner, keyCode, barriere, gameFrame);
+		levels.get(aktSpielfeld).aktion(this.spieler, this.gegner, keyCode,
+				barriere, gameFrame);
 	}
 }
