@@ -54,6 +54,8 @@ public class Spiel {
 	private Spielfeld spielfeld;
 	private GameFrame gameFrame;
 	private Spiel spiel;
+	
+	private String invalid = "Ungültig";
 
 	/**
 	 * Konstruktor erzeugt ArrayList, welche Spielfelder beinhaltet
@@ -86,9 +88,33 @@ public class Spiel {
 
 		/* speichert die Eigenschaften, bis Spieler gelesen wurde */
 		int saveGesundheit = Integer.parseInt(br.readLine());
+		if (saveGesundheit > Konstanten.VOLLH) {
+			JOptionPane.showMessageDialog(null,
+					"In der Datei gibt es eine ungültige Healthanzahl",
+					invalid, JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
+		}
 		int saveMana = Integer.parseInt(br.readLine());
+		if (saveMana > Konstanten.VOLLM) {
+			JOptionPane.showMessageDialog(null,
+					"In der Datei gibt es eine ungültige Manaanzahl",
+					invalid, JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
+		}
 		int saveRuestung = Integer.parseInt(br.readLine());
+		if (saveRuestung > Konstanten.VOLLR) {
+			JOptionPane.showMessageDialog(null,
+					"In der Datei gibt es eine ungültige Ruestungsanzahl",
+					invalid, JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
+		}
 		int saveLeben = Integer.parseInt(br.readLine());
+		if (saveLeben > Konstanten.DREILEBEN) {
+			JOptionPane.showMessageDialog(null,
+					"In der Datei gibt es eine ungültige Lebenanzahl",
+					invalid, JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
+		}
 		boolean saveBewaffnet = Boolean.parseBoolean(new ScriptEngineManager()
 				.getEngineByName("javascript").eval(br.readLine()).toString());
 		boolean saveBeschwertet = Boolean
@@ -116,7 +142,7 @@ public class Spiel {
 							.showMessageDialog(
 									null,
 									"Die Anzahl der Zeichen in dieser Textdatei ist ungültig!",
-									"Error", JOptionPane.ERROR_MESSAGE);
+									invalid, JOptionPane.ERROR_MESSAGE);
 					System.exit(0);
 				} else {
 					/*
