@@ -66,15 +66,6 @@ public class Spieler extends Spielfigur {
 	 */
 	public Spieler(String art) {
 
-		setBewaffnet(false);
-		setGesundheitPlus(Konstanten.VOLLH);
-		setBeschwertet(false);
-		setHalsband(false);
-		setLebenPlus(Konstanten.DREILEBEN);
-		setManaPlus(0);
-		setGoldPlus(0);
-		setRuestung(0);
-
 		if ("Erna".equals(art)) {
 			setzeBildErna();
 		} else if ("Luke".equals(art)) {
