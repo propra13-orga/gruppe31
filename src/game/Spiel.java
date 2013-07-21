@@ -51,7 +51,7 @@ public class Spiel {
 	private Spieler spieler;
 	private Gegner gegner;
 	private Barriere barriere;
-	private Spielfeld spielfeld;
+//	private Spielfeld spielfeld;
 	private Spiel spiel;
 
 	private String invalid = "Ungültig";
@@ -126,15 +126,15 @@ public class Spiel {
 		/* in line wird eine Zeile gespeichert */
 		String line = br.readLine();
 		do {
-			int hoehe = line.charAt(0);
-			int breite = line.charAt(1);
+//			int hoehe = line.charAt(0);
+//			int breite = line.charAt(1);
 
 			/* ein neues Spielfeld wird initialisiert */
-			spielfeld = new Spielfeld(this, Konstanten.ZEILEN,
-					Konstanten.SPALTEN);
+			Spielfeld spielfeld = new Spielfeld(this, Konstanten.ZEILEN, Konstanten.SPALTEN);
 
 			/* die Zeilen werden gelesen, bis man bei der 16. angekommen ist */
 			for (int i = 0; i < Konstanten.SPALTEN; i++, line = br.readLine()) {
+
 				/* wenn mehr als 12 Zeichen gelesen werden, Fehlermeldung */
 				if (line.length() != Konstanten.ZEILEN) {
 					JOptionPane
@@ -236,22 +236,23 @@ public class Spiel {
 						}
 
 						spielfeld.setzeObjekt(gameObject, new Point(i, j));
-						levels.add(spielfeld);
-						aktSpielfeld++;
+						
 					}
 				}
 			}
-			do
-				line = br.readLine();
-			/*
-			 * der obere Block wird ausgeführt bis eine Leerzeile gefunden wird,
-			 * geschieht das, wird ein neues Spielfeldarray angelegt
-			 */
-			while ("".equals(line));
-			/*
-			 * und der komplette obere Block wird ausgeführt, bis der
-			 * BufferedReader das Ende der Datei gefunden hat
-			 */
+			
+				
+			/* Alle Zeilen eines Spielfelds gelesen, aktuelles Spielfeld speichern und neues Spielfeld erzeugen. */
+			this.levels.add(spielfeld);
+			spielfeld = new Spielfeld(this, Konstanten.ZEILEN, Konstanten.SPALTEN);
+			
+			/* .. und die Leerzeile ueberspringen .. */
+			line = br.readLine();
+
+		/*
+		 * und der komplette obere Block wird ausgeführt, bis der
+		 * BufferedReader das Ende der Datei gefunden hat
+		 */
 		} while (line != null);
 		fr.close();
 
@@ -281,22 +282,48 @@ public class Spiel {
 	}
 
 	/**
-	 * set aktuelles Spielfeld einen hoch
+	 * Geht ein Spielfeld weiter. Es wird erwartet, dass die Methode nur aufgerufen wird, 
+	 * falls ueberhaupt noch ein Spielfeld auf das aktuelle folgt (SPIELFELD-DESIGN BEACHTEN!)
 	 * 
 	 * @param spielfigur
-	 *            Kommandozeilenparameter
+	 *            Die Spielfigur, die weiter bewegt werden soll.
 	 */
 	public void levelWeiter(Spieler spielfigur) {
-		/* zählt einen hoch */
-		aktSpielfeld = aktSpielfeld + 1;
+		
+		/* Naechstes Spielfeld */
+		aktSpielfeld += 1;
 		/* nächstes Spielfeld aus ArrayList levels */
 		Spielfeld neuesSpielfeld = this.levels.get(aktSpielfeld);
 		/* Position von Zurueckfeld auf neuem Spielfeld wird abgerufen */
-		Point weiterPosition = neuesSpielfeld.getZurueck();
-		/*auf dem neuen Spielfeld wird die Spielfigur auf die entsprechende Stelle gesetzt*/ 
-		neuesSpielfeld.setzeObjekt(spielfigur, weiterPosition);
+		Point zurueck = neuesSpielfeld.getZurueck();
+		
+		Point figurPosNeu;
+		
+		/* Je nach Position des Zurueck-Feldes muss die Spielfigur auf das entsprechend benachbarte Feld gesetzt werden. */
+		if (zurueck.x == 0) {
+			
+			/* Erste Zeile, beliebige Spalte */
+			figurPosNeu = new Point(zurueck.x + 1, zurueck.y); 
+		} else if (zurueck.x == Konstanten.ZEILEN - 1) {
+			
+			/* Letzte Zeile, beliebige Spalte. */
+			figurPosNeu = new Point(zurueck.x - 1, zurueck.y); 
+		} else if (zurueck.y == 0) {
+			
+			/* Beliebige Zeile, erste Spalte. */
+			figurPosNeu = new Point(zurueck.x, zurueck.y + 1); 
+		} else if (zurueck.y == Konstanten.SPALTEN - 1) {
+			
+			/* Beliebige Zeile, letzte Spalte. */
+			figurPosNeu = new Point(zurueck.x, zurueck.y - 1); 
+		} else {
+			
+			/* Sollte nicht eintreten. */
+			figurPosNeu = new Point();
+		}
+		neuesSpielfeld.setzeObjekt(spielfigur, figurPosNeu);
 		/* Position der Spielfgur wird gesetzt */
-		spielfigur.setPosition(weiterPosition);
+		spielfigur.setPosition(figurPosNeu);
 	}
 
 	/**
@@ -332,5 +359,10 @@ public class Spiel {
 	public void aktion(int keyCode, GameFrame gameFrame) {
 		levels.get(aktSpielfeld).aktion(this.spieler, this.gegner, keyCode,
 				barriere, gameFrame);
+	}
+
+	public int getAktuellesSpielfeldNumber() {
+
+		return aktSpielfeld;
 	}
 }

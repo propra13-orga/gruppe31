@@ -369,7 +369,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		panelAnzeige.removeAll();
 
 		/* für die Levelanzeige */
-		int level = this.spiel.getAktuellesSpielfeld().getRaum();
+		int level = this.spiel.getAktuellesSpielfeldNumber();
 		if (level == Konstanten.RAUMEINS) {
 			panelAnzeige.add(eins);
 		} else if (level == Konstanten.RAUMZWEI) {

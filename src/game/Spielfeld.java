@@ -224,12 +224,17 @@ public class Spielfeld {
 		} else if (obj instanceof Checkpoint) {
 			/* TODO Checkpoint(); */
 		} else if (obj instanceof Weiter) {
+			
+			/* Das Feld, auf dem der Spieler momentan steht auf Rasen setzen. */
+			this.setzeObjekt(new Rasen(), aktPos);
+			
+			/* Ueber das Spiel in den naechsten Raum wechseln. */
 			spiel.levelWeiter(spielfigur);
-			setRaumPlus(1);
+//			setRaumPlus(1);
 		} else if (obj instanceof Zurueck) {
 			/* TODO */
 			spiel.levelZurueck(spielfigur);
-			setRaumMinus(1);
+//			setRaumMinus(1);
 		} else if (obj instanceof Ziel) {
 			gewonnenVerloren = new GewonnenVerloren("gewonnen");
 			gameFrame.dispose();
@@ -385,28 +390,28 @@ public class Spielfeld {
 		this.zurueck = zurueck;
 	}
 
-	/**
-	 * @return the raum
-	 */
-	public int getRaum() {
-		return raum;
-	}
-
-	/**
-	 * @param raum
-	 *            the raum to set
-	 */
-	public void setRaumPlus(int raum) {
-		this.raum = getRaum() + raum;
-	}
-
-	/**
-	 * @param raum
-	 *            the raum to set
-	 */
-	public void setRaumMinus(int raum) {
-		this.raum = getRaum() + raum;
-	}
+//	/**
+//	 * @return the raum
+//	 */
+//	public int getRaum() {
+//		return raum;
+//	}
+//
+//	/**
+//	 * @param raum
+//	 *            the raum to set
+//	 */
+//	public void setRaumPlus(int raum) {
+//		this.raum = getRaum() + raum;
+//	}
+//
+//	/**
+//	 * @param raum
+//	 *            the raum to set
+//	 */
+//	public void setRaumMinus(int raum) {
+//		this.raum = getRaum() + raum;
+//	}
 
 	/*
 	 * TODO Prüfung ob Checkpoint besucht wurde und Zurücksetzen des Spiels oder
