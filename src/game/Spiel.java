@@ -114,14 +114,9 @@ public class Spiel {
 					JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		}
-		boolean saveBewaffnet = Boolean.parseBoolean(new ScriptEngineManager()
-				.getEngineByName("javascript").eval(br.readLine()).toString());
-		boolean saveBeschwertet = Boolean
-				.parseBoolean(new ScriptEngineManager()
-						.getEngineByName("javascript").eval(br.readLine())
-						.toString());
-		boolean saveHalsband = Boolean.parseBoolean(new ScriptEngineManager()
-				.getEngineByName("javascript").eval(br.readLine()).toString());
+		boolean saveBewaffnet = Boolean.parseBoolean(br.readLine());
+		boolean saveBeschwertet = Boolean.parseBoolean(br.readLine());
+		boolean saveHalsband = Boolean.parseBoolean(br.readLine());
 
 		/* in line wird eine Zeile gespeichert */
 		String line = br.readLine();
