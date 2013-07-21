@@ -271,7 +271,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			return;
 		}
 		spiel.init(datei);
-		System.out.print(datei);
 
 		setzeAnzeige();
 

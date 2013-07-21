@@ -224,17 +224,15 @@ public class Spielfeld {
 		} else if (obj instanceof Checkpoint) {
 			/* TODO Checkpoint(); */
 		} else if (obj instanceof Weiter) {
-			
 			/* Das Feld, auf dem der Spieler momentan steht auf Rasen setzen. */
 			this.setzeObjekt(new Rasen(), aktPos);
-			
 			/* Ueber das Spiel in den naechsten Raum wechseln. */
 			spiel.levelWeiter(spielfigur);
-//			setRaumPlus(1);
 		} else if (obj instanceof Zurueck) {
-			/* TODO */
+			/* Das Feld, auf dem der Spieler momentan steht auf Rasen setzen. */
+			this.setzeObjekt(new Rasen(), aktPos);
+			/* Ueber das Spiel in den letzten Raum wechseln. */
 			spiel.levelZurueck(spielfigur);
-//			setRaumMinus(1);
 		} else if (obj instanceof Ziel) {
 			gewonnenVerloren = new GewonnenVerloren("gewonnen");
 			gameFrame.dispose();
@@ -300,33 +298,27 @@ public class Spielfeld {
 		if (sollBewegtWerden) {
 			musik = new Musik(Konstanten.DIRECTION
 					+ "/src/game/Sound/Schritt.wav");
-
 			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
 			this.setzeObjekt(obj, aktPos);
 			this.setzeObjekt(spielfigur, neuPos);
-
 			/* setzt die neue Position */
 			spielfigur.setPosition(neuPos);
 		}
 
 		if (einsammeln) {
 			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Item.wav");
-
 			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
 			this.setzeObjekt(new Rasen(), aktPos);
 			this.setzeObjekt(spielfigur, neuPos);
-
 			/* setzt die neue Position */
 			spielfigur.setPosition(neuPos);
 		}
 
 		if (umlegen) {
-
 			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
 			this.setzeObjekt(spielfigur, aktPos);
 			this.setzeObjekt(new SchalterAuf(), neuPos);
 			this.setzeObjekt(new Rasen(), barriere.getPosition());
-
 			/*
 			 * TODO hier muss die Position der Barriere ausgemacht werden und
 			 * dorthin Rasen gesetzt werden Point barrierePosition =
@@ -390,28 +382,28 @@ public class Spielfeld {
 		this.zurueck = zurueck;
 	}
 
-//	/**
-//	 * @return the raum
-//	 */
-//	public int getRaum() {
-//		return raum;
-//	}
-//
-//	/**
-//	 * @param raum
-//	 *            the raum to set
-//	 */
-//	public void setRaumPlus(int raum) {
-//		this.raum = getRaum() + raum;
-//	}
-//
-//	/**
-//	 * @param raum
-//	 *            the raum to set
-//	 */
-//	public void setRaumMinus(int raum) {
-//		this.raum = getRaum() + raum;
-//	}
+	// /**
+	// * @return the raum
+	// */
+	// public int getRaum() {
+	// return raum;
+	// }
+	//
+	// /**
+	// * @param raum
+	// * the raum to set
+	// */
+	// public void setRaumPlus(int raum) {
+	// this.raum = getRaum() + raum;
+	// }
+	//
+	// /**
+	// * @param raum
+	// * the raum to set
+	// */
+	// public void setRaumMinus(int raum) {
+	// this.raum = getRaum() + raum;
+	// }
 
 	/*
 	 * TODO Prüfung ob Checkpoint besucht wurde und Zurücksetzen des Spiels oder

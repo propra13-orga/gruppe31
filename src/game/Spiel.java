@@ -121,9 +121,6 @@ public class Spiel {
 		/* in line wird eine Zeile gespeichert */
 		String line = br.readLine();
 		do {
-//			int hoehe = line.charAt(0);
-//			int breite = line.charAt(1);
-
 			/* ein neues Spielfeld wird initialisiert */
 			Spielfeld spielfeld = new Spielfeld(this, Konstanten.ZEILEN, Konstanten.SPALTEN);
 
@@ -328,11 +325,22 @@ public class Spiel {
 	 *            Kommandozeilenparameter
 	 */
 	public void levelZurueck(Spieler spielfigur) {
-		aktSpielfeld = aktSpielfeld - 1;
+		/* Letztes Spielfeld */
+		aktSpielfeld -= 1;
+		/* letztes Spielfeld aus ArrayList levels */
 		Spielfeld neuesSpielfeld = this.levels.get(aktSpielfeld);
-		Point zurueckPosition = neuesSpielfeld.getWeiter();
-		neuesSpielfeld.setzeObjekt(spielfigur, zurueckPosition);
-		spielfigur.setPosition(zurueckPosition);
+		/* Position von Zurueckfeld auf neuem Spielfeld wird abgerufen */
+		Point weiter = neuesSpielfeld.getWeiter();
+		System.out.println(weiter);
+		
+		Point figurPosNeu;
+		
+		figurPosNeu = new Point(weiter.x - 1, weiter.y); 
+		
+		/* Spielfigur wird auf Spielfeld (sichtbar) gesetzt */
+		neuesSpielfeld.setzeObjekt(spielfigur, figurPosNeu);
+		/* Position der Spielfgur wird gesetzt */
+		spielfigur.setPosition(figurPosNeu);
 	}
 
 	/**
