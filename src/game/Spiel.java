@@ -51,7 +51,7 @@ public class Spiel {
 	private Spieler spieler;
 	private Gegner gegner;
 	private Barriere barriere;
-//	private Spielfeld spielfeld;
+	// private Spielfeld spielfeld;
 	private Spiel spiel;
 
 	private String invalid = "Ungültig";
@@ -122,7 +122,8 @@ public class Spiel {
 		String line = br.readLine();
 		do {
 			/* ein neues Spielfeld wird initialisiert */
-			Spielfeld spielfeld = new Spielfeld(this, Konstanten.ZEILEN, Konstanten.SPALTEN);
+			Spielfeld spielfeld = new Spielfeld(this, Konstanten.ZEILEN,
+					Konstanten.SPALTEN);
 
 			/* die Zeilen werden gelesen, bis man bei der 16. angekommen ist */
 			for (int i = 0; i < Konstanten.SPALTEN; i++, line = br.readLine()) {
@@ -228,23 +229,26 @@ public class Spiel {
 						}
 
 						spielfeld.setzeObjekt(gameObject, new Point(i, j));
-						
+
 					}
 				}
 			}
-			
-				
-			/* Alle Zeilen eines Spielfelds gelesen, aktuelles Spielfeld speichern und neues Spielfeld erzeugen. */
+
+			/*
+			 * Alle Zeilen eines Spielfelds gelesen, aktuelles Spielfeld
+			 * speichern und neues Spielfeld erzeugen.
+			 */
 			this.levels.add(spielfeld);
-			spielfeld = new Spielfeld(this, Konstanten.ZEILEN, Konstanten.SPALTEN);
-			
+			spielfeld = new Spielfeld(this, Konstanten.ZEILEN,
+					Konstanten.SPALTEN);
+
 			/* .. und die Leerzeile ueberspringen .. */
 			line = br.readLine();
 
-		/*
-		 * und der komplette obere Block wird ausgeführt, bis der
-		 * BufferedReader das Ende der Datei gefunden hat
-		 */
+			/*
+			 * und der komplette obere Block wird ausgeführt, bis der
+			 * BufferedReader das Ende der Datei gefunden hat
+			 */
 		} while (line != null);
 		fr.close();
 
@@ -274,42 +278,46 @@ public class Spiel {
 	}
 
 	/**
-	 * Geht ein Spielfeld weiter. Es wird erwartet, dass die Methode nur aufgerufen wird, 
-	 * falls ueberhaupt noch ein Spielfeld auf das aktuelle folgt (SPIELFELD-DESIGN BEACHTEN!)
+	 * Geht ein Spielfeld weiter. Es wird erwartet, dass die Methode nur
+	 * aufgerufen wird, falls ueberhaupt noch ein Spielfeld auf das aktuelle
+	 * folgt (SPIELFELD-DESIGN BEACHTEN!)
 	 * 
 	 * @param spielfigur
 	 *            Die Spielfigur, die weiter bewegt werden soll.
 	 */
 	public void levelWeiter(Spieler spielfigur) {
-		
+
 		/* Naechstes Spielfeld */
 		aktSpielfeld += 1;
 		/* nächstes Spielfeld aus ArrayList levels */
 		Spielfeld neuesSpielfeld = this.levels.get(aktSpielfeld);
 		/* Position von Zurueckfeld auf neuem Spielfeld wird abgerufen */
 		Point zurueck = neuesSpielfeld.getZurueck();
-		
+
 		Point figurPosNeu;
-		
-		/* Je nach Position des Zurueck-Feldes muss die Spielfigur auf das entsprechend benachbarte Feld gesetzt werden. */
+
+		/*
+		 * Je nach Position des Zurueck-Feldes muss die Spielfigur auf das
+		 * entsprechend benachbarte Feld gesetzt werden.
+		 */
 		if (zurueck.x == 0) {
-			
+
 			/* Erste Zeile, beliebige Spalte */
-			figurPosNeu = new Point(zurueck.x + 1, zurueck.y); 
+			figurPosNeu = new Point(zurueck.x + 1, zurueck.y);
 		} else if (zurueck.x == Konstanten.ZEILEN - 1) {
-			
+
 			/* Letzte Zeile, beliebige Spalte. */
-			figurPosNeu = new Point(zurueck.x - 1, zurueck.y); 
+			figurPosNeu = new Point(zurueck.x - 1, zurueck.y);
 		} else if (zurueck.y == 0) {
-			
+
 			/* Beliebige Zeile, erste Spalte. */
-			figurPosNeu = new Point(zurueck.x, zurueck.y + 1); 
+			figurPosNeu = new Point(zurueck.x, zurueck.y + 1);
 		} else if (zurueck.y == Konstanten.SPALTEN - 1) {
-			
+
 			/* Beliebige Zeile, letzte Spalte. */
-			figurPosNeu = new Point(zurueck.x, zurueck.y - 1); 
+			figurPosNeu = new Point(zurueck.x, zurueck.y - 1);
 		} else {
-			
+
 			/* Sollte nicht eintreten. */
 			figurPosNeu = new Point();
 		}
@@ -331,12 +339,11 @@ public class Spiel {
 		Spielfeld neuesSpielfeld = this.levels.get(aktSpielfeld);
 		/* Position von Zurueckfeld auf neuem Spielfeld wird abgerufen */
 		Point weiter = neuesSpielfeld.getWeiter();
-		System.out.println(weiter);
-		
+
 		Point figurPosNeu;
-		
-		figurPosNeu = new Point(weiter.x - 1, weiter.y); 
-		
+
+		figurPosNeu = new Point(weiter.x - 1, weiter.y);
+
 		/* Spielfigur wird auf Spielfeld (sichtbar) gesetzt */
 		neuesSpielfeld.setzeObjekt(spielfigur, figurPosNeu);
 		/* Position der Spielfgur wird gesetzt */
@@ -358,12 +365,18 @@ public class Spiel {
 	 * @param keyCode
 	 *            Kommandozeilenparameter
 	 * @param gameFrame
+	 *            Kommandozeilenparameter
 	 */
 	public void aktion(int keyCode, GameFrame gameFrame) {
 		levels.get(aktSpielfeld).aktion(this.spieler, this.gegner, keyCode,
 				barriere, gameFrame);
 	}
 
+	/**
+	 * gibt die Zahl des aktuellen Spielfeldes wieder
+	 * 
+	 * @return aktSpielfeld
+	 */
 	public int getAktuellesSpielfeldNumber() {
 
 		return aktSpielfeld;
