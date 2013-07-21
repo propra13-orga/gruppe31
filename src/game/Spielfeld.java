@@ -1,5 +1,6 @@
 package game;
 
+import game.figuren.Bossgegner;
 import game.figuren.Gegner;
 import game.figuren.Spieler;
 import game.icons.Barriere;
@@ -135,6 +136,7 @@ public class Spielfeld {
 	 * @param barriere
 	 *            barriere wird übergeben
 	 * @param gameFrame
+	 *            Kommandozeilenparameter
 	 */
 	public void aktion(Spieler spielfigur, Gegner gegner, int keyCode,
 			Barriere barriere, GameFrame gameFrame) {
@@ -147,6 +149,14 @@ public class Spielfeld {
 		}
 	}
 
+	/**
+	 * Gegnerfigur wird bewegt
+	 * 
+	 * @param gegner
+	 *            Kommandozeilenparameter
+	 * @param keyCode
+	 *            Kommandozeilenparameter
+	 */
 	private void aktionGegner(Gegner gegner, int keyCode) {
 		gegner.setzeBildPilz();
 		gegner.getPicture();
@@ -160,6 +170,7 @@ public class Spielfeld {
 	 * @param keyCode
 	 *            Kommandozeilenparameter
 	 * @param gameFrame
+	 *            Kommandozeilenparameter
 	 * @throws Exception
 	 *             wirft Exception
 	 */
@@ -201,20 +212,9 @@ public class Spielfeld {
 			/* Bewegung ingorieren */
 			/* TODO Health Anzeige verschwindet, wenn tot, das soll nicht */
 		} else if (obj instanceof Gegner) {
-			if (spielfigur.getLeben() >= Konstanten.EINLEBEN) {
-				musik = new Musik(Konstanten.DIRECTION
-						+ "/src/game/Sound/Hit.wav");
-				if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
-					spielfigur.setGesundheitMinus(Konstanten.EINVIERTELH);
-				} else if (spielfigur.getGesundheit() >= Konstanten.EINVIERTELH) {
-					spielfigur.setLebenMinus(1);
-					spielfigur.setGesundheitPlus(Konstanten.VOLLH);
-				}
-			}
-			if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
-				gewonnenVerloren = new GewonnenVerloren("verloren");
-				gameFrame.dispose();
-			}
+			gegnerAngriff(spielfigur, gameFrame);
+		} else if (obj instanceof Bossgegner) {
+			bossAngriff(spielfigur, gameFrame);
 		} else if (obj instanceof Huette) {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Carlos) {
@@ -334,6 +334,56 @@ public class Spielfeld {
 		}
 		spielfigur.setzeBildErna();
 		spielfigur.getPicture();
+	}
+
+	/**
+	 * führt die Aktionen durch, die nötig sind, wenn die Spielfigur vom Gegner
+	 * angegriffen wird
+	 * 
+	 * @param spielfigur
+	 *            erwartet spielfigur
+	 * @param gameFrame
+	 *            erwartet GameFrame
+	 */
+	private void bossAngriff(Spieler spielfigur, GameFrame gameFrame) {
+		if (spielfigur.getLeben() >= Konstanten.EINLEBEN) {
+			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Hit.wav");
+			if (spielfigur.getGesundheit() >= Konstanten.DREIVIERTELH) {
+				spielfigur.setGesundheitMinus(Konstanten.HALBH);
+			} else if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
+				spielfigur.setLebenMinus(1);
+				spielfigur.setGesundheitPlus(Konstanten.VOLLH);
+			}
+		}
+		if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
+			gewonnenVerloren = new GewonnenVerloren("verloren");
+			gameFrame.dispose();
+		}
+	}
+
+	/**
+	 * führt die Aktionen durch, die nötig sind, wenn die Spielfigur vom Gegner
+	 * angegriffen wird
+	 * 
+	 * @param spielfigur
+	 *            erwartet spielfigur
+	 * @param gameFrame
+	 *            erwartet GameFrame
+	 */
+	private void gegnerAngriff(Spieler spielfigur, GameFrame gameFrame) {
+		if (spielfigur.getLeben() >= Konstanten.EINLEBEN) {
+			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Hit.wav");
+			if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
+				spielfigur.setGesundheitMinus(Konstanten.EINVIERTELH);
+			} else if (spielfigur.getGesundheit() >= Konstanten.EINVIERTELH) {
+				spielfigur.setLebenMinus(1);
+				spielfigur.setGesundheitPlus(Konstanten.VOLLH);
+			}
+		}
+		if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
+			gewonnenVerloren = new GewonnenVerloren("verloren");
+			gameFrame.dispose();
+		}
 	}
 
 	/**
