@@ -333,12 +333,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 				GameObject object = spielfeld
 						.gibObjekt(new java.awt.Point(i, j));
-
-				/*
-				 * eigener Debugger ;-)
-				 * System.out.println(object.getClass().getSimpleName() + ":" +
-				 * object.getPicture());
-				 */
+				 
 				Icon icon = new ImageIcon(object.getPicture());
 				JLabel label = new JLabel(new ImageIcon(object.getPicture()));
 				label.setBounds(i * Konstanten.SIZE, j * Konstanten.SIZE,
@@ -346,7 +341,6 @@ public class GameFrame extends JFrame implements KeyListener {
 				this.panelSpielfeld.add(label);
 			}
 		}
-
 		aktualisieren();
 	}
 

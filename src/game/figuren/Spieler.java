@@ -69,8 +69,13 @@ public class Spieler extends Spielfigur {
 		if ("Erna".equals(art)) {
 			setzeBildErna();
 		} else if ("Luke".equals(art)) {
-			// setzeBildLuke
+			setzeBildLuke();
 		}
+	}
+
+	private void setzeBildLuke() {
+		bild = ICONLUKE;
+		
 	}
 
 	/**
