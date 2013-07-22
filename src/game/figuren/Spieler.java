@@ -33,6 +33,8 @@ public class Spieler extends Spielfigur {
 	/** Icon für den zweiten Spieler werden deklariert */
 	private static final String ICONLUKE = Konstanten.DIRECTION
 			+ "/src/game/Images/Luke.png";
+	private static final String ICONLUKEBEWAFFNET = Konstanten.DIRECTION
+			+ "/src/game/Images/LukeSchwert.png";
 
 	/** bild vom Typ String wird deklariert */
 	private String bild;
@@ -76,43 +78,47 @@ public class Spieler extends Spielfigur {
 	 * wählt das Icon des Spielers, der Luke steuert
 	 */
 	public void setzeBildLuke() {
-		bild = ICONLUKE;
-		
+		if (getBewaffnet()) {
+			bild = ICONLUKEBEWAFFNET;
+		} else if (!getBewaffnet()) {
+			bild = ICONLUKE;
+		}
+
 	}
 
 	/**
 	 * wählt das Icon des Spielers, der Erna steuert
 	 */
 	public void setzeBildErna() {
-			if (getBewaffnet()) {
-				if (beschwertet) {
-					if (halsband) {
-						bild = ICONTERMINATORERNA;
-					} else if (!halsband) {
-						bild = ICONVOLLERNA;
-					}
-				} else if (!beschwertet) {
-					if (halsband) {
-						bild = ICONPUDELBEIDES;
-					} else if (!halsband) {
-						bild = ICONAGGROERNA;
-					}
+		if (getBewaffnet()) {
+			if (beschwertet) {
+				if (halsband) {
+					bild = ICONTERMINATORERNA;
+				} else if (!halsband) {
+					bild = ICONVOLLERNA;
 				}
-			} else if (!getBewaffnet()) {
-				if (beschwertet) {
-					if (halsband) {
-						bild = ICONPUDELSCHWERTHALSBAND;
-					} else if (!halsband) {
-						bild = ICONSCHWERTERNA;
-					}
-				} else if (!beschwertet) {
-					if (halsband) {
-						bild = ICONPUDELHALSBAND;
-					} else if (!halsband) {
-						bild = ICONPUDEL;
-					}
+			} else if (!beschwertet) {
+				if (halsband) {
+					bild = ICONPUDELBEIDES;
+				} else if (!halsband) {
+					bild = ICONAGGROERNA;
 				}
 			}
+		} else if (!getBewaffnet()) {
+			if (beschwertet) {
+				if (halsband) {
+					bild = ICONPUDELSCHWERTHALSBAND;
+				} else if (!halsband) {
+					bild = ICONSCHWERTERNA;
+				}
+			} else if (!beschwertet) {
+				if (halsband) {
+					bild = ICONPUDELHALSBAND;
+				} else if (!halsband) {
+					bild = ICONPUDEL;
+				}
+			}
+		}
 	}
 
 	/**
@@ -265,8 +271,7 @@ public class Spieler extends Spielfigur {
 	}
 
 	/**
-	 * /**
-	 * Setter für gold
+	 * /** Setter für gold
 	 * 
 	 * @param gold
 	 *            Kommandozeilenparameter
