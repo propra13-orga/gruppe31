@@ -480,6 +480,7 @@ public class Spielfeld {
 	public void zaubere1(Spieler spielfigur) {
 		if (spielfigur.getMana() > Konstanten.LEERM) {
 			spielfigur.setManaMinus(Konstanten.HALBM);
+			spielfigur.setGesundheitPlus(Konstanten.EINVIERTELH);
 			spielfigur.setBeschwertet(true);
 			spielfigur.setBewaffnet(false);
 		} else
@@ -496,6 +497,7 @@ public class Spielfeld {
 	public void zaubere2(Spieler spielfigur) {
 		if (spielfigur.getMana() > Konstanten.LEERM) {
 			spielfigur.setManaMinus(Konstanten.HALBM);
+			spielfigur.setGesundheitPlus(Konstanten.EINVIERTELH);
 			spielfigur.setBeschwertet(false);
 			spielfigur.setBewaffnet(true);
 		} else
