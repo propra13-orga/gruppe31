@@ -249,6 +249,8 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		erzeugeSpiel();
 
+		setzeAnzeige();
+		
 		setzeLoadButton();
 		setzeSaveButton();
 		
@@ -271,8 +273,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			return;
 		}
 		spiel.init(datei);
-
-		setzeAnzeige();
 
 		zeichnen(spiel.getAktuellesSpielfeld());
 	}
@@ -617,7 +617,6 @@ public class GameFrame extends JFrame implements KeyListener {
 			}
 			saveSpielfeld = saveSpielfeld + "\n";
 		}
-		System.out.println(saveSpielfeld);
 		return saveSpielfeld;
 	}
 

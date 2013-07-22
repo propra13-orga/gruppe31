@@ -138,7 +138,7 @@ public final class Konstanten {
 
 	/** die Groessen für das Netzwerkfenster */
 	public static final int BREITECHAT = 700;
-	public static final int HOEHECHAT = 600;
+	public static final int HOEHECHAT = 270;
 
 	/** die Groessen für das NPCfenster */
 	public static final int BREITENPC = 205;

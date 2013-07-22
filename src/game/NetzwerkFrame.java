@@ -5,6 +5,8 @@ import java.awt.Container;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 
@@ -13,6 +15,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 /**
  * erstellt die nötige GUI für das Netzwerk
@@ -20,15 +24,8 @@ import javax.swing.JLabel;
  * @author Denise
  * 
  */
-public class NetzwerkFrame extends JFrame{
+public class NetzwerkFrame extends JFrame implements KeyListener {
 
-	/** Platzhalter für Spieldeld */
-	private static final Icon SPIELFELD = new ImageIcon(Konstanten.DIRECTION
-			+ "/src/game/Images/Spielfeld.jpg");
-
-	/** Labelfür Platzhalter */
-	private JLabel feld = new JLabel(SPIELFELD);
-	
 	/** deklariert PrintWriter, BufferedReader und ActionListener */
 	private PrintWriter ausgehend;
 	private BufferedReader eintreffend;
@@ -40,12 +37,20 @@ public class NetzwerkFrame extends JFrame{
 
 	/** Deklaration der Felder */
 	private Musik musik;
+	private Spiel spiel;
+	private GameFrame gameFrame;
 
 	/** Button im Fenster */
 	private JButton btSende;
+	private JButton btStart;
 
 	/** Deklaration für Text für Button */
 	private String stSende = "Send";
+
+	/** Panel für Anzeigenleiste deklariert */
+	private JPanel panelAnzeige = new JPanel();
+	private JPanel panelSpielfeld = new JPanel();
+	private JPanel panelButtons = new JPanel();
 
 	/**
 	 * 
@@ -66,6 +71,7 @@ public class NetzwerkFrame extends JFrame{
 	 */
 	NetzwerkFrame(String titel, PrintWriter out, BufferedReader in, int x, int y)
 			throws Exception {
+
 		ausgehend = out;
 		eintreffend = in;
 		init(titel, x, y);
@@ -86,10 +92,10 @@ public class NetzwerkFrame extends JFrame{
 	 *             wirft Exception
 	 */
 	void init(String titel, int x, int y) throws Exception {
-		setLocation(x, y);
-		setSize(Konstanten.BREITECHAT, Konstanten.HOEHECHAT);
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setVisible(true);
+		this.setLocation(x, y);
+		this.setSize(Konstanten.BREITECHAT, Konstanten.HOEHECHAT);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setVisible(true);
 		this.setTitle(titel);
 
 		/* initialisert TextAreas */
@@ -98,12 +104,25 @@ public class NetzwerkFrame extends JFrame{
 
 		/* initialisiert Button */
 		btSende = new JButton();
+		btStart = new JButton("Lass uns spielen");
 
-		/* ActionListener wird erzeugt */
+		/* ActionListener für sende wird erzeugt */
 		sende = new Action(ausgehend, eintreffend, eingabe);
 		btSende.setText("Abschicken");
 		btSende.setActionCommand(stSende);
 		btSende.addActionListener(sende);
+		
+		ActionListener alstart = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					gameFrame = new GameFrame("Netzwerk", Konstanten.XGF, Konstanten.YGF);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		};
+		btStart.addActionListener(alstart);
 
 		this.setLayout(new BorderLayout());
 
@@ -121,7 +140,7 @@ public class NetzwerkFrame extends JFrame{
 
 		/* unten und Ausgabefenster werden auf Frame gesetzt */
 		this.add(unten, BorderLayout.SOUTH);
-		this.add(feld, BorderLayout.CENTER);
+		this.add(btStart, BorderLayout.CENTER);
 	}
 
 	/**
@@ -135,6 +154,24 @@ public class NetzwerkFrame extends JFrame{
 		String text = ausgabe.getText();
 		text = text + neu + Konstanten.ZEILENUMBRUCH;
 		ausgabe.setText(text);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+
 	}
 }
 
