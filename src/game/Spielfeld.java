@@ -9,7 +9,7 @@ import game.icons.Checkpoint;
 import game.icons.Grenze;
 import game.icons.Huette;
 import game.icons.Jauch;
-import game.icons.Jauch_Netzwerk;
+import game.icons.JauchNetzerk;
 import game.icons.Luke;
 import game.icons.Rasen;
 import game.icons.SchalterAuf;
@@ -49,7 +49,7 @@ public class Spielfeld {
 	private Musik musik;
 	private GewonnenVerloren gewonnenVerloren;
 	private Jauch jauch;
-	private Jauch_Netzwerk jauch_netzwerk;
+	private JauchNetzerk jauch_netzwerk;
 
 	/** Deklaration der Punkte für Weiter- und Zuruckfelder */
 	private Point weiter;
@@ -299,10 +299,12 @@ public class Spielfeld {
 			jauch.raetsel(spielfigur, jauchBesucht);
 			this.setzeObjekt(new Rasen(), neuPos);
 			/* Bewegung ignorieren */
-		} else if (obj instanceof Jauch_Netzwerk) {
-			jauch_netzwerk = new Jauch_Netzwerk();
-			jauch_netzwerk.raetsel(spielfigur);
-			this.setzeObjekt(new Rasen(), neuPos);
+		} else if (obj instanceof JauchNetzerk) {
+			jauch_netzwerk = new JauchNetzerk();
+			boolean jauchWeg = jauch_netzwerk.raetsel(spielfigur);
+			if (jauchWeg) {
+				this.setzeObjekt(new Rasen(), neuPos);
+			}
 			/* Bewegung ignorieren */
 		}
 
@@ -337,6 +339,7 @@ public class Spielfeld {
 					+ "/src/game/Sound/Schalter.wav");
 		}
 		spielfigur.setzeBildErna();
+		spielfigur.setzeBildLuke();
 		spielfigur.getPicture();
 	}
 

@@ -73,13 +73,16 @@ public class Spieler extends Spielfigur {
 		}
 	}
 
-	private void setzeBildLuke() {
+	/**
+	 * wählt das Icon des Spielers, der Luke steuert
+	 */
+	public void setzeBildLuke() {
 		bild = ICONLUKE;
 		
 	}
 
 	/**
-	 * wählt das Icon des Spielers
+	 * wählt das Icon des Spielers, der Erna steuert
 	 */
 	public void setzeBildErna() {
 			if (getBewaffnet()) {

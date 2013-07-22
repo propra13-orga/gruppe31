@@ -10,7 +10,7 @@ import game.icons.Checkpoint;
 import game.icons.Grenze;
 import game.icons.Huette;
 import game.icons.Jauch;
-import game.icons.Jauch_Netzwerk;
+import game.icons.JauchNetzerk;
 import game.icons.Luke;
 import game.icons.Rasen;
 import game.icons.SchalterAuf;
@@ -222,7 +222,7 @@ public class Spiel {
 						} else if (pruefe == Konstanten.GUENTHERJAUCH) {
 							gameObject = new Jauch();
 						} else if (pruefe == Konstanten.JAUCHNETZWERK) {
-							gameObject = new Jauch_Netzwerk();
+							gameObject = new JauchNetzerk();
 						} else if (pruefe == Konstanten.BARRIERE) {
 							this.barriere = new Barriere();
 							barriere.setPosition(new Point(i, j));
