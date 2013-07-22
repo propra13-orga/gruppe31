@@ -257,13 +257,14 @@ public class Spielfeld {
 			spielfigur.setGoldPlus(Konstanten.GOLD50);
 			einsammeln = true;
 		} else if (obj instanceof Health) {
-			spielfigur.setGesundheitPlus(Konstanten.VOLLH);
+			spielfigur.setGesundheit(Konstanten.VOLLH);
 			einsammeln = true;
 		} else if (obj instanceof Mana) {
 			spielfigur.setManaPlus(Konstanten.VOLLM);
 			einsammeln = true;
 		} else if (obj instanceof Ruestung) {
 			spielfigur.setHalsband(true);
+			spielfigur.setRuestung(Konstanten.VOLLR);
 			einsammeln = true;
 		} else if (obj instanceof Schwert) {
 			spielfigur.setBeschwertet(true);
@@ -271,7 +272,7 @@ public class Spielfeld {
 		} else if (obj instanceof Shophealth) {
 			if (spielfigur.getGold() >= Konstanten.GOLD50) {
 				spielfigur.setGoldMinus(Konstanten.GOLD50);
-				spielfigur.setGesundheitPlus(Konstanten.VOLLH);
+				spielfigur.setGesundheit(Konstanten.VOLLH);
 			} else {
 				// nothing to do here
 			}
@@ -364,18 +365,23 @@ public class Spielfeld {
 	 *            erwartet GameFrame
 	 */
 	private void bossAngriff(Spieler spielfigur, GameFrame gameFrame) {
-		if (spielfigur.getLeben() >= Konstanten.EINLEBEN) {
-			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Hit.wav");
-			if (spielfigur.getGesundheit() >= Konstanten.DREIVIERTELH) {
-				spielfigur.setGesundheitMinus(Konstanten.HALBH);
-			} else if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
-				spielfigur.setLebenMinus(1);
-				spielfigur.setGesundheitPlus(Konstanten.VOLLH);
+		if (spielfigur.getRuestung() >= Konstanten.HALBR) {
+			spielfigur.setRuestungMinus(Konstanten.HALBH);
+		} else {
+			if (spielfigur.getLeben() >= Konstanten.EINLEBEN) {
+				musik = new Musik(Konstanten.DIRECTION
+						+ "/src/game/Sound/Hit.wav");
+				if (spielfigur.getGesundheit() >= Konstanten.DREIVIERTELH) {
+					spielfigur.setGesundheitMinus(Konstanten.HALBH);
+				} else if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
+					spielfigur.setLebenMinus(1);
+					spielfigur.setGesundheitPlus(Konstanten.VOLLH);
+				}
 			}
-		}
-		if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
-			gewonnenVerloren = new GewonnenVerloren(verloren);
-			gameFrame.dispose();
+			if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
+				gewonnenVerloren = new GewonnenVerloren(verloren);
+				gameFrame.dispose();
+			}
 		}
 	}
 
@@ -389,18 +395,23 @@ public class Spielfeld {
 	 *            erwartet GameFrame
 	 */
 	private void gegnerAngriff(Spieler spielfigur, GameFrame gameFrame) {
-		if (spielfigur.getLeben() >= Konstanten.EINLEBEN) {
-			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Hit.wav");
-			if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
-				spielfigur.setGesundheitMinus(Konstanten.EINVIERTELH);
-			} else if (spielfigur.getGesundheit() >= Konstanten.EINVIERTELH) {
-				spielfigur.setLebenMinus(1);
-				spielfigur.setGesundheitPlus(Konstanten.VOLLH);
+		if (spielfigur.getRuestung() >= Konstanten.HALBR) {
+			spielfigur.setRuestungMinus(Konstanten.HALBR);
+		} else if (spielfigur.getRuestung() == Konstanten.LEERR) {
+			if (spielfigur.getLeben() >= Konstanten.EINLEBEN) {
+				musik = new Musik(Konstanten.DIRECTION
+						+ "/src/game/Sound/Hit.wav");
+				if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
+					spielfigur.setGesundheitMinus(Konstanten.EINVIERTELH);
+				} else if (spielfigur.getGesundheit() >= Konstanten.EINVIERTELH) {
+					spielfigur.setLebenMinus(1);
+					spielfigur.setGesundheitPlus(Konstanten.VOLLH);
+				}
 			}
-		}
-		if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
-			gewonnenVerloren = new GewonnenVerloren("verloren");
-			gameFrame.dispose();
+			if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
+				gewonnenVerloren = new GewonnenVerloren("verloren");
+				gameFrame.dispose();
+			}
 		}
 	}
 
@@ -485,7 +496,7 @@ public class Spielfeld {
 
 		} else {
 			JOptionPane.showMessageDialog(null, "Sie tragen kein Schwert!",
-					"Achtung", JOptionPane.WARNING_MESSAGE);	
+					"Achtung", JOptionPane.WARNING_MESSAGE);
 		}
 
 		bossgegner.setzeBild(this.spiel.getAktuellesSpielfeldNumber());

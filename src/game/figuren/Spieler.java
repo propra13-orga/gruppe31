@@ -231,7 +231,7 @@ public class Spieler extends Spielfigur {
 	public int getRuestung() {
 		return ruestung;
 	}
-
+	
 	/**
 	 * Setter für ruestung
 	 * 
@@ -240,6 +240,16 @@ public class Spieler extends Spielfigur {
 	 */
 	public void setRuestung(int ruestung) {
 		this.ruestung = ruestung;
+	}
+
+	/**
+	 * Setter für ruestung
+	 * 
+	 * @param ruestung
+	 *            Kommandozeilenparameter
+	 */
+	public void setRuestungMinus(int ruestung) {
+		this.ruestung = getRuestung() - ruestung;
 	}
 
 	/**

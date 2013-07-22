@@ -250,10 +250,10 @@ public class GameFrame extends JFrame implements KeyListener {
 		erzeugeSpiel();
 
 		setzeAnzeige();
-		
+
 		setzeLoadButton();
 		setzeSaveButton();
-		
+
 		this.requestFocus();
 
 		musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
@@ -333,7 +333,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 				GameObject object = spielfeld
 						.gibObjekt(new java.awt.Point(i, j));
-				 
+
 				Icon icon = new ImageIcon(object.getPicture());
 				JLabel label = new JLabel(new ImageIcon(object.getPicture()));
 				label.setBounds(i * Konstanten.SIZE, j * Konstanten.SIZE,
@@ -437,32 +437,32 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		boolean bewaffnet = spiel.getSpieler().getBewaffnet();
 		boolean beschwertet = spiel.getSpieler().getBeschwertet();
-		boolean halsband = spiel.getSpieler().getHalsband();
+		int halsband = spiel.getSpieler().getRuestung();
 		if (!bewaffnet) {
 			if (!beschwertet) {
-				if (!halsband) {
+				if (halsband == 0) {
 					panelAnzeige.add(keinEq);
-				} else if (halsband) {
+				} else if (halsband > 0) {
 					panelAnzeige.add(hals);
 				}
 			} else if (beschwertet) {
-				if (!halsband) {
+				if (halsband == 0) {
 					panelAnzeige.add(schwert);
-				} else if (halsband) {
+				} else if (halsband > 0) {
 					panelAnzeige.add(schwertHals);
 				}
 			}
 		} else if (bewaffnet) {
 			if (!beschwertet) {
-				if (!halsband) {
+				if (halsband == 0) {
 					panelAnzeige.add(brille);
-				} else if (halsband) {
+				} else if (halsband > 0) {
 					panelAnzeige.add(brilleHals);
 				}
 			} else if (beschwertet) {
-				if (!halsband) {
+				if (halsband == 0) {
 					panelAnzeige.add(brilleSchwert);
-				} else if (halsband) {
+				} else if (halsband > 0) {
 					panelAnzeige.add(allesEq);
 				}
 			}
@@ -546,11 +546,11 @@ public class GameFrame extends JFrame implements KeyListener {
 		boolean halsband = spiel.getSpieler().getHalsband();
 		int leben = spiel.getSpieler().getLeben();
 
-		saveSpielfeld = health + Konstanten.ZEILENUMBRUCH + gold + Konstanten.ZEILENUMBRUCH
-				+ mana + Konstanten.ZEILENUMBRUCH + leben
-				+ Konstanten.ZEILENUMBRUCH + brille + Konstanten.ZEILENUMBRUCH
-				+ schwert + Konstanten.ZEILENUMBRUCH + halsband
-				+ Konstanten.ZEILENUMBRUCH;
+		saveSpielfeld = health + Konstanten.ZEILENUMBRUCH + gold
+				+ Konstanten.ZEILENUMBRUCH + mana + Konstanten.ZEILENUMBRUCH
+				+ leben + Konstanten.ZEILENUMBRUCH + brille
+				+ Konstanten.ZEILENUMBRUCH + schwert + Konstanten.ZEILENUMBRUCH
+				+ halsband + Konstanten.ZEILENUMBRUCH;
 
 		for (int i = 0; i < Konstanten.SPALTEN; i++) {
 			for (int j = 0; j < Konstanten.ZEILEN; j++) {
