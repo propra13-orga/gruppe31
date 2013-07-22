@@ -13,4 +13,8 @@ public abstract class GameObject {
 	 * @return bild
 	 */
 	public abstract String getPicture();
+
+	public void aktualisieren() {
+		// TODO Auto-generated method stub
+	}
 }

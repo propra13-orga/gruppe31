@@ -198,7 +198,7 @@ public class Spielfeld {
 		} else if (keyCode == KeyEvent.VK_DOWN) {
 			neuPos.y++;
 		} else if (keyCode == KeyEvent.VK_SPACE) {
-			lasere(spielfigur);
+			lasere(spielfigur, gameFrame);
 		} else if (keyCode == KeyEvent.VK_X) {
 			schlage(spielfigur, bossgegner);
 		} else if (keyCode == KeyEvent.VK_CONTROL) {
@@ -437,27 +437,35 @@ public class Spielfeld {
 	 * 
 	 * @param spielfigur
 	 *            Kommandozeilenparameter
+	 * @param gameFrame
+	 *            Kommandozeilenparameter
 	 * @throws InterruptedException
 	 *             wirft Exception
 	 */
-	private void lasere(Spieler spielfigur) throws InterruptedException {
+	private void lasere(Spieler spielfigur, GameFrame gameFrame)
+			throws InterruptedException {
 		if (spielfigur.getBewaffnet()) {
 
-			Point aktSchussPos = spielfigur.getPosition();
-			Point neuSchussPos = new Point(aktSchussPos);
+			Point neuSchussPos = spielfigur.getPosition();
 
 			neuSchussPos.x++;
 
 			GameObject obj = this.gibObjekt(neuSchussPos);
 
-			while (!(obj instanceof Rasen)) {
-				aktSchussPos = neuSchussPos;
+			while (obj instanceof Rasen || obj instanceof Gegner) {
 				this.setzeObjekt(new Laser(), neuSchussPos);
-				//this.setzeObjekt(new Rasen(), aktSchussPos);
-				Thread.sleep(Konstanten.SLEEP);
 				neuSchussPos.x++;
+				obj = this.gibObjekt(neuSchussPos);
 			}
-
+			gameFrame.zeichnen(this);
+			// timer, der laser weg macht
+			neuSchussPos.x--;
+			obj = this.gibObjekt(neuSchussPos);
+			while (obj instanceof Laser) {
+				this.setzeObjekt(new Rasen(), neuSchussPos);
+				neuSchussPos.x--;
+				obj = this.gibObjekt(neuSchussPos);
+			}
 		} else {
 			JOptionPane.showMessageDialog(null,
 					"Sie tragen keine Laserbrille!", "Achtung",

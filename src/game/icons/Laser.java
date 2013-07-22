@@ -25,5 +25,4 @@ public class Laser extends GameObject {
 	public String getPicture() {
 		return bild;
 	}
-
 }

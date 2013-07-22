@@ -348,7 +348,6 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * aktualisiert die Informationsleiste
 	 */
 	public void aktualisieren() {
-
 		this.revalidate();
 		this.repaint();
 	}
