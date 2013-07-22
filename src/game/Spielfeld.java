@@ -9,6 +9,7 @@ import game.icons.Checkpoint;
 import game.icons.Grenze;
 import game.icons.Huette;
 import game.icons.Jauch;
+import game.icons.Jauch_Netzwerk;
 import game.icons.Luke;
 import game.icons.Rasen;
 import game.icons.SchalterAuf;
@@ -48,6 +49,7 @@ public class Spielfeld {
 	private Musik musik;
 	private GewonnenVerloren gewonnenVerloren;
 	private Jauch jauch;
+	private Jauch_Netzwerk jauch_netzwerk;
 
 	/** Deklaration der Punkte für Weiter- und Zuruckfelder */
 	private Point weiter;
@@ -297,6 +299,11 @@ public class Spielfeld {
 			jauch.raetsel(spielfigur, jauchBesucht);
 			this.setzeObjekt(new Rasen(), neuPos);
 			/* Bewegung ignorieren */
+		} else if (obj instanceof Jauch_Netzwerk) {
+			jauch_netzwerk = new Jauch_Netzwerk();
+			jauch_netzwerk.raetsel(spielfigur);
+			this.setzeObjekt(new Rasen(), neuPos);
+			/* Bewegung ignorieren */
 		}
 
 		if (sollBewegtWerden) {
@@ -323,13 +330,6 @@ public class Spielfeld {
 			this.setzeObjekt(spielfigur, aktPos);
 			this.setzeObjekt(new SchalterAuf(), neuPos);
 			this.setzeObjekt(new Rasen(), barriere.getPosition());
-			/*
-			 * TODO hier muss die Position der Barriere ausgemacht werden und
-			 * dorthin Rasen gesetzt werden Point barrierePosition =
-			 * this.barriere.getPosition(); this.setzeObjekt(new Rasen(),
-			 * barrierePosition); funktioniert so nicht
-			 */
-
 			/* setzt die neue Position */
 			spielfigur.setPosition(aktPos);
 
@@ -435,37 +435,4 @@ public class Spielfeld {
 	public void setZurueck(Point zurueck) {
 		this.zurueck = zurueck;
 	}
-
-	// /**
-	// * @return the raum
-	// */
-	// public int getRaum() {
-	// return raum;
-	// }
-	//
-	// /**
-	// * @param raum
-	// * the raum to set
-	// */
-	// public void setRaumPlus(int raum) {
-	// this.raum = getRaum() + raum;
-	// }
-	//
-	// /**
-	// * @param raum
-	// * the raum to set
-	// */
-	// public void setRaumMinus(int raum) {
-	// this.raum = getRaum() + raum;
-	// }
-
-	/*
-	 * TODO Prüfung ob Checkpoint besucht wurde und Zurücksetzen des Spiels oder
-	 * Ausgang Verloren
-	 * 
-	 * public void Checkpoint() { if (save == 1) { if (leben > 0) { health =
-	 * 100; Spielfigurx = checkx; Spielfigury = checky;
-	 * zeichner.zeichneSpielfeld(CheckSpielfeld); setzeAnzeige(); } else if
-	 * (leben <= 0) { Verloren(); } } else if (save == 0) { Verloren(); } }
-	 */
 }

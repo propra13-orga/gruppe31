@@ -50,6 +50,7 @@ public final class Konstanten {
 	public static final int SCHALTERAUF = (int) '%';
 	public static final int BARRIERE = (int) 'I';
 	public static final int GUENTHERJAUCH = (int) '^';
+	public static final int JAUCHNETZWERK = (int) '?';
 
 	/** die Größe eines Feldes wird deklariert */
 	public static final int SIZE = 50;
@@ -224,6 +225,11 @@ public final class Konstanten {
 	public static final int RAUM3 = 2;
 	public static final int RAUM6 = 5;
 	public static final int RAUM9 = 8;
+	
+	/** Anzahl, wie oft Jauch besucht */
+	public static final int BESUCH1 = 1;
+	public static final int BESUCH2 = 2;
+	public static final int BESUCH3 = 3;
 
 	/**
 	 * privater Konstruktor, der verhindert, dass von außen ein Exemplar dieser

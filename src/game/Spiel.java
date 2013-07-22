@@ -10,6 +10,7 @@ import game.icons.Checkpoint;
 import game.icons.Grenze;
 import game.icons.Huette;
 import game.icons.Jauch;
+import game.icons.Jauch_Netzwerk;
 import game.icons.Luke;
 import game.icons.Rasen;
 import game.icons.SchalterAuf;
@@ -32,7 +33,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import javax.script.ScriptEngineManager;
 import javax.swing.JOptionPane;
 
 /**
@@ -221,6 +221,8 @@ public class Spiel {
 							gameObject = new SchalterAuf();
 						} else if (pruefe == Konstanten.GUENTHERJAUCH) {
 							gameObject = new Jauch();
+						} else if (pruefe == Konstanten.JAUCHNETZWERK) {
+							gameObject = new Jauch_Netzwerk();
 						} else if (pruefe == Konstanten.BARRIERE) {
 							this.barriere = new Barriere();
 							barriere.setPosition(new Point(i, j));
