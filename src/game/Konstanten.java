@@ -63,7 +63,7 @@ public final class Konstanten {
 	public static final int EIGENSCHAFTEN = 8;
 
 	/** Deklaration Zeilenumbruch */
-	public static final String ZEILENUMBRUCH = "\n";
+	public static final String ZEILENUMBRUCH = "\r\n";
 
 	/** Auswahlmöglichkeiten selected */
 	public static final int SELECTEDNULL = 0;

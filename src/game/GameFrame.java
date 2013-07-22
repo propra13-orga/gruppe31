@@ -513,9 +513,11 @@ public class GameFrame extends JFrame implements KeyListener {
 					PrintWriter pWriter = new PrintWriter(new FileWriter(
 							Konstanten.DIRECTION
 									+ "/src/game/Szenario/gespeichert.txt"));
-
 					pWriter.println(getSave());
 					pWriter.flush();
+					JOptionPane.showMessageDialog(null,
+							"Das Spiel wurde gespeichert", "Erfolgreich gespeichert",
+							JOptionPane.INFORMATION_MESSAGE);
 				} catch (IOException ioe) {
 					ioe.printStackTrace();
 				}
@@ -608,7 +610,7 @@ public class GameFrame extends JFrame implements KeyListener {
 					saveSpielfeld = saveSpielfeld + "I";
 				}
 			}
-			saveSpielfeld = saveSpielfeld + "\n";
+			saveSpielfeld = saveSpielfeld + Konstanten.ZEILENUMBRUCH;
 		}
 		return saveSpielfeld;
 	}
