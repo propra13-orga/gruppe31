@@ -65,7 +65,6 @@ public class Spieler extends Spielfigur {
 	 *            erwartet String, um richtiges Bild auszuwählen
 	 */
 	public Spieler(String art) {
-
 		if ("Erna".equals(art)) {
 			setzeBildErna();
 		} else if ("Luke".equals(art)) {
