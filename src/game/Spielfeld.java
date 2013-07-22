@@ -224,15 +224,19 @@ public class Spielfeld {
 		} else if (obj instanceof Checkpoint) {
 			/* TODO Checkpoint(); */
 		} else if (obj instanceof Weiter) {
-			/* Das Feld, auf dem der Spieler momentan steht auf Rasen setzen. */
-			this.setzeObjekt(new Rasen(), aktPos);
-			/* Ueber das Spiel in den naechsten Raum wechseln. */
-			spiel.levelWeiter(spielfigur);
+			if (spiel.getAktuellesSpielfeldNumber() < 9) {
+				/* aktuelle Position auf Rasen setzen */
+				this.setzeObjekt(new Rasen(), aktPos);
+				/* Ueber das Spiel in den naechsten Raum wechseln. */
+				spiel.levelWeiter(spielfigur);
+			}
 		} else if (obj instanceof Zurueck) {
-			/* Das Feld, auf dem der Spieler momentan steht auf Rasen setzen. */
-			this.setzeObjekt(new Rasen(), aktPos);
-			/* Ueber das Spiel in den letzten Raum wechseln. */
-			spiel.levelZurueck(spielfigur);
+			if (spiel.getAktuellesSpielfeldNumber() > 0) {
+				/* aktuelle Position auf Rasen setzen */
+				this.setzeObjekt(new Rasen(), aktPos);
+				/* Ueber das Spiel in den letzten Raum wechseln. */
+				spiel.levelZurueck(spielfigur);
+			}
 		} else if (obj instanceof Ziel) {
 			gewonnenVerloren = new GewonnenVerloren("gewonnen");
 			gameFrame.dispose();

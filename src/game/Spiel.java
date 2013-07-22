@@ -51,7 +51,6 @@ public class Spiel {
 	private Spieler spieler;
 	private Gegner gegner;
 	private Barriere barriere;
-	// private Spielfeld spielfeld;
 	private Spiel spiel;
 
 	private String invalid = "Ungültig";
@@ -278,9 +277,7 @@ public class Spiel {
 	}
 
 	/**
-	 * Geht ein Spielfeld weiter. Es wird erwartet, dass die Methode nur
-	 * aufgerufen wird, falls ueberhaupt noch ein Spielfeld auf das aktuelle
-	 * folgt (SPIELFELD-DESIGN BEACHTEN!)
+	 * Geht ein Spielfeld weiter.
 	 * 
 	 * @param spielfigur
 	 *            Die Spielfigur, die weiter bewegt werden soll.
@@ -327,7 +324,7 @@ public class Spiel {
 	}
 
 	/**
-	 * set aktuelles Spielfeld einen runter
+	 * geht ein Spielfeld zurück
 	 * 
 	 * @param spielfigur
 	 *            Kommandozeilenparameter
