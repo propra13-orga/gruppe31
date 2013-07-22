@@ -64,6 +64,7 @@ public class Spielfeld {
 	private String autsch = "/src/game/Sound/Hit.wav";
 	private String wuff = "/src/game/Sound/Wuff.wav";
 	private String klimper = "/src/game/Sound/Ching.wav";
+	private String huhu = "/src/game/Sound/huhu.wav";
 
 	/** Deklaration von int zum Zählen */
 	private int jauchBesucht = 0;
@@ -197,7 +198,7 @@ public class Spielfeld {
 		if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_RIGHT
 				|| keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_DOWN) {
 			pfeiltasten(keyCode, spielfigur, neuPos, aktPos, gameFrame,
-					barriere);
+					barriere, bossgegner);
 		} else if (keyCode == KeyEvent.VK_SPACE) {
 			lasere(spielfigur, gameFrame);
 		} else if (keyCode == KeyEvent.VK_X) {
@@ -225,9 +226,10 @@ public class Spielfeld {
 	 *            Kommandozeilenparameter
 	 * @param barriere
 	 *            Kommandozeilenparameter
+	 * @param bossgegner 
 	 */
 	private void pfeiltasten(int keyCode, Spieler spielfigur, Point neuPos,
-			Point aktPos, GameFrame gameFrame, Barriere barriere) {
+			Point aktPos, GameFrame gameFrame, Barriere barriere, Bossgegner bossgegner) {
 		if (keyCode == KeyEvent.VK_LEFT) {
 			neuPos.x--;
 		} else if (keyCode == KeyEvent.VK_RIGHT) {
@@ -407,7 +409,7 @@ public class Spielfeld {
 			spielfigur.setRuestungMinus(Konstanten.HALBH);
 		} else {
 			if (spielfigur.getLeben() >= Konstanten.EINLEBEN) {
-				musik = new Musik(Konstanten.DIRECTION + autsch);
+				musik = new Musik(Konstanten.DIRECTION + huhu);
 				if (spielfigur.getGesundheit() >= Konstanten.DREIVIERTELH) {
 					spielfigur.setGesundheitMinus(Konstanten.HALBH);
 				} else if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
@@ -563,7 +565,7 @@ public class Spielfeld {
 				}
 			}
 			musik = new Musik(Konstanten.DIRECTION
-					+ "/src/game/Sound/Punch.wav");
+					+ "/src/game/Sound/huhu.wav");
 		} else {
 			JOptionPane.showMessageDialog(null, "Sie tragen kein Schwert!",
 					attention, JOptionPane.WARNING_MESSAGE);
