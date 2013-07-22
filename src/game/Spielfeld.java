@@ -426,21 +426,18 @@ public class Spielfeld {
 			spielfigur.setRuestungMinus(Konstanten.HALBH);
 		} else {
 			if (spielfigur.getLeben() >= Konstanten.EINLEBEN) {
-				musik = new Musik(Konstanten.DIRECTION + huhu);
+				musik = new Musik(Konstanten.DIRECTION + autsch);
 				if (spielfigur.getGesundheit() >= Konstanten.DREIVIERTELH) {
 					spielfigur.setGesundheitMinus(Konstanten.HALBH);
-				} else if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
+				} else if (spielfigur.getGesundheit() >= Konstanten.EINVIERTELH) {
+					spiel.init("Checkpoint.txt");
 					spielfigur.setLebenMinus(1);
 					spielfigur.setGesundheitPlus(Konstanten.VOLLH);
 				}
 			}
 			if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
-				if (getCheckpoint()) {
-					spiel.init("Checkpoint.txt");
-				} else {
-					gewonnenVerloren = new GewonnenVerloren(verloren);
-					gameFrame.dispose();
-				}
+				gewonnenVerloren = new GewonnenVerloren(verloren);
+				gameFrame.dispose();
 			}
 		}
 	}

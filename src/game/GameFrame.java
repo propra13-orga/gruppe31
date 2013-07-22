@@ -9,6 +9,7 @@ import game.icons.Checkpoint;
 import game.icons.Falle;
 import game.icons.Grenze;
 import game.icons.Huette;
+import game.icons.Jauch;
 import game.icons.Luke;
 import game.icons.Rasen;
 import game.icons.SchalterAuf;
@@ -608,7 +609,9 @@ public class GameFrame extends JFrame implements KeyListener {
 					saveSpielfeld = saveSpielfeld + "%";
 				} else if (teste instanceof Barriere) {
 					saveSpielfeld = saveSpielfeld + "I";
-				}
+				} else if (teste instanceof Jauch) {
+					saveSpielfeld = saveSpielfeld + "^";
+				} 
 			}
 			saveSpielfeld = saveSpielfeld + Konstanten.ZEILENUMBRUCH;
 		}
