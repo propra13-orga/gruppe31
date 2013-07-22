@@ -516,13 +516,12 @@ public class GameFrame extends JFrame implements KeyListener {
 
 		ActionListener alsave = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				getSave();
 				try {
 					PrintWriter pWriter = new PrintWriter(new FileWriter(
 							Konstanten.DIRECTION
 									+ "/src/game/Szenario/gespeichert.txt"));
 
-					pWriter.println(saveSpielfeld);
+					pWriter.println(getSave());
 					pWriter.flush();
 				} catch (IOException ioe) {
 					ioe.printStackTrace();
@@ -553,8 +552,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		boolean halsband = spiel.getSpieler().getHalsband();
 		int leben = spiel.getSpieler().getLeben();
 
-		saveSpielfeld = Konstanten.ZEILENUMBRUCH + health
-				+ Konstanten.ZEILENUMBRUCH + gold + Konstanten.ZEILENUMBRUCH
+		saveSpielfeld = health + Konstanten.ZEILENUMBRUCH + gold + Konstanten.ZEILENUMBRUCH
 				+ mana + Konstanten.ZEILENUMBRUCH + leben
 				+ Konstanten.ZEILENUMBRUCH + brille + Konstanten.ZEILENUMBRUCH
 				+ schwert + Konstanten.ZEILENUMBRUCH + halsband
