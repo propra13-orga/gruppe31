@@ -216,7 +216,7 @@ public class Spielfeld {
 		} else if (obj instanceof Gegner) {
 			gegnerAngriff(spielfigur, gameFrame);
 		} else if (obj instanceof Spieler) {
-			spielerAngriff(spielfigur, gameFrame);
+			gegnerAngriff(spielfigur, gameFrame);
 		} else if (obj instanceof Bossgegner) {
 			bossAngriff(spielfigur, gameFrame);
 		} else if (obj instanceof Huette) {
@@ -349,31 +349,6 @@ public class Spielfeld {
 	}
 
 	/**
-	 * führt die Aktionen durch, die nötig sind, wenn die Spielfigur von einem andren Spieler
-	 * angegriffen wird
-	 * 
-	 * @param spielfigur
-	 *            erwartet spielfigur
-	 * @param gameFrame
-	 *            erwartet GameFrame
-	 */
-	private void spielerAngriff(Spieler spielfigur, GameFrame gameFrame) {
-		if (spielfigur.getLeben() >= Konstanten.EINLEBEN) {
-			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Hit.wav");
-			if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
-				spielfigur.setGesundheitMinus(Konstanten.EINVIERTELH);
-			} else if (spielfigur.getGesundheit() >= Konstanten.EINVIERTELH) {
-				spielfigur.setLebenMinus(1);
-				spielfigur.setGesundheitPlus(Konstanten.VOLLH);
-			}
-		}
-		if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
-			gewonnenVerloren = new GewonnenVerloren("verloren");
-			gameFrame.dispose();
-		}		
-	}
-
-	/**
 	 * führt die Aktionen durch, die nötig sind, wenn die Spielfigur vom Gegner
 	 * angegriffen wird
 	 * 
@@ -400,7 +375,7 @@ public class Spielfeld {
 
 	/**
 	 * führt die Aktionen durch, die nötig sind, wenn die Spielfigur vom Gegner
-	 * angegriffen wird
+	 * (sowohl Pilze, Bienen, als auch andere Spieler) angegriffen wird
 	 * 
 	 * @param spielfigur
 	 *            erwartet spielfigur
