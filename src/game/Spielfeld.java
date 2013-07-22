@@ -433,6 +433,7 @@ public class Spielfeld {
 
 	/**
 	 * Schwert wird eingesetzt
+	 * nur gegen Bossgegner einsetzbar
 	 * 
 	 * @param spielfigur
 	 *            Kommandozeilenparameter
@@ -457,16 +458,6 @@ public class Spielfeld {
 			GameObject rechts = this.gibObjekt(rechtsPos);
 			GameObject unten = this.gibObjekt(untenPos);
 			GameObject oben = this.gibObjekt(obenPos);
-
-			if (links instanceof Gegner) {
-				this.setzeObjekt(new Rasen(), linksPos);
-			} else if (rechts instanceof Gegner) {
-				this.setzeObjekt(new Rasen(), rechtsPos);
-			} else if (oben instanceof Gegner) {
-				this.setzeObjekt(new Rasen(), obenPos);
-			} else if (unten instanceof Gegner) {
-				this.setzeObjekt(new Rasen(), untenPos);
-			}
 
 			if (links instanceof Bossgegner) {
 				if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
