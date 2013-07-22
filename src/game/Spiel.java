@@ -6,8 +6,8 @@ import game.figuren.Spieler;
 import game.icons.Barriere;
 import game.icons.Carlos;
 import game.icons.Checkpoint;
-import game.icons.Grenze;
 import game.icons.Falle;
+import game.icons.Grenze;
 import game.icons.Huette;
 import game.icons.Jauch;
 import game.icons.JauchNetzerk;
@@ -184,12 +184,15 @@ public class Spiel {
 							gameObject = new Zurueck();
 							spielfeld.setZurueck(new Point(i, j));
 						} else if (pruefe == Konstanten.BOSS1V) {
-							this.bossgegner = new Bossgegner(getAktuellesSpielfeldNumber());
+							this.bossgegner = new Bossgegner(
+									getAktuellesSpielfeldNumber());
 							gameObject = this.bossgegner;
 						} else if (pruefe == Konstanten.BOSS2V) {
-							gameObject = new Bossgegner(getAktuellesSpielfeldNumber());
+							gameObject = new Bossgegner(
+									getAktuellesSpielfeldNumber());
 						} else if (pruefe == Konstanten.BOSS3V) {
-							gameObject = new Bossgegner(getAktuellesSpielfeldNumber());
+							gameObject = new Bossgegner(
+									getAktuellesSpielfeldNumber());
 						} else if (pruefe == Konstanten.CARLOS) {
 							gameObject = new Carlos();
 						} else if (pruefe == Konstanten.CUPCAKE) {
@@ -370,8 +373,10 @@ public class Spiel {
 	 *            Kommandozeilenparameter
 	 * @param gameFrame
 	 *            Kommandozeilenparameter
+	 * @throws Exception
+	 *             wirft Exception
 	 */
-	public void aktion(int keyCode, GameFrame gameFrame) {
+	public void aktion(int keyCode, GameFrame gameFrame) throws Exception {
 		levels.get(aktSpielfeld).aktion(this.spieler, this.gegner, keyCode,
 				barriere, gameFrame, this.bossgegner);
 	}

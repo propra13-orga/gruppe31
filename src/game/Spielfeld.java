@@ -6,8 +6,8 @@ import game.figuren.Spieler;
 import game.icons.Barriere;
 import game.icons.Carlos;
 import game.icons.Checkpoint;
-import game.icons.Grenze;
 import game.icons.Falle;
+import game.icons.Grenze;
 import game.icons.Huette;
 import game.icons.Jauch;
 import game.icons.JauchNetzerk;
@@ -51,7 +51,7 @@ public class Spielfeld {
 	private Musik musik;
 	private GewonnenVerloren gewonnenVerloren;
 	private Jauch jauch;
-	private JauchNetzerk jauch_netzwerk;
+	private JauchNetzerk jauchNetzwerk;
 
 	/** Deklaration der Punkte für Weiter- und Zuruckfelder */
 	private Point weiter;
@@ -65,6 +65,7 @@ public class Spielfeld {
 	private String wuff = "/src/game/Sound/Wuff.wav";
 	private String klimper = "/src/game/Sound/Ching.wav";
 	private String huhu = "/src/game/Sound/huhu.wav";
+	private String noMana = "Sie haben kein Mana!";
 
 	/** Deklaration von int zum Zählen */
 	private int jauchBesucht = 0;
@@ -147,16 +148,16 @@ public class Spielfeld {
 	 *            barriere wird übergeben
 	 * @param gameFrame
 	 *            Kommandozeilenparameter
+	 * @param bossgegner
+	 *            Kommandozeilenparameter
+	 * @throws Exception
+	 *             wirft Exception
 	 */
 	public void aktion(Spieler spielfigur, Gegner gegner, int keyCode,
-			Barriere barriere, GameFrame gameFrame, Bossgegner bossgegner) {
-		try {
-			aktionSpieler(spielfigur, barriere, keyCode, gameFrame, bossgegner);
-			// aktionGegner(gegner, keyCode);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			Barriere barriere, GameFrame gameFrame, Bossgegner bossgegner)
+			throws Exception {
+		aktionSpieler(spielfigur, barriere, keyCode, gameFrame, bossgegner);
+		// aktionGegner(gegner, keyCode);
 	}
 
 	/**
@@ -228,10 +229,11 @@ public class Spielfeld {
 	 *            Kommandozeilenparameter
 	 * @param barriere
 	 *            Kommandozeilenparameter
-	 * @param bossgegner 
+	 * @param bossgegner
 	 */
 	private void pfeiltasten(int keyCode, Spieler spielfigur, Point neuPos,
-			Point aktPos, GameFrame gameFrame, Barriere barriere, Bossgegner bossgegner) {
+			Point aktPos, GameFrame gameFrame, Barriere barriere,
+			Bossgegner bossgegner) {
 		if (keyCode == KeyEvent.VK_LEFT) {
 			neuPos.x--;
 		} else if (keyCode == KeyEvent.VK_RIGHT) {
@@ -351,8 +353,8 @@ public class Spielfeld {
 			this.setzeObjekt(new Rasen(), neuPos);
 			/* Bewegung ignorieren */
 		} else if (obj instanceof JauchNetzerk) {
-			jauch_netzwerk = new JauchNetzerk();
-			boolean jauchWeg = jauch_netzwerk.raetsel(spielfigur);
+			jauchNetzwerk = new JauchNetzerk();
+			boolean jauchWeg = jauchNetzwerk.raetsel(spielfigur);
 			if (jauchWeg) {
 				this.setzeObjekt(new Rasen(), neuPos);
 			}
@@ -440,8 +442,7 @@ public class Spielfeld {
 			spielfigur.setRuestungMinus(Konstanten.HALBR);
 		} else if (spielfigur.getRuestung() == Konstanten.LEERR) {
 			if (spielfigur.getLeben() >= Konstanten.EINLEBEN) {
-				musik = new Musik(Konstanten.DIRECTION
-						+ "/src/game/Sound/Hit.wav");
+				musik = new Musik(Konstanten.DIRECTION + autsch);
 				if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
 					spielfigur.setGesundheitMinus(Konstanten.EINVIERTELH);
 				} else if (spielfigur.getGesundheit() >= Konstanten.EINVIERTELH) {
@@ -450,7 +451,7 @@ public class Spielfeld {
 				}
 			}
 			if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
-				gewonnenVerloren = new GewonnenVerloren("verloren");
+				gewonnenVerloren = new GewonnenVerloren(verloren);
 				gameFrame.dispose();
 			}
 		}
@@ -468,10 +469,10 @@ public class Spielfeld {
 			spielfigur.setBeschwertet(true);
 			spielfigur.setBewaffnet(false);
 		} else
-			JOptionPane.showMessageDialog(null, "Sie haben kein Mana!",
-					attention, JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, noMana, attention,
+					JOptionPane.WARNING_MESSAGE);
 	}
-	
+
 	/**
 	 * Spieler wird Mana abgezogen, bewaffnet und entschwertet
 	 * 
@@ -484,8 +485,8 @@ public class Spielfeld {
 			spielfigur.setBeschwertet(false);
 			spielfigur.setBewaffnet(true);
 		} else
-			JOptionPane.showMessageDialog(null, "Sie haben kein Mana!",
-					attention, JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, noMana, attention,
+					JOptionPane.WARNING_MESSAGE);
 	}
 
 	/**
@@ -582,8 +583,7 @@ public class Spielfeld {
 					this.setzeObjekt(new Rasen(), untenPos);
 				}
 			}
-			musik = new Musik(Konstanten.DIRECTION
-					+ "/src/game/Sound/huhu.wav");
+			musik = new Musik(Konstanten.DIRECTION + huhu);
 		} else {
 			JOptionPane.showMessageDialog(null, "Sie tragen kein Schwert!",
 					attention, JOptionPane.WARNING_MESSAGE);

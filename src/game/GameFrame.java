@@ -6,8 +6,8 @@ import game.figuren.Spieler;
 import game.icons.Barriere;
 import game.icons.Carlos;
 import game.icons.Checkpoint;
-import game.icons.Grenze;
 import game.icons.Falle;
+import game.icons.Grenze;
 import game.icons.Huette;
 import game.icons.Luke;
 import game.icons.Rasen;
@@ -622,7 +622,12 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		this.spiel.aktion(arg0.getKeyCode(), this);
+		try {
+			this.spiel.aktion(arg0.getKeyCode(), this);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		aktualisieren();
 		this.zeichnen(this.spiel.getAktuellesSpielfeld());
 		this.setzeAnzeige();

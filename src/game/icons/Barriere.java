@@ -1,9 +1,9 @@
 package game.icons;
 
-import java.awt.Point;
-
 import game.GameObject;
 import game.Konstanten;
+
+import java.awt.Point;
 
 /**
  * ein Objekt dieser Klasse ist die Barriere

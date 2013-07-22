@@ -105,7 +105,7 @@ public class Jauch extends GameObject {
 						.showMessageDialog(
 								null,
 								"Nichts da, nicht alle Tiere sind hier so bunt wie du!",
-								"Das ist leider nicht richtig !",
+								nope,
 								JOptionPane.PLAIN_MESSAGE);
 			} else if (selected == Konstanten.SELECTEDZWEI) {
 				JOptionPane.showMessageDialog(null,
