@@ -204,7 +204,9 @@ public class Spielfeld {
 		} else if (keyCode == KeyEvent.VK_X) {
 			schlage(spielfigur, bossgegner);
 		} else if (keyCode == KeyEvent.VK_CONTROL) {
-			zaubere(spielfigur);
+			zaubere1(spielfigur);
+		} else if (keyCode == KeyEvent.VK_SHIFT) {
+			zaubere2(spielfigur);
 		} else {
 			/* Andere Tasten wollen wir nicht beruecksichtigen. */
 			return;
@@ -455,16 +457,32 @@ public class Spielfeld {
 	}
 
 	/**
-	 * Spieler wird Mana abgezogen, beschwertet und geheilt
+	 * Spieler wird Mana abgezogen, beschwertet und entwaffnet
 	 * 
 	 * @param spielfigur
 	 *            Kommandozeilenparamter
 	 */
-	public void zaubere(Spieler spielfigur) {
+	public void zaubere1(Spieler spielfigur) {
 		if (spielfigur.getMana() > Konstanten.LEERM) {
 			spielfigur.setManaMinus(Konstanten.HALBM);
 			spielfigur.setBeschwertet(true);
-			spielfigur.setGesundheit(Konstanten.VOLLH);
+			spielfigur.setBewaffnet(false);
+		} else
+			JOptionPane.showMessageDialog(null, "Sie haben kein Mana!",
+					attention, JOptionPane.WARNING_MESSAGE);
+	}
+	
+	/**
+	 * Spieler wird Mana abgezogen, bewaffnet und entschwertet
+	 * 
+	 * @param spielfigur
+	 *            Kommandozeilenparamter
+	 */
+	public void zaubere2(Spieler spielfigur) {
+		if (spielfigur.getMana() > Konstanten.LEERM) {
+			spielfigur.setManaMinus(Konstanten.HALBM);
+			spielfigur.setBeschwertet(false);
+			spielfigur.setBewaffnet(true);
 		} else
 			JOptionPane.showMessageDialog(null, "Sie haben kein Mana!",
 					attention, JOptionPane.WARNING_MESSAGE);
