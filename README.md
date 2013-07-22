@@ -3,21 +3,22 @@ gruppe31
 
 Dritter Meilenstein:
 
-Refactoring: Denise
+Denise
+Refactoring ✔ 
+Javadoc und Handbuch ✔ 
+Jauchquest ✔ 
+Chat✔ 
+Speichern und Laden ✔ 
 
-Quests & Rätsel: Valentin
+Valentin:
+Schalterrätsel ✔ 
+Sound ✔ 
 
-Stein-Schere-Papier-Prinzip für Waffen, Zauber und Rüstungen: Marcel
+Marcel:
+Schere-Stein-Papier ✔ 
 
-Javadoc und Handbuch ✔ : Denise
-
-Netzwerkmodus: Denise
-  - Chat während und/oder vor dem Spiel: Denise
-  - Netzwerklobby: Marcel
-  - Co-Op-Rätsel: Valentin
-
-zusätzlich: 
-Soundeffekte: Valentin
+Marcel&Denise:
+Jauchquests✔ 
 
 
 
