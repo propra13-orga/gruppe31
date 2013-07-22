@@ -50,6 +50,7 @@ public class Spiel {
 	/** Deklarierung des Feldes */
 	private Spieler spieler;
 	private Gegner gegner;
+	private Bossgegner bossgegner;
 	private Barriere barriere;
 	private Spiel spiel;
 
@@ -182,11 +183,12 @@ public class Spiel {
 							gameObject = new Zurueck();
 							spielfeld.setZurueck(new Point(i, j));
 						} else if (pruefe == Konstanten.BOSS1V) {
-							gameObject = new Bossgegner(Konstanten.RAUM3);
+							this.bossgegner = new Bossgegner(getAktuellesSpielfeldNumber());
+							gameObject = this.bossgegner;
 						} else if (pruefe == Konstanten.BOSS2V) {
-							gameObject = new Bossgegner(Konstanten.RAUM6);
+							gameObject = new Bossgegner(getAktuellesSpielfeldNumber());
 						} else if (pruefe == Konstanten.BOSS3V) {
-							gameObject = new Bossgegner(Konstanten.RAUM9);
+							gameObject = new Bossgegner(getAktuellesSpielfeldNumber());
 						} else if (pruefe == Konstanten.CARLOS) {
 							gameObject = new Carlos();
 						} else if (pruefe == Konstanten.CUPCAKE) {
@@ -368,7 +370,7 @@ public class Spiel {
 	 */
 	public void aktion(int keyCode, GameFrame gameFrame) {
 		levels.get(aktSpielfeld).aktion(this.spieler, this.gegner, keyCode,
-				barriere, gameFrame);
+				barriere, gameFrame, this.bossgegner);
 	}
 
 	/**

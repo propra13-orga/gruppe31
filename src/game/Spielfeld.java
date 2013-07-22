@@ -141,9 +141,9 @@ public class Spielfeld {
 	 *            Kommandozeilenparameter
 	 */
 	public void aktion(Spieler spielfigur, Gegner gegner, int keyCode,
-			Barriere barriere, GameFrame gameFrame) {
+			Barriere barriere, GameFrame gameFrame, Bossgegner bossgegner) {
 		try {
-			aktionSpieler(spielfigur, barriere, keyCode, gameFrame);
+			aktionSpieler(spielfigur, barriere, keyCode, gameFrame, bossgegner);
 			// aktionGegner(gegner, keyCode);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -177,7 +177,8 @@ public class Spielfeld {
 	 *             wirft Exception
 	 */
 	private void aktionSpieler(Spieler spielfigur, Barriere barriere,
-			int keyCode, GameFrame gameFrame) throws Exception {
+			int keyCode, GameFrame gameFrame, Bossgegner bossgegner)
+			throws Exception {
 		/* Alte und neue Position für Spieler festlegen. */
 		Point aktPos = spielfigur.getPosition();
 		Point neuPos = new Point(aktPos);
@@ -193,7 +194,7 @@ public class Spielfeld {
 		} else if (keyCode == KeyEvent.VK_SPACE) {
 			/* TODO */
 		} else if (keyCode == KeyEvent.VK_X) {
-			schlage(spielfigur);
+			schlage(spielfigur, bossgegner);
 		} else if (keyCode == KeyEvent.VK_CONTROL) {
 			zaubere(spielfigur);
 		} else {
@@ -419,8 +420,10 @@ public class Spielfeld {
 	 * 
 	 * @param spielfigur
 	 *            Kommandozeilenparameter
+	 * @param bossgegner
+	 *            Kommandozeilenparameter
 	 */
-	public void schlage(Spieler spielfigur) {
+	public void schlage(Spieler spielfigur, Bossgegner bossgegner) {
 
 		if (spielfigur.getBeschwertet()) {
 			Point aktPos = spielfigur.getPosition();
@@ -447,12 +450,40 @@ public class Spielfeld {
 				this.setzeObjekt(new Rasen(), obenPos);
 			} else if (unten instanceof Gegner) {
 				this.setzeObjekt(new Rasen(), untenPos);
-			} else {
-				return;
 			}
+			
+			if (links instanceof Bossgegner) {
+				if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
+					bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
+				} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
+					this.setzeObjekt(new Rasen(), linksPos);
+				}
+			} else if (rechts instanceof Bossgegner) {
+				if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
+					bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
+				} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
+					this.setzeObjekt(new Rasen(), rechtsPos);
+				}
+			} else if (oben instanceof Bossgegner) {
+				if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
+					bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
+				} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
+					this.setzeObjekt(new Rasen(), obenPos);
+				}
+			} else if (unten instanceof Bossgegner) {
+				if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
+					bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
+				} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
+					this.setzeObjekt(new Rasen(), untenPos);
+				}
+			}
+			
 		} else {
 			// nothing to do here
 		}
+		
+		bossgegner.setzeBild(this.spiel.getAktuellesSpielfeldNumber());
+		bossgegner.getPicture();
 	}
 
 	/**

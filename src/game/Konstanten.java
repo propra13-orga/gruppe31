@@ -58,19 +58,18 @@ public final class Konstanten {
 	public static final int SPALTEN = 16;
 	/** die Zeilen werden deklariert */
 	public static final int ZEILEN = 12;
-	
-	/** Eigenschaftenanzahl wird deklariert*/
+
+	/** Eigenschaftenanzahl wird deklariert */
 	public static final int EIGENSCHAFTEN = 8;
-	
-	/** Deklaration Zeilenumbruch*/
+
+	/** Deklaration Zeilenumbruch */
 	public static final String ZEILENUMBRUCH = "\n";
-	
-	/**Auswahlmöglichkeiten selected */
+
+	/** Auswahlmöglichkeiten selected */
 	public static final int SELECTEDNULL = 0;
 	public static final int SELECTEDEINS = 1;
 	public static final int SELECTEDZWEI = 2;
 	public static final int SELECTEDDREI = 3;
-
 
 	/** die Level-Staffelungen werden deklariert */
 	public static final int RAUMEINS = 0;
@@ -162,12 +161,12 @@ public final class Konstanten {
 	public static final int YSKIP = 532;
 	public static final int BREITESKIP = 200;
 	public static final int HOEHESKIP = 30;
-	
+
 	/** Positionen für Button Weiter NPCfenster */
 	public static final int XOK = 0;
 	public static final int YOK = 500;
 	public static final int BREITEOK = 200;
-	public static final int HOEHEOK= 70;
+	public static final int HOEHEOK = 70;
 
 	/** Postionen für Netzwerkfenster */
 	public static final int XSERVER = 30;
@@ -189,10 +188,10 @@ public final class Konstanten {
 	/** Port für Netzwerk */
 	public static final int PORT = 4711;
 
-	/** Angaben für GewonnenVerloren */ 
+	/** Angaben für GewonnenVerloren */
 	public static final int BREITEGV = 800;
 	public static final int HOEHEGV = 600;
-	
+
 	/** Positionen für gvschliessen */
 	public static final int XGVB = 550;
 	public static final int YGVB = 450;
@@ -225,11 +224,17 @@ public final class Konstanten {
 	public static final int RAUM3 = 2;
 	public static final int RAUM6 = 5;
 	public static final int RAUM9 = 8;
-	
+
 	/** Anzahl, wie oft Jauch besucht */
 	public static final int BESUCH1 = 1;
 	public static final int BESUCH2 = 2;
 	public static final int BESUCH3 = 3;
+
+	/** Health für Bossgegner */
+	public static final int BOSS99H = 99;
+	public static final int BOSS66H = 66;
+	public static final int BOSS33H = 33;
+	public static final int BOSS0H = 0;
 
 	/**
 	 * privater Konstruktor, der verhindert, dass von außen ein Exemplar dieser

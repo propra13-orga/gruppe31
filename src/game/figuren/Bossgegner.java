@@ -38,17 +38,46 @@ public class Bossgegner extends Spielfigur {
 	 *            erwartet Raumangabe
 	 */
 	public Bossgegner(int raum) {
-		if (raum == Konstanten.RAUM3) {
-			bild = ICONBOSS1V;
-		} else if (raum == Konstanten.RAUM6) {
-			bild = ICONBOSS2V;
-		} else if (raum == Konstanten.RAUM9) {
-			bild = ICONBOSS3V;
-		}
+		setGesundheit(Konstanten.BOSS99H);
+		setzeBild(raum);
 	}
 
 	@Override
 	public String getPicture() {
 		return bild;
+	}
+
+	/**
+	 * setzt das Bild des Gegners
+	 * 
+	 * @param raum
+	 *            Kommandozeilenparameter
+	 */
+	public void setzeBild(int raum) {
+		if (raum <= Konstanten.RAUM3) {
+			if (getGesundheit() == Konstanten.BOSS99H) {
+				bild = ICONBOSS1V;
+			} else if (getGesundheit() == Konstanten.BOSS66H) {
+				bild = ICONBOSS1M;
+			} else if (getGesundheit() == Konstanten.BOSS33H) {
+				bild = ICONBOSS1W;
+			}
+		} else if (raum <= Konstanten.RAUM6) {
+			if (getGesundheit() == Konstanten.BOSS99H) {
+				bild = ICONBOSS2V;
+			} else if (getGesundheit() == Konstanten.BOSS66H) {
+				bild = ICONBOSS2M;
+			} else if (getGesundheit() == Konstanten.BOSS33H) {
+				bild = ICONBOSS2W;
+			}
+		} else if (raum <= Konstanten.RAUM9) {
+			if (getGesundheit() == Konstanten.BOSS99H) {
+				bild = ICONBOSS3V;
+			} else if (getGesundheit() == Konstanten.BOSS66H) {
+				bild = ICONBOSS3M;
+			} else if (getGesundheit() == Konstanten.BOSS33H) {
+				bild = ICONBOSS3W;
+			}
+		}
 	}
 }
