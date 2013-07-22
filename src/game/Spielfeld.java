@@ -31,6 +31,9 @@ import game.items.Shopruestung;
 
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.swing.JOptionPane;
 
@@ -52,6 +55,7 @@ public class Spielfeld {
 	private GewonnenVerloren gewonnenVerloren;
 	private Jauch jauch;
 	private JauchNetzerk jauchNetzwerk;
+	private GameFrame gameFrame;
 
 	/** Deklaration der Punkte für Weiter- und Zuruckfelder */
 	private Point weiter;
@@ -70,6 +74,9 @@ public class Spielfeld {
 	/** Deklaration von int zum Zählen */
 	private int jauchBesucht = 0;
 	private int raum = 0;
+
+	/** Deklaration Boolean, ob Spiel gespeichert */
+	private Boolean checkpoint = false;
 
 	/**
 	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann für jeden
@@ -230,10 +237,12 @@ public class Spielfeld {
 	 * @param barriere
 	 *            Kommandozeilenparameter
 	 * @param bossgegner
+	 *            Kommandozeilenparameter
+	 * @throws Exception
 	 */
 	private void pfeiltasten(int keyCode, Spieler spielfigur, Point neuPos,
 			Point aktPos, GameFrame gameFrame, Barriere barriere,
-			Bossgegner bossgegner) {
+			Bossgegner bossgegner) throws Exception {
 		if (keyCode == KeyEvent.VK_LEFT) {
 			neuPos.x--;
 		} else if (keyCode == KeyEvent.VK_RIGHT) {
@@ -272,7 +281,8 @@ public class Spielfeld {
 			musik = new Musik(Konstanten.DIRECTION + wuff);
 			/* Bewegung igorieren */
 		} else if (obj instanceof Checkpoint) {
-			/* TODO Checkpoint(); */
+			checkpoint(gameFrame);
+			einsammeln = true;
 		} else if (obj instanceof Weiter) {
 			if (spiel.getAktuellesSpielfeldNumber() <= Konstanten.RAUM9) {
 				/* aktuelle Position auf Rasen setzen */
@@ -407,8 +417,11 @@ public class Spielfeld {
 	 *            erwartet spielfigur
 	 * @param gameFrame
 	 *            erwartet GameFrame
+	 * @throws Exception
+	 *             wirft Exception
 	 */
-	private void bossAngriff(Spieler spielfigur, GameFrame gameFrame) {
+	private void bossAngriff(Spieler spielfigur, GameFrame gameFrame)
+			throws Exception {
 		if (spielfigur.getRuestung() >= Konstanten.HALBR) {
 			spielfigur.setRuestungMinus(Konstanten.HALBH);
 		} else {
@@ -422,8 +435,12 @@ public class Spielfeld {
 				}
 			}
 			if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
-				gewonnenVerloren = new GewonnenVerloren(verloren);
-				gameFrame.dispose();
+				if (getCheckpoint()) {
+					spiel.init("Checkpoint.txt");
+				} else {
+					gewonnenVerloren = new GewonnenVerloren(verloren);
+					gameFrame.dispose();
+				}
 			}
 		}
 	}
@@ -621,5 +638,38 @@ public class Spielfeld {
 	 */
 	public void setZurueck(Point zurueck) {
 		this.zurueck = zurueck;
+	}
+
+	/**
+	 * speichert das Spiel, wenn man über einen Checkpoint läuft
+	 * 
+	 */
+	private void checkpoint(GameFrame gameFrame) {
+		PrintWriter pWriter;
+		try {
+			pWriter = new PrintWriter(new FileWriter(Konstanten.DIRECTION
+					+ "/src/game/Szenario/checkpoint.txt"));
+			pWriter.println(gameFrame.getSave());
+			pWriter.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		setCheckpoint(true);
+	}
+
+	/**
+	 * @return the checkpoint
+	 */
+	public Boolean getCheckpoint() {
+		return checkpoint;
+	}
+
+	/**
+	 * @param checkpoint
+	 *            the checkpoint to set
+	 */
+	public void setCheckpoint(Boolean checkpoint) {
+		this.checkpoint = checkpoint;
 	}
 }
