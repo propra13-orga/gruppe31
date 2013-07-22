@@ -59,6 +59,7 @@ public class Spielfeld {
 	/** Deklaration von String, die mehrmals verwendet */
 	private String name = "Erna's Adventure";
 	private String verloren = "verloren";
+	private String attention = "Achtung";
 
 	/** Deklaration von int zum Zählen */
 	private int jauchBesucht = 0;
@@ -189,14 +190,10 @@ public class Spielfeld {
 		Point aktPos = spielfigur.getPosition();
 		Point neuPos = new Point(aktPos);
 
-		if (keyCode == KeyEvent.VK_LEFT) {
-			neuPos.x--;
-		} else if (keyCode == KeyEvent.VK_RIGHT) {
-			neuPos.x++;
-		} else if (keyCode == KeyEvent.VK_UP) {
-			neuPos.y--;
-		} else if (keyCode == KeyEvent.VK_DOWN) {
-			neuPos.y++;
+		if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_RIGHT
+				|| keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_DOWN) {
+			pfeiltasten(keyCode, spielfigur, neuPos, aktPos, gameFrame,
+					barriere);
 		} else if (keyCode == KeyEvent.VK_SPACE) {
 			lasere(spielfigur, gameFrame);
 		} else if (keyCode == KeyEvent.VK_X) {
@@ -206,6 +203,36 @@ public class Spielfeld {
 		} else {
 			/* Andere Tasten wollen wir nicht beruecksichtigen. */
 			return;
+		}
+
+	}
+
+	/**
+	 * Arbeitet die KeyEvents der Pfeiltasten ab
+	 * 
+	 * @param keyCode
+	 *            Kommandozeilenparameter
+	 * @param spielfigur
+	 *            Kommandozeilenparameter
+	 * @param neuPos
+	 *            Kommandozeilenparameter
+	 * @param aktPos
+	 *            Kommandozeilenparameter
+	 * @param gameFrame
+	 *            Kommandozeilenparameter
+	 * @param barriere
+	 *            Kommandozeilenparameter
+	 */
+	private void pfeiltasten(int keyCode, Spieler spielfigur, Point neuPos,
+			Point aktPos, GameFrame gameFrame, Barriere barriere) {
+		if (keyCode == KeyEvent.VK_LEFT) {
+			neuPos.x--;
+		} else if (keyCode == KeyEvent.VK_RIGHT) {
+			neuPos.x++;
+		} else if (keyCode == KeyEvent.VK_UP) {
+			neuPos.y--;
+		} else if (keyCode == KeyEvent.VK_DOWN) {
+			neuPos.y++;
 		}
 
 		GameObject obj = this.gibObjekt(neuPos);
@@ -354,6 +381,7 @@ public class Spielfeld {
 			spielfigur.setzeBildLuke();
 		}
 		spielfigur.getPicture();
+
 	}
 
 	/**
@@ -429,7 +457,7 @@ public class Spielfeld {
 			spielfigur.setGesundheit(Konstanten.VOLLH);
 		} else
 			JOptionPane.showMessageDialog(null, "Sie haben kein Mana!",
-					"Achtung", JOptionPane.WARNING_MESSAGE);
+					attention, JOptionPane.WARNING_MESSAGE);
 	}
 
 	/**
@@ -457,7 +485,6 @@ public class Spielfeld {
 				neuSchussPos.x++;
 				obj = this.gibObjekt(neuSchussPos);
 			}
-			gameFrame.zeichnen(this);
 			// timer, der laser weg macht
 			neuSchussPos.x--;
 			obj = this.gibObjekt(neuSchussPos);
@@ -468,7 +495,7 @@ public class Spielfeld {
 			}
 		} else {
 			JOptionPane.showMessageDialog(null,
-					"Sie tragen keine Laserbrille!", "Achtung",
+					"Sie tragen keine Laserbrille!", attention,
 					JOptionPane.WARNING_MESSAGE);
 		}
 	}
@@ -528,7 +555,7 @@ public class Spielfeld {
 
 		} else {
 			JOptionPane.showMessageDialog(null, "Sie tragen kein Schwert!",
-					"Achtung", JOptionPane.WARNING_MESSAGE);
+					attention, JOptionPane.WARNING_MESSAGE);
 		}
 
 		bossgegner.setzeBild(this.spiel.getAktuellesSpielfeldNumber());
