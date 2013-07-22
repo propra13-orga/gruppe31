@@ -340,8 +340,11 @@ public class Spielfeld {
 			musik = new Musik(Konstanten.DIRECTION
 					+ "/src/game/Sound/Schalter.wav");
 		}
-		spielfigur.setzeBildErna();
-		spielfigur.setzeBildLuke();
+		if (spielfigur.getErna()) {
+			spielfigur.setzeBildErna();
+		} else if (spielfigur.getLuke()) {
+			spielfigur.setzeBildLuke();
+		}
 		spielfigur.getPicture();
 	}
 

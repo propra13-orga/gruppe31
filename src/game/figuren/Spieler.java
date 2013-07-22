@@ -60,6 +60,10 @@ public class Spieler extends Spielfigur {
 	/** Deklaration der Felder */
 	private Spielfeld spielfeld;
 
+	/** Deklaration von Boolean, ob Erna und Luke vorhanden */
+	private Boolean erna = false;
+	private Boolean luke = false;
+
 	/**
 	 * Konstruktor weist Icon das richtige Icon zu
 	 * 
@@ -69,8 +73,10 @@ public class Spieler extends Spielfigur {
 	public Spieler(String art) {
 		if ("Erna".equals(art)) {
 			setzeBildErna();
+			setErna(true);
 		} else if ("Luke".equals(art)) {
 			setzeBildLuke();
+			setLuke(true);
 		}
 	}
 
@@ -289,5 +295,35 @@ public class Spieler extends Spielfigur {
 	 */
 	public void setGoldMinus(int gold) {
 		this.gold = getGold() - gold;
+	}
+
+	/**
+	 * @return the erna
+	 */
+	public Boolean getErna() {
+		return erna;
+	}
+
+	/**
+	 * @param erna
+	 *            the erna to set
+	 */
+	public void setErna(Boolean erna) {
+		this.erna = erna;
+	}
+
+	/**
+	 * @return the luke
+	 */
+	public Boolean getLuke() {
+		return luke;
+	}
+
+	/**
+	 * @param luke
+	 *            the luke to set
+	 */
+	public void setLuke(Boolean luke) {
+		this.luke = luke;
 	}
 }
