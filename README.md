@@ -21,6 +21,10 @@ Marcel&Denise:
 Jauchquests✔ 
 
 
+ausstehend:
+Netzwerkmodus beim Spielen
+
+
 
 
 
