@@ -236,6 +236,9 @@ public final class Konstanten {
 	public static final int BOSS33H = 33;
 	public static final int BOSS0H = 0;
 
+	/** Anzeuge 'schl‰ft' so und soviele Sekunden, bis sie weiter macht */
+	public static final long SLEEP = 100;
+
 	/**
 	 * privater Konstruktor, der verhindert, dass von auﬂen ein Exemplar dieser
 	 * Klasse gebildet werden kann

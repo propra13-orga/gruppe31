@@ -10,6 +10,7 @@ import game.icons.Grenze;
 import game.icons.Huette;
 import game.icons.Jauch;
 import game.icons.JauchNetzerk;
+import game.icons.Laser;
 import game.icons.Luke;
 import game.icons.Rasen;
 import game.icons.SchalterAuf;
@@ -197,7 +198,7 @@ public class Spielfeld {
 		} else if (keyCode == KeyEvent.VK_DOWN) {
 			neuPos.y++;
 		} else if (keyCode == KeyEvent.VK_SPACE) {
-			/* TODO */
+			lasere(spielfigur);
 		} else if (keyCode == KeyEvent.VK_X) {
 			schlage(spielfigur, bossgegner);
 		} else if (keyCode == KeyEvent.VK_CONTROL) {
@@ -432,8 +433,40 @@ public class Spielfeld {
 	}
 
 	/**
-	 * Schwert wird eingesetzt
-	 * nur gegen Bossgegner einsetzbar
+	 * Laserbrille wird eingesetzt nur gegen Pilzgegner wirksam
+	 * 
+	 * @param spielfigur
+	 *            Kommandozeilenparameter
+	 * @throws InterruptedException
+	 *             wirft Exception
+	 */
+	private void lasere(Spieler spielfigur) throws InterruptedException {
+		if (spielfigur.getBewaffnet()) {
+
+			Point aktSchussPos = spielfigur.getPosition();
+			Point neuSchussPos = new Point(aktSchussPos);
+
+			neuSchussPos.x++;
+
+			GameObject obj = this.gibObjekt(neuSchussPos);
+
+			while (!(obj instanceof Rasen)) {
+				aktSchussPos = neuSchussPos;
+				this.setzeObjekt(new Laser(), neuSchussPos);
+				//this.setzeObjekt(new Rasen(), aktSchussPos);
+				Thread.sleep(Konstanten.SLEEP);
+				neuSchussPos.x++;
+			}
+
+		} else {
+			JOptionPane.showMessageDialog(null,
+					"Sie tragen keine Laserbrille!", "Achtung",
+					JOptionPane.WARNING_MESSAGE);
+		}
+	}
+
+	/**
+	 * Schwert wird eingesetzt nur gegen Bossgegner einsetzbar
 	 * 
 	 * @param spielfigur
 	 *            Kommandozeilenparameter

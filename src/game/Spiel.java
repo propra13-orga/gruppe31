@@ -11,6 +11,7 @@ import game.icons.Grenze;
 import game.icons.Huette;
 import game.icons.Jauch;
 import game.icons.JauchNetzerk;
+import game.icons.Laser;
 import game.icons.Luke;
 import game.icons.Rasen;
 import game.icons.SchalterAuf;
@@ -201,6 +202,8 @@ public class Spiel {
 							gameObject = new Gold();
 						} else if (pruefe == Konstanten.MANA) {
 							gameObject = new Mana();
+						} else if (pruefe == Konstanten.LASER) {
+							gameObject = new Laser();
 						} else if (pruefe == Konstanten.HEALTH) {
 							gameObject = new Health();
 						} else if (pruefe == Konstanten.RUESTUNG) {
