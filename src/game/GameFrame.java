@@ -1,13 +1,13 @@
 package game;
 
 import game.figuren.Bossgegner;
-import game.figuren.Falle;
 import game.figuren.Gegner;
 import game.figuren.Spieler;
 import game.icons.Barriere;
 import game.icons.Carlos;
 import game.icons.Checkpoint;
 import game.icons.Grenze;
+import game.icons.Falle;
 import game.icons.Huette;
 import game.icons.Luke;
 import game.icons.Rasen;
@@ -587,7 +587,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				} else if (teste instanceof Ruestung) {
 					saveSpielfeld = saveSpielfeld + "R";
 				} else if (teste instanceof Checkpoint) {
-					saveSpielfeld = saveSpielfeld + "C";
+					saveSpielfeld = saveSpielfeld + "D";
 				} else if (teste instanceof Schwert) {
 					saveSpielfeld = saveSpielfeld + "ß";
 				} else if (teste instanceof Shopmana) {
@@ -603,7 +603,7 @@ public class GameFrame extends JFrame implements KeyListener {
 				} else if (teste instanceof SchalterZu) {
 					saveSpielfeld = saveSpielfeld + "&";
 				} else if (teste instanceof SchalterAuf) {
-					saveSpielfeld = saveSpielfeld + "#";
+					saveSpielfeld = saveSpielfeld + "%";
 				} else if (teste instanceof Barriere) {
 					saveSpielfeld = saveSpielfeld + "I";
 				}

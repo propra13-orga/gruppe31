@@ -1,13 +1,13 @@
 package game;
 
 import game.figuren.Bossgegner;
-import game.figuren.Falle;
 import game.figuren.Gegner;
 import game.figuren.Spieler;
 import game.icons.Barriere;
 import game.icons.Carlos;
 import game.icons.Checkpoint;
 import game.icons.Grenze;
+import game.icons.Falle;
 import game.icons.Huette;
 import game.icons.Jauch;
 import game.icons.JauchNetzerk;

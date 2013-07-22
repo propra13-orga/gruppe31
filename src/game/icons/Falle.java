@@ -1,4 +1,4 @@
-package game.figuren;
+package game.icons;
 
 import game.GameObject;
 import game.Konstanten;

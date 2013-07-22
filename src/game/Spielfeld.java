@@ -7,6 +7,7 @@ import game.icons.Barriere;
 import game.icons.Carlos;
 import game.icons.Checkpoint;
 import game.icons.Grenze;
+import game.icons.Falle;
 import game.icons.Huette;
 import game.icons.Jauch;
 import game.icons.JauchNetzerk;
@@ -60,6 +61,9 @@ public class Spielfeld {
 	private String name = "Erna's Adventure";
 	private String verloren = "verloren";
 	private String attention = "Achtung";
+	private String autsch = "/src/game/Sound/Hit.wav";
+	private String wuff = "/src/game/Sound/Wuff.wav";
+	private String klimper = "/src/game/Sound/Ching.wav";
 
 	/** Deklaration von int zum Zählen */
 	private int jauchBesucht = 0;
@@ -204,7 +208,6 @@ public class Spielfeld {
 			/* Andere Tasten wollen wir nicht beruecksichtigen. */
 			return;
 		}
-
 	}
 
 	/**
@@ -251,18 +254,21 @@ public class Spielfeld {
 			gegnerAngriff(spielfigur, gameFrame);
 		} else if (obj instanceof Spieler) {
 			gegnerAngriff(spielfigur, gameFrame);
+		} else if (obj instanceof Falle) {
+			spielfigur.setLebenMinus(1);
+			musik = new Musik(Konstanten.DIRECTION + autsch);
 		} else if (obj instanceof Bossgegner) {
 			bossAngriff(spielfigur, gameFrame);
 		} else if (obj instanceof Huette) {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Carlos) {
 			npc = new NPC();
-			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wuff.wav");
+			musik = new Musik(Konstanten.DIRECTION + wuff);
 			/* Bewegung igorieren */
 		} else if (obj instanceof Checkpoint) {
 			/* TODO Checkpoint(); */
 		} else if (obj instanceof Weiter) {
-			if (spiel.getAktuellesSpielfeldNumber() < 9) {
+			if (spiel.getAktuellesSpielfeldNumber() <= Konstanten.RAUM9) {
 				/* aktuelle Position auf Rasen setzen */
 				this.setzeObjekt(new Rasen(), aktPos);
 				/* Ueber das Spiel in den naechsten Raum wechseln. */
@@ -299,6 +305,7 @@ public class Spielfeld {
 			einsammeln = true;
 		} else if (obj instanceof Shophealth) {
 			if (spielfigur.getGold() >= Konstanten.GOLD50) {
+				musik = new Musik(Konstanten.DIRECTION + klimper);
 				spielfigur.setGoldMinus(Konstanten.GOLD50);
 				spielfigur.setGesundheit(Konstanten.VOLLH);
 			} else {
@@ -307,6 +314,7 @@ public class Spielfeld {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Shopmana) {
 			if (spielfigur.getGold() >= Konstanten.GOLD50) {
+				musik = new Musik(Konstanten.DIRECTION + klimper);
 				spielfigur.setGoldMinus(Konstanten.GOLD50);
 				spielfigur.setManaPlus(Konstanten.VOLLM);
 			} else {
@@ -315,15 +323,17 @@ public class Spielfeld {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Shopruestung) {
 			if (spielfigur.getGold() >= Konstanten.GOLD50) {
+				musik = new Musik(Konstanten.DIRECTION + klimper);
 				spielfigur.setGoldMinus(Konstanten.GOLD50);
 				spielfigur.setHalsband(true);
+				spielfigur.setRuestung(Konstanten.VOLLR);
 			} else {
 				// nothing to do here
 			}
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Luke) {
 			npc2 = new NPC2();
-			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wuff.wav");
+			musik = new Musik(Konstanten.DIRECTION + wuff);
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof SchalterZu) {
 			umlegen = true;
@@ -381,7 +391,6 @@ public class Spielfeld {
 			spielfigur.setzeBildLuke();
 		}
 		spielfigur.getPicture();
-
 	}
 
 	/**
@@ -398,8 +407,7 @@ public class Spielfeld {
 			spielfigur.setRuestungMinus(Konstanten.HALBH);
 		} else {
 			if (spielfigur.getLeben() >= Konstanten.EINLEBEN) {
-				musik = new Musik(Konstanten.DIRECTION
-						+ "/src/game/Sound/Hit.wav");
+				musik = new Musik(Konstanten.DIRECTION + autsch);
 				if (spielfigur.getGesundheit() >= Konstanten.DREIVIERTELH) {
 					spielfigur.setGesundheitMinus(Konstanten.HALBH);
 				} else if (spielfigur.getGesundheit() >= Konstanten.HALBH) {
@@ -493,6 +501,8 @@ public class Spielfeld {
 				neuSchussPos.x--;
 				obj = this.gibObjekt(neuSchussPos);
 			}
+			musik = new Musik(Konstanten.DIRECTION
+					+ "/src/game/Sound/Punch.wav");
 		} else {
 			JOptionPane.showMessageDialog(null,
 					"Sie tragen keine Laserbrille!", attention,
@@ -552,7 +562,8 @@ public class Spielfeld {
 					this.setzeObjekt(new Rasen(), untenPos);
 				}
 			}
-
+			musik = new Musik(Konstanten.DIRECTION
+					+ "/src/game/Sound/Punch.wav");
 		} else {
 			JOptionPane.showMessageDialog(null, "Sie tragen kein Schwert!",
 					attention, JOptionPane.WARNING_MESSAGE);
