@@ -193,7 +193,7 @@ public class Spielfeld {
 		} else if (keyCode == KeyEvent.VK_SPACE) {
 			/* TODO */
 		} else if (keyCode == KeyEvent.VK_X) {
-			/* TODO */
+			schlage(spielfigur);
 		} else if (keyCode == KeyEvent.VK_CONTROL) {
 			zaubere(spielfigur);
 		} else {
@@ -412,6 +412,47 @@ public class Spielfeld {
 		} else
 			JOptionPane.showMessageDialog(null, "Sie haben kein Mana!",
 					"Achtung", JOptionPane.WARNING_MESSAGE);
+	}
+
+	/**
+	 * Schwert wird eingesetzt
+	 * 
+	 * @param spielfigur
+	 *            Kommandozeilenparameter
+	 */
+	public void schlage(Spieler spielfigur) {
+
+		if (spielfigur.getBeschwertet()) {
+			Point aktPos = spielfigur.getPosition();
+			Point linksPos = new Point(aktPos);
+			Point obenPos = new Point(aktPos);
+			Point rechtsPos = new Point(aktPos);
+			Point untenPos = new Point(aktPos);
+
+			linksPos.x--;
+			rechtsPos.x++;
+			untenPos.y++;
+			obenPos.y--;
+
+			GameObject links = this.gibObjekt(linksPos);
+			GameObject rechts = this.gibObjekt(rechtsPos);
+			GameObject unten = this.gibObjekt(untenPos);
+			GameObject oben = this.gibObjekt(obenPos);
+
+			if (links instanceof Gegner) {
+				this.setzeObjekt(new Rasen(), linksPos);
+			} else if (rechts instanceof Gegner) {
+				this.setzeObjekt(new Rasen(), rechtsPos);
+			} else if (oben instanceof Gegner) {
+				this.setzeObjekt(new Rasen(), obenPos);
+			} else if (unten instanceof Gegner) {
+				this.setzeObjekt(new Rasen(), untenPos);
+			} else {
+				return;
+			}
+		} else {
+			// nothing to do here
+		}
 	}
 
 	/**
