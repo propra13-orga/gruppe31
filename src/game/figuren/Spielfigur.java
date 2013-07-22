@@ -16,10 +16,6 @@ public abstract class Spielfigur extends GameObject {
 	private int schaden;
 	private boolean bewaffnet;
 	private int gesundheit;
-	
-	/** Deklaration der Felder*/
-	private Spieler spieler;
-	private Gegner gegner;
 
 	/**
 	 * Getter

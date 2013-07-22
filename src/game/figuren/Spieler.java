@@ -82,7 +82,7 @@ public class Spieler extends Spielfigur {
 	 * wählt das Icon des Spielers
 	 */
 	public void setzeBildErna() {
-			if (bewaffnet) {
+			if (getBewaffnet()) {
 				if (beschwertet) {
 					if (halsband) {
 						bild = ICONTERMINATORERNA;
@@ -96,7 +96,7 @@ public class Spieler extends Spielfigur {
 						bild = ICONAGGROERNA;
 					}
 				}
-			} else if (!bewaffnet) {
+			} else if (!getBewaffnet()) {
 				if (beschwertet) {
 					if (halsband) {
 						bild = ICONPUDELSCHWERTHALSBAND;
@@ -262,6 +262,13 @@ public class Spieler extends Spielfigur {
 		this.position = neuePosition;
 	}
 
+	/**
+	 * /**
+	 * Setter für gold
+	 * 
+	 * @param gold
+	 *            Kommandozeilenparameter
+	 */
 	public void setGoldPlus(int gold) {
 		this.gold = getGold() + gold;
 
