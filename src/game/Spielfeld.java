@@ -55,8 +55,9 @@ public class Spielfeld {
 	private Point weiter;
 	private Point zurueck;
 
-	/** Deklaration des Fenstertitels */
+	/** Deklaration von String, die mehrmals verwendet */
 	private String name = "Erna's Adventure";
+	private String verloren = "verloren";
 
 	/** Deklaration von int zum Zählen */
 	private int jauchBesucht = 0;
@@ -172,6 +173,10 @@ public class Spielfeld {
 	 * @param keyCode
 	 *            Kommandozeilenparameter
 	 * @param gameFrame
+	 *            Kommandozeilenparameter
+	 * @param bossgegner
+	 *            Kommandozeilenparameter
+	 * @param barriere
 	 *            Kommandozeilenparameter
 	 * @throws Exception
 	 *             wirft Exception
@@ -369,7 +374,7 @@ public class Spielfeld {
 			}
 		}
 		if (spielfigur.getLeben() < Konstanten.EINLEBEN) {
-			gewonnenVerloren = new GewonnenVerloren("verloren");
+			gewonnenVerloren = new GewonnenVerloren(verloren);
 			gameFrame.dispose();
 		}
 	}
@@ -451,7 +456,7 @@ public class Spielfeld {
 			} else if (unten instanceof Gegner) {
 				this.setzeObjekt(new Rasen(), untenPos);
 			}
-			
+
 			if (links instanceof Bossgegner) {
 				if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
 					bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
@@ -477,11 +482,12 @@ public class Spielfeld {
 					this.setzeObjekt(new Rasen(), untenPos);
 				}
 			}
-			
+
 		} else {
-			// nothing to do here
+			JOptionPane.showMessageDialog(null, "Sie tragen kein Schwert!",
+					"Achtung", JOptionPane.WARNING_MESSAGE);	
 		}
-		
+
 		bossgegner.setzeBild(this.spiel.getAktuellesSpielfeldNumber());
 		bossgegner.getPicture();
 	}
