@@ -33,8 +33,10 @@ public class Spieler extends Spielfigur {
 	/** Icon für den zweiten Spieler werden deklariert */
 	private static final String ICONLUKE = Konstanten.DIRECTION
 			+ "/src/game/Images/Luke.png";
-	private static final String ICONLUKEBEWAFFNET = Konstanten.DIRECTION
+	private static final String ICONLUKEBESCHWERTET = Konstanten.DIRECTION
 			+ "/src/game/Images/LukeSchwert.png";
+	private static final String ICONLUKEBEWAFFNET = Konstanten.DIRECTION
+			+ "/src/game/Images/LukeBrille.png";
 
 	/** bild vom Typ String wird deklariert */
 	private String bild;

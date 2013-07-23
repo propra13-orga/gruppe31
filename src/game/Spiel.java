@@ -30,6 +30,7 @@ import game.items.Shopmana;
 import game.items.Shopruestung;
 
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class Spiel {
 	private int aktSpielfeld;
 
 	/** Deklarierung des Feldes */
-	private ArrayList<Spieler> spieler;
+	protected ArrayList<Spieler> spieler;
 	private ArrayList<Gegner> gegner;
 	private Bossgegner bossgegner;
 	private Barriere barriere;
@@ -393,10 +394,16 @@ public class Spiel {
 	public void aktion(int keyCode, GameFrame gameFrame) throws Exception {
 		
 		/* Pruefe ob Spieler1-Tasten oder Spieler2-Tasten gedrueckt wurden. */
-		
-		/* if (tasten == awsd) { spieler.get(0); */
-		levels.get(aktSpielfeld).aktion(this.spieler, this.gegner, keyCode,
+		if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_RIGHT
+				|| keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_DOWN) {			
+		levels.get(aktSpielfeld).aktion(spieler.get(0), this.gegner, keyCode,
 				barriere, gameFrame, this.bossgegner);
+		
+		} else if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_A
+				|| keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_D) {
+			levels.get(aktSpielfeld).aktion(spieler.get(1), this.gegner, keyCode,
+					barriere, gameFrame, this.bossgegner);
+		}
 	}
 
 	/**

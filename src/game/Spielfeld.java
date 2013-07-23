@@ -161,14 +161,12 @@ public class Spielfeld {
 	 * @throws Exception
 	 *             wirft Exception
 	 */
-	public void aktion(ArrayList<Spieler> spieler, ArrayList<Gegner> gegner,
-			int keyCode, Barriere barriere, GameFrame gameFrame,
-			Bossgegner bossgegner) throws Exception {
-		
-		for (int i = 0; i < spieler.size(); i++) {
-			aktionSpieler(spieler.get(i), barriere, keyCode, gameFrame, bossgegner);
-		}
-		
+	public void aktion(Spieler spieler, ArrayList<Gegner> gegner, int keyCode,
+			Barriere barriere, GameFrame gameFrame, Bossgegner bossgegner)
+			throws Exception {
+
+		aktionSpieler(spieler, barriere, keyCode, gameFrame, bossgegner);
+
 		for (int i = 0; i < gegner.size(); i++) {
 			aktionGegner(gegner.get(i), keyCode);
 		}
@@ -208,7 +206,7 @@ public class Spielfeld {
 		} else {
 			// nothing to do here
 		}
-		
+
 		if (gegSollBewegtWerden) {
 			/* setzt Rasen an die alte Position und en Gegner auf die neue */
 			this.setzeObjekt(obj, aktGegPos);
@@ -240,26 +238,241 @@ public class Spielfeld {
 	private void aktionSpieler(Spieler spielfigur, Barriere barriere,
 			int keyCode, GameFrame gameFrame, Bossgegner bossgegner)
 			throws Exception {
-		/* Alte und neue Position für Spieler festlegen. */
-		Point aktPos = spielfigur.getPosition();
-		Point neuPos = new Point(aktPos);
 
-		if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_RIGHT
-				|| keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_DOWN) {
-			pfeiltasten(keyCode, spielfigur, neuPos, aktPos, gameFrame,
-					barriere, bossgegner);
-		} else if (keyCode == KeyEvent.VK_SPACE) {
-			lasere(spielfigur, gameFrame);
-		} else if (keyCode == KeyEvent.VK_X) {
-			schlage(spielfigur, bossgegner);
-		} else if (keyCode == KeyEvent.VK_CONTROL) {
-			zaubere1(spielfigur);
-		} else if (keyCode == KeyEvent.VK_SHIFT) {
-			zaubere2(spielfigur);
-		} else {
-			/* Andere Tasten wollen wir nicht beruecksichtigen. */
-			return;
+		if (spielfigur == spiel.spieler.get(0)) {
+			/* Alte und neue Position für Spieler festlegen. */
+			Point aktPos = spielfigur.getPosition();
+			Point neuPos = new Point(aktPos);
+
+			if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_RIGHT
+					|| keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_DOWN) {
+				pfeiltasten(keyCode, spielfigur, neuPos, aktPos, gameFrame,
+						barriere, bossgegner);
+			} else if (keyCode == KeyEvent.VK_SPACE) {
+				lasere(spielfigur, gameFrame);
+			} else if (keyCode == KeyEvent.VK_X) {
+				schlage(spielfigur, bossgegner);
+			} else if (keyCode == KeyEvent.VK_CONTROL) {
+				zaubere1(spielfigur);
+			} else if (keyCode == KeyEvent.VK_SHIFT) {
+				zaubere2(spielfigur);
+			} else {
+				/* Andere Tasten wollen wir nicht beruecksichtigen. */
+				return;
+			}
+		} else if (spielfigur == spiel.spieler.get(1)) {
+			/* Alte und neue Position für Spieler festlegen. */
+			Point aktPos = spielfigur.getPosition();
+			Point neuPos = new Point(aktPos);
+
+			if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_A
+					|| keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_D) {
+				wasd(keyCode, spielfigur, neuPos, aktPos, gameFrame, barriere,
+						bossgegner);
+			} else if (keyCode == KeyEvent.VK_J) {
+				lasere(spielfigur, gameFrame);
+			} else if (keyCode == KeyEvent.VK_K) {
+				schlage(spielfigur, bossgegner);
+			} else if (keyCode == KeyEvent.VK_N) {
+				zaubere1(spielfigur);
+			} else if (keyCode == KeyEvent.VK_M) {
+				zaubere2(spielfigur);
+			} else {
+				/* Andere Tasten wollen wir nicht beruecksichtigen. */
+				return;
+			}
 		}
+
+	}
+
+	/**
+	 * Arbeitet die KeyEvents von WASD ab
+	 * 
+	 * @param keyCode
+	 *            Kommandozeilenparameter
+	 * @param spielfigur
+	 *            Kommandozeilenparameter
+	 * @param neuPos
+	 *            Kommandozeilenparameter
+	 * @param aktPos
+	 *            Kommandozeilenparameter
+	 * @param gameFrame
+	 *            Kommandozeilenparameter
+	 * @param barriere
+	 *            Kommandozeilenparameter
+	 * @param bossgegner
+	 *            Kommandozeilenparameter
+	 * @throws Exception
+	 *             wirft Exception
+	 */
+	private void wasd(int keyCode, Spieler spielfigur, Point neuPos,
+			Point aktPos, GameFrame gameFrame, Barriere barriere,
+			Bossgegner bossgegner) throws Exception {
+		if (keyCode == KeyEvent.VK_A) {
+			neuPos.x--;
+		} else if (keyCode == KeyEvent.VK_D) {
+			neuPos.x++;
+		} else if (keyCode == KeyEvent.VK_W) {
+			neuPos.y--;
+		} else if (keyCode == KeyEvent.VK_S) {
+			neuPos.y++;
+		}
+
+		GameObject obj = this.gibObjekt(neuPos);
+
+		boolean sollBewegtWerden = false;
+		boolean einsammeln = false;
+		boolean umlegen = false;
+
+		/* Spielfigur: Objekte drum herum prüfen */
+		if (obj instanceof Rasen) {
+			sollBewegtWerden = true;
+		} else if (obj instanceof Grenze) {
+			/* Bewegung ingorieren */
+			/* TODO Health Anzeige verschwindet, wenn tot, das soll nicht */
+		} else if (obj instanceof Gegner) {
+			gegnerAngriff(spielfigur, gameFrame);
+		} else if (obj instanceof Spieler) {
+			gegnerAngriff(spielfigur, gameFrame);
+		} else if (obj instanceof Falle) {
+			spielfigur.setLebenMinus(1);
+			musik = new Musik(Konstanten.DIRECTION + autsch);
+		} else if (obj instanceof Bossgegner) {
+			bossAngriff(spielfigur, gameFrame);
+		} else if (obj instanceof Huette) {
+			/* Bewegung ignorieren. */
+		} else if (obj instanceof Carlos) {
+			npc = new NPC();
+			musik = new Musik(Konstanten.DIRECTION + wuff);
+			/* Bewegung igorieren */
+		} else if (obj instanceof Checkpoint) {
+			checkpoint(gameFrame);
+			einsammeln = true;
+		} else if (obj instanceof Weiter) {
+			if (spiel.getAktuellesSpielfeldNumber() <= Konstanten.RAUM9) {
+				/* aktuelle Position auf Rasen setzen */
+				this.setzeObjekt(new Rasen(), aktPos);
+				/* Ueber das Spiel in den naechsten Raum wechseln. */
+				spiel.levelWeiter(spielfigur);
+			}
+		} else if (obj instanceof Zurueck) {
+			if (spiel.getAktuellesSpielfeldNumber() > 0) {
+				/* aktuelle Position auf Rasen setzen */
+				this.setzeObjekt(new Rasen(), aktPos);
+				/* Ueber das Spiel in den letzten Raum wechseln. */
+				spiel.levelZurueck(spielfigur);
+			}
+		} else if (obj instanceof Ziel) {
+			gewonnenVerloren = new GewonnenVerloren("gewonnen");
+			gameFrame.dispose();
+		} else if (obj instanceof Brille) {
+			spielfigur.setBewaffnet(true);
+			einsammeln = true;
+		} else if (obj instanceof Gold) {
+			spielfigur.setGoldPlus(Konstanten.GOLD50);
+			einsammeln = true;
+		} else if (obj instanceof Health) {
+			spielfigur.setGesundheit(Konstanten.VOLLH);
+			einsammeln = true;
+		} else if (obj instanceof Mana) {
+			spielfigur.setMana(Konstanten.VOLLM);
+			einsammeln = true;
+		} else if (obj instanceof Ruestung) {
+			spielfigur.setHalsband(true);
+			spielfigur.setRuestung(Konstanten.VOLLR);
+			einsammeln = true;
+		} else if (obj instanceof Schwert) {
+			spielfigur.setBeschwertet(true);
+			einsammeln = true;
+		} else if (obj instanceof Shophealth) {
+			if (spielfigur.getGold() >= Konstanten.GOLD50) {
+				musik = new Musik(Konstanten.DIRECTION + klimper);
+				spielfigur.setGoldMinus(Konstanten.GOLD50);
+				spielfigur.setGesundheit(Konstanten.VOLLH);
+			} else {
+				// nothing to do here
+			}
+			/* Bewegung ignorieren. */
+		} else if (obj instanceof Shopmana) {
+			if (spielfigur.getGold() >= Konstanten.GOLD50) {
+				musik = new Musik(Konstanten.DIRECTION + klimper);
+				spielfigur.setGoldMinus(Konstanten.GOLD50);
+				spielfigur.setMana(Konstanten.VOLLM);
+			} else {
+				// nothing to do here
+			}
+			/* Bewegung ignorieren. */
+		} else if (obj instanceof Shopruestung) {
+			if (spielfigur.getGold() >= Konstanten.GOLD50) {
+				musik = new Musik(Konstanten.DIRECTION + klimper);
+				spielfigur.setGoldMinus(Konstanten.GOLD50);
+				spielfigur.setHalsband(true);
+				spielfigur.setRuestung(Konstanten.VOLLR);
+			} else {
+				// nothing to do here
+			}
+			/* Bewegung ignorieren. */
+		} else if (obj instanceof Luke) {
+			npc2 = new NPC2();
+			musik = new Musik(Konstanten.DIRECTION + wuff);
+			/* Bewegung ignorieren. */
+		} else if (obj instanceof SchalterZu) {
+			umlegen = true;
+			/* Bewegung ignorieren */
+		} else if (obj instanceof SchalterAuf) {
+			/* Bewegung ignorieren */
+		} else if (obj instanceof Jauch) {
+			jauch = new Jauch();
+			jauchBesucht++;
+			jauch.raetsel(spielfigur, jauchBesucht);
+			this.setzeObjekt(new Rasen(), neuPos);
+			/* Bewegung ignorieren */
+		} else if (obj instanceof JauchNetzerk) {
+			jauchNetzwerk = new JauchNetzerk();
+			boolean jauchWeg = jauchNetzwerk.raetsel(spielfigur);
+			if (jauchWeg) {
+				this.setzeObjekt(new Rasen(), neuPos);
+			}
+			/* Bewegung ignorieren */
+		}
+
+		if (sollBewegtWerden) {
+			musik = new Musik(Konstanten.DIRECTION
+					+ "/src/game/Sound/Schritt.wav");
+			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
+			this.setzeObjekt(obj, aktPos);
+			this.setzeObjekt(spielfigur, neuPos);
+			/* setzt die neue Position */
+			spielfigur.setPosition(neuPos);
+		}
+
+		if (einsammeln) {
+			musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Item.wav");
+			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
+			this.setzeObjekt(new Rasen(), aktPos);
+			this.setzeObjekt(spielfigur, neuPos);
+			/* setzt die neue Position */
+			spielfigur.setPosition(neuPos);
+		}
+
+		if (umlegen) {
+			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
+			this.setzeObjekt(spielfigur, aktPos);
+			this.setzeObjekt(new SchalterAuf(), neuPos);
+			this.setzeObjekt(new Rasen(), barriere.getPosition());
+			/* setzt die neue Position */
+			spielfigur.setPosition(aktPos);
+
+			musik = new Musik(Konstanten.DIRECTION
+					+ "/src/game/Sound/Schalter.wav");
+		}
+		if (spielfigur.getErna()) {
+			spielfigur.setzeBildErna();
+		} else if (spielfigur.getLuke()) {
+			spielfigur.setzeBildLuke();
+		}
+		spielfigur.getPicture();
+
 	}
 
 	/**
