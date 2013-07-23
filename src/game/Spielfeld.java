@@ -71,6 +71,7 @@ public class Spielfeld {
 	private String klimper = "/src/game/Sound/Ching.wav";
 	private String huhu = "/src/game/Sound/huhu.wav";
 	private String noMana = "Sie haben kein Mana!";
+	private String gewonnen = "gewonnen";
 
 	/** Deklaration von int zum Zählen */
 	private int jauchBesucht = 0;
@@ -260,6 +261,7 @@ public class Spielfeld {
 				/* Andere Tasten wollen wir nicht beruecksichtigen. */
 				return;
 			}
+			
 		} else if (spielfigur == spiel.spieler.get(1)) {
 			/* Alte und neue Position für Spieler festlegen. */
 			Point aktPos = spielfigur.getPosition();
@@ -329,7 +331,6 @@ public class Spielfeld {
 			sollBewegtWerden = true;
 		} else if (obj instanceof Grenze) {
 			/* Bewegung ingorieren */
-			/* TODO Health Anzeige verschwindet, wenn tot, das soll nicht */
 		} else if (obj instanceof Gegner) {
 			gegnerAngriff(spielfigur, gameFrame);
 		} else if (obj instanceof Spieler) {
@@ -363,7 +364,7 @@ public class Spielfeld {
 				spiel.levelZurueck(spielfigur);
 			}
 		} else if (obj instanceof Ziel) {
-			gewonnenVerloren = new GewonnenVerloren("gewonnen");
+			gewonnenVerloren = new GewonnenVerloren(gewonnen);
 			gameFrame.dispose();
 		} else if (obj instanceof Brille) {
 			spielfigur.setBewaffnet(true);
@@ -552,7 +553,7 @@ public class Spielfeld {
 				spiel.levelZurueck(spielfigur);
 			}
 		} else if (obj instanceof Ziel) {
-			gewonnenVerloren = new GewonnenVerloren("gewonnen");
+			gewonnenVerloren = new GewonnenVerloren(gewonnen);
 			gameFrame.dispose();
 		} else if (obj instanceof Brille) {
 			spielfigur.setBewaffnet(true);

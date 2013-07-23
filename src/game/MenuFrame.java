@@ -2,6 +2,8 @@ package game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +42,7 @@ public class MenuFrame extends JFrame {
 
 	/** Deklaration des Fenstertitels */
 	private String name = "Erna's Adventure";
-	
+
 	private boolean serverAktiv = false;
 
 	/**
@@ -174,8 +176,8 @@ public class MenuFrame extends JFrame {
 				serverAktiv = true;
 			} else if (serverAktiv) {
 				JOptionPane.showMessageDialog(null,
-						"Es wurde bereits ein Server gestartet!",
-						"Vorsicht", JOptionPane.ERROR_MESSAGE);
+						"Es wurde bereits ein Server gestartet!", "Vorsicht",
+						JOptionPane.ERROR_MESSAGE);
 			}
 			/* wenn Client gewählt wurde, wird Client-Thread gestartet */
 		} else if (selected == 1) {

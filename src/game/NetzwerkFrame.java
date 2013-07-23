@@ -1,10 +1,6 @@
 package game;
 
-import game.figuren.Spieler;
-
-import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
