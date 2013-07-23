@@ -72,10 +72,11 @@ public class NetzwerkFrame extends GameFrame {
 			
 			aktualisieren();
 			this.zeichnen(this.spiel.getAktuellesSpielfeld());
-			this.setzeAnzeige(this.spiel.getSpieler().get(0));
 
 			ausgehend.print(this.spiel);
 			ausgehend.flush();
+			
+			
 		} else if (this.getTitle().equals("Client-Spiel")) {
 			
 			try {

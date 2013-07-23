@@ -393,14 +393,19 @@ public class Spiel {
 	 */
 	public void aktion(int keyCode, GameFrame gameFrame) throws Exception {
 		
-		/* Pruefe ob Spieler1-Tasten oder Spieler2-Tasten gedrueckt wurden. */
+		/* Pruefe ob Spieler1-Tasten gedrueckt wurden. */
 		if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_RIGHT
-				|| keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_DOWN) {			
+				|| keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_DOWN || 
+				keyCode == KeyEvent.VK_SPACE|| keyCode == KeyEvent.VK_CONTROL
+				|| keyCode == KeyEvent.VK_SHIFT || keyCode == KeyEvent.VK_X) {			
 		levels.get(aktSpielfeld).aktion(spieler.get(0), this.gegner, keyCode,
 				barriere, gameFrame, this.bossgegner);
 		
+		/* Pruefe ob Spieler2-Tasten gedrueckt wurden. */
 		} else if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_A
-				|| keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_D) {
+				|| keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_D || 
+				keyCode == KeyEvent.VK_J || keyCode == KeyEvent.VK_K
+						|| keyCode == KeyEvent.VK_N || keyCode == KeyEvent.VK_M) {
 			levels.get(aktSpielfeld).aktion(spieler.get(1), this.gegner, keyCode,
 					barriere, gameFrame, this.bossgegner);
 		}
