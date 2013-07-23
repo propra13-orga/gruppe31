@@ -146,7 +146,7 @@ public class Spielfeld {
 	/**
 	 * Figuren werden bewegt
 	 * 
-	 * @param spielfigur
+	 * @param spieler
 	 *            Spielfigur wird übergeben
 	 * @param gegner
 	 *            Gegner wird übergeben
@@ -161,13 +161,15 @@ public class Spielfeld {
 	 * @throws Exception
 	 *             wirft Exception
 	 */
-	public void aktion(Spieler spielfigur, ArrayList<Gegner> gegner, int keyCode,
-			Barriere barriere, GameFrame gameFrame, Bossgegner bossgegner)
-			throws Exception {
-		aktionSpieler(spielfigur, barriere, keyCode, gameFrame, bossgegner);
+	public void aktion(ArrayList<Spieler> spieler, ArrayList<Gegner> gegner,
+			int keyCode, Barriere barriere, GameFrame gameFrame,
+			Bossgegner bossgegner) throws Exception {
+		
+		for (int i = 0; i < spieler.size(); i++) {
+			aktionSpieler(spieler.get(i), barriere, keyCode, gameFrame, bossgegner);
+		}
 		
 		for (int i = 0; i < gegner.size(); i++) {
-			
 			aktionGegner(gegner.get(i), keyCode);
 		}
 	}
@@ -181,6 +183,40 @@ public class Spielfeld {
 	 *            Kommandozeilenparameter
 	 */
 	private void aktionGegner(Gegner gegner, int keyCode) {
+
+		/* Alte und neue Position für Spieler festlegen. */
+		Point aktGegPos = gegner.getPosition();
+		Point neuGegPos = new Point(aktGegPos);
+
+		if (keyCode == KeyEvent.VK_LEFT) {
+			neuGegPos.x++;
+		} else if (keyCode == KeyEvent.VK_RIGHT) {
+			neuGegPos.x--;
+		} else if (keyCode == KeyEvent.VK_UP) {
+			neuGegPos.y++;
+		} else if (keyCode == KeyEvent.VK_DOWN) {
+			neuGegPos.y--;
+		}
+
+		GameObject obj = this.gibObjekt(neuGegPos);
+
+		boolean gegSollBewegtWerden = false;
+
+		/* Spielfigur: Objekte drum herum prüfen */
+		if (obj instanceof Rasen) {
+			gegSollBewegtWerden = true;
+		} else {
+			// nothing to do here
+		}
+		
+		if (gegSollBewegtWerden) {
+			/* setzt Rasen an die alte Position und en Gegner auf die neue */
+			this.setzeObjekt(obj, aktGegPos);
+			this.setzeObjekt(gegner, neuGegPos);
+			/* setzt die neue Position */
+			gegner.setPosition(neuGegPos);
+		}
+
 		gegner.setzeBildPilz();
 		gegner.getPicture();
 	}
