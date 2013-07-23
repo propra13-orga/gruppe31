@@ -131,12 +131,12 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 	 * verkettet die einzelnen Ausgaben miteinander und setzt den Text in die
 	 * Ausgabe
 	 * 
-	 * @param neu
+	 * @param eingabeText
 	 *            Kommandozeilenparameter
 	 */
-	public void addAusgabe(String neu) {
+	public void addAusgabe(String eingabeText) {
 		String text = ausgabe.getText();
-		text = text + neu + Konstanten.ZEILENUMBRUCH;
+		text = text + eingabeText + Konstanten.ZEILENUMBRUCH;
 		ausgabe.setText(text);
 	}
 

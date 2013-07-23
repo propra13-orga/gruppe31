@@ -315,7 +315,7 @@ public class Spielfeld {
 			spielfigur.setGesundheit(Konstanten.VOLLH);
 			einsammeln = true;
 		} else if (obj instanceof Mana) {
-			spielfigur.setManaPlus(Konstanten.VOLLM);
+			spielfigur.setMana(Konstanten.VOLLM);
 			einsammeln = true;
 		} else if (obj instanceof Ruestung) {
 			spielfigur.setHalsband(true);
@@ -337,7 +337,7 @@ public class Spielfeld {
 			if (spielfigur.getGold() >= Konstanten.GOLD50) {
 				musik = new Musik(Konstanten.DIRECTION + klimper);
 				spielfigur.setGoldMinus(Konstanten.GOLD50);
-				spielfigur.setManaPlus(Konstanten.VOLLM);
+				spielfigur.setMana(Konstanten.VOLLM);
 			} else {
 				// nothing to do here
 			}
@@ -485,7 +485,7 @@ public class Spielfeld {
 	public void zaubere1(Spieler spielfigur) {
 		if (spielfigur.getMana() > Konstanten.LEERM) {
 			spielfigur.setManaMinus(Konstanten.HALBM);
-			spielfigur.setGesundheitPlus(Konstanten.EINVIERTELH);
+			spielfigur.setGesundheit(Konstanten.VOLLH);
 			spielfigur.setBeschwertet(true);
 			spielfigur.setBewaffnet(false);
 		} else
@@ -502,7 +502,7 @@ public class Spielfeld {
 	public void zaubere2(Spieler spielfigur) {
 		if (spielfigur.getMana() > Konstanten.LEERM) {
 			spielfigur.setManaMinus(Konstanten.HALBM);
-			spielfigur.setGesundheitPlus(Konstanten.EINVIERTELH);
+			spielfigur.setGesundheit(Konstanten.VOLLH);
 			spielfigur.setBeschwertet(false);
 			spielfigur.setBewaffnet(true);
 		} else

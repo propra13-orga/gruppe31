@@ -195,6 +195,17 @@ public class Spieler extends Spielfigur {
 	}
 
 	/**
+	 * Setter für mana
+	 * 
+	 * @param vollm
+	 *            Kommandozeilenparameter
+	 */
+	public void setMana(int vollm) {
+		this.mana = vollm;
+
+	}
+
+	/**
 	 * Getterfür leben
 	 * 
 	 * @return leben Gibt die verbleibenden Leben des Spielers an
@@ -231,7 +242,7 @@ public class Spieler extends Spielfigur {
 	public int getRuestung() {
 		return ruestung;
 	}
-	
+
 	/**
 	 * Setter für ruestung
 	 * 

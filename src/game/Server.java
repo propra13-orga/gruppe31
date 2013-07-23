@@ -27,7 +27,7 @@ class Server extends Thread {
 	/** Deklaration von PrintWriter */
 	PrintWriter ausgehendPr = null;
 	/** Deklaration von BufferedReader */
-	BufferedReader eintreffendBr = null;
+	InputStreamReader eintreffendBr = null;
 	/** Deklaration von Scanner */
 	Scanner tasten = new Scanner(System.in);
 
@@ -53,13 +53,13 @@ class Server extends Thread {
 				/* Ausgabestrom */
 				ausgehendPr = new PrintWriter(clientSocket.getOutputStream(),
 						true);
-				eintreffendBr = new BufferedReader(new InputStreamReader(
+				eintreffendBr = new InputStreamReader(
 				/* Eingabestrom */
-				clientSocket.getInputStream()));
+				clientSocket.getInputStream());
 				frame = new ChatFrame("Server", ausgehendPr, eintreffendBr,
 						Konstanten.XSERVER, Konstanten.YSERVERCLIENT);
 				while (true) {
-					String incoming = eintreffendBr.readLine();
+					String incoming = String.valueOf(eintreffendBr.read());
 					frame.addAusgabe(incoming);
 				}
 			} catch (Exception e) {

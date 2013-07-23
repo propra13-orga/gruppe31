@@ -1,14 +1,10 @@
 package game;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Scanner;
-
-import javax.swing.JOptionPane;
 
 /**
  * öffnet den Client-Thread
@@ -51,9 +47,9 @@ public class Client extends Thread {
 	 */
 	public void run() {
 		while (true) {
-			int eintreffend;
+			String eintreffend;
 			try {
-				eintreffend = eintreffendBr.read();
+				eintreffend = String.valueOf(eintreffendBr.read());
 				frame.addAusgabe(eintreffend);
 			} catch (IOException e) {
 				e.printStackTrace();
