@@ -49,7 +49,7 @@ public class Spiel {
 	private int aktSpielfeld;
 
 	/** Deklarierung des Feldes */
-	private Spieler spieler;
+	private ArrayList<Spieler> spieler;
 	private ArrayList<Gegner> gegner;
 	private Bossgegner bossgegner;
 	private Barriere barriere;
@@ -62,6 +62,7 @@ public class Spiel {
 	 */
 	public Spiel() {
 		levels = new ArrayList<Spielfeld>();
+		spieler = new ArrayList<Spieler>();
 		this.gegner = new ArrayList<Gegner>();
 		this.aktSpielfeld = -1;
 	}
@@ -153,21 +154,31 @@ public class Spiel {
 						} else if (pruefe == Konstanten.GRENZE) {
 							gameObject = new Grenze();
 						} else if (pruefe == Konstanten.PUDEL) {
-							this.spieler = new Spieler("Erna");
-							this.spieler.setPosition(new Point(i, j));
-							gameObject = this.spieler;
+							Spieler aktSpieler = new Spieler("Erna");
+							aktSpieler.setPosition(new Point(i, j));
+							gameObject = aktSpieler;
 							/* setzt die Eigenschaften des Spielers */
-							this.spieler.setGesundheit(saveGesundheit);
-							this.spieler.setManaPlus(saveMana);
-							this.spieler.setRuestung(saveRuestung);
-							this.spieler.setLebenPlus(saveLeben);
-							this.spieler.setBewaffnet(saveBewaffnet);
-							this.spieler.setBeschwertet(saveBeschwertet);
-							this.spieler.setHalsband(saveHalsband);
+							aktSpieler.setGesundheit(saveGesundheit);
+							aktSpieler.setManaPlus(saveMana);
+							aktSpieler.setRuestung(saveRuestung);
+							aktSpieler.setLebenPlus(saveLeben);
+							aktSpieler.setBewaffnet(saveBewaffnet);
+							aktSpieler.setBeschwertet(saveBeschwertet);
+							aktSpieler.setHalsband(saveHalsband);
+							this.spieler.add(aktSpieler);
 						} else if (pruefe == Konstanten.PUDEL2) {
-							this.spieler = new Spieler("Luke");
-							this.spieler.setPosition(new Point(i, j));
-							gameObject = this.spieler;
+							Spieler aktSpieler = new Spieler("Luke");
+							aktSpieler.setPosition(new Point(i, j));
+							gameObject = aktSpieler;
+							/* setzt die Eigenschaften des Spielers */
+							aktSpieler.setGesundheit(saveGesundheit);
+							aktSpieler.setManaPlus(saveMana);
+							aktSpieler.setRuestung(saveRuestung);
+							aktSpieler.setLebenPlus(saveLeben);
+							aktSpieler.setBewaffnet(saveBewaffnet);
+							aktSpieler.setBeschwertet(saveBeschwertet);
+							aktSpieler.setHalsband(saveHalsband);
+							this.spieler.add(aktSpieler);
 						} else if (pruefe == Konstanten.GEGNER) {
 							Gegner aktGegner = new Gegner("Pilz");
 							aktGegner.setPosition(new Point(i, j));
@@ -365,7 +376,7 @@ public class Spiel {
 	 * 
 	 * @return spieler
 	 */
-	public Spieler getSpieler() {
+	public ArrayList<Spieler> getSpieler() {
 		return this.spieler;
 	}
 
@@ -380,6 +391,10 @@ public class Spiel {
 	 *             wirft Exception
 	 */
 	public void aktion(int keyCode, GameFrame gameFrame) throws Exception {
+		
+		/* Pruefe ob Spieler1-Tasten oder Spieler2-Tasten gedrueckt wurden. */
+		
+		/* if (tasten == awsd) { spieler.get(0); */
 		levels.get(aktSpielfeld).aktion(this.spieler, this.gegner, keyCode,
 				barriere, gameFrame, this.bossgegner);
 	}

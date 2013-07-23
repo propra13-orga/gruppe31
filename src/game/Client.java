@@ -16,15 +16,15 @@ import javax.swing.JOptionPane;
  * @author Denise
  * 
  */
-public class Chatter extends Thread {
+public class Client extends Thread {
 	/** Deklaration des Feldes */
-	NetzwerkFrame frame;
+	ChatFrame frame;
 	/** Deklaration von Socket */
 	Socket socket = null;
 	/** Deklaration von PrintWriter */
 	PrintWriter ausgehendPr = null;
 	/** Deklaration von BufferedReader */
-	BufferedReader eintreffendBr = null;
+	InputStreamReader eintreffendBr = null;
 	/** Deklaration von Scanner */
 	Scanner tasten = new Scanner(System.in);
 
@@ -37,13 +37,12 @@ public class Chatter extends Thread {
 	 * @throws Exception
 	 *             wirft Exception
 	 */
-	Chatter(String ip) throws Exception {
+	Client(String ip) throws Exception {
 		/* Host-Adresse, Port */
 		socket = new Socket(ip, Konstanten.PORT);
 		ausgehendPr = new PrintWriter(socket.getOutputStream(), true);
-		eintreffendBr = new BufferedReader(new InputStreamReader(
-				socket.getInputStream()));
-		frame = new NetzwerkFrame("Client", ausgehendPr, eintreffendBr,
+		eintreffendBr = new InputStreamReader(socket.getInputStream());
+		frame = new ChatFrame("Client", ausgehendPr, eintreffendBr,
 				Konstanten.XCLIENT, Konstanten.YSERVERCLIENT);
 	}
 
@@ -52,9 +51,9 @@ public class Chatter extends Thread {
 	 */
 	public void run() {
 		while (true) {
-			String eintreffend;
+			int eintreffend;
 			try {
-				eintreffend = eintreffendBr.readLine();
+				eintreffend = eintreffendBr.read();
 				frame.addAusgabe(eintreffend);
 			} catch (IOException e) {
 				e.printStackTrace();

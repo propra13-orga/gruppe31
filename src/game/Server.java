@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 class Server extends Thread {
 
 	/** Deklaration des Feldes */
-	NetzwerkFrame frame;
+	ChatFrame frame;
 	/** Deklaration von ServerSocket */
 	ServerSocket serverSocket = null;
 	/** Deklaration von ClientSocket */
@@ -56,7 +56,7 @@ class Server extends Thread {
 				eintreffendBr = new BufferedReader(new InputStreamReader(
 				/* Eingabestrom */
 				clientSocket.getInputStream()));
-				frame = new NetzwerkFrame("Server", ausgehendPr, eintreffendBr,
+				frame = new ChatFrame("Server", ausgehendPr, eintreffendBr,
 						Konstanten.XSERVER, Konstanten.YSERVERCLIENT);
 				while (true) {
 					String incoming = eintreffendBr.readLine();

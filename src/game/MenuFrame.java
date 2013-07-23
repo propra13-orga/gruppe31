@@ -191,7 +191,7 @@ public class MenuFrame extends JFrame {
 						"BItte geben Sie eine gültige IP-Adresse ein!",
 						"Ungültig", JOptionPane.ERROR_MESSAGE);
 			} else
-				new Chatter(ip).start();
+				new Client(ip).start();
 		}
 	}
 

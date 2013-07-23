@@ -185,7 +185,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	private JPanel panelButtons = new JPanel();
 
 	/** Deklaration von Feldern */
-	private Spiel spiel;
+	protected Spiel spiel;
 	private Musik musik;
 
 	/** Deklaration eines Strings Datei */
@@ -247,10 +247,6 @@ public class GameFrame extends JFrame implements KeyListener {
 		getContentPane().add(panelSpielfeld);
 		getContentPane().add(panelAnzeige);
 		getContentPane().add(panelButtons);
-
-		erzeugeSpiel();
-
-		setzeAnzeige();
 
 		setzeLoadButton();
 		setzeSaveButton();
@@ -357,7 +353,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * fragt die benötigten Variablen ab und setzt die Informationsleiste im
 	 * unteren Bereich des Spielfensters und spielt Musik ab
 	 */
-	public void setzeAnzeige() {
+	public void setzeAnzeige(Spieler spieler) {
 
 		panelAnzeige.removeAll();
 
@@ -384,7 +380,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 
 		/* für die Healthanzeige */
-		int health = spiel.getSpieler().getGesundheit();
+		int health = spieler.getGesundheit();
 		if (health == Konstanten.VOLLH) {
 			panelAnzeige.add(lebenVoll);
 		} else if (health == Konstanten.DREIVIERTELH) {
@@ -396,7 +392,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 
 		/* für die Manaanzeige */
-		int mana = spiel.getSpieler().getMana();
+		int mana = spieler.getMana();
 		if (mana == Konstanten.VOLLM) {
 			panelAnzeige.add(manaVoll);
 		} else if (mana == Konstanten.HALBM) {
@@ -406,7 +402,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 
 		/* für die Rüstungsanzeige */
-		int ruestung = spiel.getSpieler().getRuestung();
+		int ruestung = spieler.getRuestung();
 		if (ruestung == Konstanten.VOLLR) {
 			panelAnzeige.add(ruestungVoll);
 		} else if (ruestung == Konstanten.HALBR) {
@@ -416,7 +412,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 
 		/* für die Goldanzeige */
-		int gold = spiel.getSpieler().getGold();
+		int gold = spieler.getGold();
 		if (gold == Konstanten.GOLD0) {
 			panelAnzeige.add(gold0);
 		} else if (gold == Konstanten.GOLD50) {
@@ -435,9 +431,9 @@ public class GameFrame extends JFrame implements KeyListener {
 			panelAnzeige.add(gold350);
 		}
 
-		boolean bewaffnet = spiel.getSpieler().getBewaffnet();
-		boolean beschwertet = spiel.getSpieler().getBeschwertet();
-		int halsband = spiel.getSpieler().getRuestung();
+		boolean bewaffnet = spieler.getBewaffnet();
+		boolean beschwertet = spieler.getBeschwertet();
+		int halsband = spieler.getRuestung();
 		if (!bewaffnet) {
 			if (!beschwertet) {
 				if (halsband == 0) {
@@ -469,7 +465,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 
 		/* für die Lebenanzeige */
-		int leben = spiel.getSpieler().getLeben();
+		int leben = spieler.getLeben();
 		if (leben == Konstanten.DREILEBEN) {
 			panelAnzeige.add(herz3);
 		} else if (leben == Konstanten.ZWEILEBEN) {
@@ -514,7 +510,7 @@ public class GameFrame extends JFrame implements KeyListener {
 					PrintWriter pWriter = new PrintWriter(new FileWriter(
 							Konstanten.DIRECTION
 									+ "/src/game/Szenario/gespeichert.txt"));
-					pWriter.println(getSave());
+					pWriter.println(getSave(spiel.getSpieler().get(0)));
 					pWriter.flush();
 					JOptionPane.showMessageDialog(null,
 							"Das Spiel wurde gespeichert", "Erfolgreich gespeichert",
@@ -537,16 +533,16 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * 
 	 * @return saveSpielfeld
 	 */
-	public String getSave() {
+	public String getSave(Spieler spieler) {
 		Spielfeld spielfeld = spiel.getAktuellesSpielfeld();
 
-		int health = spiel.getSpieler().getGesundheit();
-		int gold = spiel.getSpieler().getGold();
-		int mana = spiel.getSpieler().getMana();
-		boolean brille = spiel.getSpieler().getBewaffnet();
-		boolean schwert = spiel.getSpieler().getBeschwertet();
-		boolean halsband = spiel.getSpieler().getHalsband();
-		int leben = spiel.getSpieler().getLeben();
+		int health = spieler.getGesundheit();
+		int gold = spieler.getGold();
+		int mana = spieler.getMana();
+		boolean brille = spieler.getBewaffnet();
+		boolean schwert = spieler.getBeschwertet();
+		boolean halsband = spieler.getHalsband();
+		int leben = spieler.getLeben();
 
 		saveSpielfeld = health + Konstanten.ZEILENUMBRUCH + gold
 				+ Konstanten.ZEILENUMBRUCH + mana + Konstanten.ZEILENUMBRUCH
@@ -625,6 +621,17 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
+			
+		if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+			
+			try {
+				erzeugeSpiel();
+				setzeAnzeige(this.spiel.getSpieler().get(0));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		try {
 			this.spiel.aktion(arg0.getKeyCode(), this);
 		} catch (Exception e) {
@@ -633,7 +640,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		}
 		aktualisieren();
 		this.zeichnen(this.spiel.getAktuellesSpielfeld());
-		this.setzeAnzeige();
+		this.setzeAnzeige(this.spiel.getSpieler().get(0));
 	}
 
 	@Override

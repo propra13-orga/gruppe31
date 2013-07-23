@@ -653,7 +653,7 @@ public class Spielfeld {
 		try {
 			pWriter = new PrintWriter(new FileWriter(Konstanten.DIRECTION
 					+ "/src/game/Szenario/checkpoint.txt"));
-			pWriter.println(gameFrame.getSave());
+			pWriter.println(gameFrame.getSave(spiel.getSpieler().get(0)));
 			pWriter.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
