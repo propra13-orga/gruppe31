@@ -13,7 +13,6 @@ import java.io.PrintWriter;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-
 /**
  * erstellt die nötige GUI für das Netzwerk
  * 
@@ -64,7 +63,7 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 
 		ausgehend = out;
 		eintreffend = in;
-		init(titel, x, y);	
+		init(titel, x, y);
 
 		musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
 	}
@@ -152,11 +151,11 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	public void actionPerformed(ActionEvent f) {
-		
+
 		if (f.getSource().equals(btSende)) {
-			
+
 			if (f.getActionCommand().equals(stSende)) {
 				String eingabeText = eingabe.getText();
 				this.addAusgabe(eingabeText);
@@ -164,14 +163,25 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 				ausgehend.flush();
 				eingabe.setText("");
 			}
-		} else {
-			
-			try {
-				netzwerkFrame = new NetzwerkFrame("Netzwerk", Konstanten.XGF, Konstanten.YGF, ausgehend, eintreffend);
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+		} else if (f.getSource().equals(btStart)) {
+
+			if (this.getTitle().equals("Server")) {
+				try {
+					netzwerkFrame = new NetzwerkFrame("Server-Spiel",
+							Konstanten.XGF, Konstanten.YGF, ausgehend,
+							eintreffend);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			} else if (this.getTitle().equals("Client")) {
+				try {
+					netzwerkFrame = new NetzwerkFrame("Client-Spiel",
+							Konstanten.XGF, Konstanten.YGF, ausgehend,
+							eintreffend);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
-		}		
+		}
 	}
 }

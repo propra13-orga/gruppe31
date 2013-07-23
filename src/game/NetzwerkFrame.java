@@ -38,8 +38,6 @@ public class NetzwerkFrame extends GameFrame {
 
 		this.ausgehend = ausgehend;
 		this.eintreffend = eintreffend;
-
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -50,16 +48,46 @@ public class NetzwerkFrame extends GameFrame {
 	 */
 
 	public void keyReleased(KeyEvent arg0) {
-		
+
 		int keyCode = arg0.getKeyCode();
 
-		if (this.getTitle().equals("Server")) {
+		if (this.getTitle().equals("Server-Spiel")) {
+			if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+				
+				try {
+					erzeugeSpiel();
+					setzeAnzeige(this.spiel.getSpieler().get(0));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 
-			/* Taste wurde gedrueckt, Bewegung ausfuehren. */
+			try {
+				spiel.aktion(keyCode, this);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			aktualisieren();
+			this.zeichnen(this.spiel.getAktuellesSpielfeld());
+			this.setzeAnzeige(this.spiel.getSpieler().get(0));
 
 			ausgehend.print(this.spiel);
 			ausgehend.flush();
-		} else {
+		} else if (this.getTitle().equals("Client-Spiel")) {
+			
+			try {
+				spiel.aktion(keyCode, this);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			aktualisieren();
+			this.zeichnen(this.spiel.getAktuellesSpielfeld());
+			this.setzeAnzeige(this.spiel.getSpieler().get(1));
 
 			ausgehend.println(this.spiel);
 			ausgehend.flush();
