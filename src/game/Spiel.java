@@ -50,7 +50,7 @@ public class Spiel {
 
 	/** Deklarierung des Feldes */
 	private Spieler spieler;
-	private Gegner gegner;
+	private ArrayList<Gegner> gegner;
 	private Bossgegner bossgegner;
 	private Barriere barriere;
 	private Spiel spiel;
@@ -62,6 +62,7 @@ public class Spiel {
 	 */
 	public Spiel() {
 		levels = new ArrayList<Spielfeld>();
+		this.gegner = new ArrayList<Gegner>();
 		this.aktSpielfeld = -1;
 	}
 
@@ -168,13 +169,15 @@ public class Spiel {
 							this.spieler.setPosition(new Point(i, j));
 							gameObject = this.spieler;
 						} else if (pruefe == Konstanten.GEGNER) {
-							this.gegner = new Gegner("Pilz");
-							gegner.setPosition(new Point(i, j));
-							gameObject = this.gegner;
+							Gegner aktGegner = new Gegner("Pilz");
+							aktGegner.setPosition(new Point(i, j));
+							gegner.add(aktGegner);
+							gameObject = aktGegner;
 						} else if (pruefe == Konstanten.GEGNER2) {
-							this.gegner = new Gegner("Biene");
-							gegner.setPosition(new Point(i, j));
-							gameObject = this.gegner;
+							Gegner aktGegner = new Gegner("Biene");
+							aktGegner.setPosition(new Point(i, j));
+							gegner.add(aktGegner);
+							gameObject = aktGegner;
 						} else if (pruefe == Konstanten.FALLE) {
 							gameObject = new Falle();
 						} else if (pruefe == Konstanten.WEITER) {

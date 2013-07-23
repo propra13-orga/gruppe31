@@ -34,6 +34,7 @@ import java.awt.event.KeyEvent;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -160,11 +161,15 @@ public class Spielfeld {
 	 * @throws Exception
 	 *             wirft Exception
 	 */
-	public void aktion(Spieler spielfigur, Gegner gegner, int keyCode,
+	public void aktion(Spieler spielfigur, ArrayList<Gegner> gegner, int keyCode,
 			Barriere barriere, GameFrame gameFrame, Bossgegner bossgegner)
 			throws Exception {
 		aktionSpieler(spielfigur, barriere, keyCode, gameFrame, bossgegner);
-		// aktionGegner(gegner, keyCode);
+		
+		for (int i = 0; i < gegner.size(); i++) {
+			
+			aktionGegner(gegner.get(i), keyCode);
+		}
 	}
 
 	/**
