@@ -3,6 +3,7 @@ package game;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -23,10 +24,12 @@ class Server extends Thread {
 	Socket clientSocket = null;
 	/** Deklaration von PrintWriter */
 	PrintWriter ausgehendPr = null;
-	/** Deklaration von InputStremReader */
-	InputStreamReader eintreffendISR = null;
+	/** Deklaration von ObjectInputStream */
+	ObjectInputStream eintreffendOIS;
 	/** Deklaration von BufferedReader */
 	BufferedReader eintreffendBr = null;
+	/** Deklaration von InputStreamReader */
+	InputStreamReader eintreffendISR = null;
 	/** Deklaration von Scanner */
 	Scanner tasten = new Scanner(System.in);
 
@@ -68,11 +71,10 @@ class Server extends Thread {
 
 			/* Eingabestrom */
 			try {
-				eintreffendISR = new InputStreamReader(
-						clientSocket.getInputStream());
-			} catch (IOException e) {
+				eintreffendOIS = new ObjectInputStream(clientSocket.getInputStream());
+			} catch (IOException e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e1.printStackTrace();
 			}
 
 			try {
@@ -81,6 +83,14 @@ class Server extends Thread {
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+			}
+
+			try {
+				eintreffendISR = new InputStreamReader(
+						clientSocket.getInputStream());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 
 			/* erzeugt neues Fenster */
@@ -98,20 +108,22 @@ class Server extends Thread {
 
 				try {
 					/*
-					 * hier eine Unterscheidung ob String oder Objekt, antürlich
+					 * hier eine Unterscheidung ob String oder Objekt, natürlich
 					 * nicht so, weil ich dann ja direkt den richtigen Reader
-					 * benutze, aber wie dann ?
-					 * das selbe in Client (?)
+					 * benutze, aber wie dann ? das selbe in Client (?)
 					 */
-					if (eintreffendBr.readLine() instanceof String) {
+					if (eintreffendOIS.readObject() instanceof String) {
 						incoming = eintreffendBr.readLine();
 						frame.addAusgabe(incoming);
-					} else if (String.valueOf(eintreffendISR.read()) instanceof Object) {
+					} else if (eintreffendOIS.readObject() instanceof Object) {
 						incoming = String.valueOf(eintreffendISR.read());
 						// an NetzwerkFrame leiten
 					}
 
 				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

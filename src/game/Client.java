@@ -3,6 +3,7 @@ package game;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -21,10 +22,12 @@ public class Client extends Thread {
 	Socket socket = null;
 	/** Deklaration von PrintWriter */
 	PrintWriter ausgehendPr = null;
-	/** Deklaration von InputStreamReader */
-	InputStreamReader eintreffendISR = null;
+	/** Deklaration von ObjectInputStream */
+	ObjectInputStream eintreffendOIS;
 	/** Deklaration von BufferedReader */
 	BufferedReader eintreffendBr = null;
+	/** Deklaration von InputStreamReader */
+	InputStreamReader eintreffendISR = null;
 	/** Deklaration von Scanner */
 	Scanner tasten = new Scanner(System.in);
 
@@ -51,6 +54,14 @@ public class Client extends Thread {
 			ausgehendPr = new PrintWriter(socket.getOutputStream(), true);
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+		
+		/* richtet ObjectInputStream für Eingabestrom ein*/
+		try {
+			eintreffendOIS = new ObjectInputStream(socket.getInputStream());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 
 		/* richtet BufferedReader für Eingangsstrom ein */
@@ -84,12 +95,14 @@ public class Client extends Thread {
 		while (true) {
 			String eintreffend;
 			try {
-				/* mit dem Br werden die Buchstaben gelesen: für Chat */
-				eintreffend = eintreffendBr.readLine();
-				/* mit dem ISR werden die Tastenwerte gelesen: fü Spielfeld */
-				// eintreffend = String.valueOf(eintreffendISR.read());
-				frame.addAusgabe(eintreffend);
-			} catch (IOException e) {
+				if (eintreffendOIS.readObject() instanceof String) {
+					eintreffend = eintreffendBr.readLine();
+					frame.addAusgabe(eintreffend);
+				} else if (eintreffendOIS.readObject() instanceof Object) {
+					eintreffend = String.valueOf(eintreffendISR.read());
+					// an NetzwerkFrame leiten
+				}
+			} catch (IOException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}
 		}
