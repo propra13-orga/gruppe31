@@ -1,5 +1,6 @@
 package game;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -22,8 +23,10 @@ class Server extends Thread {
 	Socket clientSocket = null;
 	/** Deklaration von PrintWriter */
 	PrintWriter ausgehendPr = null;
+	/** Deklaration von InputStremReader */
+	InputStreamReader eintreffendISR = null;
 	/** Deklaration von BufferedReader */
-	InputStreamReader eintreffendBr = null;
+	BufferedReader eintreffendBr = null;
 	/** Deklaration von Scanner */
 	Scanner tasten = new Scanner(System.in);
 
@@ -65,16 +68,24 @@ class Server extends Thread {
 
 			/* Eingabestrom */
 			try {
-				eintreffendBr = new InputStreamReader(
+				eintreffendISR = new InputStreamReader(
 						clientSocket.getInputStream());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			try {
+				eintreffendBr = new BufferedReader(new InputStreamReader(
+						clientSocket.getInputStream()));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 
 			/* erzeugt neues Fenster */
 			try {
-				frame = new ChatFrame("Server", ausgehendPr, eintreffendBr,
+				frame = new ChatFrame("Server", ausgehendPr, eintreffendISR,
 						Konstanten.XSERVER, Konstanten.YSERVERCLIENT);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -85,7 +96,8 @@ class Server extends Thread {
 			while (true) {
 				String incoming;
 				try {
-					incoming = String.valueOf(eintreffendBr.read());
+					incoming = eintreffendBr.readLine();
+					//incoming = String.valueOf(eintreffendISR.read());
 					frame.addAusgabe(incoming);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

@@ -152,6 +152,12 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 
 	}
 
+	/**
+	 * verarbeitet die Klicks auf die beiden Buttons im Chatfenster
+	 * 
+	 * @param f
+	 *            ActionEvent
+	 */
 	public void actionPerformed(ActionEvent f) {
 
 		if (f.getSource().equals(btSende)) {
@@ -165,7 +171,7 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 			}
 		} else if (f.getSource().equals(btStart)) {
 
-			if (this.getTitle().equals("Server")) {
+			if ("Server".equals(this.getTitle())) {
 				try {
 					netzwerkFrame = new NetzwerkFrame("Server-Spiel",
 							Konstanten.XGF, Konstanten.YGF, ausgehend,
@@ -173,7 +179,8 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-			} else if (this.getTitle().equals("Client")) {
+
+			} else if ("Client".equals(this.getTitle())) {
 				try {
 					netzwerkFrame = new NetzwerkFrame("Client-Spiel",
 							Konstanten.XGF, Konstanten.YGF, ausgehend,
