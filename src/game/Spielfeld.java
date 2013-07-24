@@ -152,6 +152,7 @@ public class Spielfeld {
 	 *            Spielfigur wird übergeben
 	 * @param gegner
 	 *            Gegner wird übergeben
+	 * @param bienen 
 	 * @param keyCode
 	 *            KeyCode wird übergeben
 	 * @param barriere
@@ -163,7 +164,7 @@ public class Spielfeld {
 	 * @throws Exception
 	 *             wirft Exception
 	 */
-	public void aktion(Spieler spieler, ArrayList<Gegner> gegner, int keyCode,
+	public void aktion(Spieler spieler, ArrayList<Gegner> gegner, ArrayList<Gegner> bienen, int keyCode,
 			Barriere barriere, GameFrame gameFrame, Bossgegner bossgegner)
 			throws Exception {
 

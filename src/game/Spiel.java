@@ -49,12 +49,15 @@ public class Spiel {
 	/** Zeiger auf das aktuelle Spielfeld */
 	private int aktSpielfeld;
 
-	/** Deklarierung des Feldes */
-	protected ArrayList<Spieler> spieler;
-	private ArrayList<Gegner> gegner;
+	/** Deklarierung der Felder */
 	private Bossgegner bossgegner;
 	private Barriere barriere;
 	private Spiel spiel;
+	
+	/** Deklaration von ArrayListen*/
+	private ArrayList<Gegner> pilze;
+	private ArrayList<Gegner> bienen;
+	protected ArrayList<Spieler> spieler;
 
 	private String invalid = "Ungültig";
 
@@ -64,7 +67,8 @@ public class Spiel {
 	public Spiel() {
 		levels = new ArrayList<Spielfeld>();
 		spieler = new ArrayList<Spieler>();
-		this.gegner = new ArrayList<Gegner>();
+		this.pilze = new ArrayList<Gegner>();
+		this.bienen = new ArrayList<Gegner>();
 		this.aktSpielfeld = -1;
 	}
 
@@ -183,12 +187,12 @@ public class Spiel {
 						} else if (pruefe == Konstanten.GEGNER) {
 							Gegner aktGegner = new Gegner("Pilz");
 							aktGegner.setPosition(new Point(i, j));
-							gegner.add(aktGegner);
+							pilze.add(aktGegner);
 							gameObject = aktGegner;
 						} else if (pruefe == Konstanten.GEGNER2) {
 							Gegner aktGegner = new Gegner("Biene");
 							aktGegner.setPosition(new Point(i, j));
-							gegner.add(aktGegner);
+							bienen.add(aktGegner);
 							gameObject = aktGegner;
 						} else if (pruefe == Konstanten.FALLE) {
 							gameObject = new Falle();
@@ -398,7 +402,7 @@ public class Spiel {
 				|| keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_DOWN || 
 				keyCode == KeyEvent.VK_SPACE|| keyCode == KeyEvent.VK_CONTROL
 				|| keyCode == KeyEvent.VK_SHIFT || keyCode == KeyEvent.VK_X) {			
-		levels.get(aktSpielfeld).aktion(spieler.get(0), this.gegner, keyCode,
+		levels.get(aktSpielfeld).aktion(spieler.get(0), this.pilze, this.bienen, keyCode,
 				barriere, gameFrame, this.bossgegner);
 		
 		/* Pruefe ob Spieler2-Tasten gedrueckt wurden. */
@@ -406,7 +410,7 @@ public class Spiel {
 				|| keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_D || 
 				keyCode == KeyEvent.VK_J || keyCode == KeyEvent.VK_K
 						|| keyCode == KeyEvent.VK_N || keyCode == KeyEvent.VK_M) {
-			levels.get(aktSpielfeld).aktion(spieler.get(1), this.gegner, keyCode,
+			levels.get(aktSpielfeld).aktion(spieler.get(1), this.pilze, this.bienen, keyCode,
 					barriere, gameFrame, this.bossgegner);
 		}
 	}
