@@ -180,7 +180,8 @@ public class Spielfeld {
 		// mit dem unteren Block laufen zwar alle Gegner richtig, jedoch werden
 		// im ersten Spielfeld alle Gegner der txt angezeigt */
 		/*
-		 * for (int i = 0; i < pilze.size(); i++) { aktionGegner(pilze.get(i),
+		 * for (int i = 0; i < pilze.size(); i++) { 
+		 * aktionGegner(pilze.get(i),
 		 * keyCode); }
 		 */
 	}
@@ -848,26 +849,29 @@ public class Spielfeld {
 				} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
 					this.setzeObjekt(new Rasen(), linksPos);
 				}
+				musik = new Musik(Konstanten.DIRECTION + huhu);
 			} else if (rechts instanceof Bossgegner) {
 				if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
 					bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
 				} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
 					this.setzeObjekt(new Rasen(), rechtsPos);
 				}
+				musik = new Musik(Konstanten.DIRECTION + huhu);
 			} else if (oben instanceof Bossgegner) {
 				if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
 					bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
 				} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
 					this.setzeObjekt(new Rasen(), obenPos);
 				}
+				musik = new Musik(Konstanten.DIRECTION + huhu);
 			} else if (unten instanceof Bossgegner) {
 				if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
 					bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
 				} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
 					this.setzeObjekt(new Rasen(), untenPos);
 				}
+				musik = new Musik(Konstanten.DIRECTION + huhu);
 			}
-			musik = new Musik(Konstanten.DIRECTION + huhu);
 		} else {
 			JOptionPane.showMessageDialog(null, "Sie tragen kein Schwert!",
 					attention, JOptionPane.WARNING_MESSAGE);
