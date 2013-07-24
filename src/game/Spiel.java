@@ -187,7 +187,7 @@ public class Spiel {
 						} else if (pruefe == Konstanten.GEGNER) {
 							Gegner aktGegner = new Gegner("Pilz");
 							aktGegner.setPosition(new Point(i, j));
-							pilze.add(aktGegner);
+							this.pilze.add(aktGegner);
 							gameObject = aktGegner;
 						} else if (pruefe == Konstanten.GEGNER2) {
 							Gegner aktGegner = new Gegner("Biene");
@@ -384,7 +384,7 @@ public class Spiel {
 	public ArrayList<Spieler> getSpieler() {
 		return this.spieler;
 	}
-
+	
 	/**
 	 * Bewegung wird auf dem aktuellen Spielfeld durchgeführt
 	 * 
@@ -401,7 +401,8 @@ public class Spiel {
 		if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_RIGHT
 				|| keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_DOWN || 
 				keyCode == KeyEvent.VK_SPACE|| keyCode == KeyEvent.VK_CONTROL
-				|| keyCode == KeyEvent.VK_SHIFT || keyCode == KeyEvent.VK_X) {			
+				|| keyCode == KeyEvent.VK_SHIFT || keyCode == KeyEvent.VK_X) {	
+
 		levels.get(aktSpielfeld).aktion(spieler.get(0), this.pilze, this.bienen, keyCode,
 				barriere, gameFrame, this.bossgegner);
 		

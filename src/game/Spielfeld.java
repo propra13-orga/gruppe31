@@ -150,9 +150,10 @@ public class Spielfeld {
 	 * 
 	 * @param spieler
 	 *            Spielfigur wird übergeben
-	 * @param gegner
-	 *            Gegner wird übergeben
-	 * @param bienen 
+	 * @param pilze
+	 *            Pilze-List wird übergeben
+	 * @param bienen
+	 *            Bienen-List wird übergeben
 	 * @param keyCode
 	 *            KeyCode wird übergeben
 	 * @param barriere
@@ -164,29 +165,38 @@ public class Spielfeld {
 	 * @throws Exception
 	 *             wirft Exception
 	 */
-	public void aktion(Spieler spieler, ArrayList<Gegner> gegner, ArrayList<Gegner> bienen, int keyCode,
-			Barriere barriere, GameFrame gameFrame, Bossgegner bossgegner)
-			throws Exception {
+	public void aktion(Spieler spieler, ArrayList<Gegner> pilze,
+			ArrayList<Gegner> bienen, int keyCode, Barriere barriere,
+			GameFrame gameFrame, Bossgegner bossgegner) throws Exception {
 
 		aktionSpieler(spieler, barriere, keyCode, gameFrame, bossgegner);
 
-		for (int i = 0; i < gegner.size(); i++) {
-			aktionGegner(gegner.get(i), keyCode);
-		}
+		/*
+		 * mit diesem Befehl gibt es pro Raum nur einen Gegner, aber nur jeder
+		 * zweite Gegner läuft richtig und ist angreifbar
+		 */
+		aktionGegner(pilze.get(spiel.getAktSpielfeld()), keyCode);
+
+		// mit dem unteren Block laufen zwar alle Gegner richtig, jedoch werden
+		// im ersten Spielfeld alle Gegner der txt angezeigt */
+		/*
+		 * for (int i = 0; i < pilze.size(); i++) { aktionGegner(pilze.get(i),
+		 * keyCode); }
+		 */
 	}
 
 	/**
 	 * Gegnerfigur wird bewegt
 	 * 
-	 * @param gegner
+	 * @param aktGegner
 	 *            Kommandozeilenparameter
 	 * @param keyCode
 	 *            Kommandozeilenparameter
 	 */
-	private void aktionGegner(Gegner gegner, int keyCode) {
+	private void aktionGegner(Gegner aktGegner, int keyCode) {
 
 		/* Alte und neue Position für Spieler festlegen. */
-		Point aktGegPos = gegner.getPosition();
+		Point aktGegPos = aktGegner.getPosition();
 		Point neuGegPos = new Point(aktGegPos);
 
 		if (keyCode == KeyEvent.VK_LEFT) {
@@ -213,13 +223,13 @@ public class Spielfeld {
 		if (gegSollBewegtWerden) {
 			/* setzt Rasen an die alte Position und en Gegner auf die neue */
 			this.setzeObjekt(obj, aktGegPos);
-			this.setzeObjekt(gegner, neuGegPos);
+			this.setzeObjekt(aktGegner, neuGegPos);
 			/* setzt die neue Position */
-			gegner.setPosition(neuGegPos);
+			aktGegner.setPosition(neuGegPos);
 		}
 
-		gegner.setzeBildPilz();
-		gegner.getPicture();
+		aktGegner.setzeBildPilz();
+		aktGegner.getPicture();
 	}
 
 	/**
