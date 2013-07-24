@@ -86,7 +86,7 @@ public class Client extends Thread {
 			try {
 				/* mit dem Br werden die Buchstaben gelesen: für Chat */
 				eintreffend = eintreffendBr.readLine();
-				/* mit dem ISR werden die Tastenwerde gelesen: fü Spielfeld */
+				/* mit dem ISR werden die Tastenwerte gelesen: fü Spielfeld */
 				// eintreffend = String.valueOf(eintreffendISR.read());
 				frame.addAusgabe(eintreffend);
 			} catch (IOException e) {

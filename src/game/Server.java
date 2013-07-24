@@ -74,7 +74,7 @@ class Server extends Thread {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			try {
 				eintreffendBr = new BufferedReader(new InputStreamReader(
 						clientSocket.getInputStream()));
@@ -95,10 +95,22 @@ class Server extends Thread {
 			/* wartet in Endlosschleife auf Eingabestrom */
 			while (true) {
 				String incoming;
+
 				try {
-					incoming = eintreffendBr.readLine();
-					//incoming = String.valueOf(eintreffendISR.read());
-					frame.addAusgabe(incoming);
+					/*
+					 * hier eine Unterscheidung ob String oder Objekt, antürlich
+					 * nicht so, weil ich dann ja direkt den richtigen Reader
+					 * benutze, aber wie dann ?
+					 * das selbe in Client (?)
+					 */
+					if (eintreffendBr.readLine() instanceof String) {
+						incoming = eintreffendBr.readLine();
+						frame.addAusgabe(incoming);
+					} else if (String.valueOf(eintreffendISR.read()) instanceof Object) {
+						incoming = String.valueOf(eintreffendISR.read());
+						// an NetzwerkFrame leiten
+					}
+
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
