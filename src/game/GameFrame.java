@@ -248,9 +248,6 @@ public class GameFrame extends JFrame implements KeyListener {
 		getContentPane().add(panelAnzeige);
 		getContentPane().add(panelButtons);
 
-		setzeLoadButton();
-		setzeSaveButton();
-
 		this.requestFocus();
 
 		musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
@@ -272,6 +269,9 @@ public class GameFrame extends JFrame implements KeyListener {
 		spiel.init(datei);
 
 		zeichnen(spiel.getAktuellesSpielfeld());
+		
+		setzeLoadButton();
+		setzeSaveButton();
 	}
 
 	/**
@@ -513,7 +513,7 @@ public class GameFrame extends JFrame implements KeyListener {
 					pWriter.println(getSave(spiel.getSpieler().get(0)));
 					pWriter.flush();
 					JOptionPane.showMessageDialog(null,
-							"Das Spiel wurde gespeichert", "Erfolgreich gespeichert",
+							"Das aktuelle Spielfeld wurde gespeichert", "Erfolgreich gespeichert",
 							JOptionPane.INFORMATION_MESSAGE);
 				} catch (IOException ioe) {
 					ioe.printStackTrace();
