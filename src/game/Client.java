@@ -55,8 +55,13 @@ public class Client extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		/* richtet ObjectInputStream für Eingabestrom ein*/
+
+		/*
+		 * richtet ObjectInputStream für Eingabestrom ein:Ein ObjectInputStream
+		 * liest (deserialisiert) Daten primitiven Datentyps und Objekte, die
+		 * früher mittels eines ObjectOutputStream geschrieben (serialisiert)
+		 * wurden.
+		 */
 		try {
 			eintreffendOIS = new ObjectInputStream(socket.getInputStream());
 		} catch (IOException e1) {
@@ -64,7 +69,10 @@ public class Client extends Thread {
 			e1.printStackTrace();
 		}
 
-		/* richtet BufferedReader für Eingangsstrom ein */
+		/*
+		 * richtet BufferedReader für Eingangsstrom ein: Reader, der
+		 * zwischenspeichert, bevor er liest
+		 */
 		try {
 			eintreffendBr = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
@@ -72,7 +80,10 @@ public class Client extends Thread {
 			e.printStackTrace();
 		}
 
-		/* richtet InputStreamReader für Eingangsstrom ein */
+		/*
+		 * richtet InputStreamReader für Eingangsstrom ein: Basisklasse für alle
+		 * Reader, die einen Byte-Stream in einen Zeichen-Stream umwandeln.
+		 */
 		try {
 			eintreffendISR = new InputStreamReader(socket.getInputStream());
 		} catch (IOException e) {
