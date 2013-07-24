@@ -50,10 +50,12 @@ public class NetzwerkFrame extends GameFrame {
 	public void keyReleased(KeyEvent arg0) {
 
 		int keyCode = arg0.getKeyCode();
-
-		if (this.getTitle().equals("Server-Spiel")) {
+		
+		/* Prüfe, ob Server etwas gedrückt hat */
+		if ("Server-Spiel".equals(this.getTitle())) {
+			
+			/* nur Server kann das Spiel starten */
 			if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
-				
 				try {
 					erzeugeSpiel();
 					setzeAnzeige(this.spiel.getSpieler().get(0));
@@ -63,6 +65,7 @@ public class NetzwerkFrame extends GameFrame {
 				}
 			}
 
+			/* leite Tastendruck an spiel weiter */
 			try {
 				spiel.aktion(keyCode, this);
 			} catch (Exception e) {
@@ -77,7 +80,7 @@ public class NetzwerkFrame extends GameFrame {
 			ausgehend.flush();
 			
 			
-		} else if (this.getTitle().equals("Client-Spiel")) {
+		} else if ("Client-Spiel".equals(this.getTitle())) {
 			
 			try {
 				spiel.aktion(keyCode, this);

@@ -39,27 +39,58 @@ class Server extends Thread {
 	}
 
 	/**
-	 * 
+	 * startet den Server, verbindet mit Client, richtet Ausgabe- und
+	 * Eingabestrom ein. Öffnet ein eigenes Fenster und wartet auf eintreffende
+	 * Zeichen
 	 */
 	public void run() {
 		while (true) {
+
+			/* Wartet auf Verbindung */
 			try {
-				/* Wartet auf Verbindung */
 				clientSocket = serverSocket.accept();
-				/* Ausgabestrom */
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			/* Ausgabestrom */
+			try {
 				ausgehendPr = new PrintWriter(clientSocket.getOutputStream(),
 						true);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			/* Eingabestrom */
+			try {
 				eintreffendBr = new InputStreamReader(
-				/* Eingabestrom */
-				clientSocket.getInputStream());
+						clientSocket.getInputStream());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			/* erzeugt neues Fenster */
+			try {
 				frame = new ChatFrame("Server", ausgehendPr, eintreffendBr,
 						Konstanten.XSERVER, Konstanten.YSERVERCLIENT);
-				while (true) {
-					String incoming = String.valueOf(eintreffendBr.read());
-					frame.addAusgabe(incoming);
-				}
 			} catch (Exception e) {
-				System.out.println("Fehler - ServerSocket.accept()");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			/* wartet in Endlosschleife auf Eingabestrom */
+			while (true) {
+				String incoming;
+				try {
+					incoming = String.valueOf(eintreffendBr.read());
+					frame.addAusgabe(incoming);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}

@@ -72,6 +72,7 @@ public class Spielfeld {
 	private String huhu = "/src/game/Sound/huhu.wav";
 	private String noMana = "Sie haben kein Mana!";
 	private String gewonnen = "gewonnen";
+	private String step = "/src/game/Sound/Schritt.wav";
 
 	/** Deklaration von int zum Zählen */
 	private int jauchBesucht = 0;
@@ -240,7 +241,9 @@ public class Spielfeld {
 			int keyCode, GameFrame gameFrame, Bossgegner bossgegner)
 			throws Exception {
 
+		/* überprüft erneut, ob spielfigur = Erna */
 		if (spielfigur == spiel.spieler.get(0)) {
+
 			/* Alte und neue Position für Spieler festlegen. */
 			Point aktPos = spielfigur.getPosition();
 			Point neuPos = new Point(aktPos);
@@ -261,8 +264,10 @@ public class Spielfeld {
 				/* Andere Tasten wollen wir nicht beruecksichtigen. */
 				return;
 			}
-			
+
+			/* oder ob spielfigur = Luke */
 		} else if (spielfigur == spiel.spieler.get(1)) {
+
 			/* Alte und neue Position für Spieler festlegen. */
 			Point aktPos = spielfigur.getPosition();
 			Point neuPos = new Point(aktPos);
@@ -284,7 +289,6 @@ public class Spielfeld {
 				return;
 			}
 		}
-
 	}
 
 	/**
@@ -438,8 +442,7 @@ public class Spielfeld {
 		}
 
 		if (sollBewegtWerden) {
-			musik = new Musik(Konstanten.DIRECTION
-					+ "/src/game/Sound/Schritt.wav");
+			musik = new Musik(Konstanten.DIRECTION + step);
 			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
 			this.setzeObjekt(obj, aktPos);
 			this.setzeObjekt(spielfigur, neuPos);
@@ -627,8 +630,7 @@ public class Spielfeld {
 		}
 
 		if (sollBewegtWerden) {
-			musik = new Musik(Konstanten.DIRECTION
-					+ "/src/game/Sound/Schritt.wav");
+			musik = new Musik(Konstanten.DIRECTION + step);
 			/* setzt Rasen an die alte Position und die Spielfigur auf die neue */
 			this.setzeObjekt(obj, aktPos);
 			this.setzeObjekt(spielfigur, neuPos);
