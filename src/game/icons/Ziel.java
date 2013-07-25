@@ -1,5 +1,7 @@
 package game.icons;
 
+import java.io.Serializable;
+
 import game.GameObject;
 import game.Konstanten;
 
@@ -7,7 +9,7 @@ import game.Konstanten;
  * ein Objekt dieser Klasse ist das Ziel
  * 
  */
-public class Ziel extends GameObject {
+public class Ziel extends GameObject implements Serializable {
 
 	/** Icon für Ziel wird deklariert */
 	private static final String ICONCUPCAKE = Konstanten.DIRECTION

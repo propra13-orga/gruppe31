@@ -1,5 +1,7 @@
 package game.icons;
 
+import java.io.Serializable;
+
 import game.GameObject;
 import game.Konstanten;
 
@@ -7,7 +9,7 @@ import game.Konstanten;
  * ein Objekt dieser Klasse ist die Huette
  * 
  */
-public class Huette extends GameObject {
+public class Huette extends GameObject implements Serializable {
 
 	/** Icon für Shop wird deklariert */
 	private static final String ICONSHOP = Konstanten.DIRECTION

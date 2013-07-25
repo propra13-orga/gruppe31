@@ -34,12 +34,13 @@ import java.awt.event.KeyEvent;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 /** ist für den jeweiligen Raum zuständig. das Spielfeld wird erstellt */
-public class Spielfeld {
+public class Spielfeld implements Serializable {
 
 	/** Speichert die Objekte auf diesem Spielfeld */
 	public final GameObject[][] feld;
@@ -167,7 +168,7 @@ public class Spielfeld {
 	 */
 	public void aktion(Spieler spieler, ArrayList<Gegner> pilze,
 			ArrayList<Gegner> bienen, int keyCode, Barriere barriere,
-			GameFrame gameFrame, Bossgegner bossgegner) throws Exception {
+			GameFrame gameFrame, Bossgegner bossgegner) {
 
 		aktionSpieler(spieler, barriere, keyCode, gameFrame, bossgegner);
 
@@ -250,8 +251,7 @@ public class Spielfeld {
 	 *             wirft Exception
 	 */
 	private void aktionSpieler(Spieler spielfigur, Barriere barriere,
-			int keyCode, GameFrame gameFrame, Bossgegner bossgegner)
-			throws Exception {
+			int keyCode, GameFrame gameFrame, Bossgegner bossgegner) {
 
 		/* überprüft erneut, ob spielfigur = Erna */
 		if (spielfigur == spiel.spieler.get(0)) {
@@ -325,7 +325,7 @@ public class Spielfeld {
 	 */
 	private void wasd(int keyCode, Spieler spielfigur, Point neuPos,
 			Point aktPos, GameFrame gameFrame, Barriere barriere,
-			Bossgegner bossgegner) throws Exception {
+			Bossgegner bossgegner) {
 		if (keyCode == KeyEvent.VK_A) {
 			neuPos.x--;
 		} else if (keyCode == KeyEvent.VK_D) {
@@ -512,7 +512,7 @@ public class Spielfeld {
 	 */
 	private void pfeiltasten(int keyCode, Spieler spielfigur, Point neuPos,
 			Point aktPos, GameFrame gameFrame, Barriere barriere,
-			Bossgegner bossgegner) throws Exception {
+			Bossgegner bossgegner) {
 		if (keyCode == KeyEvent.VK_LEFT) {
 			neuPos.x--;
 		} else if (keyCode == KeyEvent.VK_RIGHT) {
@@ -689,8 +689,7 @@ public class Spielfeld {
 	 * @throws Exception
 	 *             wirft Exception
 	 */
-	private void bossAngriff(Spieler spielfigur, GameFrame gameFrame)
-			throws Exception {
+	private void bossAngriff(Spieler spielfigur, GameFrame gameFrame) {
 		if (spielfigur.getRuestung() >= Konstanten.HALBR) {
 			spielfigur.setRuestungMinus(Konstanten.HALBH);
 		} else {
@@ -781,11 +780,8 @@ public class Spielfeld {
 	 *            Kommandozeilenparameter
 	 * @param gameFrame
 	 *            Kommandozeilenparameter
-	 * @throws InterruptedException
-	 *             wirft Exception
 	 */
-	private void lasere(Spieler spielfigur, GameFrame gameFrame)
-			throws InterruptedException {
+	private void lasere(Spieler spielfigur, GameFrame gameFrame) {
 		if (spielfigur.getBewaffnet()) {
 
 			Point neuSchussPos = spielfigur.getPosition();

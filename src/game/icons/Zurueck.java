@@ -1,5 +1,7 @@
 package game.icons;
 
+import java.io.Serializable;
+
 import game.GameObject;
 import game.Konstanten;
 
@@ -7,7 +9,7 @@ import game.Konstanten;
  * ein Objekt dieser Klasse ist Zurueck
  * 
  */
-public class Zurueck extends GameObject {
+public class Zurueck extends GameObject implements Serializable {
 
 	/** Icon für Zurueck wird deklariert */
 	private static final String ICONZURUECK = Konstanten.DIRECTION

@@ -1,12 +1,14 @@
 package game.items;
 
+import java.io.Serializable;
+
 import game.Konstanten;
 
 /**
  * ein Objekt dieser Klasse ist die Laserbrille
  * 
  */
-public class Brille extends Item {
+public class Brille extends Item implements Serializable{
 
 	/** Icon für Waffe wird deklariert */
 	private static final String ICONWAFFE = Konstanten.DIRECTION

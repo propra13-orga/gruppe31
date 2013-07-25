@@ -1,5 +1,7 @@
 package game.icons;
 
+import java.io.Serializable;
+
 import game.GameObject;
 import game.Konstanten;
 
@@ -7,7 +9,7 @@ import game.Konstanten;
  * ein Objekt dieser Klasse ist der Rasen
  * 
  */
-public class Rasen extends GameObject {
+public class Rasen extends GameObject implements Serializable {
 
 	/** Icon für Rasen wird deklariert */
 	private static final String ICONRASEN = Konstanten.DIRECTION

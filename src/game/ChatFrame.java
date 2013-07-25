@@ -7,8 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,10 +18,9 @@ import javax.swing.JFrame;
  * 
  */
 public class ChatFrame extends JFrame implements KeyListener, ActionListener {
-
-	/** deklariert PrintWriter, BufferedReader und ActionListener */
-	private PrintWriter ausgehend;
-	private InputStreamReader eintreffend;
+	
+	private Server server;
+	private Client client;
 
 	/** Textareas im Fenster */
 	private TextArea eingabe;
@@ -31,7 +28,6 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 
 	/** Deklaration der Felder */
 	private Musik musik;
-	private Spiel spiel;
 	private NetzwerkFrame netzwerkFrame;
 
 	/** Button im Fenster */
@@ -58,11 +54,12 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 	 * @throws Exception
 	 *             wirft Exception
 	 */
-	ChatFrame(String titel, PrintWriter out, InputStreamReader in, int x, int y)
+	ChatFrame(String titel, Server server, Client client, int x, int y)
 			throws Exception {
 
-		ausgehend = out;
-		eintreffend = in;
+		this.server = server;
+		this.client = client;
+		
 		init(titel, x, y);
 
 		musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
@@ -159,36 +156,49 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 	 *            ActionEvent
 	 */
 	public void actionPerformed(ActionEvent f) {
-
-		if (f.getSource().equals(btSende)) {
-
-			if (f.getActionCommand().equals(stSende)) {
+		
+		if (this.server != null) {
+			
+			if (f.getSource().equals(btSende)) {
+				
 				String eingabeText = eingabe.getText();
 				this.addAusgabe(eingabeText);
-				ausgehend.print(eingabeText + "\n");
-				ausgehend.flush();
+				
+				this.server.versende(eingabeText);
+				
 				eingabe.setText("");
-			}
-		} else if (f.getSource().equals(btStart)) {
-
-			if ("Server".equals(this.getTitle())) {
+			} else if (f.getSource().equals(btStart)) {
+				
 				try {
-					netzwerkFrame = new NetzwerkFrame("Server-Spiel",
-							Konstanten.XGF, Konstanten.YGF, ausgehend,
-							eintreffend);
+					netzwerkFrame = new NetzwerkFrame("Server-Spiel", Konstanten.XGF, Konstanten.YGF, this.server, this.client);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-
-			} else if ("Client".equals(this.getTitle())) {
+			}
+			
+		} else {
+			
+			if (f.getSource().equals(btSende)) {
+				
+				String eingabeText = eingabe.getText();
+				this.addAusgabe(eingabeText);
+				
+				this.client.versende(eingabeText);
+				
+				eingabe.setText("");
+			} else if (f.getSource().equals(btStart)) {
+				
 				try {
-					netzwerkFrame = new NetzwerkFrame("Client-Spiel",
-							Konstanten.XGF, Konstanten.YGF, ausgehend,
-							eintreffend);
+					netzwerkFrame = new NetzwerkFrame("Client-Spiel", Konstanten.XGF, Konstanten.YGF, this.server, this.client);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
 		}
+	}
+
+	public void verarbeiteObjekt(Object obj) {
+	
+		this.netzwerkFrame.verarbeiteObjekt(obj);		
 	}
 }

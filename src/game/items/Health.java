@@ -1,12 +1,14 @@
 package game.items;
 
+import java.io.Serializable;
+
 import game.Konstanten;
 
 /**
  * ein Objekt dieser Klasse ist Health
  * 
  */
-public class Health extends Item {
+public class Health extends Item implements Serializable {
 
 	/** Icon für Trank wird deklariert */
 	private static final String ICONTRANK = Konstanten.DIRECTION

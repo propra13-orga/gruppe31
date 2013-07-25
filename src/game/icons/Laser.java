@@ -1,5 +1,7 @@
 package game.icons;
 
+import java.io.Serializable;
+
 import game.GameObject;
 import game.Konstanten;
 
@@ -7,7 +9,7 @@ import game.Konstanten;
  * ein Objekt dieser Klasse ist Carlos, der NPC
  * 
  */
-public class Laser extends GameObject {
+public class Laser extends GameObject implements Serializable {
 
 	/** Icon für Carlos wird deklariert */
 	private static final String ICONLASER = Konstanten.DIRECTION

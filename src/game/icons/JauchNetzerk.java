@@ -1,5 +1,7 @@
 package game.icons;
 
+import java.io.Serializable;
+
 import game.GameObject;
 import game.Konstanten;
 import game.Musik;
@@ -13,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author Denise
  * 
  */
-public class JauchNetzerk extends GameObject {
+public class JauchNetzerk extends GameObject implements Serializable {
 
 	/** Icon für Checkpoint wird deklariert */
 	private static final String ICONJAUCH = Konstanten.DIRECTION

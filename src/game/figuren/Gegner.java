@@ -6,12 +6,13 @@ import game.Spielfeld;
 
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 
 /**
  * die Objekte dieser Klasse sind der Fliegenpilz und die Biene
  * 
  */
-public class Gegner extends Spielfigur {
+public class Gegner extends Spielfigur implements Serializable {
 
 	/** verschiedene Icons für verschiedene Gegner werden deklariert */
 	private static final String ICONGEGNER1 = Konstanten.DIRECTION

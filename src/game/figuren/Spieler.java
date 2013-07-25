@@ -5,12 +5,13 @@ import game.Spiel;
 import game.Spielfeld;
 
 import java.awt.Point;
+import java.io.Serializable;
 
 /**
  * ein Objekt dieser Klasse ist der Spieler
  * 
  */
-public class Spieler extends Spielfigur {
+public class Spieler extends Spielfigur implements Serializable  {
 
 	/** Icons für den Spieler werden deklariert */
 	private static final String ICONPUDEL = Konstanten.DIRECTION

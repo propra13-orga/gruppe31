@@ -4,13 +4,14 @@ import game.GameObject;
 
 
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 
 /**
  * abstrakte Klasse, die untergeordneten Klassen haben gemein, dass ihre Objekte
  * bewaffne, schaden und gesundheit haben
  * 
  */
-public abstract class Spielfigur extends GameObject {
+public abstract class Spielfigur extends GameObject implements Serializable {
 
 	/** int-Variablen für Spielfigur */
 	private int schaden;

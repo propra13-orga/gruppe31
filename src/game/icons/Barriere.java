@@ -4,12 +4,13 @@ import game.GameObject;
 import game.Konstanten;
 
 import java.awt.Point;
+import java.io.Serializable;
 
 /**
  * ein Objekt dieser Klasse ist die Barriere
  * 
  */
-public class Barriere extends GameObject {
+public class Barriere extends GameObject implements Serializable {
 
 	/** Icon für Baum wird deklariert */
 	private static final String ICONBARRIERE = Konstanten.DIRECTION

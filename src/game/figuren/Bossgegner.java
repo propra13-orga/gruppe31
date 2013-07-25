@@ -1,12 +1,14 @@
 package game.figuren;
 
+import java.io.Serializable;
+
 import game.Konstanten;
 
 /**
  * ein Objekt dieser Klasse ist ein Bossgegner
  * 
  */
-public class Bossgegner extends Spielfigur {
+public class Bossgegner extends Spielfigur implements Serializable {
 
 	/** verschiedene Bilder für den Bossgegner werden deklariert */
 	private static final String ICONBOSS1V = Konstanten.DIRECTION

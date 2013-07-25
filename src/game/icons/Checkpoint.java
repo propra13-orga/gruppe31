@@ -1,5 +1,7 @@
 package game.icons;
 
+import java.io.Serializable;
+
 import game.GameObject;
 import game.Konstanten;
 
@@ -7,7 +9,7 @@ import game.Konstanten;
  * ein Objekt dieser Klasse ist der Checkpoint
  * 
  */
-public class Checkpoint extends GameObject {
+public class Checkpoint extends GameObject implements Serializable {
 
 	/** Icon für Checkpoint wird deklariert */
 	private static final String ICONSAVE = Konstanten.DIRECTION

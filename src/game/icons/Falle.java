@@ -1,5 +1,7 @@
 package game.icons;
 
+import java.io.Serializable;
+
 import game.GameObject;
 import game.Konstanten;
 
@@ -7,7 +9,7 @@ import game.Konstanten;
  * die Objekte dieser Klasse sind die Bombe und der Müll
  * 
  */
-public class Falle extends GameObject {
+public class Falle extends GameObject implements Serializable {
 
 	/** Icons für verschiedene Arten von Waffe werden deklariert */
 	private static final String ICONBOMBE = Konstanten.DIRECTION

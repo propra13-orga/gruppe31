@@ -1,8 +1,9 @@
 package game;
 
+import game.icons.Rasen;
+
+import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 
 /**
  * die Klasse ist für die GUI des Spielfeldes im Netzwerkmodus zuständig
@@ -12,9 +13,9 @@ import java.io.PrintWriter;
  */
 public class NetzwerkFrame extends GameFrame {
 
-	/** Deklaration von PrintWriter und InputStreamReader */
-	private PrintWriter ausgehend;
-	private InputStreamReader eintreffend;
+
+	private Server server;
+	private Client client;
 
 	/**
 	 * Konstruktor wie Oberklasse GameFrame + PW und ISR
@@ -32,12 +33,11 @@ public class NetzwerkFrame extends GameFrame {
 	 * @throws Exception
 	 *             wirft Exception
 	 */
-	public NetzwerkFrame(String titel, int x, int y, PrintWriter ausgehend,
-			InputStreamReader eintreffend) throws Exception {
+	public NetzwerkFrame(String titel, int x, int y, Server server, Client client) throws Exception {
 		super(titel, x, y);
-
-		this.ausgehend = ausgehend;
-		this.eintreffend = eintreffend;
+		
+		this.server = server;
+		this.client = client;
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class NetzwerkFrame extends GameFrame {
 		int keyCode = arg0.getKeyCode();
 		
 		/* Prüfe, ob Server etwas gedrückt hat */
-		if ("Server-Spiel".equals(this.getTitle())) {
+		if (this.server != null) {
 			
 			/* nur Server kann das Spiel starten */
 			if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -73,28 +73,46 @@ public class NetzwerkFrame extends GameFrame {
 				e.printStackTrace();
 			}
 			
-			aktualisieren();
-			this.zeichnen(this.spiel.getAktuellesSpielfeld());
-
-			ausgehend.print(this.spiel);
-			ausgehend.flush();
+			System.out.println("SERVER VERSENDET SPIEL");
 			
-			
-		} else if ("Client-Spiel".equals(this.getTitle())) {
-			
-			try {
-				spiel.aktion(keyCode, this);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			this.server.versende(this.spiel);			
 			
 			aktualisieren();
 			this.zeichnen(this.spiel.getAktuellesSpielfeld());
-			this.setzeAnzeige(this.spiel.getSpieler().get(1));
+			
 
-			ausgehend.println(this.spiel);
-			ausgehend.flush();
+		} else {
+			
+			System.out.println("CLIENT VERSENDET TASTENDRUCK");
+			
+			this.client.versende(keyCode);
+		}
+	}
+
+	public void verarbeiteObjekt(Object obj) {
+		
+		if (this.server != null) {
+			
+			KeyEvent event = (KeyEvent) obj;
+			this.spiel.aktion(event.getKeyCode(), this);
+			
+			this.aktualisieren();
+			this.zeichnen(this.spiel.getAktuellesSpielfeld());
+			this.setzeAnzeige(this.spiel.spieler.get(0));
+			
+			System.out.println("SPIEL GESENDET");
+			System.out.println(this.spiel.getAktuellesSpielfeld().gibObjekt(new Point(14, 7)) instanceof Rasen);
+			
+			this.server.versende(this.spiel);
+			
+		} else {
+			
+			Spiel spiel = (Spiel) obj;
+			
+			this.spiel = spiel;			
+			this.aktualisieren();
+			this.zeichnen(this.spiel.getAktuellesSpielfeld());	
+			this.setzeAnzeige(this.spiel.spieler.get(1));
 		}
 	}
 

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -17,21 +18,15 @@ import javax.swing.JOptionPane;
 class Server extends Thread {
 
 	/** Deklaration des Feldes */
-	ChatFrame frame;
+	private ChatFrame frame;
 	/** Deklaration von ServerSocket */
-	ServerSocket serverSocket = null;
+	private ServerSocket serverSocket = null;
 	/** Deklaration von ClientSocket */
-	Socket clientSocket = null;
-	/** Deklaration von PrintWriter */
-	PrintWriter ausgehendPr = null;
+	private Socket clientSocket = null;
+	private ObjectOutputStream ausgehendOOS;
 	/** Deklaration von ObjectInputStream */
-	ObjectInputStream eintreffendOIS;
+	private ObjectInputStream eintreffendOIS;
 	/** Deklaration von BufferedReader */
-	BufferedReader eintreffendBr = null;
-	/** Deklaration von InputStreamReader */
-	InputStreamReader eintreffendISR = null;
-	/** Deklaration von Scanner */
-	Scanner tasten = new Scanner(System.in);
 
 	/**
 	 * erstellt neuen Socket
@@ -60,43 +55,19 @@ class Server extends Thread {
 				e.printStackTrace();
 			}
 
-			/* Ausgabestrom */
-			try {
-				ausgehendPr = new PrintWriter(clientSocket.getOutputStream(),
-						true);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 
 			/* Eingabestrom */
 			try {
 				eintreffendOIS = new ObjectInputStream(clientSocket.getInputStream());
+				ausgehendOOS = new ObjectOutputStream(clientSocket.getOutputStream());
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-
-			try {
-				eintreffendBr = new BufferedReader(new InputStreamReader(
-						clientSocket.getInputStream()));
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			try {
-				eintreffendISR = new InputStreamReader(
-						clientSocket.getInputStream());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 
 			/* erzeugt neues Fenster */
 			try {
-				frame = new ChatFrame("Server", ausgehendPr, eintreffendISR,
-						Konstanten.XSERVER, Konstanten.YSERVERCLIENT);
+				frame = new ChatFrame("Server", this, null, Konstanten.XSERVER, Konstanten.YSERVERCLIENT);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -104,28 +75,25 @@ class Server extends Thread {
 
 			/* wartet in Endlosschleife auf Eingabestrom */
 			while (true) {
-				String incoming;
-
+				
+				Object obj = null;
+				
 				try {
-					/*
-					 * hier eine Unterscheidung ob String oder Objekt, natürlich
-					 * nicht so, weil ich dann ja direkt den richtigen Reader
-					 * benutze, aber wie dann ? das selbe in Client (?)
-					 */
-					if (eintreffendOIS.readObject() instanceof String) {
-						incoming = eintreffendBr.readLine();
-						frame.addAusgabe(incoming);
-					} else if (eintreffendOIS.readObject() instanceof Object) {
-						incoming = String.valueOf(eintreffendISR.read());
-						// an NetzwerkFrame leiten
-					}
+					obj = eintreffendOIS.readObject();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if (obj instanceof String) {
+					
+					frame.addAusgabe((String) obj);
+				} else {
+					
+					frame.verarbeiteObjekt(obj); 
 				}
 			}
 		}
@@ -143,4 +111,14 @@ class Server extends Thread {
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	public void versende(Object object) {
+		
+		try {
+			this.ausgehendOOS.writeObject(object);
+			this.ausgehendOOS.flush();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	}
 }
