@@ -52,7 +52,6 @@ public class Spielfeld implements Serializable {
 	/** Deklaration von Feldern */
 	private Spiel spiel;
 	private NPC npc;
-	private NPC2 npc2;
 	private Musik musik;
 	private GewonnenVerloren gewonnenVerloren;
 	private Jauch jauch;
@@ -74,6 +73,8 @@ public class Spielfeld implements Serializable {
 	private String noMana = "Sie haben kein Mana!";
 	private String gewonnen = "gewonnen";
 	private String step = "/src/game/Sound/Schritt.wav";
+	private String carlos = "Carlos";
+	private String luke = "Luke";
 
 	/** Deklaration von int zum Zählen */
 	private int jauchBesucht = 0;
@@ -163,8 +164,6 @@ public class Spielfeld implements Serializable {
 	 *            Kommandozeilenparameter
 	 * @param bossgegner
 	 *            Kommandozeilenparameter
-	 * @throws Exception
-	 *             wirft Exception
 	 */
 	public void aktion(Spieler spieler, ArrayList<Gegner> pilze,
 			ArrayList<Gegner> bienen, int keyCode, Barriere barriere,
@@ -172,19 +171,11 @@ public class Spielfeld implements Serializable {
 
 		aktionSpieler(spieler, barriere, keyCode, gameFrame, bossgegner);
 
-		/*
-		 * mit diesem Befehl gibt es pro Raum nur einen Gegner, aber nur jeder
-		 * zweite Gegner läuft richtig und ist angreifbar
-		 */
-		aktionGegner(pilze.get(spiel.getAktSpielfeld()), keyCode);
+		// im ersten Spielfeld werden alle Gegner der txt angezeigt */
+		for (int i = 0; i < pilze.size(); i++) {
+			aktionGegner(pilze.get(i), keyCode);
+		}
 
-		// mit dem unteren Block laufen zwar alle Gegner richtig, jedoch werden
-		// im ersten Spielfeld alle Gegner der txt angezeigt */
-		/*
-		 * for (int i = 0; i < pilze.size(); i++) { 
-		 * aktionGegner(pilze.get(i),
-		 * keyCode); }
-		 */
 	}
 
 	/**
@@ -247,8 +238,6 @@ public class Spielfeld implements Serializable {
 	 *            Kommandozeilenparameter
 	 * @param barriere
 	 *            Kommandozeilenparameter
-	 * @throws Exception
-	 *             wirft Exception
 	 */
 	private void aktionSpieler(Spieler spielfigur, Barriere barriere,
 			int keyCode, GameFrame gameFrame, Bossgegner bossgegner) {
@@ -320,8 +309,6 @@ public class Spielfeld implements Serializable {
 	 *            Kommandozeilenparameter
 	 * @param bossgegner
 	 *            Kommandozeilenparameter
-	 * @throws Exception
-	 *             wirft Exception
 	 */
 	private void wasd(int keyCode, Spieler spielfigur, Point neuPos,
 			Point aktPos, GameFrame gameFrame, Barriere barriere,
@@ -359,7 +346,7 @@ public class Spielfeld implements Serializable {
 		} else if (obj instanceof Huette) {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Carlos) {
-			npc = new NPC();
+			npc = new NPC(carlos);
 			musik = new Musik(Konstanten.DIRECTION + wuff);
 			/* Bewegung igorieren */
 		} else if (obj instanceof Checkpoint) {
@@ -430,7 +417,7 @@ public class Spielfeld implements Serializable {
 			}
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Luke) {
-			npc2 = new NPC2();
+			npc = new NPC(luke);
 			musik = new Musik(Konstanten.DIRECTION + wuff);
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof SchalterZu) {
@@ -547,7 +534,7 @@ public class Spielfeld implements Serializable {
 		} else if (obj instanceof Huette) {
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Carlos) {
-			npc = new NPC();
+			npc = new NPC(carlos);
 			musik = new Musik(Konstanten.DIRECTION + wuff);
 			/* Bewegung igorieren */
 		} else if (obj instanceof Checkpoint) {
@@ -618,7 +605,7 @@ public class Spielfeld implements Serializable {
 			}
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof Luke) {
-			npc2 = new NPC2();
+			npc = new NPC(luke);
 			musik = new Musik(Konstanten.DIRECTION + wuff);
 			/* Bewegung ignorieren. */
 		} else if (obj instanceof SchalterZu) {
@@ -686,8 +673,6 @@ public class Spielfeld implements Serializable {
 	 *            erwartet spielfigur
 	 * @param gameFrame
 	 *            erwartet GameFrame
-	 * @throws Exception
-	 *             wirft Exception
 	 */
 	private void bossAngriff(Spieler spielfigur, GameFrame gameFrame) {
 		if (spielfigur.getRuestung() >= Konstanten.HALBR) {

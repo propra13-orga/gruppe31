@@ -1,6 +1,5 @@
 package game;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,7 +16,7 @@ import javax.swing.WindowConstants;
  */
 public class NPC {
 
-	/** Icons für NPX Anzeige werden deklariert */
+	/** Icons für NPC Carlos Anzeige werden deklariert */
 	private static final Icon ICONCARLOS1 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Carlos1.png");
 	private static final Icon ICONCARLOS2 = new ImageIcon(Konstanten.DIRECTION
@@ -41,7 +40,7 @@ public class NPC {
 	private static final Icon ICONCARLOS11 = new ImageIcon(Konstanten.DIRECTION
 			+ "/src/game/Images/Carlos11.png");
 
-	/** Labels für NPC Anzeige werden deklariert */
+	/** Labels für NPC Carlos Anzeige werden deklariert */
 	private static final JLabel NPC1 = new JLabel(ICONCARLOS1);
 	private static final JLabel NPC2 = new JLabel(ICONCARLOS2);
 	private static final JLabel NPC3 = new JLabel(ICONCARLOS3);
@@ -54,16 +53,41 @@ public class NPC {
 	private static final JLabel NPC10 = new JLabel(ICONCARLOS10);
 	private static final JLabel NPC11 = new JLabel(ICONCARLOS11);
 
-	/** Buttons für NPC Anzeige werden deklariert */
+	/** Buttons für NPC Carlos Anzeige werden deklariert */
 	private JButton weiter;
 	private JButton skip;
+
+	/** Icons für NPC Luke Anzeige werden deklariert */
+	private static final Icon ICONLUKE1 = new ImageIcon(Konstanten.DIRECTION
+			+ "/src/game/Images/Luke1.png");
+
+	/** Labels für NPC Luke Anzeige werden deklariert */
+	private static final JLabel NPC12 = new JLabel(ICONLUKE1);
+
+	/** Buttons für NPC Luke Anzeige werden deklariert */
+	private JButton ok;
 
 	/**
 	 * Konstruktor erstellt ein neues Fenster, in dem der Nutzer mit dem NPC
 	 * interagieren kann
+	 * 
+	 * @param art
+	 *            Kommandozeilenparameter
 	 */
-	public NPC() {
+	public NPC(String art) {
 
+		if ("Carlos".equals(art)) {
+			Carlos();
+		} else if ("Luke".equals(art)) {
+			Luke();
+		}
+
+	}
+
+	/**
+	 * zeigt das Fenster des NPC für Quests an
+	 */
+	private void Luke() {
 		final JFrame frame = new JFrame();
 
 		frame.setResizable(false);
@@ -73,56 +97,102 @@ public class NPC {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
-		NPC1.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
+		NPC12.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC,
+				Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
+		NPC12.setVisible(true);
+		frame.add(NPC12);
+
+		ok = new JButton("Okay, danke!");
+		ok.setBounds(Konstanten.XOK, Konstanten.YOK, Konstanten.BREITEOK,
+				Konstanten.HOEHEOK);
+		frame.add(ok);
+
+		ActionListener alok = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		};
+
+		ok.addActionListener(alok);
+
+	}
+
+	/**
+	 * zeigt das NPC Fenster zu Spielerläuterung an 
+	 */
+	private void Carlos() {
+		final JFrame frame = new JFrame();
+
+		frame.setResizable(false);
+		frame.setSize(Konstanten.BREITENPC, Konstanten.HOEHENPC);
+		frame.setLayout(null);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+
+		NPC1.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC,
+				Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC1.setVisible(true);
 		frame.add(NPC1);
 
-		NPC2.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
+		NPC2.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC,
+				Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC2.setVisible(false);
 		frame.add(NPC2);
 
-		NPC3.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
+		NPC3.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC,
+				Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC3.setVisible(false);
 		frame.add(NPC3);
 
-		NPC4.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
+		NPC4.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC,
+				Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC4.setVisible(false);
 		frame.add(NPC4);
 
-		NPC5.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
+		NPC5.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC,
+				Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC5.setVisible(false);
 		frame.add(NPC5);
 
-		NPC6.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
+		NPC6.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC,
+				Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC6.setVisible(false);
 		frame.add(NPC6);
 
-		NPC7.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
+		NPC7.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC,
+				Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC7.setVisible(false);
 		frame.add(NPC7);
 
-		NPC8.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
+		NPC8.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC,
+				Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC8.setVisible(false);
 		frame.add(NPC8);
 
-		NPC9.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
+		NPC9.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC,
+				Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC9.setVisible(false);
 		frame.add(NPC9);
 
-		NPC10.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
+		NPC10.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC,
+				Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC10.setVisible(false);
 		frame.add(NPC10);
 
-		NPC11.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC, Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
+		NPC11.setBounds(Konstanten.POSXNPC, Konstanten.POYNPC,
+				Konstanten.BREITENPCF, Konstanten.HOEHENPCF);
 		NPC11.setVisible(false);
 		frame.add(NPC11);
 
 		weiter = new JButton("Weiter");
-		weiter.setBounds(Konstanten.XWEITER, Konstanten.YWEITER, Konstanten.BREITEWEITER, Konstanten.HOEHEWEITER);
+		weiter.setBounds(Konstanten.XWEITER, Konstanten.YWEITER,
+				Konstanten.BREITEWEITER, Konstanten.HOEHEWEITER);
 		frame.add(weiter);
 
 		skip = new JButton("Überspringen");
-		skip.setBounds(Konstanten.XSKIP, Konstanten.YSKIP, Konstanten.BREITESKIP, Konstanten.HOEHESKIP);
+		skip.setBounds(Konstanten.XSKIP, Konstanten.YSKIP,
+				Konstanten.BREITESKIP, Konstanten.HOEHESKIP);
 		frame.add(skip);
 
 		ActionListener alweiter = new ActionListener() {
@@ -170,5 +240,6 @@ public class NPC {
 		};
 		weiter.addActionListener(alweiter);
 		skip.addActionListener(alskip);
+
 	}
 }

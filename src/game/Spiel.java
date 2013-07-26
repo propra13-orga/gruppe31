@@ -304,15 +304,6 @@ public class Spiel implements Serializable {
 	}
 
 	/**
-	 * Getter für Zahl aktSpielfeld
-	 * 
-	 * @return aktSpielfeld
-	 */
-	public int getAktSpielfeld() {
-		return aktSpielfeld;
-	}
-
-	/**
 	 * Geht ein Spielfeld weiter.
 	 * 
 	 * @param spielfigur
