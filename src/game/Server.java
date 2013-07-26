@@ -121,8 +121,8 @@ class Server extends Thread {
 	public void versende(Object object) {
 
 		try {
-			this.ausgehendOOS.writeObject(object);
-			this.ausgehendOOS.flush();
+			this.ausgehendOOS.writeUnshared(object);
+			this.ausgehendOOS.reset();
 		} catch (IOException e) {
 
 			e.printStackTrace();
