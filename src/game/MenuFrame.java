@@ -85,7 +85,7 @@ public class MenuFrame extends JFrame {
 		this.add(load);
 
 		control = new JButton("Steuerung");
-		control.setBounds(Konstanten.XBUTTON, Konstanten.YSTEUERUNG,
+		control.setBounds(Konstanten.XBUTTON, Konstanten.YCONTROL,
 				Konstanten.BREITEBUTTON, Konstanten.HOEHEBUTTON);
 		control.setVisible(true);
 		this.add(control);
@@ -202,13 +202,14 @@ public class MenuFrame extends JFrame {
 		final JFrame frame = new JFrame();
 
 		frame.setResizable(true);
-		frame.setSize(Konstanten.BREITEST, Konstanten.HOEHEST);
+		frame.setSize(Konstanten.BREITESTEUERUNG, Konstanten.HOEHESTEUERUNG);
 		frame.setLayout(null);
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
-		STEUERUNG.setBounds(0, 0, Konstanten.BREITEST, Konstanten.HOEHEST);
+		STEUERUNG.setBounds(Konstanten.XSTEUERUNG, Konstanten.YSTEUERUNG,
+				Konstanten.BREITESTEUERUNG, Konstanten.HOEHESTEUERUNG);
 		STEUERUNG.setVisible(true);
 		frame.add(STEUERUNG);
 	}

@@ -617,9 +617,10 @@ public class GameFrame extends JFrame implements KeyListener {
 						saveSpielfeld = saveSpielfeld + "^";
 					}
 				}
-				saveSpielfeld = saveSpielfeld + Konstanten.ZEILENUMBRUCH;
+				saveSpielfeld += Konstanten.ZEILENUMBRUCH;
 			}
-			spielfelder = spielfelder + saveSpielfeld;
+			saveSpielfeld += Konstanten.ZEILENUMBRUCH;
+			spielfelder += saveSpielfeld;
 		}
 		return spielfelder;
 	}

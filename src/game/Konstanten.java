@@ -133,8 +133,10 @@ public final class Konstanten {
 	public static final int YGF = 700;
 
 	/** die Groessen für das Steuerungsfenster */
-	public static final int BREITEST = 440;
-	public static final int HOEHEST = 310;
+	public static final int XSTEUERUNG = -5;
+	public static final int YSTEUERUNG = -15;
+	public static final int BREITESTEUERUNG = 610;
+	public static final int HOEHESTEUERUNG = 430;
 
 	/** die Groessen für das Netzwerkfenster */
 	public static final int BREITECHAT = 700;
@@ -205,7 +207,7 @@ public final class Konstanten {
 	public static final int YSTART = 250;
 	public static final int YSTART2 = 300;
 	public static final int YLADEN = 350;
-	public static final int YSTEUERUNG = 400;
+	public static final int YCONTROL = 400;
 	public static final int YENDE = 450;
 
 	/** Positionen für Madeby-Label */
