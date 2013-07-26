@@ -99,6 +99,8 @@ public class Spiel implements Serializable {
 			/* öffnet BufferedReader und liest .txt hinein */
 			BufferedReader br = new BufferedReader(fr);
 
+			int aktuell = Integer.parseInt(br.readLine());
+			
 			/* speichert die Eigenschaften, bis Spieler gelesen wurde */
 			int saveGesundheit = Integer.parseInt(br.readLine());
 			if (saveGesundheit > Konstanten.VOLLH) {
@@ -291,7 +293,7 @@ public class Spiel implements Serializable {
 			 * setzt das aktuelleSpielfeld wieder an den Anfang, damit der erste
 			 * Raum angezeigt wird
 			 */
-			aktSpielfeld = 0;
+			aktSpielfeld = aktuell;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -304,6 +306,15 @@ public class Spiel implements Serializable {
 	 */
 	public Spielfeld getAktuellesSpielfeld() {
 		return this.levels.get(aktSpielfeld);
+	}
+	
+	/**
+	 * Getter für ein Spielfeld
+	 * @param k
+	 * @return
+	 */
+	public Spielfeld getSpielfeld(int k) {
+		return this.levels.get(k);
 	}
 
 	/**

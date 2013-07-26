@@ -197,6 +197,7 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	/** String zum Speichern eines Spielfeldes */
 	private String saveSpielfeld;
+	private String spielfelder;
 
 	/**
 	 * Konstruktor, der die Eigenschaften des Spielfensters festsetzt. der
@@ -269,7 +270,7 @@ public class GameFrame extends JFrame implements KeyListener {
 		spiel.init(datei);
 
 		zeichnen(spiel.getAktuellesSpielfeld());
-		
+
 		setzeLoadButton();
 		setzeSaveButton();
 	}
@@ -513,7 +514,8 @@ public class GameFrame extends JFrame implements KeyListener {
 					pWriter.println(getSave(spiel.getSpieler().get(0)));
 					pWriter.flush();
 					JOptionPane.showMessageDialog(null,
-							"Das aktuelle Spielfeld wurde gespeichert", "Erfolgreich gespeichert",
+							"Das aktuelle Spielfeld wurde gespeichert",
+							"Erfolgreich gespeichert",
 							JOptionPane.INFORMATION_MESSAGE);
 				} catch (IOException ioe) {
 					ioe.printStackTrace();
@@ -534,84 +536,92 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * @return saveSpielfeld
 	 */
 	public String getSave(Spieler spieler) {
-		Spielfeld spielfeld = spiel.getAktuellesSpielfeld();
 
-		int health = spieler.getGesundheit();
-		int gold = spieler.getGold();
-		int mana = spieler.getMana();
-		boolean brille = spieler.getBewaffnet();
-		boolean schwert = spieler.getBeschwertet();
-		boolean halsband = spieler.getHalsband();
-		int leben = spieler.getLeben();
+		for (int k = 0; k < 9; k++) {
+			Spielfeld spielfeld = spiel.getSpielfeld(k);
 
-		saveSpielfeld = health + Konstanten.ZEILENUMBRUCH + gold
-				+ Konstanten.ZEILENUMBRUCH + mana + Konstanten.ZEILENUMBRUCH
-				+ leben + Konstanten.ZEILENUMBRUCH + brille
-				+ Konstanten.ZEILENUMBRUCH + schwert + Konstanten.ZEILENUMBRUCH
-				+ halsband + Konstanten.ZEILENUMBRUCH;
+			int aktuell = spiel.getAktuellesSpielfeldNumber();
+			int health = spieler.getGesundheit();
+			int gold = spieler.getGold();
+			int mana = spieler.getMana();
+			boolean brille = spieler.getBewaffnet();
+			boolean schwert = spieler.getBeschwertet();
+			boolean halsband = spieler.getHalsband();
+			int leben = spieler.getLeben();
 
-		for (int i = 0; i < Konstanten.SPALTEN; i++) {
-			for (int j = 0; j < Konstanten.ZEILEN; j++) {
-				Point position = new Point(i, j);
-				GameObject teste = spielfeld.gibObjekt(position);
+			spielfelder = aktuell + Konstanten.ZEILENUMBRUCH + health
+					+ Konstanten.ZEILENUMBRUCH + gold
+					+ Konstanten.ZEILENUMBRUCH + mana
+					+ Konstanten.ZEILENUMBRUCH + leben
+					+ Konstanten.ZEILENUMBRUCH + brille
+					+ Konstanten.ZEILENUMBRUCH + schwert
+					+ Konstanten.ZEILENUMBRUCH + halsband
+					+ Konstanten.ZEILENUMBRUCH;
 
-				if (teste instanceof Rasen) {
-					saveSpielfeld = saveSpielfeld + " ";
-				} else if (teste instanceof Grenze) {
-					saveSpielfeld = saveSpielfeld + "#";
-				} else if (teste instanceof Spieler) {
-					saveSpielfeld = saveSpielfeld + "P";
-				} else if (teste instanceof Gegner) {
-					saveSpielfeld = saveSpielfeld + "G";
-				} else if (teste instanceof Falle) {
-					saveSpielfeld = saveSpielfeld + "U";
-				} else if (teste instanceof Weiter) {
-					saveSpielfeld = saveSpielfeld + "W";
-				} else if (teste instanceof Zurueck) {
-					saveSpielfeld = saveSpielfeld + "Z";
-				} else if (teste instanceof Carlos) {
-					saveSpielfeld = saveSpielfeld + "C";
-				} else if (teste instanceof Ziel) {
-					saveSpielfeld = saveSpielfeld + "F";
-				} else if (teste instanceof Huette) {
-					saveSpielfeld = saveSpielfeld + "E";
-				} else if (teste instanceof Brille) {
-					saveSpielfeld = saveSpielfeld + "S";
-				} else if (teste instanceof Gold) {
-					saveSpielfeld = saveSpielfeld + "O";
-				} else if (teste instanceof Mana) {
-					saveSpielfeld = saveSpielfeld + "M";
-				} else if (teste instanceof Health) {
-					saveSpielfeld = saveSpielfeld + "H";
-				} else if (teste instanceof Ruestung) {
-					saveSpielfeld = saveSpielfeld + "R";
-				} else if (teste instanceof Checkpoint) {
-					saveSpielfeld = saveSpielfeld + "D";
-				} else if (teste instanceof Schwert) {
-					saveSpielfeld = saveSpielfeld + "ß";
-				} else if (teste instanceof Shopmana) {
-					saveSpielfeld = saveSpielfeld + "A";
-				} else if (teste instanceof Shophealth) {
-					saveSpielfeld = saveSpielfeld + "Q";
-				} else if (teste instanceof Shopruestung) {
-					saveSpielfeld = saveSpielfeld + "Ü";
-				} else if (teste instanceof Bossgegner) {
-					saveSpielfeld = saveSpielfeld + "B";
-				} else if (teste instanceof Luke) {
-					saveSpielfeld = saveSpielfeld + "L";
-				} else if (teste instanceof SchalterZu) {
-					saveSpielfeld = saveSpielfeld + "&";
-				} else if (teste instanceof SchalterAuf) {
-					saveSpielfeld = saveSpielfeld + "%";
-				} else if (teste instanceof Barriere) {
-					saveSpielfeld = saveSpielfeld + "I";
-				} else if (teste instanceof Jauch) {
-					saveSpielfeld = saveSpielfeld + "^";
-				} 
+			for (int i = 0; i < Konstanten.SPALTEN; i++) {
+				for (int j = 0; j < Konstanten.ZEILEN; j++) {
+					Point position = new Point(i, j);
+					GameObject teste = spielfeld.gibObjekt(position);
+
+					if (teste instanceof Rasen) {
+						saveSpielfeld = saveSpielfeld + " ";
+					} else if (teste instanceof Grenze) {
+						saveSpielfeld = saveSpielfeld + "#";
+					} else if (teste instanceof Spieler) {
+						saveSpielfeld = saveSpielfeld + "P";
+					} else if (teste instanceof Gegner) {
+						saveSpielfeld = saveSpielfeld + "G";
+					} else if (teste instanceof Falle) {
+						saveSpielfeld = saveSpielfeld + "U";
+					} else if (teste instanceof Weiter) {
+						saveSpielfeld = saveSpielfeld + "W";
+					} else if (teste instanceof Zurueck) {
+						saveSpielfeld = saveSpielfeld + "Z";
+					} else if (teste instanceof Carlos) {
+						saveSpielfeld = saveSpielfeld + "C";
+					} else if (teste instanceof Ziel) {
+						saveSpielfeld = saveSpielfeld + "F";
+					} else if (teste instanceof Huette) {
+						saveSpielfeld = saveSpielfeld + "E";
+					} else if (teste instanceof Brille) {
+						saveSpielfeld = saveSpielfeld + "S";
+					} else if (teste instanceof Gold) {
+						saveSpielfeld = saveSpielfeld + "O";
+					} else if (teste instanceof Mana) {
+						saveSpielfeld = saveSpielfeld + "M";
+					} else if (teste instanceof Health) {
+						saveSpielfeld = saveSpielfeld + "H";
+					} else if (teste instanceof Ruestung) {
+						saveSpielfeld = saveSpielfeld + "R";
+					} else if (teste instanceof Checkpoint) {
+						saveSpielfeld = saveSpielfeld + "D";
+					} else if (teste instanceof Schwert) {
+						saveSpielfeld = saveSpielfeld + "ß";
+					} else if (teste instanceof Shopmana) {
+						saveSpielfeld = saveSpielfeld + "A";
+					} else if (teste instanceof Shophealth) {
+						saveSpielfeld = saveSpielfeld + "Q";
+					} else if (teste instanceof Shopruestung) {
+						saveSpielfeld = saveSpielfeld + "Ü";
+					} else if (teste instanceof Bossgegner) {
+						saveSpielfeld = saveSpielfeld + "B";
+					} else if (teste instanceof Luke) {
+						saveSpielfeld = saveSpielfeld + "L";
+					} else if (teste instanceof SchalterZu) {
+						saveSpielfeld = saveSpielfeld + "&";
+					} else if (teste instanceof SchalterAuf) {
+						saveSpielfeld = saveSpielfeld + "%";
+					} else if (teste instanceof Barriere) {
+						saveSpielfeld = saveSpielfeld + "I";
+					} else if (teste instanceof Jauch) {
+						saveSpielfeld = saveSpielfeld + "^";
+					}
+					saveSpielfeld += Konstanten.ZEILENUMBRUCH;
+				}
 			}
-			saveSpielfeld = saveSpielfeld + Konstanten.ZEILENUMBRUCH;
+			spielfelder = spielfelder + saveSpielfeld;
 		}
-		return saveSpielfeld;
+		return spielfelder;
 	}
 
 	@Override
@@ -621,9 +631,9 @@ public class GameFrame extends JFrame implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-			
+
 		if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
-			
+
 			try {
 				erzeugeSpiel();
 				setzeAnzeige(this.spiel.getSpieler().get(0));
