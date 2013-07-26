@@ -777,7 +777,6 @@ public class Spielfeld implements Serializable {
 				neuSchussPos.x++;
 				obj = this.gibObjekt(neuSchussPos);
 			}
-			// timer, der laser weg macht
 			neuSchussPos.x--;
 			obj = this.gibObjekt(neuSchussPos);
 			while (obj instanceof Laser) {
@@ -820,43 +819,57 @@ public class Spielfeld implements Serializable {
 			GameObject rechts = this.gibObjekt(rechtsPos);
 			GameObject unten = this.gibObjekt(untenPos);
 			GameObject oben = this.gibObjekt(obenPos);
-
-			if (links instanceof Bossgegner) {
-				if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
-					bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
-				} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
-					this.setzeObjekt(new Rasen(), linksPos);
+			if (links instanceof Bossgegner || rechts instanceof Bossgegner
+					|| oben instanceof Bossgegner
+					|| unten instanceof Bossgegner) {
+				if (links instanceof Bossgegner) {
+					if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
+						bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
+					} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
+						this.setzeObjekt(new Rasen(), linksPos);
+					}
+					musik = new Musik(Konstanten.DIRECTION + huhu);
+				} else if (rechts instanceof Bossgegner) {
+					if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
+						bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
+					} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
+						this.setzeObjekt(new Rasen(), rechtsPos);
+					}
+					musik = new Musik(Konstanten.DIRECTION + huhu);
+				} else if (oben instanceof Bossgegner) {
+					if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
+						bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
+					} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
+						this.setzeObjekt(new Rasen(), obenPos);
+					}
+					musik = new Musik(Konstanten.DIRECTION + huhu);
+				} else if (unten instanceof Bossgegner) {
+					if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
+						bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
+					} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
+						this.setzeObjekt(new Rasen(), untenPos);
+					}
+					musik = new Musik(Konstanten.DIRECTION + huhu);
+					bossgegner.setzeBild(this.spiel
+							.getAktuellesSpielfeldNumber());
+					bossgegner.getPicture();
 				}
-				musik = new Musik(Konstanten.DIRECTION + huhu);
-			} else if (rechts instanceof Bossgegner) {
-				if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
-					bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
-				} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
-					this.setzeObjekt(new Rasen(), rechtsPos);
+			} else if (rechts instanceof Spieler || links instanceof Spieler
+					|| unten instanceof Spieler || oben instanceof Spieler) {
+				if (spielfigur == spiel.spieler.get(0)) {
+					spiel.spieler.get(1).setGesundheitMinus(50);
+					spiel.spieler.get(1).setzeBildLuke();
+					spiel.spieler.get(1).getPicture();
+				} else if (spielfigur == spiel.spieler.get(1)) {
+					spiel.spieler.get(0).setGesundheitMinus(50);
+					spiel.spieler.get(0).setzeBildErna();
+					spiel.spieler.get(0).getPicture();
 				}
-				musik = new Musik(Konstanten.DIRECTION + huhu);
-			} else if (oben instanceof Bossgegner) {
-				if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
-					bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
-				} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
-					this.setzeObjekt(new Rasen(), obenPos);
-				}
-				musik = new Musik(Konstanten.DIRECTION + huhu);
-			} else if (unten instanceof Bossgegner) {
-				if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
-					bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
-				} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
-					this.setzeObjekt(new Rasen(), untenPos);
-				}
-				musik = new Musik(Konstanten.DIRECTION + huhu);
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Sie tragen kein Schwert!",
 					attention, JOptionPane.WARNING_MESSAGE);
 		}
-
-		bossgegner.setzeBild(this.spiel.getAktuellesSpielfeldNumber());
-		bossgegner.getPicture();
 	}
 
 	/**

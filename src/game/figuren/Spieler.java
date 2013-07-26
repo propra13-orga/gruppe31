@@ -11,7 +11,7 @@ import java.io.Serializable;
  * ein Objekt dieser Klasse ist der Spieler
  * 
  */
-public class Spieler extends Spielfigur implements Serializable  {
+public class Spieler extends Spielfigur implements Serializable {
 
 	/** Icons für den Spieler werden deklariert */
 	private static final String ICONPUDEL = Konstanten.DIRECTION
@@ -87,10 +87,16 @@ public class Spieler extends Spielfigur implements Serializable  {
 	 * wählt das Icon des Spielers, der Luke steuert
 	 */
 	public void setzeBildLuke() {
-		if (getBewaffnet()) {
-			bild = ICONLUKEBEWAFFNET;
-		} else if (!getBewaffnet()) {
-			bild = ICONLUKE;
+		if (!getBewaffnet()) {
+			if (!getBeschwertet()) {
+				bild = ICONLUKE;
+			} else if (getBeschwertet()) {
+				bild = ICONLUKEBESCHWERTET;
+			}
+		} else if (getBewaffnet()) {
+			if (!getBeschwertet()) {
+				bild = ICONLUKEBEWAFFNET;
+			}
 		}
 
 	}
