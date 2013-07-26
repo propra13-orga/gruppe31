@@ -1,8 +1,5 @@
 package game;
 
-import game.icons.Rasen;
-
-import java.awt.Point;
 import java.awt.event.KeyEvent;
 
 /**
@@ -13,12 +10,14 @@ import java.awt.event.KeyEvent;
  */
 public class NetzwerkFrame extends GameFrame {
 
-
+	/** Deklaration der Felder */
 	private Server server;
 	private Client client;
+	private Musik musik;
 
 	/**
-	 * Konstruktor wie Oberklasse GameFrame + PW und ISR
+	 * Konstruktor wie Oberklasse GameFrame, Client und Server werden
+	 * zugewiesen, Musik wird abgespielt
 	 * 
 	 * @param titel
 	 *            Kommandozeilenparameter
@@ -26,18 +25,21 @@ public class NetzwerkFrame extends GameFrame {
 	 *            Kommandozeilenparameter
 	 * @param y
 	 *            Kommandozeilenparameter
-	 * @param ausgehend
-	 *            Kommandozeilenparameter
-	 * @param eintreffend
-	 *            Kommandozeilenparameter
+	 * @param server
+	 *            erwartet Server
+	 * @param client
+	 *            erwartet client
 	 * @throws Exception
 	 *             wirft Exception
 	 */
-	public NetzwerkFrame(String titel, int x, int y, Server server, Client client) throws Exception {
+	public NetzwerkFrame(String titel, int x, int y, Server server,
+			Client client) throws Exception {
 		super(titel, x, y);
-		
+
 		this.server = server;
 		this.client = client;
+
+		musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
 	}
 
 	/**
@@ -50,70 +52,91 @@ public class NetzwerkFrame extends GameFrame {
 	public void keyReleased(KeyEvent arg0) {
 
 		int keyCode = arg0.getKeyCode();
-		
+
 		/* Prüfe, ob Server etwas gedrückt hat */
 		if (this.server != null) {
-			
+
 			/* nur Server kann das Spiel starten */
 			if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
 				try {
 					erzeugeSpiel();
 					setzeAnzeige(this.spiel.getSpieler().get(0));
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 
 			/* leite Tastendruck an spiel weiter */
 			try {
-				spiel.aktion(keyCode, this);
+				if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_RIGHT
+						|| keyCode == KeyEvent.VK_UP
+						|| keyCode == KeyEvent.VK_DOWN
+						|| keyCode == KeyEvent.VK_SPACE
+						|| keyCode == KeyEvent.VK_CONTROL
+						|| keyCode == KeyEvent.VK_SHIFT
+						|| keyCode == KeyEvent.VK_X) {
+					spiel.aktion(keyCode, this);
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			System.out.println("SERVER VERSENDET SPIEL");
-			
-			this.server.versende(this.spiel);			
-			
+
+			/* Server versendet das Spiel an CLient */
+			this.server.versende(this.spiel);
+
+			/* Server aktualisiert und zeichnet seine Grafik */
 			aktualisieren();
 			this.zeichnen(this.spiel.getAktuellesSpielfeld());
-			
+			this.setzeAnzeige(this.spiel.spieler.get(0));
 
+			/* Client hat etwas gedrückt */
 		} else {
-			
-			System.out.println("CLIENT VERSENDET TASTENDRUCK");
-			
+
+			/* Tastendruck des Clients wird gesendet */
 			this.client.versende(keyCode);
 		}
 	}
 
+	/**
+	 * NetzwerkFrame verarbeitet das Objekt, das ankommt
+	 * 
+	 * @param obj
+	 *            Kommandozeilenparameter
+	 */
 	public void verarbeiteObjekt(Object obj) {
-		
+
+		/* wenn ich der Server bin */
 		if (this.server != null) {
-			
-			KeyEvent event = (KeyEvent) obj;
-			this.spiel.aktion(event.getKeyCode(), this);
-			
+
+			/* ist das Objekt ein KeyCode des Clients */
+			int keyCode = (int) obj;
+			if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_A
+					|| keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_D
+					|| keyCode == KeyEvent.VK_J || keyCode == KeyEvent.VK_K
+					|| keyCode == KeyEvent.VK_N || keyCode == KeyEvent.VK_M) {
+				this.spiel.aktion(keyCode, this);
+			}
+
+			/* ServerGrafik wird aktualisiert und gezeichnet */
 			this.aktualisieren();
 			this.zeichnen(this.spiel.getAktuellesSpielfeld());
 			this.setzeAnzeige(this.spiel.spieler.get(0));
-			
-			System.out.println("SPIEL GESENDET");
-			System.out.println(this.spiel.getAktuellesSpielfeld().gibObjekt(new Point(14, 7)) instanceof Rasen);
-			
+
+			/* Server sendet an Client */
 			this.server.versende(this.spiel);
-			
+
+			/* wenn ich der Client bin */
 		} else {
-			
+
+			/* ist das Objekt ein Spiel */
 			Spiel spiel = (Spiel) obj;
-			
-			this.spiel = spiel;			
+
+			/* das ich bei mir aktualisiere und zeichne */
+			this.spiel = spiel;
 			this.aktualisieren();
-			this.zeichnen(this.spiel.getAktuellesSpielfeld());	
+			this.zeichnen(this.spiel.getAktuellesSpielfeld());
 			this.setzeAnzeige(this.spiel.spieler.get(1));
 		}
 	}
-
 }

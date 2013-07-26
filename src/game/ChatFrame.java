@@ -12,25 +12,24 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 /**
- * erstellt die nötige GUI für das Netzwerk
+ * erstellt die nötige GUI für das Chatfenster und leitet ankommende Signal
+ * gegebenenfalls an das NetzwerkFrame weiter
  * 
  * @author Denise
  * 
  */
 public class ChatFrame extends JFrame implements KeyListener, ActionListener {
-	
+
+	/** Deklaration von Feldern */
 	private Server server;
 	private Client client;
+	private NetzwerkFrame netzwerkFrame;
 
 	/** Textareas im Fenster */
 	private TextArea eingabe;
 	private TextArea ausgabe;
 
-	/** Deklaration der Felder */
-	private Musik musik;
-	private NetzwerkFrame netzwerkFrame;
-
-	/** Button im Fenster */
+	/** Deklaration von Buttons im ChatFenster */
 	private JButton btSende;
 	private JButton btStart;
 
@@ -39,14 +38,15 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 
 	/**
 	 * 
-	 * Konstruktor ruft die Initialisierungsmethode auf und spielt Musik ab
+	 * Konstruktor weist sever und client zu, ruft die Initialisierungsmethode
+	 * auf
 	 * 
 	 * @param titel
 	 *            erwartet Titel für Fenster
-	 * @param out
-	 *            Kommandozeilenparamter
-	 * @param in
-	 *            Kommandozeilenparamter
+	 * @param server
+	 *            server wird übergeben
+	 * @param client
+	 *            client wird übergeben
 	 * @param x
 	 *            Angabe für x-Position
 	 * @param y
@@ -59,14 +59,12 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 
 		this.server = server;
 		this.client = client;
-		
-		init(titel, x, y);
 
-		musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Wald.wav");
+		init(titel, x, y);
 	}
 
 	/**
-	 * * initialisiert das Fenster
+	 * * initialisiert das ChatFenster
 	 * 
 	 * @param titel
 	 *            fordert Titel für Fenster
@@ -133,19 +131,18 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-
+		// nothing to do here
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		// nothing to do here
 
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		// nothing to do here
 
 	}
 
@@ -156,40 +153,46 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 	 *            ActionEvent
 	 */
 	public void actionPerformed(ActionEvent f) {
-		
+
+		/* wenn Server nicht null: ich also Server bin */
 		if (this.server != null) {
-			
+
 			if (f.getSource().equals(btSende)) {
-				
+
+				/* Text aus EingabeTextArea wird genommen und weitergeleitet */
 				String eingabeText = eingabe.getText();
 				this.addAusgabe(eingabeText);
-				
+				/* und gesendet */
 				this.server.versende(eingabeText);
-				
+				/* und in eigene EingabeTextArea gesetzt */
 				eingabe.setText("");
 			} else if (f.getSource().equals(btStart)) {
-				
+				/* NetzwerkFrame wird gestartet und mit Titel versehen */
 				try {
-					netzwerkFrame = new NetzwerkFrame("Server-Spiel", Konstanten.XGF, Konstanten.YGF, this.server, this.client);
+					netzwerkFrame = new NetzwerkFrame("Server-Spiel",
+							Konstanten.XGF, Konstanten.YGF, this.server,
+							this.client);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
-			
+
 		} else {
-			
+
 			if (f.getSource().equals(btSende)) {
-				
+
 				String eingabeText = eingabe.getText();
 				this.addAusgabe(eingabeText);
-				
+
 				this.client.versende(eingabeText);
-				
+
 				eingabe.setText("");
 			} else if (f.getSource().equals(btStart)) {
-				
+
 				try {
-					netzwerkFrame = new NetzwerkFrame("Client-Spiel", Konstanten.XGF, Konstanten.YGF, this.server, this.client);
+					netzwerkFrame = new NetzwerkFrame("Client-Spiel",
+							Konstanten.XGF, Konstanten.YGF, this.server,
+							this.client);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -197,8 +200,13 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 		}
 	}
 
+	/**
+	 * ankommendes obj wird an NetzwerkFrame geleitet
+	 * 
+	 * @param obj
+	 *            Kommandozeilenparameter
+	 */
 	public void verarbeiteObjekt(Object obj) {
-	
-		this.netzwerkFrame.verarbeiteObjekt(obj);		
+		this.netzwerkFrame.verarbeiteObjekt(obj);
 	}
 }

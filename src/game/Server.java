@@ -1,16 +1,12 @@
 package game;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
@@ -23,13 +19,13 @@ class Server extends Thread {
 	private ServerSocket serverSocket = null;
 	/** Deklaration von ClientSocket */
 	private Socket clientSocket = null;
+	/** Deklaration von ObjectOutputStream */
 	private ObjectOutputStream ausgehendOOS;
 	/** Deklaration von ObjectInputStream */
 	private ObjectInputStream eintreffendOIS;
-	/** Deklaration von BufferedReader */
 
 	/**
-	 * erstellt neuen Socket
+	 * erstellt neuen Socket und ermittelt die aktuelle IP
 	 * 
 	 * @throws IOException
 	 *             wirft Exception
@@ -55,11 +51,15 @@ class Server extends Thread {
 				e.printStackTrace();
 			}
 
-
-			/* Eingabestrom */
+			/*
+			 * richtet ObjectInputStream(deseralisiert Daten) für Eingabestrom und
+			 * ObjectOutputStream(serialisiert Daten) für Ausgabestrom
+			 */
 			try {
-				eintreffendOIS = new ObjectInputStream(clientSocket.getInputStream());
-				ausgehendOOS = new ObjectOutputStream(clientSocket.getOutputStream());
+				eintreffendOIS = new ObjectInputStream(
+						clientSocket.getInputStream());
+				ausgehendOOS = new ObjectOutputStream(
+						clientSocket.getOutputStream());
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -67,7 +67,8 @@ class Server extends Thread {
 
 			/* erzeugt neues Fenster */
 			try {
-				frame = new ChatFrame("Server", this, null, Konstanten.XSERVER, Konstanten.YSERVERCLIENT);
+				frame = new ChatFrame("Server", this, null, Konstanten.XSERVER,
+						Konstanten.YSERVERCLIENT);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -75,9 +76,10 @@ class Server extends Thread {
 
 			/* wartet in Endlosschleife auf Eingabestrom */
 			while (true) {
-				
+
 				Object obj = null;
-				
+
+				/* weist der Variable den Input zu */
 				try {
 					obj = eintreffendOIS.readObject();
 				} catch (ClassNotFoundException e1) {
@@ -88,19 +90,18 @@ class Server extends Thread {
 					e1.printStackTrace();
 				}
 
+				/* fragt ab, ob String,oder andres und leitet an ChatFrame */
 				if (obj instanceof String) {
-					
 					frame.addAusgabe((String) obj);
 				} else {
-					
-					frame.verarbeiteObjekt(obj); 
+					frame.verarbeiteObjekt(obj);
 				}
 			}
 		}
 	}
 
 	/**
-	 * ermittelt die IP des Servers
+	 * ermittelt die IP des Servers und gibt diese in gesondertem Fenster aus
 	 * 
 	 * @throws UnknownHostException
 	 *             wirft Exception
@@ -111,13 +112,19 @@ class Server extends Thread {
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	/**
+	 * sendet das object
+	 * 
+	 * @param object
+	 *            Kommandozeilenparameter
+	 */
 	public void versende(Object object) {
-		
+
 		try {
 			this.ausgehendOOS.writeObject(object);
 			this.ausgehendOOS.flush();
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}

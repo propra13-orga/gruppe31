@@ -1,6 +1,5 @@
 package game;
 
-
 import java.io.IOException;
 
 import java.io.ObjectInputStream;
@@ -9,7 +8,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-
 /**
  * öffnet den Client-Thread
  * 
@@ -17,20 +15,19 @@ import java.net.UnknownHostException;
  * 
  */
 public class Client extends Thread {
-	
+
 	/** Deklaration des Feldes */
 	ChatFrame frame;
 	/** Deklaration von Socket */
 	Socket socket = null;
-
 	/** Deklaration von ObjectInputStream */
 	ObjectInputStream eintreffendOIS;
-
+	/** Deklaration von ObjectOutputStream */
 	ObjectOutputStream ausgehendOOS;
 
 	/**
-	 * Konstruktor initialisiert Socket, PrintWriterm BufferedReader und ein
-	 * Frame fuer den Client
+	 * richtet Socket, Ausgabe- und Eingabestrom ein. Öffnet ein eigenes Fenster
+	 * und wartet auf eintreffende Zeichen und öffnet ein neues ChatFrame
 	 * 
 	 * @param ip
 	 *            erwartet ip Parameter
@@ -47,10 +44,8 @@ public class Client extends Thread {
 		}
 
 		/*
-		 * richtet ObjectInputStream für Eingabestrom ein:Ein ObjectInputStream
-		 * liest (deserialisiert) Daten primitiven Datentyps und Objekte, die
-		 * früher mittels eines ObjectOutputStream geschrieben (serialisiert)
-		 * wurden.
+		 * richtet ObjectInputStream(deseralisiert Daten) für Eingabestrom und
+		 * ObjectOutputStream(serialisiert Daten) für Ausgabestrom
 		 */
 		try {
 			ausgehendOOS = new ObjectOutputStream(socket.getOutputStream());
@@ -62,48 +57,52 @@ public class Client extends Thread {
 
 		/* erzeugt neues Fenster */
 		try {
-			frame = new ChatFrame("Client", null, this, Konstanten.XCLIENT, Konstanten.YSERVERCLIENT);
+			frame = new ChatFrame("Client", null, this, Konstanten.XCLIENT,
+					Konstanten.YSERVERCLIENT);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * liest die ankommenden Zeichen und leitet sie an das Fenster weiter
+	 * wartet in Endlosschleife auf Eingabestrom und leitet diesen weiter
 	 */
 	public void run() {
-		
+
 		while (true) {
 
 			Object obj = null;
-			
+
 			try {
 				obj = eintreffendOIS.readObject();
 			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
+			/* entweder ist es ein String */
 			if (obj instanceof String) {
-				
 				frame.addAusgabe((String) obj);
+			/* oder ein Spiel */
 			} else {
-				
 				frame.verarbeiteObjekt(obj);
 			}
 		}
 	}
-	
+
+	/**
+	 * sendet object
+	 * 
+	 * @param object
+	 *            Kommandozeilenparameter
+	 */
 	public void versende(Object object) {
-		
+
 		try {
 			this.ausgehendOOS.writeObject(object);
 			this.ausgehendOOS.flush();
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
