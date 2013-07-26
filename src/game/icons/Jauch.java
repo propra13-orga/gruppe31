@@ -3,6 +3,7 @@ package game.icons;
 import java.io.Serializable;
 
 import game.GameObject;
+import game.Spiel;
 import game.Konstanten;
 import game.Musik;
 import game.figuren.Spieler;
@@ -50,14 +51,12 @@ public class Jauch extends GameObject implements Serializable {
 	 * 
 	 * @param spielfigur
 	 *            Kommandozeilenparameter
-	 * @param jauchBesucht
-	 *            Kommandozeilenparameter
 	 */
-	public void raetsel(Spieler spielfigur, int jauchBesucht) {
-
+	public void raetsel(Spieler spielfigur, Spiel spiel) {
+		
 		musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/WWM.wav");
 
-		if (jauchBesucht == Konstanten.BESUCH1) {
+		if (spiel.getJauchBesucht() == Konstanten.BESUCH1) {
 			Object[] options = { ka, "Fliegenpilze", "Steinpilze",
 					"Pfifferling", };
 
@@ -91,7 +90,7 @@ public class Jauch extends GameObject implements Serializable {
 								"Hat deine Mama denn nie mit dir Pilze gesammelt? Pfifferlinge schmecken toll zu Trockenfutter! ",
 								falsch, JOptionPane.PLAIN_MESSAGE);
 			}
-		} else if (jauchBesucht == Konstanten.BESUCH2) {
+		} else if (spiel.getJauchBesucht() == Konstanten.BESUCH2) {
 			Object[] options = { ka, "lila", "schwarz", "grün", };
 
 			int selected = JOptionPane.showOptionDialog(null,
@@ -124,7 +123,7 @@ public class Jauch extends GameObject implements Serializable {
 								falsch, JOptionPane.PLAIN_MESSAGE);
 			}
 
-		} else if (jauchBesucht == Konstanten.BESUCH3) {
+		} else if (spiel.getJauchBesucht() == Konstanten.BESUCH3) {
 			Object[] options = { ka, "Cupcake", "Muffin", "Törtchen", };
 
 			int selected = JOptionPane.showOptionDialog(null,
@@ -155,6 +154,7 @@ public class Jauch extends GameObject implements Serializable {
 			}
 
 		}
+		spiel.setJauchBesucht(1);
 		JOptionPane.showMessageDialog(null,
 				"Na gut, ich bin dann mal wieder in meinem Baumhaus.",
 				"Tschüßchen", JOptionPane.PLAIN_MESSAGE);

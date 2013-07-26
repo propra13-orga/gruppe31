@@ -77,7 +77,6 @@ public class Spielfeld implements Serializable {
 	private String luke = "Luke";
 
 	/** Deklaration von int zum Zählen */
-	private int jauchBesucht = 0;
 	private int raum = 0;
 
 	/** Deklaration Boolean, ob Spiel gespeichert */
@@ -427,8 +426,7 @@ public class Spielfeld implements Serializable {
 			/* Bewegung ignorieren */
 		} else if (obj instanceof Jauch) {
 			jauch = new Jauch();
-			jauchBesucht++;
-			jauch.raetsel(spielfigur, jauchBesucht);
+			jauch.raetsel(spielfigur, spiel);
 			this.setzeObjekt(new Rasen(), neuPos);
 			/* Bewegung ignorieren */
 		} else if (obj instanceof JauchNetzerk) {
@@ -615,8 +613,7 @@ public class Spielfeld implements Serializable {
 			/* Bewegung ignorieren */
 		} else if (obj instanceof Jauch) {
 			jauch = new Jauch();
-			jauchBesucht++;
-			jauch.raetsel(spielfigur, jauchBesucht);
+			jauch.raetsel(spielfigur, spiel);
 			this.setzeObjekt(new Rasen(), neuPos);
 			/* Bewegung ignorieren */
 		} else if (obj instanceof JauchNetzerk) {

@@ -24,6 +24,7 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 	private Server server;
 	private Client client;
 	private NetzwerkFrame netzwerkFrame;
+	private Musik musik;
 
 	/** Textareas im Fenster */
 	private TextArea eingabe;
@@ -127,6 +128,8 @@ public class ChatFrame extends JFrame implements KeyListener, ActionListener {
 		String text = ausgabe.getText();
 		text = text + eingabeText + Konstanten.ZEILENUMBRUCH;
 		ausgabe.setText(text);
+		
+		musik = new Musik(Konstanten.DIRECTION + "/src/game/Sound/Chat.wav");
 	}
 
 	@Override

@@ -134,7 +134,9 @@ public class NetzwerkFrame extends GameFrame {
 			this.spiel = (Spiel) obj;
 
 			this.aktualisieren();
+			/* TODO Client zeichnet nicht */
 			this.zeichnen(this.spiel.getAktuellesSpielfeld());
+			/* TODO Clientanzeige aktualisiert sich nicht */
 			this.setzeAnzeige(this.spiel.spieler.get(1));
 		}
 	}

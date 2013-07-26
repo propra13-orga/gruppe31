@@ -54,13 +54,15 @@ public class Spiel implements Serializable {
 	private Bossgegner bossgegner;
 	private Barriere barriere;
 	private Spiel spiel;
-	
-	/** Deklaration von ArrayListen*/
+
+	/** Deklaration von ArrayListen */
 	private ArrayList<Gegner> pilze;
 	private ArrayList<Gegner> bienen;
 	protected ArrayList<Spieler> spieler;
 
 	private String invalid = "Ungültig";
+
+	private int jauchBesucht;
 
 	/**
 	 * Konstruktor erzeugt ArrayList, welche Spielfelder beinhaltet
@@ -71,6 +73,7 @@ public class Spiel implements Serializable {
 		this.pilze = new ArrayList<Gegner>();
 		this.bienen = new ArrayList<Gegner>();
 		this.aktSpielfeld = -1;
+		this.jauchBesucht = 1;
 	}
 
 	/**
@@ -89,14 +92,13 @@ public class Spiel implements Serializable {
 	public void init(String datei) {
 
 		try {
-			
-			
+
 			/* öffnet FileReader mit Textdatei */
 			FileReader fr = new FileReader(Konstanten.DIRECTION
 					+ "/src/game/Szenario/" + datei);
 			/* öffnet BufferedReader und liest .txt hinein */
 			BufferedReader br = new BufferedReader(fr);
-	
+
 			/* speichert die Eigenschaften, bis Spieler gelesen wurde */
 			int saveGesundheit = Integer.parseInt(br.readLine());
 			if (saveGesundheit > Konstanten.VOLLH) {
@@ -108,8 +110,8 @@ public class Spiel implements Serializable {
 			int saveMana = Integer.parseInt(br.readLine());
 			if (saveMana > Konstanten.VOLLM) {
 				JOptionPane.showMessageDialog(null,
-						"In der Datei gibt es eine ungültige Manaanzahl", invalid,
-						JOptionPane.ERROR_MESSAGE);
+						"In der Datei gibt es eine ungültige Manaanzahl",
+						invalid, JOptionPane.ERROR_MESSAGE);
 				System.exit(0);
 			}
 			int saveRuestung = Integer.parseInt(br.readLine());
@@ -122,24 +124,25 @@ public class Spiel implements Serializable {
 			int saveLeben = Integer.parseInt(br.readLine());
 			if (saveLeben > Konstanten.DREILEBEN) {
 				JOptionPane.showMessageDialog(null,
-						"In der Datei gibt es eine ungültige Lebenanzahl", invalid,
-						JOptionPane.ERROR_MESSAGE);
+						"In der Datei gibt es eine ungültige Lebenanzahl",
+						invalid, JOptionPane.ERROR_MESSAGE);
 				System.exit(0);
 			}
 			boolean saveBewaffnet = Boolean.parseBoolean(br.readLine());
 			boolean saveBeschwertet = Boolean.parseBoolean(br.readLine());
 			boolean saveHalsband = Boolean.parseBoolean(br.readLine());
-	
+
 			/* in line wird eine Zeile gespeichert */
 			String line = br.readLine();
 			do {
 				/* ein neues Spielfeld wird initialisiert */
 				Spielfeld spielfeld = new Spielfeld(this, Konstanten.ZEILEN,
 						Konstanten.SPALTEN);
-	
+
 				/* die Zeilen werden gelesen, bis man bei der 16. angekommen ist */
-				for (int i = 0; i < Konstanten.SPALTEN; i++, line = br.readLine()) {
-	
+				for (int i = 0; i < Konstanten.SPALTEN; i++, line = br
+						.readLine()) {
+
 					/* wenn mehr als 12 Zeichen gelesen werden, Fehlermeldung */
 					if (line.length() != Konstanten.ZEILEN) {
 						JOptionPane
@@ -150,14 +153,14 @@ public class Spiel implements Serializable {
 						System.exit(0);
 					} else {
 						/*
-						 * die Zeichen einer Zeile werden gelesen und in das Array
-						 * geparst
+						 * die Zeichen einer Zeile werden gelesen und in das
+						 * Array geparst
 						 */
 						for (int j = 0; j < Konstanten.ZEILEN; j++) {
 							int pruefe;
 							GameObject gameObject = null;
 							pruefe = (int) line.charAt(j);
-	
+
 							if (pruefe == Konstanten.RASEN) {
 								gameObject = new Rasen();
 							} else if (pruefe == Konstanten.GRENZE) {
@@ -259,13 +262,13 @@ public class Spiel implements Serializable {
 								barriere.setPosition(new Point(i, j));
 								gameObject = new Barriere();
 							}
-	
+
 							spielfeld.setzeObjekt(gameObject, new Point(i, j));
-	
+
 						}
 					}
 				}
-	
+
 				/*
 				 * Alle Zeilen eines Spielfelds gelesen, aktuelles Spielfeld
 				 * speichern und neues Spielfeld erzeugen.
@@ -273,17 +276,17 @@ public class Spiel implements Serializable {
 				this.levels.add(spielfeld);
 				spielfeld = new Spielfeld(this, Konstanten.ZEILEN,
 						Konstanten.SPALTEN);
-	
+
 				/* .. und die Leerzeile ueberspringen .. */
 				line = br.readLine();
-	
+
 				/*
 				 * und der komplette obere Block wird ausgeführt, bis der
 				 * BufferedReader das Ende der Datei gefunden hat
 				 */
 			} while (line != null);
 			fr.close();
-	
+
 			/*
 			 * setzt das aktuelleSpielfeld wieder an den Anfang, damit der erste
 			 * Raum angezeigt wird
@@ -382,7 +385,7 @@ public class Spiel implements Serializable {
 	public ArrayList<Spieler> getSpieler() {
 		return this.spieler;
 	}
-	
+
 	/**
 	 * Bewegung wird auf dem aktuellen Spielfeld durchgeführt
 	 * 
@@ -394,23 +397,24 @@ public class Spiel implements Serializable {
 	 *             wirft Exception
 	 */
 	public void aktion(int keyCode, GameFrame gameFrame) {
-		
+
 		/* Pruefe ob Spieler1-Tasten gedrueckt wurden. */
 		if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_RIGHT
-				|| keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_DOWN || 
-				keyCode == KeyEvent.VK_SPACE|| keyCode == KeyEvent.VK_CONTROL
-				|| keyCode == KeyEvent.VK_SHIFT || keyCode == KeyEvent.VK_X) {	
+				|| keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_DOWN
+				|| keyCode == KeyEvent.VK_SPACE
+				|| keyCode == KeyEvent.VK_CONTROL
+				|| keyCode == KeyEvent.VK_SHIFT || keyCode == KeyEvent.VK_X) {
 
-		levels.get(aktSpielfeld).aktion(spieler.get(0), this.pilze, this.bienen, keyCode,
-				barriere, gameFrame, this.bossgegner);
-		
-		/* Pruefe ob Spieler2-Tasten gedrueckt wurden. */
+			levels.get(aktSpielfeld).aktion(spieler.get(0), this.pilze,
+					this.bienen, keyCode, barriere, gameFrame, this.bossgegner);
+
+			/* Pruefe ob Spieler2-Tasten gedrueckt wurden. */
 		} else if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_A
-				|| keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_D || 
-				keyCode == KeyEvent.VK_J || keyCode == KeyEvent.VK_K
-						|| keyCode == KeyEvent.VK_N || keyCode == KeyEvent.VK_M) {
-			levels.get(aktSpielfeld).aktion(spieler.get(1), this.pilze, this.bienen, keyCode,
-					barriere, gameFrame, this.bossgegner);
+				|| keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_D
+				|| keyCode == KeyEvent.VK_J || keyCode == KeyEvent.VK_K
+				|| keyCode == KeyEvent.VK_N || keyCode == KeyEvent.VK_M) {
+			levels.get(aktSpielfeld).aktion(spieler.get(1), this.pilze,
+					this.bienen, keyCode, barriere, gameFrame, this.bossgegner);
 		}
 	}
 
@@ -420,7 +424,21 @@ public class Spiel implements Serializable {
 	 * @return aktSpielfeld
 	 */
 	public int getAktuellesSpielfeldNumber() {
-
 		return aktSpielfeld;
+	}
+
+	/**
+	 * @return the jauchBesucht
+	 */
+	public int getJauchBesucht() {
+		return jauchBesucht;
+	}
+
+	/**
+	 * @param jauchBesucht
+	 *            the jauchBesucht to set
+	 */
+	public void setJauchBesucht(int neu) {
+		this.jauchBesucht = jauchBesucht + neu;
 	}
 }
