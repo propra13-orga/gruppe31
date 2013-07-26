@@ -536,6 +536,7 @@ public class GameFrame extends JFrame implements KeyListener {
 	 * @return saveSpielfeld
 	 */
 	public String getSave(Spieler spieler) {
+		saveSpielfeld = "";
 
 		for (int k = 0; k < 9; k++) {
 			Spielfeld spielfeld = spiel.getSpielfeld(k);
