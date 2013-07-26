@@ -1,6 +1,7 @@
 package game;
 
 import java.io.File;
+import java.io.Serializable;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -13,7 +14,7 @@ import javax.sound.sampled.Clip;
  * @author Denise
  * 
  */
-public class Musik {
+public class Musik implements Serializable {
 
 	/**
 	 * Konstruktor öffnet Thread und spielt einen Clip ein

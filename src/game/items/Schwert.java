@@ -1,12 +1,14 @@
 package game.items;
 
+import java.io.Serializable;
+
 import game.Konstanten;
 
 /**
  * ein Objekt dieser Klasse ist das Schwert
  * 
  */
-public class Schwert extends Item {
+public class Schwert extends Item implements Serializable {
 
 	/** Icon für Schwert wird deklariert */
 	private static final String ICONSCHWERT = Konstanten.DIRECTION

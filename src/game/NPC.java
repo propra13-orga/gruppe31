@@ -2,6 +2,7 @@ package game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -14,7 +15,7 @@ import javax.swing.WindowConstants;
  * ein Objekt dieser Klasse ist das NPCFenster, in welchem dem Spieler die
  * wichtigsten Informationen zum Spiel vom NPC gegeben werden
  */
-public class NPC {
+public class NPC implements Serializable {
 
 	/** Icons für NPC Carlos Anzeige werden deklariert */
 	private static final Icon ICONCARLOS1 = new ImageIcon(Konstanten.DIRECTION

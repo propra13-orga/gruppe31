@@ -1,12 +1,14 @@
 package game.items;
 
+import java.io.Serializable;
+
 import game.Konstanten;
 
 /**
  * ein Objekt dieser Klasse ist die Ruestung
  * 
  */
-public class Ruestung extends Item {
+public class Ruestung extends Item implements Serializable {
 
 	/** Icon für Ruestung wird deklariert */
 	private static final String ICONRUESTUNG = Konstanten.DIRECTION

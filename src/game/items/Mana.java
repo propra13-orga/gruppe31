@@ -1,12 +1,14 @@
 package game.items;
 
+import java.io.Serializable;
+
 import game.Konstanten;
 
 /**
  * ein Objekt dieser Klasse ist Mana
  * 
  */
-public class Mana extends Item {
+public class Mana extends Item implements Serializable {
 
 	/** Icon für Mana wird deklariert */
 	private static final String ICONMANA = Konstanten.DIRECTION

@@ -57,7 +57,7 @@ public class NetzwerkFrame extends GameFrame {
 		if (this.server != null) {
 
 			/* nur Server kann das Spiel starten */
-			if (arg0.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (keyCode == KeyEvent.VK_ENTER) {
 				try {
 					erzeugeSpiel();
 					setzeAnzeige(this.spiel.getSpieler().get(0));
@@ -92,9 +92,8 @@ public class NetzwerkFrame extends GameFrame {
 
 			/* Client hat etwas gedrückt */
 		} else {
-
-			/* Tastendruck des Clients wird gesendet */
-			this.client.versende(keyCode);
+			
+			this.client.versende(arg0);
 		}
 	}
 
@@ -109,8 +108,10 @@ public class NetzwerkFrame extends GameFrame {
 		/* wenn ich der Server bin */
 		if (this.server != null) {
 
-			/* ist das Objekt ein KeyCode des Clients */
-			int keyCode = (int) obj;
+			/* ist das Objekt ein KeyEvent des Clients */
+			KeyEvent event = (KeyEvent) obj;
+
+			int keyCode = event.getKeyCode();
 			if (keyCode == KeyEvent.VK_W || keyCode == KeyEvent.VK_A
 					|| keyCode == KeyEvent.VK_S || keyCode == KeyEvent.VK_D
 					|| keyCode == KeyEvent.VK_J || keyCode == KeyEvent.VK_K
@@ -130,10 +131,8 @@ public class NetzwerkFrame extends GameFrame {
 		} else {
 
 			/* ist das Objekt ein Spiel */
-			Spiel spiel = (Spiel) obj;
+			this.spiel = (Spiel) obj;
 
-			/* das ich bei mir aktualisiere und zeichne */
-			this.spiel = spiel;
 			this.aktualisieren();
 			this.zeichnen(this.spiel.getAktuellesSpielfeld());
 			this.setzeAnzeige(this.spiel.spieler.get(1));
