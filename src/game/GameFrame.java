@@ -616,8 +616,8 @@ public class GameFrame extends JFrame implements KeyListener {
 					} else if (teste instanceof Jauch) {
 						saveSpielfeld = saveSpielfeld + "^";
 					}
-					saveSpielfeld += Konstanten.ZEILENUMBRUCH;
 				}
+				saveSpielfeld = saveSpielfeld + Konstanten.ZEILENUMBRUCH;
 			}
 			spielfelder = spielfelder + saveSpielfeld;
 		}
