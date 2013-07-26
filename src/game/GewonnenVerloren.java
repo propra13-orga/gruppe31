@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -19,7 +20,7 @@ import javax.swing.WindowConstants;
  * @author Denise
  * 
  */
-public class GewonnenVerloren {
+public class GewonnenVerloren implements Serializable {
 
 	/** Deklaration eines Strings für das Schließen */
 	private String schliessen = "Dieses Fenster schließen";

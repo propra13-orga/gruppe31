@@ -92,7 +92,6 @@ public class NetzwerkFrame extends GameFrame {
 
 			/* Client hat etwas gedrückt */
 		} else {
-			
 			this.client.versende(arg0);
 		}
 	}
