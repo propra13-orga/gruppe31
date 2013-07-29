@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- * diese Klasse repräsentiert das komplette Spiel, welches aus verschiedenen
+ * diese Klasse reprï¿½sentiert das komplette Spiel, welches aus verschiedenen
  * Spielfelder besteht. Das Spiel wird aus einer Textdatei eingelesen
  */
 public class Spiel implements Serializable {
@@ -51,16 +51,16 @@ public class Spiel implements Serializable {
 	private int aktSpielfeld;
 
 	/** Deklarierung der Felder */
-	private Bossgegner bossgegner;
 	private Barriere barriere;
 	private Spiel spiel;
 
 	/** Deklaration von ArrayListen */
 	private ArrayList<Gegner> pilze;
 	private ArrayList<Gegner> bienen;
+	private ArrayList<Bossgegner> bossgegner;
 	protected ArrayList<Spieler> spieler;
 
-	private String invalid = "Ungültig";
+	private String invalid = "Ungï¿½ltig";
 
 	private int jauchBesucht;
 
@@ -72,13 +72,14 @@ public class Spiel implements Serializable {
 		spieler = new ArrayList<Spieler>();
 		this.pilze = new ArrayList<Gegner>();
 		this.bienen = new ArrayList<Gegner>();
+		this.bossgegner = new ArrayList<Bossgegner>();
 		this.aktSpielfeld = -1;
 		this.jauchBesucht = 1;
 	}
 
 	/**
-	 * die Methode liest die einzelnen Räume ein und schreibt sie in die
-	 * ArrayList array. Zusätzlich werden die Positionen der Spielfigur und der
+	 * die Methode liest die einzelnen Rï¿½ume ein und schreibt sie in die
+	 * ArrayList array. Zusï¿½tzlich werden die Positionen der Spielfigur und der
 	 * Gegner festgehalten
 	 * 
 	 * in Textdatei rechts=y-Achse (12 Zeichen) runter=x-Achse (16 Zeichen)
@@ -93,10 +94,10 @@ public class Spiel implements Serializable {
 
 		try {
 
-			/* öffnet FileReader mit Textdatei */
+			/* ï¿½ffnet FileReader mit Textdatei */
 			FileReader fr = new FileReader(Konstanten.DIRECTION
 					+ "/src/game/Szenario/" + datei);
-			/* öffnet BufferedReader und liest .txt hinein */
+			/* ï¿½ffnet BufferedReader und liest .txt hinein */
 			BufferedReader br = new BufferedReader(fr);
 
 			int aktuell = Integer.parseInt(br.readLine());
@@ -105,28 +106,28 @@ public class Spiel implements Serializable {
 			int saveGesundheit = Integer.parseInt(br.readLine());
 			if (saveGesundheit > Konstanten.VOLLH) {
 				JOptionPane.showMessageDialog(null,
-						"In der Datei gibt es eine ungültige Healthanzahl",
+						"In der Datei gibt es eine ungï¿½ltige Healthanzahl",
 						invalid, JOptionPane.ERROR_MESSAGE);
 				System.exit(0);
 			}
 			int saveMana = Integer.parseInt(br.readLine());
 			if (saveMana > Konstanten.VOLLM) {
 				JOptionPane.showMessageDialog(null,
-						"In der Datei gibt es eine ungültige Manaanzahl",
+						"In der Datei gibt es eine ungï¿½ltige Manaanzahl",
 						invalid, JOptionPane.ERROR_MESSAGE);
 				System.exit(0);
 			}
 			int saveRuestung = Integer.parseInt(br.readLine());
 			if (saveRuestung > Konstanten.VOLLR) {
 				JOptionPane.showMessageDialog(null,
-						"In der Datei gibt es eine ungültige Ruestungsanzahl",
+						"In der Datei gibt es eine ungï¿½ltige Ruestungsanzahl",
 						invalid, JOptionPane.ERROR_MESSAGE);
 				System.exit(0);
 			}
 			int saveLeben = Integer.parseInt(br.readLine());
 			if (saveLeben > Konstanten.DREILEBEN) {
 				JOptionPane.showMessageDialog(null,
-						"In der Datei gibt es eine ungültige Lebenanzahl",
+						"In der Datei gibt es eine ungï¿½ltige Lebenanzahl",
 						invalid, JOptionPane.ERROR_MESSAGE);
 				System.exit(0);
 			}
@@ -150,7 +151,7 @@ public class Spiel implements Serializable {
 						JOptionPane
 								.showMessageDialog(
 										null,
-										"Die Anzahl der Zeichen in dieser Textdatei ist ungültig!",
+										"Die Anzahl der Zeichen in dieser Textdatei ist ungï¿½ltig!",
 										invalid, JOptionPane.ERROR_MESSAGE);
 						System.exit(0);
 					} else {
@@ -212,15 +213,17 @@ public class Spiel implements Serializable {
 								gameObject = new Zurueck();
 								spielfeld.setZurueck(new Point(i, j));
 							} else if (pruefe == Konstanten.BOSS1V) {
-								this.bossgegner = new Bossgegner(
-										getAktuellesSpielfeldNumber());
-								gameObject = this.bossgegner;
+								Bossgegner aktBossgegner= new Bossgegner(aktuell);
+								this.bossgegner.add(aktBossgegner);
+								gameObject = aktBossgegner;
 							} else if (pruefe == Konstanten.BOSS2V) {
-								gameObject = new Bossgegner(
-										getAktuellesSpielfeldNumber());
+								Bossgegner aktBossgegner= new Bossgegner(aktuell);
+								this.bossgegner.add(aktBossgegner);
+								gameObject = aktBossgegner;
 							} else if (pruefe == Konstanten.BOSS3V) {
-								gameObject = new Bossgegner(
-										getAktuellesSpielfeldNumber());
+								Bossgegner aktBossgegner= new Bossgegner(aktuell);
+								this.bossgegner.add(aktBossgegner);
+								gameObject = aktBossgegner;
 							} else if (pruefe == Konstanten.CARLOS) {
 								gameObject = new Carlos();
 							} else if (pruefe == Konstanten.CUPCAKE) {
@@ -283,7 +286,7 @@ public class Spiel implements Serializable {
 				line = br.readLine();
 
 				/*
-				 * und der komplette obere Block wird ausgeführt, bis der
+				 * und der komplette obere Block wird ausgefï¿½hrt, bis der
 				 * BufferedReader das Ende der Datei gefunden hat
 				 */
 			} while (line != null);
@@ -300,16 +303,16 @@ public class Spiel implements Serializable {
 	}
 
 	/**
-	 * Getter für aktuellesSpielfeld
+	 * Getter fï¿½r aktuellesSpielfeld
 	 * 
-	 * @return array gibt das array dieser Klasse zurück
+	 * @return array gibt das array dieser Klasse zurï¿½ck
 	 */
 	public Spielfeld getAktuellesSpielfeld() {
 		return this.levels.get(aktSpielfeld);
 	}
 	
 	/**
-	 * Getter für ein Spielfeld
+	 * Getter fï¿½r ein Spielfeld
 	 * @param k
 	 * @return
 	 */
@@ -327,7 +330,7 @@ public class Spiel implements Serializable {
 
 		/* Naechstes Spielfeld */
 		aktSpielfeld += 1;
-		/* nächstes Spielfeld aus ArrayList levels */
+		/* nï¿½chstes Spielfeld aus ArrayList levels */
 		Spielfeld neuesSpielfeld = this.levels.get(aktSpielfeld);
 		/* Position von Zurueckfeld auf neuem Spielfeld wird abgerufen */
 		Point zurueck = neuesSpielfeld.getZurueck();
@@ -365,7 +368,7 @@ public class Spiel implements Serializable {
 	}
 
 	/**
-	 * geht ein Spielfeld zurück
+	 * geht ein Spielfeld zurï¿½ck
 	 * 
 	 * @param spielfigur
 	 *            Kommandozeilenparameter
@@ -389,16 +392,26 @@ public class Spiel implements Serializable {
 	}
 
 	/**
-	 * Getter für den Spieler
+	 * Getter fï¿½r den Spieler
 	 * 
 	 * @return spieler
 	 */
 	public ArrayList<Spieler> getSpieler() {
 		return this.spieler;
 	}
+	
+	/**
+	 * Getter fï¿½r den Bossgegner
+	 * 
+	 * @return spieler
+	 */
+	public ArrayList<Bossgegner> getBossgegner() {
+		return this.bossgegner;
+	}
+
 
 	/**
-	 * Bewegung wird auf dem aktuellen Spielfeld durchgeführt
+	 * Bewegung wird auf dem aktuellen Spielfeld durchgefï¿½hrt
 	 * 
 	 * @param keyCode
 	 *            Kommandozeilenparameter
