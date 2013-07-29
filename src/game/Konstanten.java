@@ -30,12 +30,10 @@ public final class Konstanten {
 	public static final int CHECKPOINT = (int) 'D';
 	public static final int BOMBE = (int) 'X';
 	public static final int STUNK = (int) 'Y';
-	public static final int LASER = (int) 'ï¿½';
-	public static final int GEGNERTOT = (int) 'ï¿½';
-	public static final int SCHWERT = (int) 'ï¿½';
+	public static final int SCHWERT = (int) 'ß';
 	public static final int SHOPMANA = (int) 'A';
 	public static final int SHOPHEALTH = (int) 'Q';
-	public static final int SHOPRUESTUNG = (int) 'ï¿½';
+	public static final int SHOPRUESTUNG = (int) 'Ü';
 	public static final int BOSS1V = (int) 'B';
 	public static final int BOSS1M = (int) '(';
 	public static final int BOSS1W = (int) ')';

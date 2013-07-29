@@ -236,8 +236,6 @@ public class Spiel implements Serializable {
 								gameObject = new Gold();
 							} else if (pruefe == Konstanten.MANA) {
 								gameObject = new Mana();
-							} else if (pruefe == Konstanten.LASER) {
-								gameObject = new Laser();
 							} else if (pruefe == Konstanten.HEALTH) {
 								gameObject = new Health();
 							} else if (pruefe == Konstanten.RUESTUNG) {

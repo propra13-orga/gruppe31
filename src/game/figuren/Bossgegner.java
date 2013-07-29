@@ -56,7 +56,7 @@ public class Bossgegner extends Spielfigur implements Serializable {
 	 *            Kommandozeilenparameter
 	 */
 	public void setzeBild(int raum) {
-		if (raum <= Konstanten.RAUM3) {
+		if (raum <= Konstanten.RAUM2) {
 			if (getGesundheit() == Konstanten.BOSS99H) {
 				bild = ICONBOSS1V;
 			} else if (getGesundheit() == Konstanten.BOSS66H) {
@@ -64,7 +64,7 @@ public class Bossgegner extends Spielfigur implements Serializable {
 			} else if (getGesundheit() == Konstanten.BOSS33H) {
 				bild = ICONBOSS1W;
 			}
-		} else if (raum <= Konstanten.RAUM6) {
+		} else if (raum <= Konstanten.RAUM5) {
 			if (getGesundheit() == Konstanten.BOSS99H) {
 				bild = ICONBOSS2V;
 			} else if (getGesundheit() == Konstanten.BOSS66H) {
@@ -72,7 +72,7 @@ public class Bossgegner extends Spielfigur implements Serializable {
 			} else if (getGesundheit() == Konstanten.BOSS33H) {
 				bild = ICONBOSS2W;
 			}
-		} else if (raum <= Konstanten.RAUM9) {
+		} else if (raum <= Konstanten.RAUM8) {
 			if (getGesundheit() == Konstanten.BOSS99H) {
 				bild = ICONBOSS3V;
 			} else if (getGesundheit() == Konstanten.BOSS66H) {
