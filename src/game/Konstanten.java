@@ -1,6 +1,6 @@
 package game;
 
-/** eigene Klasse für Konstanten, die hier nur einmal deklariert werden müssen */
+/** eigene Klasse fï¿½r Konstanten, die hier nur einmal deklariert werden mï¿½ssen */
 public final class Konstanten {
 
 	/**
@@ -9,7 +9,7 @@ public final class Konstanten {
 	 */
 	public static final String DIRECTION = System.getProperty("user.dir");
 
-	/** int-Varbiablen werden für txt-Zeichen deklariert */
+	/** int-Varbiablen werden fï¿½r txt-Zeichen deklariert */
 	public static final int RASEN = (int) ' ';
 	public static final int GRENZE = (int) '#';
 	public static final int PUDEL = (int) 'P';
@@ -30,12 +30,12 @@ public final class Konstanten {
 	public static final int CHECKPOINT = (int) 'D';
 	public static final int BOMBE = (int) 'X';
 	public static final int STUNK = (int) 'Y';
-	public static final int LASER = (int) 'Ä';
-	public static final int GEGNERTOT = (int) 'Ü';
-	public static final int SCHWERT = (int) 'ß';
+	public static final int LASER = (int) 'ï¿½';
+	public static final int GEGNERTOT = (int) 'ï¿½';
+	public static final int SCHWERT = (int) 'ï¿½';
 	public static final int SHOPMANA = (int) 'A';
 	public static final int SHOPHEALTH = (int) 'Q';
-	public static final int SHOPRUESTUNG = (int) 'Ü';
+	public static final int SHOPRUESTUNG = (int) 'ï¿½';
 	public static final int BOSS1V = (int) 'B';
 	public static final int BOSS1M = (int) '(';
 	public static final int BOSS1W = (int) ')';
@@ -52,7 +52,7 @@ public final class Konstanten {
 	public static final int GUENTHERJAUCH = (int) '^';
 	public static final int JAUCHNETZWERK = (int) '?';
 
-	/** die Größe eines Feldes wird deklariert */
+	/** die Grï¿½ï¿½e eines Feldes wird deklariert */
 	public static final int SIZE = 50;
 	/** die Spalten werden deklariert */
 	public static final int SPALTEN = 16;
@@ -65,7 +65,7 @@ public final class Konstanten {
 	/** Deklaration Zeilenumbruch */
 	public static final String ZEILENUMBRUCH = "\r\n";
 
-	/** Auswahlmöglichkeiten selected */
+	/** Auswahlmï¿½glichkeiten selected */
 	public static final int SELECTEDNULL = 0;
 	public static final int SELECTEDEINS = 1;
 	public static final int SELECTEDZWEI = 2;
@@ -89,7 +89,7 @@ public final class Konstanten {
 	public static final int EINVIERTELH = 25;
 	public static final int LEERH = 0;
 
-	/** die Rüstungs Staffelungen werden deklariert */
+	/** die Rï¿½stungs Staffelungen werden deklariert */
 	public static final int VOLLR = 50;
 	public static final int HALBR = 25;
 	public static final int LEERR = 0;
@@ -132,17 +132,17 @@ public final class Konstanten {
 	public static final int XGF = 900;
 	public static final int YGF = 700;
 
-	/** die Groessen für das Steuerungsfenster */
+	/** die Groessen fï¿½r das Steuerungsfenster */
 	public static final int XSTEUERUNG = -5;
 	public static final int YSTEUERUNG = -15;
 	public static final int BREITESTEUERUNG = 610;
 	public static final int HOEHESTEUERUNG = 430;
 
-	/** die Groessen für das Netzwerkfenster */
+	/** die Groessen fï¿½r das Netzwerkfenster */
 	public static final int BREITECHAT = 700;
 	public static final int HOEHECHAT = 270;
 
-	/** die Groessen für das NPCfenster */
+	/** die Groessen fï¿½r das NPCfenster */
 	public static final int BREITENPC = 205;
 	public static final int HOEHENPC = 600;
 
@@ -152,55 +152,55 @@ public final class Konstanten {
 	public static final int BREITENPCF = 200;
 	public static final int HOEHENPCF = 600;
 
-	/** Positionen für Button Weiter NPCfenster */
+	/** Positionen fï¿½r Button Weiter NPCfenster */
 	public static final int XWEITER = 0;
 	public static final int YWEITER = 500;
 	public static final int BREITEWEITER = 200;
 	public static final int HOEHEWEITER = 30;
 
-	/** Positionen für Button Skip NPCfenster */
+	/** Positionen fï¿½r Button Skip NPCfenster */
 	public static final int XSKIP = 0;
 	public static final int YSKIP = 532;
 	public static final int BREITESKIP = 200;
 	public static final int HOEHESKIP = 30;
 
-	/** Positionen für Button Weiter NPCfenster */
+	/** Positionen fï¿½r Button Weiter NPCfenster */
 	public static final int XOK = 0;
 	public static final int YOK = 500;
 	public static final int BREITEOK = 200;
 	public static final int HOEHEOK = 70;
 
-	/** Postionen für Netzwerkfenster */
+	/** Postionen fï¿½r Netzwerkfenster */
 	public static final int XSERVER = 30;
 	public static final int XCLIENT = 650;
 	public static final int YSERVERCLIENT = 100;
 
-	/** Postionen für Loadbutton */
+	/** Postionen fï¿½r Loadbutton */
 	public static final int XLOAD = 750;
 	public static final int YLOAD = 550;
 	public static final int BREITELOAD = 100;
 	public static final int HOEHELOAD = 25;
 
-	/** Postionen für Savebutton */
+	/** Postionen fï¿½r Savebutton */
 	public static final int XSAVE = 750;
 	public static final int YSAVE = 575;
 	public static final int BREITESAVE = 100;
 	public static final int HOEHESAVE = 25;
 
-	/** Port für Netzwerk */
+	/** Port fï¿½r Netzwerk */
 	public static final int PORT = 4711;
 
-	/** Angaben für GewonnenVerloren */
+	/** Angaben fï¿½r GewonnenVerloren */
 	public static final int BREITEGV = 800;
 	public static final int HOEHEGV = 600;
 
-	/** Positionen für gvschliessen */
+	/** Positionen fï¿½r gvschliessen */
 	public static final int XGVB = 550;
 	public static final int YGVB = 450;
 	public static final int BREITEGVB = 200;
 	public static final int HOEHEGVB = 45;
 
-	/** Positionen für Buttons auf MenuFrame */
+	/** Positionen fï¿½r Buttons auf MenuFrame */
 	public static final int XBUTTON = 350;
 	public static final int BREITEBUTTON = 200;
 	public static final int HOEHEBUTTON = 40;
@@ -210,39 +210,39 @@ public final class Konstanten {
 	public static final int YCONTROL = 400;
 	public static final int YENDE = 450;
 
-	/** Positionen für Madeby-Label */
+	/** Positionen fï¿½r Madeby-Label */
 	public static final int XMB = 600;
 	public static final int YMB = 500;
 	public static final int BREITEMB = 200;
 	public static final int HOEHEMB = 40;
 
-	/** Loop Angabe für Musik */
+	/** Loop Angabe fï¿½r Musik */
 	public static final int LOOP = 999;
 
-	/** Angabe für Panelposition */
+	/** Angabe fï¿½r Panelposition */
 	public static final int PANEL = 10;
 
-	/** Raumangaben für Bossauswahl */
-	public static final int RAUM3 = 2;
-	public static final int RAUM6 = 5;
-	public static final int RAUM9 = 8;
+	/** Raumangaben fï¿½r Bossauswahl */
+	public static final int RAUM2 = 2;
+	public static final int RAUM5 = 5;
+	public static final int RAUM8 = 8;
 
 	/** Anzahl, wie oft Jauch besucht */
 	public static final int BESUCH1 = 1;
 	public static final int BESUCH2 = 2;
 	public static final int BESUCH3 = 3;
 
-	/** Health für Bossgegner */
+	/** Health fï¿½r Bossgegner */
 	public static final int BOSS99H = 99;
 	public static final int BOSS66H = 66;
 	public static final int BOSS33H = 33;
 	public static final int BOSS0H = 0;
 
-	/** Anzeuge 'schläft' so und soviele Sekunden, bis sie weiter macht */
+	/** Anzeuge 'schlï¿½ft' so und soviele Sekunden, bis sie weiter macht */
 	public static final long SLEEP = 100;
 
 	/**
-	 * privater Konstruktor, der verhindert, dass von außen ein Exemplar dieser
+	 * privater Konstruktor, der verhindert, dass von auï¿½en ein Exemplar dieser
 	 * Klasse gebildet werden kann
 	 */
 	private Konstanten() {
