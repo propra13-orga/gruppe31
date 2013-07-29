@@ -39,7 +39,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-/** ist für den jeweiligen Raum zuständig. das Spielfeld wird erstellt */
+/** ist fï¿½r den jeweiligen Raum zustï¿½ndig. das Spielfeld wird erstellt */
 public class Spielfeld implements Serializable {
 
 	/** Speichert die Objekte auf diesem Spielfeld */
@@ -58,7 +58,7 @@ public class Spielfeld implements Serializable {
 	private JauchNetzerk jauchNetzwerk;
 	private GameFrame gameFrame;
 
-	/** Deklaration der Punkte für Weiter- und Zuruckfelder */
+	/** Deklaration der Punkte fï¿½r Weiter- und Zuruckfelder */
 	private Point weiter;
 	private Point zurueck;
 
@@ -76,16 +76,16 @@ public class Spielfeld implements Serializable {
 	private String carlos = "Carlos";
 	private String luke = "Luke";
 
-	/** Deklaration von int zum Zählen */
+	/** Deklaration von int zum Zï¿½hlen */
 	private int raum = 0;
 
 	/** Deklaration Boolean, ob Spiel gespeichert */
 	private Boolean checkpoint = false;
 
 	/**
-	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann für jeden
+	 * erstellt ein Array feld, das nur aus GameObjects bestehen kann fï¿½r jeden
 	 * case wird ein Objekt der jeweiligen Klasse erstellt, welches den case
-	 * überschreibt
+	 * ï¿½berschreibt
 	 * 
 	 * @param spiel
 	 *            Kommandozeilenparameter
@@ -123,7 +123,7 @@ public class Spielfeld implements Serializable {
 	}
 
 	/**
-	 * setzt das GameObject an die gewünschte Position
+	 * setzt das GameObject an die gewï¿½nschte Position
 	 * 
 	 * @param objekt
 	 *            Das Objekt, welches bewegt werden soll
@@ -150,15 +150,15 @@ public class Spielfeld implements Serializable {
 	 * Figuren werden bewegt
 	 * 
 	 * @param spieler
-	 *            Spielfigur wird übergeben
+	 *            Spielfigur wird ï¿½bergeben
 	 * @param pilze
-	 *            Pilze-List wird übergeben
+	 *            Pilze-List wird ï¿½bergeben
 	 * @param bienen
-	 *            Bienen-List wird übergeben
+	 *            Bienen-List wird ï¿½bergeben
 	 * @param keyCode
-	 *            KeyCode wird übergeben
+	 *            KeyCode wird ï¿½bergeben
 	 * @param barriere
-	 *            barriere wird übergeben
+	 *            barriere wird ï¿½bergeben
 	 * @param gameFrame
 	 *            Kommandozeilenparameter
 	 * @param bossgegner
@@ -166,13 +166,13 @@ public class Spielfeld implements Serializable {
 	 */
 	public void aktion(Spieler spieler, ArrayList<Gegner> pilze,
 			ArrayList<Gegner> bienen, int keyCode, Barriere barriere,
-			GameFrame gameFrame, Bossgegner bossgegner) {
+		GameFrame gameFrame, ArrayList<Bossgegner> bossgegner) {
 
 		aktionSpieler(spieler, barriere, keyCode, gameFrame, bossgegner);
 
 		// im ersten Spielfeld werden alle Gegner der txt angezeigt */
 		for (int i = 0; i < pilze.size(); i++) {
-			aktionGegner(pilze.get(i), keyCode);
+			aktionGegner(pilze.get(i), keyCode, spieler);
 		}
 
 	}
@@ -185,9 +185,9 @@ public class Spielfeld implements Serializable {
 	 * @param keyCode
 	 *            Kommandozeilenparameter
 	 */
-	private void aktionGegner(Gegner aktGegner, int keyCode) {
+	private void aktionGegner(Gegner aktGegner, int keyCode, Spieler spielfigur) {
 
-		/* Alte und neue Position für Spieler festlegen. */
+		/* Alte und neue Position fï¿½r Spieler festlegen. */
 		Point aktGegPos = aktGegner.getPosition();
 		Point neuGegPos = new Point(aktGegPos);
 
@@ -205,7 +205,7 @@ public class Spielfeld implements Serializable {
 
 		boolean gegSollBewegtWerden = false;
 
-		/* Spielfigur: Objekte drum herum prüfen */
+		/* Spielfigur: Objekte drum herum prï¿½fen */
 		if (obj instanceof Rasen) {
 			gegSollBewegtWerden = true;
 		} else {
@@ -219,10 +219,14 @@ public class Spielfeld implements Serializable {
 			/* setzt die neue Position */
 			aktGegner.setPosition(neuGegPos);
 		}
+		if (spielfigur.getRuestung() >= Konstanten.LEERR) {
+			spielfigur.setHalsband(false);
+		}
 
 		aktGegner.setzeBildPilz();
 		aktGegner.getPicture();
 	}
+
 
 	/**
 	 * Spielfigur wird bewegt
@@ -239,12 +243,12 @@ public class Spielfeld implements Serializable {
 	 *            Kommandozeilenparameter
 	 */
 	private void aktionSpieler(Spieler spielfigur, Barriere barriere,
-			int keyCode, GameFrame gameFrame, Bossgegner bossgegner) {
+			int keyCode, GameFrame gameFrame, ArrayList<Bossgegner> bossgegner) {
 
-		/* überprüft erneut, ob spielfigur = Erna */
+		/* ï¿½berprï¿½ft erneut, ob spielfigur = Erna */
 		if (spielfigur == spiel.spieler.get(0)) {
 
-			/* Alte und neue Position für Spieler festlegen. */
+			/* Alte und neue Position fï¿½r Spieler festlegen. */
 			Point aktPos = spielfigur.getPosition();
 			Point neuPos = new Point(aktPos);
 
@@ -268,7 +272,7 @@ public class Spielfeld implements Serializable {
 			/* oder ob spielfigur = Luke */
 		} else if (spielfigur == spiel.spieler.get(1)) {
 
-			/* Alte und neue Position für Spieler festlegen. */
+			/* Alte und neue Position fï¿½r Spieler festlegen. */
 			Point aktPos = spielfigur.getPosition();
 			Point neuPos = new Point(aktPos);
 
@@ -311,7 +315,7 @@ public class Spielfeld implements Serializable {
 	 */
 	private void wasd(int keyCode, Spieler spielfigur, Point neuPos,
 			Point aktPos, GameFrame gameFrame, Barriere barriere,
-			Bossgegner bossgegner) {
+			ArrayList<Bossgegner> bossgegner) {
 		if (keyCode == KeyEvent.VK_A) {
 			neuPos.x--;
 		} else if (keyCode == KeyEvent.VK_D) {
@@ -328,7 +332,7 @@ public class Spielfeld implements Serializable {
 		boolean einsammeln = false;
 		boolean umlegen = false;
 
-		/* Spielfigur: Objekte drum herum prüfen */
+		/* Spielfigur: Objekte drum herum prï¿½fen */
 		if (obj instanceof Rasen) {
 			sollBewegtWerden = true;
 		} else if (obj instanceof Grenze) {
@@ -352,7 +356,7 @@ public class Spielfeld implements Serializable {
 			checkpoint(gameFrame);
 			einsammeln = true;
 		} else if (obj instanceof Weiter) {
-			if (spiel.getAktuellesSpielfeldNumber() <= Konstanten.RAUM9) {
+			if (spiel.getAktuellesSpielfeldNumber() <= Konstanten.RAUM8) {
 				/* aktuelle Position auf Rasen setzen */
 				this.setzeObjekt(new Rasen(), aktPos);
 				/* Ueber das Spiel in den naechsten Raum wechseln. */
@@ -497,7 +501,7 @@ public class Spielfeld implements Serializable {
 	 */
 	private void pfeiltasten(int keyCode, Spieler spielfigur, Point neuPos,
 			Point aktPos, GameFrame gameFrame, Barriere barriere,
-			Bossgegner bossgegner) {
+			ArrayList<Bossgegner> bossgegner) {
 		if (keyCode == KeyEvent.VK_LEFT) {
 			neuPos.x--;
 		} else if (keyCode == KeyEvent.VK_RIGHT) {
@@ -514,7 +518,7 @@ public class Spielfeld implements Serializable {
 		boolean einsammeln = false;
 		boolean umlegen = false;
 
-		/* Spielfigur: Objekte drum herum prüfen */
+		/* Spielfigur: Objekte drum herum prï¿½fen */
 		if (obj instanceof Rasen) {
 			sollBewegtWerden = true;
 		} else if (obj instanceof Grenze) {
@@ -539,7 +543,7 @@ public class Spielfeld implements Serializable {
 			checkpoint(gameFrame);
 			einsammeln = true;
 		} else if (obj instanceof Weiter) {
-			if (spiel.getAktuellesSpielfeldNumber() <= Konstanten.RAUM9) {
+			if (spiel.getAktuellesSpielfeldNumber() <= Konstanten.RAUM8) {
 				/* aktuelle Position auf Rasen setzen */
 				this.setzeObjekt(new Rasen(), aktPos);
 				/* Ueber das Spiel in den naechsten Raum wechseln. */
@@ -663,7 +667,7 @@ public class Spielfeld implements Serializable {
 	}
 
 	/**
-	 * führt die Aktionen durch, die nötig sind, wenn die Spielfigur vom Gegner
+	 * fï¿½hrt die Aktionen durch, die nï¿½tig sind, wenn die Spielfigur vom Gegner
 	 * angegriffen wird
 	 * 
 	 * @param spielfigur
@@ -693,7 +697,7 @@ public class Spielfeld implements Serializable {
 	}
 
 	/**
-	 * führt die Aktionen durch, die nötig sind, wenn die Spielfigur vom Gegner
+	 * fï¿½hrt die Aktionen durch, die nï¿½tig sind, wenn die Spielfigur vom Gegner
 	 * (sowohl Pilze, Bienen, als auch andere Spieler) angegriffen wird
 	 * 
 	 * @param spielfigur
@@ -801,7 +805,7 @@ public class Spielfeld implements Serializable {
 	 * @param bossgegner
 	 *            Kommandozeilenparameter
 	 */
-	public void schlage(Spieler spielfigur, Bossgegner bossgegner) {
+	public void schlage(Spieler spielfigur, ArrayList<Bossgegner> bossgegner) {
 
 		if (spielfigur.getBeschwertet()) {
 			Point aktPos = spielfigur.getPosition();
@@ -823,36 +827,33 @@ public class Spielfeld implements Serializable {
 					|| oben instanceof Bossgegner
 					|| unten instanceof Bossgegner) {
 				if (links instanceof Bossgegner) {
-					if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
-						bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
-					} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
+					if (spiel.getBossgegner().get(0).getGesundheit() > Konstanten.BOSS33H) {
+						spiel.getBossgegner().get(0).setGesundheitMinus(Konstanten.BOSS33H);
+					} else if (spiel.getBossgegner().get(0).getGesundheit() == Konstanten.BOSS33H) {
 						this.setzeObjekt(new Rasen(), linksPos);
-					}
-					musik = new Musik(Konstanten.DIRECTION + huhu);
+				}
+				musik = new Musik(Konstanten.DIRECTION + huhu);
 				} else if (rechts instanceof Bossgegner) {
-					if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
-						bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
-					} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
+				if (spiel.getBossgegner().get(0).getGesundheit() > Konstanten.BOSS33H) {
+						spiel.getBossgegner().get(0).setGesundheitMinus(Konstanten.BOSS33H);
+					} else if (spiel.getBossgegner().get(0).getGesundheit() == Konstanten.BOSS33H) {
 						this.setzeObjekt(new Rasen(), rechtsPos);
 					}
 					musik = new Musik(Konstanten.DIRECTION + huhu);
 				} else if (oben instanceof Bossgegner) {
-					if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
-						bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
-					} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
+					if (spiel.getBossgegner().get(0).getGesundheit() > Konstanten.BOSS33H) {
+						spiel.getBossgegner().get(0).setGesundheitMinus(Konstanten.BOSS33H);
+					} else if (spiel.getBossgegner().get(0).getGesundheit() == Konstanten.BOSS33H) {
 						this.setzeObjekt(new Rasen(), obenPos);
 					}
 					musik = new Musik(Konstanten.DIRECTION + huhu);
 				} else if (unten instanceof Bossgegner) {
-					if (bossgegner.getGesundheit() > Konstanten.BOSS33H) {
-						bossgegner.setGesundheitMinus(Konstanten.BOSS33H);
-					} else if (bossgegner.getGesundheit() == Konstanten.BOSS33H) {
+					if (spiel.getBossgegner().get(0).getGesundheit() > Konstanten.BOSS33H) {
+						spiel.getBossgegner().get(0).setGesundheitMinus(Konstanten.BOSS33H);
+					} else if (spiel.getBossgegner().get(0).getGesundheit() == Konstanten.BOSS33H) {
 						this.setzeObjekt(new Rasen(), untenPos);
 					}
 					musik = new Musik(Konstanten.DIRECTION + huhu);
-					bossgegner.setzeBild(this.spiel
-							.getAktuellesSpielfeldNumber());
-					bossgegner.getPicture();
 				}
 			} else if (rechts instanceof Spieler || links instanceof Spieler
 					|| unten instanceof Spieler || oben instanceof Spieler) {
@@ -870,6 +871,15 @@ public class Spielfeld implements Serializable {
 			JOptionPane.showMessageDialog(null, "Sie tragen kein Schwert!",
 					attention, JOptionPane.WARNING_MESSAGE);
 		}
+		
+		spiel.getBossgegner().get(0).setzeBild(spiel.getAktuellesSpielfeldNumber());
+			spiel.getBossgegner().get(0).getPicture();
+		if (spielfigur.getErna()) {
+			spielfigur.setzeBildErna();
+		} else if (spielfigur.getLuke()) {
+			spielfigur.setzeBildLuke();
+		}
+	spielfigur.getPicture();
 	}
 
 	/**
@@ -903,7 +913,7 @@ public class Spielfeld implements Serializable {
 	}
 
 	/**
-	 * speichert das Spiel, wenn man über einen Checkpoint läuft
+	 * speichert das Spiel, wenn man ï¿½ber einen Checkpoint lï¿½uft
 	 * 
 	 */
 	private void checkpoint(GameFrame gameFrame) {
