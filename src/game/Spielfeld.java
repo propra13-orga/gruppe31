@@ -170,10 +170,8 @@ public class Spielfeld implements Serializable {
 
 		aktionSpieler(spieler, barriere, keyCode, gameFrame, bossgegner);
 
-		// im ersten Spielfeld werden alle Gegner der txt angezeigt */
-		for (int i = 0; i < pilze.size(); i++) {
-			aktionGegner(pilze.get(i), keyCode, spieler);
-		}
+		/* Gegner werden bewegt */
+		aktionGegner(pilze.get(spiel.getAktuellesSpielfeldNumber()), keyCode, spieler);
 
 	}
 
