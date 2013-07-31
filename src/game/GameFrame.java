@@ -618,11 +618,16 @@ public class GameFrame extends JFrame implements KeyListener {
 						saveSpielfeld = saveSpielfeld + "^";
 					}
 				}
+				/* Zeilenumbruch am Ende einer Zeile */
 				saveSpielfeld += Konstanten.ZEILENUMBRUCH;
 			}
+			;
+			/* Leerzeile zwischen Spielfeldern */
 			saveSpielfeld += Konstanten.ZEILENUMBRUCH;
 			spielfelder += saveSpielfeld;
 		}
+		
+		spielfelder = spielfelder.substring(0, spielfelder.length() -2);
 		return spielfelder;
 	}
 

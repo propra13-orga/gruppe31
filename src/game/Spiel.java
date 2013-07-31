@@ -151,7 +151,7 @@ public class Spiel implements Serializable {
 						JOptionPane
 								.showMessageDialog(
 										null,
-										"Die Anzahl der Zeichen in dieser Textdatei ist ungï¿½ltig!",
+										"Die Anzahl der Zeichen in einer/mehreren Zeile/n ist ungültig!",
 										invalid, JOptionPane.ERROR_MESSAGE);
 						System.exit(0);
 					} else {
